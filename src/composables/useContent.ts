@@ -1,10 +1,8 @@
 import rawArticles from '@/data/articles.json'
-import rawAdvertisers from '@/data/advertisers.json'
 import rawAffiliates from '@/data/affiliates.json'
 import rawBlog from '@/data/blog.json'
 import rawCasinos from '@/data/casinos.json'
 import rawFooter from '@/data/footer.json'
-import rawHome from '@/data/home.json'
 import rawHomeAbout from '@/data/home-about.json'
 import rawHomeAffAdv from '@/data/home-affiliates-advertisers.json'
 import rawHomeBenefits from '@/data/home-benefits.json'
@@ -19,7 +17,6 @@ import rawHomeTestimonials from '@/data/home-testimonials.json'
 import rawHomeVacancies from '@/data/home-vacancies.json'
 import rawNav from '@/data/nav.json'
 import type {
-  AdvertisersPageContent,
   AffiliatesPageContent,
   ArticleDetail,
   BlogContent,
@@ -29,10 +26,9 @@ import type {
   HomeAffiliatesAdvertisersContent,
   HomeBenefitsContent,
   HomeBlogContent,
-  HomeContent,
+  HomeContactsContent,
   HomeDirectAdvertiserContent,
   HomeHeroContent,
-  HomeContactsContent,
   HomeFaqContent,
   HomeMapContent,
   HomeMeetUsContent,
@@ -47,10 +43,6 @@ export function useNav(): NavConfig {
 
 export function useFooter(): FooterConfig {
   return rawFooter as FooterConfig
-}
-
-export function useHome(): HomeContent {
-  return rawHome as HomeContent
 }
 
 export function useHomeHero(): HomeHeroContent {
@@ -133,10 +125,6 @@ export function useAffiliatesPage(): AffiliatesPageContent {
   return rawAffiliates as AffiliatesPageContent
 }
 
-export function useAdvertisersPage(): AdvertisersPageContent {
-  return rawAdvertisers as AdvertisersPageContent
-}
-
 export function useCasinos(): CasinoPageContent[] {
   const raw = rawCasinos as { casinos: CasinoPageContent[] }
   return raw.casinos
@@ -144,10 +132,4 @@ export function useCasinos(): CasinoPageContent[] {
 
 export function getCasinoBySlug(slug: string): CasinoPageContent | undefined {
   return useCasinos().find((casino) => casino.slug === slug)
-}
-
-/** Slugs всех casino-страниц — для router beforeEnter/валидации,
- *  чтобы не редиректить на 404 после mount-а уже отрисованного компонента. */
-export function getCasinoSlugs(): string[] {
-  return useCasinos().map((casino) => casino.slug)
 }

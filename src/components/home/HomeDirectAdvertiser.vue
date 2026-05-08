@@ -21,11 +21,7 @@ const navConfig = {
 </script>
 
 <template>
-  <section
-    id="direct-advertiser"
-    class="home-direct"
-    data-section="direct-advertiser"
-  >
+  <section id="direct-advertiser" class="home-direct" data-section="direct-advertiser">
     <img
       :src="content.glow.src"
       :alt="content.glow.alt"
@@ -110,11 +106,7 @@ const navConfig = {
       </div>
 
       <ul class="home-direct__cooperation">
-        <li
-          v-for="model in content.cooperation"
-          :key="model.id"
-          class="home-direct__model"
-        >
+        <li v-for="model in content.cooperation" :key="model.id" class="home-direct__model">
           <div class="home-direct__model-pill">
             <span class="home-direct__model-title">{{ model.title }}</span>
           </div>
@@ -124,11 +116,7 @@ const navConfig = {
 
       <div class="home-direct__cta">
         <p class="home-direct__cta-title">{{ content.cta.title }}</p>
-        <BaseButton
-          variant="secondary"
-          size="large"
-          :to="content.cta.button.path"
-        >
+        <BaseButton variant="secondary" size="large" :to="content.cta.button.path">
           {{ content.cta.button.label }}
         </BaseButton>
       </div>

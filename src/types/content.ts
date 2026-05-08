@@ -74,14 +74,6 @@ export interface FooterConfig {
   legal?: string
 }
 
-export interface HeroContent {
-  titleLines: string[]
-  subtitle: string
-  primaryCta: { label: string; path: string }
-  secondaryCta: { label: string; path: string }
-  scrollHint?: boolean
-}
-
 export interface HomeHeroContent {
   titleLineLeft: string
   titleLineBottom: string
@@ -97,17 +89,6 @@ export interface HomeHeroContent {
     mobile: string
     alt: string
   }
-}
-
-export interface AboutStat {
-  id: string
-  value: string
-  description: string
-}
-
-export interface AboutCenterVisual {
-  imageSrc: string
-  imageAlt: string
 }
 
 /**
@@ -134,14 +115,6 @@ export interface HomeAboutContent {
   title: string
   blocks: HomeAboutInfoBlock[]
   image: HomeAboutImageBlock
-}
-
-export interface AffiliatePromoCard {
-  id: string
-  title: string
-  description: string
-  primaryCta: { label: string; path: string }
-  secondaryCta: { label: string; path: string }
 }
 
 /**
@@ -445,33 +418,6 @@ export interface TeamMember {
   telegram?: string
 }
 
-export interface NewsletterSection {
-  title: string
-  subtitle: string
-  placeholder: string
-  buttonLabel: string
-}
-
-export interface FaqItem {
-  id: string
-  question: string
-  answer: string
-  defaultOpen?: boolean
-}
-
-export interface HomeContent {
-  hero: HeroContent
-  about: { title: string; stats: AboutStat[]; center?: AboutCenterVisual }
-  promoCards: AffiliatePromoCard[]
-  directAdvertiser: DirectAdvertiserSection
-  vacancies: { title: string; cards: VacancyCard[] }
-  testimonials: { title: string; items: Testimonial[] }
-  meetUs: { title: string; events: ConferenceEvent[] }
-  team: { title: string; members: TeamMember[] }
-  newsletter: NewsletterSection
-  faq: { title: string; illustrationSrc?: string; illustrationAlt?: string; items: FaqItem[] }
-}
-
 /**
  * Декоративный бейдж в шапке Blog page (Figma 2433:1793).
  * Бейджи разбросаны вокруг заголовка "Blog" со случайными rotate.
@@ -558,12 +504,6 @@ export interface WhatYouGetCard {
 }
 
 export interface AffiliatesPageContent {
-  hero: PageHeroBlock
-  whatYouGet: { title: string; badge?: string; cards: WhatYouGetCard[] }
-  cta: { titleHtml: string; button: { label: string; path: string } }
-}
-
-export interface AdvertisersPageContent {
   hero: PageHeroBlock
   whatYouGet: { title: string; badge?: string; cards: WhatYouGetCard[] }
   cta: { titleHtml: string; button: { label: string; path: string } }
