@@ -46,6 +46,8 @@ const previewArticles = computed(() => articles.slice(0, 3))
 
 <style scoped lang="scss">
 @use '@/assets/styles/scss/media' as *;
+@use '@/assets/styles/scss/section-patterns' as *;
+@use '@/assets/styles/scss/typography' as *;
 @use '@/assets/styles/scss/units' as *;
 
 /* ============================================================
@@ -57,15 +59,7 @@ const previewArticles = computed(() => articles.slice(0, 3))
 .home-blog {
   position: relative;
   background-color: var(--color-bg-page);
-  padding: to-rem(70) var(--container-pad-mobile);
-
-  @include mq($from: mobile) {
-    padding-inline: var(--container-pad-tablet);
-  }
-
-  @include mq($from: tablet) {
-    padding: to-rem(100) var(--container-pad-desktop);
-  }
+  @include section-padding-default;
 }
 
 .home-blog__inner {
@@ -87,19 +81,7 @@ const previewArticles = computed(() => articles.slice(0, 3))
  * Title — H4 36/40 mobile, H3 56/64 desktop, центр
  * ============================================================ */
 .home-blog__title {
-  margin: 0;
-  font-family: var(--font-sans);
-  font-weight: 500;
-  font-size: to-rem(36);
-  line-height: to-rem(40);
-  letter-spacing: -0.01em;
-  color: var(--color-text-primary);
-  text-align: center;
-
-  @include mq($from: tablet) {
-    font-size: to-rem(56);
-    line-height: to-rem(64);
-  }
+  @include font-section-title;
 }
 
 .home-blog__content {

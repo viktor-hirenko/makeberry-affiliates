@@ -1,0 +1,20 @@
+@use 'media' as *;
+@use 'units' as *;
+
+/// Стандартная оболочка секции: py 70 mobile → tablet inline → py 100 + desktop pad с ≥ tablet.
+/// Подключать только там, где эта тройка совпадает с макетом (см. grep по проекту).
+/// Если у секции другой финальный брейкпоинт или другие числа — не использовать.
+@mixin section-padding-default {
+  padding: to-rem(70) var(--container-pad-mobile);
+
+  @include mq($from: mobile) {
+    padding-inline: var(--container-pad-tablet);
+  }
+
+  @include mq($from: tablet) {
+    padding: to-rem(100) var(--container-pad-desktop);
+  }
+}
+
+/// Частый вертикальный шаг между блоками внутри секции (не конвертируем автоматически — только там, где уже 48px).
+$section-stack-gap: to-rem(48);

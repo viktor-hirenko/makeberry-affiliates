@@ -68,9 +68,9 @@ const content = useHomeAffiliatesAdvertisers()
   position: relative;
   display: grid;
   grid-template-columns: 1fr;
-  align-items: start;
   justify-items: stretch;
   gap: to-rem(60);
+  margin-inline: auto;
   background-color: var(--color-bg-page);
   padding: to-rem(70) var(--container-pad-mobile);
   /*
@@ -164,12 +164,14 @@ const content = useHomeAffiliatesAdvertisers()
   flex-direction: column;
   align-items: flex-start;
   gap: to-rem(24);
+  height: 100%;
   padding: to-rem(24);
 }
 
 .home-aff-adv__description {
   margin: 0;
   width: 100%;
+  flex: 1;
   @include font-body-s-regular;
   color: var(--color-text-secondary);
 }

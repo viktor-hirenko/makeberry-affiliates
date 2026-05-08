@@ -162,6 +162,7 @@ function isTextSection(section: ArticleSection): boolean {
 
 <style scoped lang="scss">
 @use '@/assets/styles/scss/media' as *;
+@use '@/assets/styles/scss/section-patterns' as *;
 @use '@/assets/styles/scss/units' as *;
 
 /* ============================================================
@@ -172,16 +173,8 @@ function isTextSection(section: ArticleSection): boolean {
 .article {
   position: relative;
   background-color: var(--color-bg-page);
-  padding: to-rem(70) var(--container-pad-mobile);
+  @include section-padding-default;
   overflow: hidden;
-
-  @include mq($from: mobile) {
-    padding-inline: var(--container-pad-tablet);
-  }
-
-  @include mq($from: tablet) {
-    padding: to-rem(100) var(--container-pad-desktop);
-  }
 }
 
 /* ============================================================

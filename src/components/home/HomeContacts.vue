@@ -82,16 +82,16 @@ function handleInput() {
 
 <template>
   <section id="contacts" class="home-contacts" data-section="contacts">
-    <img
-      :src="content.glow.src"
-      :alt="content.glow.alt"
-      class="home-contacts__glow"
-      aria-hidden="true"
-      loading="lazy"
-      decoding="async"
-    />
-
     <div class="home-contacts__inner">
+      <img
+        :src="content.glow.src"
+        :alt="content.glow.alt"
+        class="home-contacts__glow"
+        aria-hidden="true"
+        loading="lazy"
+        decoding="async"
+      />
+
       <h2 class="home-contacts__title">{{ content.title }}</h2>
 
       <div class="home-contacts__slider-wrap">
@@ -221,6 +221,7 @@ function handleInput() {
 
 <style scoped lang="scss">
 @use '@/assets/styles/scss/media' as *;
+@use '@/assets/styles/scss/section-patterns' as *;
 @use '@/assets/styles/scss/typography' as *;
 @use '@/assets/styles/scss/units' as *;
 
@@ -233,38 +234,8 @@ function handleInput() {
 .home-contacts {
   position: relative;
   background-color: var(--color-bg-page);
-  padding: to-rem(70) var(--container-pad-mobile);
+  @include section-padding-default;
   overflow-x: clip;
-
-  @include mq($from: mobile) {
-    padding-inline: var(--container-pad-tablet);
-  }
-
-  @include mq($from: tablet) {
-    padding: to-rem(100) var(--container-pad-desktop);
-  }
-}
-
-/* Glow — pink radial декорация в правом верхнем углу,
- * выходит за viewport. По Figma desktop: top -86, ширина 742, выпирает
- * вправо от viewport на 331px.
- */
-.home-contacts__glow {
-  position: absolute;
-  top: to-rem(-106);
-  right: to-rem(-280);
-  width: to-rem(540);
-  height: to-rem(720);
-  pointer-events: none;
-  user-select: none;
-  z-index: 0;
-
-  @include mq($from: tablet) {
-    top: to-rem(-86);
-    right: to-rem(-331);
-    width: to-rem(742);
-    height: to-rem(989);
-  }
 }
 
 .home-contacts__inner {
@@ -283,23 +254,29 @@ function handleInput() {
   }
 }
 
+.home-contacts__glow {
+  position: absolute;
+  top: to-rem(-106);
+  right: to-rem(-280);
+  width: to-rem(540);
+  height: to-rem(720);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+
+  @include mq($from: tablet) {
+    top: to-rem(-186);
+    right: to-rem(-390);
+    width: to-rem(742);
+    height: auto;
+  }
+}
+
 /* ============================================================
  * Title — 36/40 mobile, H3 56/64 desktop
  * ============================================================ */
 .home-contacts__title {
-  margin: 0;
-  width: 100%;
-  font-family: var(--font-sans);
-  font-weight: 500;
-  font-size: to-rem(36);
-  line-height: to-rem(40);
-  letter-spacing: -0.01em;
-  color: var(--color-text-primary);
-  text-align: center;
-
-  @include mq($from: tablet) {
-    @include font-h3;
-  }
+  @include font-section-title;
 }
 
 /* ============================================================

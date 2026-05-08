@@ -5,37 +5,20 @@ const content = useHomeBenefits()
 </script>
 
 <template>
-  <section
-    id="our-benefits"
-    class="home-benefits"
-    data-section="our-benefits"
-  >
-    <div class="home-benefits__decor" aria-hidden="true">
-      <img
-        src="/images/home/our-benefits/glow-bg.png"
-        alt=""
-        class="home-benefits__decor-image home-benefits__decor-image--bg"
-        loading="lazy"
-        decoding="async"
-      />
-      <img
-        src="/images/home/our-benefits/glow-accent.png"
-        alt=""
-        class="home-benefits__decor-image home-benefits__decor-image--accent"
-        loading="lazy"
-        decoding="async"
-      />
-    </div>
-
+  <section id="our-benefits" class="home-benefits" data-section="our-benefits">
     <div class="home-benefits__inner">
+      <img
+        src="/images/home/our-benefits/glow.png"
+        alt=""
+        class="home-benefits__glow"
+        loading="lazy"
+        decoding="async"
+      />
+
       <h2 class="home-benefits__title">{{ content.title }}</h2>
 
       <ul class="home-benefits__grid" role="list">
-        <li
-          v-for="card in content.cards"
-          :key="card.number"
-          class="home-benefits__card"
-        >
+        <li v-for="card in content.cards" :key="card.number" class="home-benefits__card">
           <header class="home-benefits__card-header">
             <span class="home-benefits__card-dot" aria-hidden="true"></span>
             <p class="home-benefits__card-number">{{ card.number }}</p>
@@ -68,7 +51,6 @@ const content = useHomeBenefits()
   align-items: center;
   background-color: var(--color-bg-page);
   padding: to-rem(70) var(--container-pad-mobile);
-  overflow: hidden;
 
   @include mq($from: mobile) {
     padding-inline: var(--container-pad-tablet);
@@ -79,59 +61,23 @@ const content = useHomeBenefits()
   }
 }
 
-/* ============================================================
- * Decoration: 2 pink glow ellipses в правой части секции.
- * На мобайле — мягкое pink свечение в правом верхнем углу,
- * на десктопе — раскрытое позиционирование как в Figma.
- * ============================================================ */
-.home-benefits__decor {
+.home-benefits__glow {
   position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
+  z-index: -1;
+  top: to-rem(-100);
+  right: to-rem(-180);
+  width: to-rem(420);
+  height: auto;
   pointer-events: none;
-  z-index: 0;
-}
+  user-select: none;
 
-.home-benefits__decor-image {
-  position: absolute;
-  display: block;
-  object-fit: contain;
-  opacity: 0.9;
-
-  &--bg {
-    /* Большой ellipse: 625×956 (Figma 1168, 662 на 1440 фрейме). */
-    top: to-rem(-100);
-    right: to-rem(-180);
-    width: to-rem(420);
-    height: auto;
-
-    @include mq($from: tablet) {
-      top: to-rem(-60);
-      right: to-rem(-220);
-      width: to-rem(625);
-    }
-  }
-
-  &--accent {
-    /* Меньший ellipse: 382×388 (Figma 1290, 543). Лежит выше и правее. */
-    top: to-rem(-40);
-    right: to-rem(-80);
-    width: to-rem(260);
-    height: auto;
-
-    @include mq($from: tablet) {
-      top: to-rem(-120);
-      right: to-rem(-50);
-      width: to-rem(382);
-    }
+  @include mq($from: tablet) {
+    top: to-rem(-400);
+    right: to-rem(-480);
+    width: to-rem(625);
   }
 }
 
-/* ============================================================
- * Inner: контент над декорацией
- * ============================================================ */
 .home-benefits__inner {
   position: relative;
   z-index: 1;
@@ -151,11 +97,7 @@ const content = useHomeBenefits()
  * Title — H4 на мобайле (32/40), H3 на десктопе (56/64)
  * ============================================================ */
 .home-benefits__title {
-  margin: 0;
-  width: 100%;
-  color: var(--color-text-primary);
-  text-align: center;
-  @include font-h4;
+  @include font-section-title;
 
   @include mq($from: desktop) {
     @include font-h3;

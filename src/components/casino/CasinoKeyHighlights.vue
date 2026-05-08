@@ -50,6 +50,7 @@ defineProps<Props>()
 
 <style scoped lang="scss">
 @use '@/assets/styles/scss/media' as *;
+@use '@/assets/styles/scss/section-patterns' as *;
 @use '@/assets/styles/scss/typography' as *;
 @use '@/assets/styles/scss/units' as *;
 
@@ -61,15 +62,7 @@ defineProps<Props>()
 .casino-highlights {
   position: relative;
   background-color: var(--color-bg-page);
-  padding: to-rem(70) var(--container-pad-mobile);
-
-  @include mq($from: mobile) {
-    padding-inline: var(--container-pad-tablet);
-  }
-
-  @include mq($from: tablet) {
-    padding: to-rem(100) var(--container-pad-desktop);
-  }
+  @include section-padding-default;
 
   @include mq($from: desktop) {
     padding-inline: to-rem(200);
@@ -107,18 +100,7 @@ defineProps<Props>()
 }
 
 .casino-highlights__title {
-  margin: 0;
-  color: var(--color-text-primary);
-  text-align: center;
-  font-family: var(--font-sans);
-  font-weight: 500;
-  font-size: to-rem(36);
-  line-height: to-rem(40);
-  letter-spacing: to-rem(-0.36);
-
-  @include mq($from: tablet) {
-    @include font-h3;
-  }
+  @include font-section-title;
 }
 
 .casino-highlights__decoration {

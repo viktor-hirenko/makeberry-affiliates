@@ -45,16 +45,16 @@ const navConfig = {
 
 <template>
   <section id="testimonials" class="home-testimonials" data-section="testimonials">
-    <img
-      src="/images/home/testimonials/glow.png"
-      alt=""
-      class="home-testimonials__glow"
-      aria-hidden="true"
-      loading="lazy"
-      decoding="async"
-    />
-
     <div class="home-testimonials__inner">
+      <img
+        src="/images/home/testimonials/glow.png"
+        alt=""
+        class="home-testimonials__glow"
+        aria-hidden="true"
+        loading="lazy"
+        decoding="async"
+      />
+
       <h2 class="home-testimonials__title">{{ content.title }}</h2>
 
       <div class="home-testimonials__slider-wrap">
@@ -160,7 +160,6 @@ const navConfig = {
   align-items: center;
   background-color: var(--color-bg-page);
   padding: to-rem(70) var(--container-pad-mobile);
-  overflow: hidden;
 
   @include mq($from: mobile) {
     padding-inline: var(--container-pad-tablet);
@@ -180,16 +179,14 @@ const navConfig = {
   left: 0;
   width: to-rem(720);
   height: auto;
-  max-width: none;
-  transform: translate(-55%, -50%);
   pointer-events: none;
   user-select: none;
   z-index: 0;
-  opacity: 0.85;
 
   @include mq($from: tablet) {
+    top: to-rem(-360);
+    left: to-rem(-600);
     width: to-rem(1115);
-    transform: translate(-50%, -50%);
   }
 }
 
@@ -209,15 +206,7 @@ const navConfig = {
 }
 
 .home-testimonials__title {
-  margin: 0;
-  width: 100%;
-  color: var(--color-text-primary);
-  text-align: center;
-  @include font-h4;
-
-  @include mq($from: desktop) {
-    @include font-h3;
-  }
+  @include font-section-title;
 }
 
 /* ============================================================

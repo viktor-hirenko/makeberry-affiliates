@@ -1,4 +1,5 @@
 @use 'units' as *;
+@use 'media' as *;
 
 /// Makeberry Affiliates — typography mixins
 /// Источник: Figma `Components` (Headline / Body / Caption).
@@ -21,6 +22,22 @@
   font-size: to-rem(56);
   line-height: to-rem(64);
   letter-spacing: -0.01em;
+}
+
+/// Заголовок маркетинговой секции: 36/40 mobile → H3 с tablet (home, casino, статьи и т.д.).
+@mixin font-section-title {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: to-rem(36);
+  line-height: to-rem(40);
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: var(--color-text-primary);
+
+  @include mq($from: tablet) {
+    @include font-h3;
+  }
 }
 
 @mixin font-h4 {

@@ -45,11 +45,7 @@ const navConfig = {
 </script>
 
 <template>
-  <section
-    id="meet-us"
-    class="home-meet-us"
-    data-section="meet-us"
-  >
+  <section id="meet-us" class="home-meet-us" data-section="meet-us">
     <div class="home-meet-us__inner">
       <h2 class="home-meet-us__title">{{ content.title }}</h2>
 
@@ -67,16 +63,9 @@ const navConfig = {
           :breakpoints="meetUsSwiperBreakpoints"
           @swiper="onMeetUsSwiper"
         >
-          <SwiperSlide
-            v-for="event in content.items"
-            :key="event.id"
-            class="home-meet-us__slide"
-          >
+          <SwiperSlide v-for="event in content.items" :key="event.id" class="home-meet-us__slide">
             <article class="home-meet-us__card">
-              <div
-                class="home-meet-us__cover"
-                :style="{ backgroundColor: event.bgColor }"
-              >
+              <div class="home-meet-us__cover" :style="{ backgroundColor: event.bgColor }">
                 <img
                   :src="event.logoSrc"
                   :alt="event.logoAlt ?? event.name"
@@ -128,6 +117,7 @@ const navConfig = {
 
 <style scoped lang="scss">
 @use '@/assets/styles/scss/media' as *;
+@use '@/assets/styles/scss/section-patterns' as *;
 @use '@/assets/styles/scss/typography' as *;
 @use '@/assets/styles/scss/units' as *;
 
@@ -139,15 +129,7 @@ const navConfig = {
 .home-meet-us {
   position: relative;
   background-color: var(--color-bg-page);
-  padding: to-rem(70) var(--container-pad-mobile);
-
-  @include mq($from: mobile) {
-    padding-inline: var(--container-pad-tablet);
-  }
-
-  @include mq($from: tablet) {
-    padding: to-rem(100) var(--container-pad-desktop);
-  }
+  @include section-padding-default;
 }
 
 .home-meet-us__inner {
@@ -168,19 +150,7 @@ const navConfig = {
  * Title — H4 36/40 (mobile) / H3 56/64 (desktop)
  * ============================================================ */
 .home-meet-us__title {
-  margin: 0;
-  width: 100%;
-  font-family: var(--font-sans);
-  font-weight: 500;
-  font-size: to-rem(36);
-  line-height: to-rem(40);
-  letter-spacing: -0.01em;
-  color: var(--color-text-primary);
-  text-align: center;
-
-  @include mq($from: tablet) {
-    @include font-h3;
-  }
+  @include font-section-title;
 }
 
 /* ============================================================
@@ -204,6 +174,10 @@ const navConfig = {
   width: 100%;
 }
 
+:deep(.swiper-wrapper) {
+  display: flex;
+}
+
 /*
  * Slide
  * Ширину задаёт Swiper (1 / 2 / 3) — не задаём width вручную.
@@ -211,7 +185,8 @@ const navConfig = {
  * Высота карточки 416px по Figma 2819:2055 (cover 200 + body 216).
  */
 .home-meet-us__slide {
-  height: to-rem(416);
+  height: auto;
+  min-height: to-rem(416);
   display: flex;
 }
 

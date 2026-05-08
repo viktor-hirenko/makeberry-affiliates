@@ -39,6 +39,7 @@ const about = useHomeAbout()
 
 <style scoped lang="scss">
 @use '@/assets/styles/scss/media' as *;
+@use '@/assets/styles/scss/section-patterns' as *;
 @use '@/assets/styles/scss/typography' as *;
 @use '@/assets/styles/scss/units' as *;
 
@@ -53,15 +54,10 @@ const about = useHomeAbout()
   align-items: center;
   gap: to-rem(48);
   background-color: var(--color-bg-page);
-  padding: to-rem(70) var(--container-pad-mobile);
-
-  @include mq($from: mobile) {
-    padding-inline: var(--container-pad-tablet);
-  }
+  @include section-padding-default;
 
   @include mq($from: tablet) {
     gap: to-rem(70);
-    padding: to-rem(100) var(--container-pad-desktop);
   }
 
   @include mq($from: desktop) {
@@ -76,17 +72,7 @@ const about = useHomeAbout()
 .home-about__title {
   margin: 0;
   width: 100%;
-  font-family: var(--font-sans);
-  font-weight: 500;
-  font-size: to-rem(36);
-  line-height: to-rem(40);
-  letter-spacing: -0.01em;
-  color: var(--color-text-primary);
-  text-align: center;
-
-  @include mq($from: tablet) {
-    @include font-h3;
-  }
+  @include font-section-title;
 }
 
 /* ============================================================

@@ -65,6 +65,7 @@ defineProps<Props>()
 
 <style scoped lang="scss">
 @use '@/assets/styles/scss/media' as *;
+@use '@/assets/styles/scss/section-patterns' as *;
 @use '@/assets/styles/scss/units' as *;
 
 /* ============================================================
@@ -76,16 +77,8 @@ defineProps<Props>()
 .casino-cta {
   position: relative;
   background-color: var(--color-bg-page);
-  padding: to-rem(70) var(--container-pad-mobile);
+  @include section-padding-default;
   overflow-x: clip;
-
-  @include mq($from: mobile) {
-    padding-inline: var(--container-pad-tablet);
-  }
-
-  @include mq($from: tablet) {
-    padding: to-rem(100) var(--container-pad-desktop);
-  }
 
   @include mq($from: desktop) {
     padding-inline: to-rem(260);
@@ -106,7 +99,6 @@ defineProps<Props>()
   z-index: 0;
   pointer-events: none;
   user-select: none;
-  object-fit: contain;
 
   @include mq($from: tablet) {
     top: to-rem(-245);

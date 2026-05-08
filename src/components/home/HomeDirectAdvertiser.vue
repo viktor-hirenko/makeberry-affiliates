@@ -46,16 +46,16 @@ const navConfig = {
 
 <template>
   <section id="direct-advertiser" class="home-direct" data-section="direct-advertiser">
-    <img
-      :src="content.glow.src"
-      :alt="content.glow.alt"
-      class="home-direct__glow"
-      aria-hidden="true"
-      loading="lazy"
-      decoding="async"
-    />
-
     <div class="home-direct__inner">
+      <img
+        :src="content.glow.src"
+        :alt="content.glow.alt"
+        class="home-direct__glow"
+        aria-hidden="true"
+        loading="lazy"
+        decoding="async"
+      />
+
       <h2 class="home-direct__title">{{ content.title }}</h2>
 
       <div class="home-direct__slider-wrap">
@@ -147,6 +147,7 @@ const navConfig = {
 
 <style scoped lang="scss">
 @use '@/assets/styles/scss/media' as *;
+@use '@/assets/styles/scss/section-patterns' as *;
 @use '@/assets/styles/scss/typography' as *;
 @use '@/assets/styles/scss/units' as *;
 
@@ -158,34 +159,9 @@ const navConfig = {
 .home-direct {
   position: relative;
   isolation: isolate;
-  overflow: hidden;
   background-color: var(--color-bg-page);
-  padding: to-rem(70) var(--container-pad-mobile);
-
-  @include mq($from: mobile) {
-    padding-inline: var(--container-pad-tablet);
-  }
-
-  @include mq($from: tablet) {
-    padding: to-rem(100) var(--container-pad-desktop);
-  }
-}
-
-/* ============================================================
- * Glow decoration — pink soft blob anchored to section top-left.
- * Координаты строго из Figma (left:-441 top:-80 956×625).
- * Section имеет overflow: hidden — на любом viewport обрежет лишнее.
- * ============================================================ */
-.home-direct__glow {
-  position: absolute;
-  top: to-rem(-80);
-  left: to-rem(-441);
-  width: to-rem(956);
-  height: to-rem(625);
-  z-index: 0;
-  pointer-events: none;
-  user-select: none;
-  object-fit: contain;
+  @include section-padding-default;
+  overflow-x: clip;
 }
 
 /* ============================================================
@@ -207,23 +183,22 @@ const navConfig = {
   }
 }
 
+.home-direct__glow {
+  position: absolute;
+  top: to-rem(-180);
+  left: to-rem(-521);
+  width: to-rem(956);
+  height: to-rem(625);
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
 /* ============================================================
  * Title — H3 56/64 (desktop) | 36/40 medium (mobile)
  * ============================================================ */
 .home-direct__title {
-  margin: 0;
-  width: 100%;
-  font-family: var(--font-sans);
-  font-weight: 500;
-  font-size: to-rem(36);
-  line-height: to-rem(40);
-  letter-spacing: -0.01em;
-  color: var(--color-text-primary);
-  text-align: center;
-
-  @include mq($from: tablet) {
-    @include font-h3;
-  }
+  @include font-section-title;
 }
 
 /* ============================================================

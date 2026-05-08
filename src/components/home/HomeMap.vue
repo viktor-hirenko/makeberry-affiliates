@@ -36,17 +36,17 @@ const countriesByCode = computed<Map<string, HomeMapCountry>>(() => {
  */
 const activeCountryCodes = computed<string[]>(() => {
   if (activeTab.value === 'all') {
-    return content.countries.map((country) => country.code)
+    return content.countries.map(country => country.code)
   }
   const tierNumber = Number(activeTab.value.split('-')[1]) as 1 | 2 | 3
   return content.countries
-    .filter((country) => country.tier === tierNumber)
-    .map((country) => country.code)
+    .filter(country => country.tier === tierNumber)
+    .map(country => country.code)
 })
 
 const activeCountries = computed(() => {
   const codeSet = new Set(activeCountryCodes.value)
-  return content.countries.filter((country) => codeSet.has(country.code))
+  return content.countries.filter(country => codeSet.has(country.code))
 })
 
 function selectTab(tabId: HomeMapTab['id']): void {
@@ -76,7 +76,7 @@ async function loadMap(): Promise<void> {
 
     raw = raw.replace(
       /<svg([^>]*)>/,
-      '<svg$1 class="home-map__svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="World map highlighting countries where we operate">',
+      '<svg$1 class="home-map__svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="World map highlighting countries where we operate">'
     )
 
     mapSvg.value = raw
@@ -102,10 +102,10 @@ function applyHighlights(): void {
   const svgEl = getSvgEl()
   if (!svgEl) return
 
-  const activeSet = new Set(activeCountryCodes.value.map((c) => c.toUpperCase()))
+  const activeSet = new Set(activeCountryCodes.value.map(c => c.toUpperCase()))
 
   const paths = svgEl.querySelectorAll<SVGElement>('[id]')
-  paths.forEach((path) => {
+  paths.forEach(path => {
     const id = path.getAttribute('id')?.toUpperCase()
     if (!id) return
 
@@ -133,7 +133,7 @@ function applySpotlight(code: string | null): void {
     return
   }
 
-  svgEl.querySelectorAll<SVGElement>('.is-spotlight').forEach((el) => {
+  svgEl.querySelectorAll<SVGElement>('.is-spotlight').forEach(el => {
     el.classList.remove('is-spotlight')
   })
 
@@ -151,9 +151,7 @@ function applySpotlight(code: string | null): void {
 
   // У страны может быть несколько path'ов (острова) — подсвечиваем все,
   // позиционируем tooltip по объединённому bbox.
-  const targets = svgEl.querySelectorAll<SVGGraphicsElement>(
-    `[id="${CSS.escape(upper)}"]`,
-  )
+  const targets = svgEl.querySelectorAll<SVGGraphicsElement>(`[id="${CSS.escape(upper)}"]`)
   if (targets.length === 0) {
     tooltip.value = null
     return
@@ -170,7 +168,7 @@ function applySpotlight(code: string | null): void {
   let right = -Infinity
   let bottom = -Infinity
 
-  targets.forEach((target) => {
+  targets.forEach(target => {
     target.classList.add('is-spotlight')
     const rect = target.getBoundingClientRect()
     left = Math.min(left, rect.left)
@@ -191,7 +189,7 @@ watch(activeTab, () => {
   applySpotlight(hoveredCode.value)
 })
 
-watch(hoveredCode, (next) => {
+watch(hoveredCode, next => {
   applySpotlight(next)
 })
 
@@ -205,11 +203,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <section
-    id="map"
-    class="home-map"
-    data-section="map"
-  >
+  <section id="map" class="home-map" data-section="map">
     <div class="home-map__inner">
       <header class="home-map__header">
         <h2 class="home-map__title">{{ content.title }}</h2>
@@ -249,12 +243,8 @@ onBeforeUnmount(() => {
         >
           <div class="home-map__tooltip-card">
             <p class="home-map__tooltip-name">{{ tooltip.country.name }}</p>
-            <p class="home-map__tooltip-offers">
-              {{ tooltip.country.offers ?? 0 }} offers
-            </p>
-            <span class="home-map__tooltip-badge">
-              Top in Tier {{ tooltip.country.tier }}
-            </span>
+            <p class="home-map__tooltip-offers">{{ tooltip.country.offers ?? 0 }} offers</p>
+            <span class="home-map__tooltip-badge"> Top in Tier {{ tooltip.country.tier }} </span>
           </div>
         </div>
       </div>
@@ -264,15 +254,8 @@ onBeforeUnmount(() => {
       </p>
     </div>
 
-    <ul
-      class="home-map__badges"
-      :aria-label="`Countries (${activeTab})`"
-    >
-      <li
-        v-for="country in activeCountries"
-        :key="country.code"
-        class="home-map__badge-item"
-      >
+    <ul class="home-map__badges" :aria-label="`Countries (${activeTab})`">
+      <li v-for="country in activeCountries" :key="country.code" class="home-map__badge-item">
         <button
           type="button"
           class="home-map__badge"
@@ -356,14 +339,7 @@ onBeforeUnmount(() => {
 }
 
 .home-map__title {
-  margin: 0;
-  text-align: center;
-  color: var(--color-text-primary);
-  @include font-h4;
-
-  @include mq($from: tablet) {
-    @include font-h3;
-  }
+  @include font-section-title;
 }
 
 /* ============================================================
@@ -391,7 +367,9 @@ onBeforeUnmount(() => {
   color: var(--color-text-tertiary);
   cursor: pointer;
   white-space: nowrap;
-  transition: background-color var(--transition-fast), color var(--transition-fast);
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast);
   @include font-body-s-medium;
 
   &:hover,
@@ -452,7 +430,9 @@ onBeforeUnmount(() => {
     stroke: var(--color-bg-page);
     stroke-opacity: 1;
     stroke-width: 0.4;
-    transition: fill var(--transition-fast), filter var(--transition-fast);
+    transition:
+      fill var(--transition-fast),
+      filter var(--transition-fast);
   }
 
   /* Активные страны (есть в JSON и подходят под текущий tab). */
@@ -607,7 +587,9 @@ onBeforeUnmount(() => {
   border-radius: var(--radius-pill);
   color: var(--color-text-secondary);
   cursor: pointer;
-  transition: background-color var(--transition-fast), color var(--transition-fast),
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast),
     transform var(--transition-fast);
   @include font-h5;
 
