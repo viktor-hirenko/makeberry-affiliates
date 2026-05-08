@@ -76,14 +76,14 @@ defineProps<Props>()
   position: relative;
   overflow-x: clip;
   background-color: var(--color-bg-page);
-  padding: to-rem(190) to-rem(16) to-rem(240);
+  padding: to-rem(190) var(--container-pad-mobile) to-rem(240);
 
   @include mq($from: mobile) {
-    padding-inline: to-rem(32);
+    padding-inline: var(--container-pad-tablet);
   }
 
   @include mq($from: tablet) {
-    padding: to-rem(120) to-rem(60);
+    padding: to-rem(120) var(--container-pad-desktop);
   }
 
   @include mq($from: desktop) {

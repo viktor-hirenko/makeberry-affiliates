@@ -157,7 +157,7 @@ const footer = useFooter()
   width: 100%;
   max-width: to-rem(1440);
   margin-inline: auto;
-  padding: to-rem(70) to-rem(16) to-rem(16);
+  padding: to-rem(70) var(--container-pad-mobile) to-rem(16);
   display: flex;
   flex-direction: column;
   gap: to-rem(60);
@@ -331,7 +331,7 @@ const footer = useFooter()
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: to-rem(8) to-rem(16);
+  padding: to-rem(8) var(--container-pad-mobile);
   background-color: var(--color-bg-surface);
   border: 2px solid var(--color-border-brand);
   border-radius: var(--radius-pill);

@@ -324,14 +324,14 @@ onBeforeUnmount(() => {
   width: 100%;
   max-width: var(--container-max);
   margin-inline: auto;
-  padding-inline: to-rem(16);
+  padding-inline: var(--container-pad-mobile);
 
   @include mq($from: mobile) {
-    padding-inline: to-rem(32);
+    padding-inline: var(--container-pad-tablet);
   }
 
   @include mq($from: tablet) {
-    padding-inline: to-rem(60);
+    padding-inline: var(--container-pad-desktop);
   }
 
   @include mq($from: desktop) {
@@ -384,7 +384,7 @@ onBeforeUnmount(() => {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: to-rem(8) to-rem(16);
+  padding: to-rem(8) var(--container-pad-mobile);
   background-color: transparent;
   border: 0;
   border-radius: var(--radius-pill);
@@ -570,7 +570,7 @@ onBeforeUnmount(() => {
   align-items: center;
   gap: to-rem(8);
   margin: 0;
-  padding: to-rem(4) to-rem(16);
+  padding: to-rem(4) var(--container-pad-mobile);
   list-style: none;
   overflow-x: auto;
   overflow-y: hidden;
@@ -583,11 +583,11 @@ onBeforeUnmount(() => {
   }
 
   @include mq($from: mobile) {
-    padding-inline: to-rem(32);
+    padding-inline: var(--container-pad-tablet);
   }
 
   @include mq($from: tablet) {
-    padding-inline: to-rem(60);
+    padding-inline: var(--container-pad-desktop);
   }
 }
 

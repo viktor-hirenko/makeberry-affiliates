@@ -53,18 +53,18 @@ import BaseButton from '@/components/ui/BaseButton.vue'
   position: relative;
   background-color: var(--color-bg-page);
   min-height: 100svh;
-  padding: to-rem(24) to-rem(16);
+  padding: to-rem(24) var(--container-pad-mobile);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
 
   @include mq($from: mobile) {
-    padding-inline: to-rem(32);
+    padding-inline: var(--container-pad-tablet);
   }
 
   @include mq($from: tablet) {
-    padding: to-rem(40) to-rem(60);
+    padding: to-rem(40) var(--container-pad-desktop);
   }
 }
 

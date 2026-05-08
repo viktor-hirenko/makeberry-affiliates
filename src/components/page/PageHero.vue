@@ -74,11 +74,11 @@ defineProps<Props>()
   margin-top: calc(-1 * var(--header-offset));
 
   /* Mobile (Figma 360 — pt 200 / px 16 / pb 70) */
-  padding: to-rem(200) to-rem(16) to-rem(70);
+  padding: to-rem(200) var(--container-pad-mobile) to-rem(70);
 
   @include mq($from: tablet) {
     /* Tablet — даём нормальный inline-padding, но не забиваем 160 */
-    padding: to-rem(200) to-rem(60) to-rem(100);
+    padding: to-rem(200) var(--container-pad-desktop) to-rem(100);
   }
 
   @include mq($from: desktop) {

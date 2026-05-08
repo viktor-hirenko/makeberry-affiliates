@@ -159,15 +159,15 @@ const navConfig = {
   flex-direction: column;
   align-items: center;
   background-color: var(--color-bg-page);
-  padding: to-rem(70) to-rem(16);
+  padding: to-rem(70) var(--container-pad-mobile);
   overflow: hidden;
 
   @include mq($from: mobile) {
-    padding-inline: to-rem(32);
+    padding-inline: var(--container-pad-tablet);
   }
 
   @include mq($from: desktop) {
-    padding: to-rem(100) to-rem(60);
+    padding: to-rem(100) var(--container-pad-desktop);
   }
 }
 

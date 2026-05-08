@@ -72,7 +72,7 @@ const content = useHomeAffiliatesAdvertisers()
   justify-items: stretch;
   gap: to-rem(60);
   background-color: var(--color-bg-page);
-  padding: to-rem(70) to-rem(16);
+  padding: to-rem(70) var(--container-pad-mobile);
   /*
    * Декорации (sparkle / cursor) намеренно вылезают за карточки
    * через position: absolute + отрицательные top/right/bottom.
@@ -86,12 +86,12 @@ const content = useHomeAffiliatesAdvertisers()
   @include mq($from: mobile) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: to-rem(20);
-    padding-inline: to-rem(32);
+    padding-inline: var(--container-pad-tablet);
   }
 
   @include mq($from: tablet) {
     gap: to-rem(40);
-    padding: to-rem(170) to-rem(60);
+    padding: to-rem(170) var(--container-pad-desktop);
   }
 
   @include mq($from: desktop) {

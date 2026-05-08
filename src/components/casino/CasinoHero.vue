@@ -90,14 +90,15 @@ defineProps<Props>()
   overflow: hidden;
   background-color: var(--color-bg-page);
   margin-top: calc(-1 * var(--header-offset));
-  padding: calc(var(--header-offset) + #{to-rem(40)}) to-rem(16) to-rem(70);
+  padding: calc(var(--header-offset) + #{to-rem(40)}) var(--container-pad-mobile)
+    to-rem(70);
 
   @include mq($from: mobile) {
-    padding-inline: to-rem(32);
+    padding-inline: var(--container-pad-tablet);
   }
 
   @include mq($from: tablet) {
-    padding: to-rem(230) to-rem(60) to-rem(100);
+    padding: to-rem(230) var(--container-pad-desktop) to-rem(100);
   }
 
   @include mq($from: desktop) {

@@ -68,15 +68,15 @@ function handleScrollClick() {
   margin-top: calc(-1 * var(--header-offset));
 
   /* Mobile defaults (Figma 360 — pt 220 / pb 70 / px 16) */
-  padding: to-rem(220) to-rem(16) to-rem(70);
+  padding: to-rem(220) var(--container-pad-mobile) to-rem(70);
 
   @include mq($from: mobile) {
-    padding: to-rem(240) to-rem(32) to-rem(100);
+    padding: to-rem(240) var(--container-pad-tablet) to-rem(100);
   }
 
   @include mq($from: tablet) {
     /* Desktop (Figma 1440 — pt 280 / pb 150 / px 160) */
-    padding: to-rem(280) to-rem(60) to-rem(150);
+    padding: to-rem(280) var(--container-pad-desktop) to-rem(150);
   }
 
   @include mq($from: desktop) {
