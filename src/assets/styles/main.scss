@@ -1,6 +1,6 @@
 @use './scss/reset';
 @use './scss/tokens';
-@use './scss/spacing' as *;
+@use './scss/units' as *;
 
 :root {
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
@@ -39,9 +39,9 @@ body {
 }
 
 .section {
-  padding-block: $space-14;
+  padding-block: to-rem(100);
 
   @media (max-width: 768px) {
-    padding-block: $space-11;
+    padding-block: to-rem(64);
   }
 }
