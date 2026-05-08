@@ -8,13 +8,18 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 
 import BaseIcon from '@/components/ui/BaseIcon.vue'
-import { BREAKPOINT_TABLET_PX } from '@/constants/breakpoints'
+import { BREAKPOINT_MOBILE_PX, BREAKPOINT_TABLET_PX } from '@/constants/breakpoints'
 import { useHomeTestimonials } from '@/composables/useContent'
 
 const content = useHomeTestimonials()
 
-/** Ключ совпадает с CSS `@include mq($from: tablet)` и упругими ширинами слайдов. */
+/** Mobile (768): две колонки; tablet (1024): тройной ряд с упругими ширинами (CSS). */
 const swiperBreakpoints = {
+  [BREAKPOINT_MOBILE_PX]: {
+    slidesPerView: 2,
+    spaceBetween: 16,
+    allowTouchMove: true,
+  },
   [BREAKPOINT_TABLET_PX]: {
     slidesPerView: 'auto' as const,
     spaceBetween: 20,
@@ -234,18 +239,17 @@ const navConfig = {
   width: 100%;
 
   /*
-   * Вертикально центруем слайды в ряду (mobile и tablet+).
-   * На tablet+ высота колонок задаётся aspect-ratio на слайде — центральная
-   * шире и выше боковых (макет 350×280 / 460×352); без stretch все три
-   * одинаковой высоты не будут — так и задумано.
+   * До tablet: stretch — в одном ряду (2 слайда на 768+) одинаковая высота.
+   * От tablet: center — разная высота центра и боковых (макет только ≥1024).
    *
-   * justify-content на tablet+: на mobile не трогаем — иначе ломается
+   * justify-content на tablet+: на узкой ширине не трогаем — иначе ломается
    * translate3d при slidesPerView=1 (см. историю в репо).
    */
   :deep(.swiper-wrapper) {
-    align-items: center;
+    align-items: stretch;
 
     @include mq($from: tablet) {
+      align-items: center;
       justify-content: center;
     }
   }
@@ -257,12 +261,17 @@ $testimonials-gaps-between: to-rem(40);
 
 /* ============================================================
  * Slide
- * До tablet: slidesPerView=1, высота карточки 400 (Figma).
- * ≥ tablet: упругая ширина; высота из пропорций макета — центр выше боковых.
+ * До mobile: slidesPerView=1, высота карточки 400 (Figma).
+ * mobile–до tablet (768–1023): slidesPerView=2; ряд одной высоты (wrapper stretch).
+ * ≥ tablet: упругая ширина; разная высота центра и боковых только здесь.
  * ============================================================ */
 .home-testimonials__slide {
   height: to-rem(400);
   display: flex;
+
+  @include mq($from: mobile) {
+    height: auto;
+  }
 
   @include mq($from: tablet) {
     box-sizing: border-box;
