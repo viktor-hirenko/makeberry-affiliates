@@ -161,7 +161,10 @@ const navConfig = {
   isolation: isolate;
   background-color: var(--color-bg-page);
   @include section-padding-default;
-  overflow-x: clip;
+  /*
+   * Без overflow-x: свайпер full-bleed до tablet (как Testimonials).
+   * Горизонталь страницы — body (main.scss).
+   */
 }
 
 /* ============================================================
@@ -186,12 +189,17 @@ const navConfig = {
 .home-direct__glow {
   position: absolute;
   top: to-rem(-180);
-  left: to-rem(-521);
+  left: to-rem(-410);
   width: to-rem(956);
-  height: to-rem(625);
+  max-width: unset;
+  height: auto;
   z-index: 0;
   pointer-events: none;
   user-select: none;
+
+  @include mq($from: tablet) {
+    left: to-rem(-521);
+  }
 }
 
 /* ============================================================
@@ -203,6 +211,7 @@ const navConfig = {
 
 /* ============================================================
  * Slider wrap (relative for arrows positioning)
+ * До tablet: full-bleed + инсет на swiper (как HomeTestimonials).
  * ============================================================ */
 .home-direct__slider-wrap {
   position: relative;
@@ -210,6 +219,16 @@ const navConfig = {
   display: flex;
   flex-direction: column;
   gap: to-rem(20);
+
+  @include mq($until: mobile) {
+    margin-inline: calc(-1 * var(--container-pad-mobile));
+    width: calc(100% + 2 * var(--container-pad-mobile));
+  }
+
+  @include mq($from: mobile, $until: tablet) {
+    margin-inline: calc(-1 * var(--container-pad-tablet));
+    width: calc(100% + 2 * var(--container-pad-tablet));
+  }
 
   @include mq($from: tablet) {
     padding-inline: var(--container-pad-desktop); /* место под стрелки — только при 4 в ряд */
@@ -219,6 +238,15 @@ const navConfig = {
 
 .home-direct__swiper {
   width: 100%;
+  box-sizing: border-box;
+
+  @include mq($until: mobile) {
+    padding-inline: var(--container-pad-mobile);
+  }
+
+  @include mq($from: mobile, $until: tablet) {
+    padding-inline: var(--container-pad-tablet);
+  }
 }
 
 .home-direct__slide {

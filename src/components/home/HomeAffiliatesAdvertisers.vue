@@ -213,7 +213,7 @@ const content = useHomeAffiliatesAdvertisers()
   position: absolute;
   width: to-rem(100);
   height: to-rem(100);
-  object-fit: contain;
+  object-fit: cover;
   user-select: none;
   pointer-events: none;
   z-index: 1;
@@ -221,7 +221,7 @@ const content = useHomeAffiliatesAdvertisers()
 
 /* — Affiliates → sparkle */
 .home-aff-adv__card[data-card='affiliates'] .home-aff-adv__decoration {
-  top: to-rem(-37);
+  top: to-rem(-45);
   right: to-rem(-10);
 
   @include mq($from: tablet) {
@@ -234,7 +234,7 @@ const content = useHomeAffiliatesAdvertisers()
 
 /* — Advertisers → cursor */
 .home-aff-adv__card[data-card='advertisers'] .home-aff-adv__decoration {
-  top: to-rem(-34);
+  top: to-rem(-45);
   right: to-rem(-20);
 
   @include mq($from: tablet) {

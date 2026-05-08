@@ -51,6 +51,7 @@ const content = useHomeBenefits()
   align-items: center;
   background-color: var(--color-bg-page);
   padding: to-rem(70) var(--container-pad-mobile);
+  overflow-x: clip;
 
   @include mq($from: mobile) {
     padding-inline: var(--container-pad-tablet);
@@ -58,23 +59,6 @@ const content = useHomeBenefits()
 
   @include mq($from: desktop) {
     padding: to-rem(100) to-rem(120);
-  }
-}
-
-.home-benefits__glow {
-  position: absolute;
-  z-index: -1;
-  top: to-rem(-100);
-  right: to-rem(-180);
-  width: to-rem(420);
-  height: auto;
-  pointer-events: none;
-  user-select: none;
-
-  @include mq($from: tablet) {
-    top: to-rem(-400);
-    right: to-rem(-480);
-    width: to-rem(625);
   }
 }
 
@@ -90,6 +74,24 @@ const content = useHomeBenefits()
 
   @include mq($from: desktop) {
     gap: to-rem(70);
+  }
+}
+
+.home-benefits__glow {
+  position: absolute;
+  z-index: -1;
+  top: to-rem(-364);
+  right: to-rem(-333);
+  width: to-rem(625);
+  max-width: unset;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+
+  @include mq($from: tablet) {
+    top: to-rem(-400);
+    right: to-rem(-480);
+    width: to-rem(625);
   }
 }
 

@@ -1,6 +1,7 @@
 @use './scss/reset';
 @use './scss/tokens';
 @use './scss/units' as *;
+@use './scss/media' as *;
 
 :root {
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
@@ -8,6 +9,11 @@
 
 html {
   font-size: 16px;
+  /*
+   * Вместе с body — закрывает горизонтальный scrollbar у документа,
+   * когда только body недостаточно (fixed header / mix overflow-y).
+   */
+  overflow-x: clip;
 }
 
 body {
@@ -31,7 +37,10 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 0;
-  padding-top: var(--header-offset);
+
+  @include mq($from: tablet) {
+    padding-top: var(--header-offset);
+  }
 }
 
 /* Hero-страницы (например, 404), где контент идёт flush до верха

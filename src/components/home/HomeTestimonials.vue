@@ -160,6 +160,11 @@ const navConfig = {
   align-items: center;
   background-color: var(--color-bg-page);
   padding: to-rem(70) var(--container-pad-mobile);
+  /*
+   * Не режем по X: слайдер ниже выходит отрицательными margin на ширину
+   * секционных паддингов — горизонтальный клип здесь обрезал бы карточки.
+   * Лишний горизонтальный вылет страницы режется у body (main.scss).
+   */
 
   @include mq($from: mobile) {
     padding-inline: var(--container-pad-tablet);
@@ -175,10 +180,11 @@ const navConfig = {
  * ============================================================ */
 .home-testimonials__glow {
   position: absolute;
-  top: 50%;
-  left: 0;
-  width: to-rem(720);
+  top: to-rem(-250);
+  left: to-rem(-420);
+  width: to-rem(956);
   height: auto;
+  max-width: unset;
   pointer-events: none;
   user-select: none;
   z-index: 0;
@@ -186,7 +192,6 @@ const navConfig = {
   @include mq($from: tablet) {
     top: to-rem(-360);
     left: to-rem(-600);
-    width: to-rem(1115);
   }
 }
 
@@ -211,6 +216,10 @@ const navConfig = {
 
 /* ============================================================
  * Slider wrapper — relative для позиционирования стрелок
+ * До tablet: full-bleed — компенсируем padding секции (margin), чтобы
+ * при свайпе трек не резался родительским padding; сам контент колонки
+ * задаём padding на `.home-testimonials__swiper` ниже.
+ * Упругие ширины слайдов через 100cqi в `.home-testimonials__slide`.
  * ============================================================ */
 .home-testimonials__slider-wrap {
   position: relative;
@@ -219,13 +228,36 @@ const navConfig = {
   flex-direction: column;
   align-items: center;
   gap: to-rem(32);
-  /* Упругие ширины слайдов через 100cqi в `.home-testimonials__slide`. */
   container-type: inline-size;
   container-name: testimonials-slider;
+
+  @include mq($until: mobile) {
+    margin-inline: calc(-1 * var(--container-pad-mobile));
+    width: calc(100% + 2 * var(--container-pad-mobile));
+  }
+
+  @include mq($from: mobile, $until: tablet) {
+    margin-inline: calc(-1 * var(--container-pad-tablet));
+    width: calc(100% + 2 * var(--container-pad-tablet));
+  }
 }
 
 .home-testimonials__swiper {
   width: 100%;
+  box-sizing: border-box;
+
+  /*
+   * Инсет карточки = как у заголовка: та же величина, что padding секции.
+   * Обёртка выше full-bleed, поэтому при свайпе слайды могут заходить
+   * в зону «отступов», не обрезаясь — ширина слайда визуально = колонка.
+   */
+  @include mq($until: mobile) {
+    padding-inline: var(--container-pad-mobile);
+  }
+
+  @include mq($from: mobile, $until: tablet) {
+    padding-inline: var(--container-pad-tablet);
+  }
 
   /*
    * До tablet: stretch — в одном ряду (2 слайда на 768+) одинаковая высота.

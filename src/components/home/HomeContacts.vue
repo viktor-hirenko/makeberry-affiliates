@@ -229,13 +229,13 @@ function handleInput() {
  * Section
  * Mobile  : px 16, py 70, gap 48
  * Desktop : px 60, py 100, gap 70
- * overflow-x: clip — декорация торчит за viewport
+ * Без overflow-x на секции: свайпер full-bleed + инсет (как Testimonials);
+ * горизонталь страницы — body (main.scss).
  * ============================================================ */
 .home-contacts {
   position: relative;
   background-color: var(--color-bg-page);
   @include section-padding-default;
-  overflow-x: clip;
 }
 
 .home-contacts__inner {
@@ -281,6 +281,7 @@ function handleInput() {
 
 /* ============================================================
  * Slider wrapper — стрелки только при 4 карточках в ряд (≥ tablet)
+ * До tablet: full-bleed + инсет на swiper (как HomeTestimonials).
  * ============================================================ */
 .home-contacts__slider-wrap {
   position: relative;
@@ -290,6 +291,16 @@ function handleInput() {
   align-items: center;
   gap: to-rem(32);
 
+  @include mq($until: mobile) {
+    margin-inline: calc(-1 * var(--container-pad-mobile));
+    width: calc(100% + 2 * var(--container-pad-mobile));
+  }
+
+  @include mq($from: mobile, $until: tablet) {
+    margin-inline: calc(-1 * var(--container-pad-tablet));
+    width: calc(100% + 2 * var(--container-pad-tablet));
+  }
+
   @include mq($from: tablet) {
     padding-inline: var(--container-pad-desktop);
   }
@@ -297,6 +308,15 @@ function handleInput() {
 
 .home-contacts__swiper {
   width: 100%;
+  box-sizing: border-box;
+
+  @include mq($until: mobile) {
+    padding-inline: var(--container-pad-mobile);
+  }
+
+  @include mq($from: mobile, $until: tablet) {
+    padding-inline: var(--container-pad-tablet);
+  }
 }
 
 /*

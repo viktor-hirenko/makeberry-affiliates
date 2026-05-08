@@ -286,13 +286,14 @@ onBeforeUnmount(() => {
  * Desktop (Figma 1440 — py 100 / px 120)
  * ============================================================ */
 .home-map {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: stretch;
   gap: to-rem(48);
   background-color: var(--color-bg-page);
   padding-block: to-rem(70);
-  overflow-x: hidden;
+  overflow-x: clip;
 
   @include mq($from: tablet) {
     gap: to-rem(70);
@@ -542,15 +543,24 @@ onBeforeUnmount(() => {
 }
 
 /* ============================================================
- * Badges row — full-bleed horizontal scroll
- * Figma: badge 72×72 pill, gap 8, padding 24
+ * Badges row — горизонтальный скролл на всю ширину секции (вне .inner),
+ * инсеты как у контентной колонки — см. .home-map__inner.
+ * Скроллится только содержимое ряда: контейнер width:100%, без absolute
+ * (absolute без width/right даёт ширину по контенту → скролла нет).
+ * Figma: gap 8
+ * Mobile (3861:20520): badge 48×48, pad 12, Body 2 Medium 16/24
+ * Desktop: badge 72×72, pad 24, H5 20/24
  * ============================================================ */
 .home-map__badges {
   display: flex;
   align-items: center;
   gap: to-rem(8);
+  align-self: stretch;
+  width: 100%;
+  min-width: 0;
   margin: 0;
   padding: to-rem(4) var(--container-pad-mobile);
+  padding-inline: 0;
   list-style: none;
   overflow-x: auto;
   overflow-y: hidden;
@@ -560,14 +570,6 @@ onBeforeUnmount(() => {
 
   &::-webkit-scrollbar {
     display: none;
-  }
-
-  @include mq($from: mobile) {
-    padding-inline: var(--container-pad-tablet);
-  }
-
-  @include mq($from: tablet) {
-    padding-inline: var(--container-pad-desktop);
   }
 }
 
@@ -579,9 +581,10 @@ onBeforeUnmount(() => {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: to-rem(72);
-  height: to-rem(72);
-  padding: to-rem(24);
+  box-sizing: border-box;
+  width: to-rem(48);
+  height: to-rem(48);
+  padding: to-rem(12);
   background-color: var(--color-bg-subtle);
   border: 0;
   border-radius: var(--radius-pill);
@@ -591,7 +594,14 @@ onBeforeUnmount(() => {
     background-color var(--transition-fast),
     color var(--transition-fast),
     transform var(--transition-fast);
-  @include font-h5;
+  @include font-body-s-medium;
+
+  @include mq($from: tablet) {
+    width: to-rem(72);
+    height: to-rem(72);
+    padding: to-rem(24);
+    @include font-h5;
+  }
 
   &:hover,
   &:focus-visible,

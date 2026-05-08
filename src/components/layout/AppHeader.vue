@@ -74,7 +74,6 @@ function openMobileMenu() {
 function closeMobileMenu() {
   mobileMenuOpen.value = false
 }
-
 </script>
 
 <template>
@@ -188,6 +187,12 @@ function closeMobileMenu() {
 .app-header--mobile {
   top: 0;
   padding-inline: 0;
+  /*
+   * Фиксированный header участвует в расширении scrollable overflow страницы.
+   * Если строка бара (лого + CTA + меню) шире viewport — без clip появляется
+   * горизонтальный скролл у документа (не из‑за «логики трёх состояний» как таковой).
+   */
+  overflow-x: clip;
 }
 
 .app-header__pill,
@@ -214,7 +219,12 @@ function closeMobileMenu() {
 .app-header__bar {
   height: var(--header-mobile-height);
   padding: 16px;
-  background-color: var(--color-bg-page);
+  box-sizing: border-box;
+  min-width: 0;
+  overflow-x: clip;
+  background-color: var(--color-bg-overlay-header);
+  backdrop-filter: blur(12.5px);
+  -webkit-backdrop-filter: blur(12.5px);
 }
 
 .app-header__logo {
@@ -331,6 +341,7 @@ function closeMobileMenu() {
 
 .app-header--mobile .app-header__actions {
   margin-left: auto;
+  min-width: 0;
 }
 
 .dropdown-enter-active,

@@ -155,7 +155,9 @@ const navConfig = {
 
 /* ============================================================
  * Slider wrapper — relative для абсолютных стрелок
- * Стрелки только при 3 слайдах в ряд (≥ tablet); до этого — только dots + swipe.
+ * До tablet: full-bleed + инсет на swiper (как HomeTestimonials) —
+ * свайп не режется padding секции, карточки по ширине колонки.
+ * Стрелки только при 3 слайдах в ряд (≥ tablet).
  * ============================================================ */
 .home-meet-us__slider-wrap {
   position: relative;
@@ -165,6 +167,16 @@ const navConfig = {
   align-items: center;
   gap: to-rem(32);
 
+  @include mq($until: mobile) {
+    margin-inline: calc(-1 * var(--container-pad-mobile));
+    width: calc(100% + 2 * var(--container-pad-mobile));
+  }
+
+  @include mq($from: mobile, $until: tablet) {
+    margin-inline: calc(-1 * var(--container-pad-tablet));
+    width: calc(100% + 2 * var(--container-pad-tablet));
+  }
+
   @include mq($from: tablet) {
     padding-inline: var(--container-pad-desktop);
   }
@@ -172,6 +184,15 @@ const navConfig = {
 
 .home-meet-us__swiper {
   width: 100%;
+  box-sizing: border-box;
+
+  @include mq($until: mobile) {
+    padding-inline: var(--container-pad-mobile);
+  }
+
+  @include mq($from: mobile, $until: tablet) {
+    padding-inline: var(--container-pad-tablet);
+  }
 }
 
 :deep(.swiper-wrapper) {
