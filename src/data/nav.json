@@ -1,0 +1,27 @@
+{
+  "logoAlt": "Makeberry Affiliates",
+  "ctaLabel": "Log In",
+  "ctaPath": "/login",
+  "links": [
+    { "label": "Home", "path": "/" },
+    {
+      "label": "About Us",
+      "children": [
+        { "label": "For Affiliates", "path": "/affiliates" },
+        { "label": "For Advertisers", "path": "/advertisers" }
+      ]
+    },
+    {
+      "label": "Direct Advertiser",
+      "children": [
+        { "label": "WinSpirit Casino", "path": "/casino/winspirit" },
+        { "label": "RocketPlay Casino", "path": "/casino/rocketplay" },
+        { "label": "LuckyHills Casino", "path": "/casino/luckyhills" }
+      ]
+    },
+    { "label": "Map", "path": "/#map" },
+    { "label": "Testimonials", "path": "/#testimonials" },
+    { "label": "FAQ", "path": "/#faq" },
+    { "label": "Contacts", "path": "/#contacts" }
+  ]
+}

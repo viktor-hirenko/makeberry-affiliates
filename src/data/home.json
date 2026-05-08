@@ -1,0 +1,279 @@
+{
+  "hero": {
+    "titleLines": ["We Make", "Partnerships"],
+    "subtitle": "Transparent analytics, regulated markets, and brand-safe scaling for affiliates and operators.",
+    "primaryCta": { "label": "Become a Partner", "path": "/affiliates" },
+    "secondaryCta": { "label": "Explore Brands", "path": "/blog" },
+    "scrollHint": true
+  },
+  "about": {
+    "title": "About Us",
+    "stats": [
+      { "id": "s1", "value": "120+", "description": "Markets covered across tiers and regulated jurisdictions." },
+      { "id": "s2", "value": "48h", "description": "Average integration window for tracking and payouts." },
+      { "id": "s3", "value": "35%", "description": "YoY partner portfolio growth with retention focus." },
+      { "id": "s4", "value": "24/7", "description": "Dedicated partner success coverage across time zones." },
+      { "id": "s5", "value": "ISO", "description": "Security-first processes aligned with operator standards." },
+      { "id": "s6", "value": "$2B+", "description": "Tracked partner revenue under measurement frameworks." },
+      { "id": "s7", "value": "150+", "description": "Specialists across acquisition, CRM, and analytics." },
+      { "id": "s8", "value": "99.95%", "description": "SLA on reporting pipelines for partner dashboards." }
+    ],
+    "center": {
+      "imageSrc": "/images/logo-makeberry.svg",
+      "imageAlt": "Makeberry Affiliates emblem"
+    }
+  },
+  "promoCards": [
+    {
+      "id": "aff",
+      "title": "Affiliates",
+      "description": "Transparent dashboards, hybrid deals, and granular cohort analytics — built for sustainable scaling.",
+      "primaryCta": { "label": "Start", "path": "/affiliates" },
+      "secondaryCta": { "label": "Talk", "path": "/#contacts" }
+    },
+    {
+      "id": "adv",
+      "title": "Advertisers",
+      "description": "Controlled acquisition across compliant channels with partner quality gates and brand safety.",
+      "primaryCta": { "label": "Book", "path": "/advertisers" },
+      "secondaryCta": { "label": "Learn", "path": "/blog" }
+    }
+  ],
+  "directAdvertiser": {
+    "title": "Direct Advertiser",
+    "slides": [
+      {
+        "id": "p1",
+        "name": "Alpha Partners",
+        "logoSrc": "/images/logo-makeberry.svg",
+        "logoAlt": "Alpha Partners",
+        "href": "/casino/winspirit"
+      },
+      {
+        "id": "p2",
+        "name": "WinSpirit",
+        "logoSrc": "/images/logo-makeberry.svg",
+        "logoAlt": "WinSpirit",
+        "href": "/casino/winspirit"
+      },
+      {
+        "id": "p3",
+        "name": "Nova Gaming",
+        "logoSrc": "/images/logo-makeberry.svg",
+        "logoAlt": "Nova Gaming",
+        "href": "/casino/winspirit"
+      },
+      {
+        "id": "p4",
+        "name": "Velocity Labs",
+        "logoSrc": "/images/logo-makeberry.svg",
+        "logoAlt": "Velocity Labs",
+        "href": "/casino/winspirit"
+      }
+    ],
+    "cooperation": [
+      { "id": "c1", "title": "CPA", "description": "Balanced payouts with caps aligned to traffic tier." },
+      { "id": "c2", "title": "RevShare", "description": "Transparent cohort curves with monthly reconciliation." },
+      { "id": "c3", "title": "Hybrid", "description": "Structured bundles tuned to lifecycle performance." },
+      { "id": "c4", "title": "Custom", "description": "Operator-grade frameworks with bespoke milestones." }
+    ],
+    "cta": { "label": "Open Spotlight", "path": "/casino/winspirit" }
+  },
+  "vacancies": {
+    "title": "Vacancies",
+    "cards": [
+      {
+        "id": "v1",
+        "type": "Remote",
+        "title": "Partner Growth Lead",
+        "description": "Own affiliate lifecycle programs across regulated EU clusters with measurable uplift targets.",
+        "learnMoreHref": "/blog/growth-lead"
+      },
+      {
+        "id": "v2",
+        "type": "Hybrid",
+        "title": "CRM Analyst",
+        "description": "Blend cohort analytics with CRM experimentation for retention-sensitive segments.",
+        "learnMoreHref": "/blog/crm-analyst"
+      },
+      {
+        "id": "v3",
+        "type": "Remote",
+        "title": "Compliance Specialist",
+        "description": "Partner onboarding audits with jurisdictional policy alignment for tier-1 markets.",
+        "learnMoreHref": "/blog/compliance"
+      }
+    ]
+  },
+  "testimonials": {
+    "title": "What Partners Say",
+    "items": [
+      {
+        "id": "t1",
+        "quote": "Reporting clarity finally matches the complexity of our funnels — cohort drill-downs are actionable.",
+        "name": "Alex Rivera",
+        "role": "Head of Acquisition",
+        "avatarSrc": "/images/hero-bg.png",
+        "avatarAlt": "Alex Rivera"
+      },
+      {
+        "id": "t2",
+        "quote": "We scaled tier-2 markets without compromising brand safety — weekly governance cadence works.",
+        "name": "Maria Kovacs",
+        "role": "CMO",
+        "featured": true,
+        "avatarSrc": "/images/hero-bg.png",
+        "avatarAlt": "Maria Kovacs"
+      },
+      {
+        "id": "t3",
+        "quote": "Hybrid deals stay predictable — reconciliation matches finance expectations quarter after quarter.",
+        "name": "Jonas Meier",
+        "role": "Finance Partner",
+        "avatarSrc": "/images/hero-bg.png",
+        "avatarAlt": "Jonas Meier"
+      },
+      {
+        "id": "t4",
+        "quote": "Partner managers respond with context — not scripts — which matters during seasonal spikes.",
+        "name": "Elena Rossi",
+        "role": "Affiliate Lead",
+        "avatarSrc": "/images/hero-bg.png",
+        "avatarAlt": "Elena Rossi"
+      },
+      {
+        "id": "t5",
+        "quote": "Creative approvals are fast without sacrificing compliance checkpoints.",
+        "name": "Chris Palmer",
+        "role": "Creative Ops",
+        "avatarSrc": "/images/hero-bg.png",
+        "avatarAlt": "Chris Palmer"
+      },
+      {
+        "id": "t6",
+        "quote": "Event pipeline keeps BD aligned with measurable pipeline contribution.",
+        "name": "Sofia Dahl",
+        "role": "BD Director",
+        "avatarSrc": "/images/hero-bg.png",
+        "avatarAlt": "Sofia Dahl"
+      }
+    ]
+  },
+  "meetUs": {
+    "title": "Meet Us",
+    "events": [
+      {
+        "id": "e1",
+        "name": "ICE Barcelona",
+        "logoSrc": "/images/logo-makeberry.svg",
+        "logoAlt": "ICE Barcelona",
+        "dateLabel": "Jan 2026",
+        "locationLabels": ["Barcelona", "Hall 3"]
+      },
+      {
+        "id": "e2",
+        "name": "SiGMA Europe",
+        "logoSrc": "/images/logo-makeberry.svg",
+        "logoAlt": "SiGMA Europe",
+        "dateLabel": "Nov 2026",
+        "locationLabels": ["Malta", "MFCC"]
+      },
+      {
+        "id": "e3",
+        "name": "Affiliate World",
+        "logoSrc": "/images/logo-makeberry.svg",
+        "logoAlt": "Affiliate World",
+        "dateLabel": "Mar 2026",
+        "locationLabels": ["Dubai", "DWTC"]
+      }
+    ]
+  },
+  "team": {
+    "title": "Contacts",
+    "members": [
+      {
+        "id": "m1",
+        "name": "Victoria Hale",
+        "role": "Managing Partner",
+        "photoSrc": "/images/hero-bg.png",
+        "photoAlt": "Victoria Hale",
+        "linkedin": "https://linkedin.com",
+        "telegram": "https://t.me"
+      },
+      {
+        "id": "m2",
+        "name": "Daniel Ortiz",
+        "role": "Growth",
+        "photoSrc": "/images/hero-bg.png",
+        "photoAlt": "Daniel Ortiz",
+        "linkedin": "https://linkedin.com"
+      },
+      {
+        "id": "m3",
+        "name": "Irina Volkov",
+        "role": "Compliance",
+        "photoSrc": "/images/hero-bg.png",
+        "photoAlt": "Irina Volkov",
+        "telegram": "https://t.me"
+      },
+      {
+        "id": "m4",
+        "name": "Marco Silvestri",
+        "role": "Partnerships",
+        "photoSrc": "/images/hero-bg.png",
+        "photoAlt": "Marco Silvestri",
+        "linkedin": "https://linkedin.com",
+        "telegram": "https://t.me"
+      }
+    ]
+  },
+  "newsletter": {
+    "title": "Stay Updated",
+    "subtitle": "Insights, partner announcements, and market notes — no fluff.",
+    "placeholder": "Work email",
+    "buttonLabel": "Subscribe"
+  },
+  "faq": {
+    "title": "FAQ",
+    "illustrationSrc": "/images/logo-makeberry.svg",
+    "illustrationAlt": "FAQ",
+    "items": [
+      {
+        "id": "f1",
+        "question": "How do you qualify affiliate traffic?",
+        "answer": "We combine funnel telemetry, payment integrity checks, and cohort retention benchmarks before scaling budgets.",
+        "defaultOpen": true
+      },
+      {
+        "id": "f2",
+        "question": "Which markets do you prioritize?",
+        "answer": "Tiered coverage across EU regulated clusters with selective tier-2 expansion depending on brand readiness."
+      },
+      {
+        "id": "f3",
+        "question": "How are payouts structured?",
+        "answer": "Hybrid schedules are reconciled monthly with finance-grade statements and dispute SLAs."
+      },
+      {
+        "id": "f4",
+        "question": "Do you support creative compliance?",
+        "answer": "Yes — localized reviews with turnaround targets during seasonal pushes."
+      },
+      {
+        "id": "f5",
+        "question": "Can advertisers customize caps?",
+        "answer": "Caps flex per geo and product vertical within responsible acquisition frameworks."
+      },
+      {
+        "id": "f6",
+        "question": "How fast is onboarding?",
+        "answer": "Technical onboarding typically completes within days depending on tracking complexity."
+      },
+      {
+        "id": "f7",
+        "question": "Where can I meet the team?",
+        "answer": "See the Meet Us carousel for conferences — office hours rotate monthly."
+      }
+    ]
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "title": "Our Benefits",
+  "cards": [
+    {
+      "number": "01",
+      "title": "High-Performing Funnels",
+      "description": "Achieve conversion and FTD rates above market averages with streamlined registration and fast deposit flows."
+    },
+    {
+      "number": "02",
+      "title": "Real-Time Performance Tracking",
+      "description": "Gain full visibility and control over your traffic with accurate live data and intuitive reporting tools."
+    },
+    {
+      "number": "03",
+      "title": "Dedicated Support",
+      "description": "Work with an experienced account manager focused on improving results, resolving issues quickly, and scaling your campaigns."
+    },
+    {
+      "number": "04",
+      "title": "Flexible Commission Structures",
+      "description": "Choose CPA, RevShare up to 60%, or hybrid models tailored to your traffic and growth strategy."
+    },
+    {
+      "number": "05",
+      "title": "Strong Player Retention",
+      "description": "Increase player lifetime value with fast deposits, seamless UX, and retention-focused mechanics."
+    },
+    {
+      "number": "06",
+      "title": "No Negative Carryover",
+      "description": "Start each month with a clean balance and no carried-over losses."
+    },
+    {
+      "number": "07",
+      "title": "Fast & Secure Payments",
+      "description": "Receive reliable payouts on time, with no hidden fees or delays."
+    },
+    {
+      "number": "08",
+      "title": "Exclusive Promotional Campaigns",
+      "description": "Boost engagement and long-term retention with VIP rewards, loyalty programmes, tournaments, and gamified mechanics."
+    }
+  ]
+}

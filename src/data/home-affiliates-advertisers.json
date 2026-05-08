@@ -1,0 +1,26 @@
+{
+  "cards": [
+    {
+      "id": "affiliates",
+      "title": "For Affiliates",
+      "description": "Select premium offers with lucrative payouts that align perfectly with your traffic. Say goodbye to tedious negotiations and the hassle of managing financial and statistical matters. Simply focus on driving traffic, and let our Gaming platform handle everything else seamlessly.",
+      "primaryCta": { "label": "Affiliates", "path": "/affiliates" },
+      "secondaryCta": { "label": "Sign Up", "path": "/sign-up" },
+      "decoration": {
+        "src": "/images/home/affiliates-advertisers/sparkle.png",
+        "alt": "Sparkle decoration"
+      }
+    },
+    {
+      "id": "advertisers",
+      "title": "For Advertisers",
+      "description": "Entice authentic players to your offerings by tapping into the most suitable traffic channels. Trusted by leading SEO sites, media agencies, and renowned brands in the Gaming realm, our platform ensures unparalleled exposure for your casino and betting brands.",
+      "primaryCta": { "label": "Advertisers", "path": "/advertisers" },
+      "secondaryCta": { "label": "Sign Up", "path": "/sign-up" },
+      "decoration": {
+        "src": "/images/home/affiliates-advertisers/cursor.png",
+        "alt": "Cursor click decoration"
+      }
+    }
+  ]
+}

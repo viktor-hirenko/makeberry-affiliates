@@ -1,0 +1,47 @@
+@use './scss/reset';
+@use './scss/tokens';
+@use './scss/spacing' as *;
+
+:root {
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-sans);
+  /*
+   * Страховка от случайных «вылетов» декораций за пределы viewport
+   * (отрицательные left/right в position:absolute). overflow-x: clip
+   * режет только горизонтально и не ломает sticky/position:sticky.
+   */
+  overflow-x: clip;
+}
+
+.app-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-main {
+  flex: 1;
+  padding-top: var(--header-offset);
+}
+
+/* Hero-страницы (например, 404), где контент идёт flush до верха
+ * viewport — header floating поверх. Включается через router meta:
+ * { flushTop: true } и биндинг класса в App.vue. */
+.app-main--flush {
+  padding-top: 0;
+}
+
+.section {
+  padding-block: $space-14;
+
+  @media (max-width: 768px) {
+    padding-block: $space-11;
+  }
+}

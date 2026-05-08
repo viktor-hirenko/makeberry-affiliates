@@ -1,0 +1,46 @@
+{
+  "title": "Meet Us",
+  "items": [
+    {
+      "id": "ice-barcelona-2026",
+      "name": "ICE Barcelona\n2026",
+      "logoSrc": "/images/home/meet-us/ice-logo.svg",
+      "logoAlt": "ICE Barcelona 2026 logo",
+      "logoWidth": 136,
+      "logoHeight": 55,
+      "bgColor": "#5d2483",
+      "tags": [
+        { "label": "January 19–21" },
+        { "label": "Spain, Barcelona" },
+        { "label": "Stand B12", "outlined": true }
+      ]
+    },
+    {
+      "id": "sbc-summit-rio-2026",
+      "name": "SBC Summit Rio\n2026",
+      "logoSrc": "/images/home/meet-us/sbc-logo.svg",
+      "logoAlt": "SBC Summit Rio 2026 logo",
+      "logoWidth": 132,
+      "logoHeight": 55,
+      "bgColor": "#248375",
+      "tags": [
+        { "label": "March 3–5" },
+        { "label": "Brazil, Rio de Janeiro" }
+      ]
+    },
+    {
+      "id": "prague-gaming-tech-summit-2026",
+      "name": "Prague Gaming & TECH Summit 2026",
+      "logoSrc": "/images/home/meet-us/prague-logo.svg",
+      "logoAlt": "Prague Gaming & TECH Summit 2026 logo",
+      "logoWidth": 137,
+      "logoHeight": 106,
+      "bgColor": "#3a2483",
+      "tags": [
+        { "label": "March 24–25" },
+        { "label": "Prague, Czech Republic" },
+        { "label": "Stand A6", "outlined": true }
+      ]
+    }
+  ]
+}

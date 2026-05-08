@@ -1,0 +1,53 @@
+{
+  "hero": {
+    "badge": "For Affiliates",
+    "titleHtml": "You focus on driving quality traffic",
+    "subtitleHtml": "Inside our performance ecosystem, you don’t have to guess what happens after the click. You see exactly how your traffic performs at product level, how player value evolves over time, what’s worth scaling and where budget may be wasted.",
+    "cta": { "label": "Become Our Partner", "path": "/#contacts" }
+  },
+  "whatYouGet": {
+    "title": "What You Get",
+    "badge": "1/5",
+    "cards": [
+      {
+        "id": "a1",
+        "title": "Transparent Measurement",
+        "descriptionHtml": "<p>Lifecycle dashboards align acquisition and CRM experiments without spreadsheet gymnastics.</p>",
+        "illustrationSrc": "/images/logo-makeberry.svg",
+        "illustrationAlt": "Measurement"
+      },
+      {
+        "id": "a2",
+        "title": "Hybrid Economics",
+        "descriptionHtml": "<p>Structured bundles tuned to tier readiness — reconciliation mirrors finance statements.</p>",
+        "illustrationSrc": "/images/logo-makeberry.svg",
+        "illustrationAlt": "Economics"
+      },
+      {
+        "id": "a3",
+        "title": "Partner Success",
+        "descriptionHtml": "<p>Dedicated managers anchor weekly cadences with actionable agendas — not status theater.</p>",
+        "illustrationSrc": "/images/logo-makeberry.svg",
+        "illustrationAlt": "Success"
+      },
+      {
+        "id": "a4",
+        "title": "Creative Velocity",
+        "descriptionHtml": "<p>Approval rails tuned for regulated bursts — localization packs ship faster.</p>",
+        "illustrationSrc": "/images/logo-makeberry.svg",
+        "illustrationAlt": "Creative"
+      },
+      {
+        "id": "a5",
+        "title": "Governance",
+        "descriptionHtml": "<p>Brand safety checkpoints align affiliates and operators before budgets scale.</p>",
+        "illustrationSrc": "/images/logo-makeberry.svg",
+        "illustrationAlt": "Governance"
+      }
+    ]
+  },
+  "cta": {
+    "titleHtml": "Ready to scale with clarity?",
+    "button": { "label": "Talk to Us", "path": "/#contacts" }
+  }
+}

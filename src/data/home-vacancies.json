@@ -1,0 +1,41 @@
+{
+  "title": "Open Vacancies",
+  "glow": {
+    "src": "/images/decorations/glow.png",
+    "alt": ""
+  },
+  "target": {
+    "src": "/images/home/vacancies/target.png",
+    "alt": ""
+  },
+  "cards": [
+    {
+      "id": "creative-designer",
+      "type": "Remote",
+      "title": "Creative designer",
+      "description": "We're looking for a talented Creative Designer to join our team — someone who can turn ideas into powerful visual stories and help shape the brand's identity.",
+      "learnMoreLabel": "Learn More",
+      "learnMoreHref": "/vacancies/creative-designer"
+    },
+    {
+      "id": "hr",
+      "type": "Remote",
+      "title": "H/R",
+      "description": "We're looking for an HR Specialist who's passionate about people and culture. Join our team to help build a strong, motivated, and happy workplace.",
+      "learnMoreLabel": "Learn More",
+      "learnMoreHref": "/vacancies/hr"
+    },
+    {
+      "id": "motion-designer",
+      "type": "Remote",
+      "title": "Motion Designer",
+      "description": "We're looking for a Motion Designer to bring ideas to life with animation, storytelling, and creative visuals. Join us and make our projects move!",
+      "learnMoreLabel": "Learn More",
+      "learnMoreHref": "/vacancies/motion-designer"
+    }
+  ],
+  "viewAll": {
+    "label": "View All Vacancies",
+    "href": "/vacancies"
+  }
+}

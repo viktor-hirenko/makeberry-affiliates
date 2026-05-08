@@ -1,0 +1,22 @@
+@use 'media' as *;
+
+@mixin container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad-desktop);
+
+  @include mq($until: tablet) {
+    padding-inline: var(--container-pad-tablet);
+  }
+
+  @include mq($until: mobile) {
+    padding-inline: var(--container-pad-mobile);
+  }
+}
+
+@mixin container-content {
+  width: 100%;
+  max-width: var(--container-content);
+  margin-inline: auto;
+}

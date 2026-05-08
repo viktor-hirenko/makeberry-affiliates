@@ -1,0 +1,107 @@
+{
+  "columns": [
+    {
+      "title": "Explore",
+      "links": [
+        { "label": "About Us", "path": "/#about" },
+        { "label": "Direct Advertiser", "path": "/#direct-advertiser" },
+        { "label": "Map", "path": "/#map" },
+        { "label": "Testimonials", "path": "/#testimonials" },
+        { "label": "FAQ", "path": "/#faq" },
+        { "label": "Contacts", "path": "/#contacts" }
+      ]
+    },
+    {
+      "title": "Solutions",
+      "links": [
+        { "label": "For Affiliates", "path": "/affiliates" },
+        { "label": "For Advertisers", "path": "/advertisers" }
+      ]
+    },
+    {
+      "title": "Direct Advertiser",
+      "links": [
+        { "label": "WinSpirit Casino", "path": "/casino/winspirit" },
+        { "label": "RocketPlay Casino", "path": "/casino/rocketplay" },
+        { "label": "LuckyHills Casino", "path": "/casino/luckyhills" }
+      ]
+    }
+  ],
+  "social": [
+    { "network": "email", "href": "mailto:hello@makeberry.example", "label": "Email" },
+    { "network": "linkedin", "href": "https://linkedin.com", "label": "LinkedIn" },
+    { "network": "instagram", "href": "https://instagram.com", "label": "Instagram" },
+    { "network": "twitter", "href": "https://twitter.com", "label": "X (Twitter)" },
+    { "network": "telegram", "href": "https://t.me", "label": "Telegram" }
+  ],
+  "partners": {
+    "label": "Partners",
+    "items": [
+      {
+        "id": "gpwa",
+        "name": "GPWA",
+        "src": "/images/footer/gpwa.png",
+        "alt": "GPWA",
+        "width": 120,
+        "height": 45,
+        "mobileWidth": 93,
+        "mobileHeight": 35,
+        "rounded": true,
+        "href": "https://gpwa.org"
+      },
+      {
+        "id": "affpapa",
+        "name": "AffPapa",
+        "src": "/images/footer/affpapa.png",
+        "alt": "AffPapa",
+        "width": 147,
+        "height": 45,
+        "mobileWidth": 114,
+        "mobileHeight": 35,
+        "href": "https://affpapa.com"
+      },
+      {
+        "id": "askgamblers",
+        "name": "AskGamblers",
+        "src": "/images/footer/askgamblers.png",
+        "alt": "AskGamblers",
+        "width": 138,
+        "height": 45,
+        "mobileWidth": 108,
+        "mobileHeight": 35,
+        "rounded": true,
+        "href": "https://askgamblers.com"
+      },
+      {
+        "id": "affiverse",
+        "name": "Affiverse Media",
+        "src": "/images/footer/affiverse.png",
+        "alt": "Affiverse Media",
+        "width": 222,
+        "height": 45,
+        "mobileWidth": 172,
+        "mobileHeight": 35,
+        "href": "https://affiversemedia.com"
+      }
+    ]
+  },
+  "awards": {
+    "label": "Awards",
+    "items": [
+      {
+        "id": "affpapa-igaming-awards",
+        "src": "/images/footer/affpapa-awards.png",
+        "alt": "AffPapa iGaming Awards",
+        "width": 102,
+        "height": 64,
+        "mobileWidth": 79,
+        "mobileHeight": 50
+      }
+    ]
+  },
+  "bottomLinks": [
+    { "label": "Terms of Service", "path": "/terms" },
+    { "label": "Privacy Policy", "path": "/privacy" }
+  ],
+  "copyright": "©2026 Makeberry. All rights reserved."
+}

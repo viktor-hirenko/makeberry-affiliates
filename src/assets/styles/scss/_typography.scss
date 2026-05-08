@@ -1,0 +1,159 @@
+@use 'units' as *;
+
+/// Makeberry Affiliates — typography mixins
+/// Источник: Figma `Components` (Headline / Body / Caption).
+/// Letter-spacing "-1" в Figma = -1% = -0.01em. Шрифт: Inter.
+
+/* ============================================================
+ * Headline (strict per Figma)
+ * ============================================================ */
+@mixin font-h1 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: to-rem(72);
+  line-height: to-rem(80);
+  letter-spacing: -0.01em;
+}
+
+@mixin font-h2 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: to-rem(64);
+  line-height: to-rem(72);
+  letter-spacing: -0.01em;
+}
+
+@mixin font-h3 {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: to-rem(56);
+  line-height: to-rem(64);
+  letter-spacing: -0.01em;
+}
+
+@mixin font-h4 {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: to-rem(32);
+  line-height: to-rem(40);
+  letter-spacing: -0.01em;
+}
+
+@mixin font-h5 {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: to-rem(20);
+  line-height: to-rem(24);
+  letter-spacing: -0.01em;
+}
+
+/// Alias на h5 для обратной совместимости и описательного именования.
+@mixin font-headline-h5 {
+  @include font-h5;
+}
+
+/* ============================================================
+ * Headline (fluid — desktop ↔ mobile)
+ * Используются в герое и заголовках секций для плавного scale.
+ * ============================================================ */
+@mixin font-h1-fluid {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: clamp(to-rem(40), 6vw, to-rem(72));
+  line-height: 1.11;
+  letter-spacing: -0.01em;
+}
+
+@mixin font-h2-fluid {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: clamp(to-rem(32), 5vw, to-rem(64));
+  line-height: 1.125;
+  letter-spacing: -0.01em;
+}
+
+/* ============================================================
+ * Body 1 (18px)
+ * ============================================================ */
+@mixin font-body-l-regular {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: to-rem(18);
+  line-height: to-rem(24);
+  letter-spacing: -0.01em;
+}
+
+@mixin font-body-l-semibold {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: to-rem(18);
+  line-height: to-rem(24);
+  letter-spacing: -0.01em;
+}
+
+/// Legacy aliases.
+@mixin font-body-m {
+  @include font-body-l-regular;
+}
+
+@mixin font-body-m-semibold {
+  @include font-body-l-semibold;
+}
+
+/* ============================================================
+ * Body 2 (16px)
+ * ============================================================ */
+@mixin font-body-s-regular {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: to-rem(16);
+  line-height: to-rem(24);
+  letter-spacing: -0.01em;
+}
+
+@mixin font-body-s-medium {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: to-rem(16);
+  line-height: to-rem(24);
+  letter-spacing: -0.01em;
+}
+
+@mixin font-body-s-semibold {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: to-rem(16);
+  line-height: to-rem(24);
+  letter-spacing: -0.01em;
+}
+
+/* ============================================================
+ * Caption (14px)
+ * ============================================================ */
+@mixin font-caption-regular {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: to-rem(14);
+  line-height: to-rem(16);
+  letter-spacing: -0.01em;
+}
+
+@mixin font-caption-medium {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: to-rem(14);
+  line-height: to-rem(16);
+  letter-spacing: -0.01em;
+}
+
+/* ============================================================
+ * Project-specific (не из Figma токенов)
+ * ============================================================ */
+@mixin font-overline {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: to-rem(14);
+  line-height: to-rem(20);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}

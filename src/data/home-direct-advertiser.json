@@ -1,0 +1,62 @@
+{
+  "title": "Direct Advertiser",
+  "partners": [
+    {
+      "id": "rocket-play",
+      "name": "RocketPlay Casino",
+      "logoSrc": "/images/home/direct-advertiser/rocket-play.png",
+      "logoAlt": "RocketPlay Casino logo",
+      "href": "/casino/rocketplay"
+    },
+    {
+      "id": "win-spirit",
+      "name": "WinSpirit Casino",
+      "logoSrc": "/images/home/direct-advertiser/win-spirit.png",
+      "logoAlt": "WinSpirit Casino logo",
+      "href": "/casino/winspirit"
+    },
+    {
+      "id": "lucky-hills",
+      "name": "LuckyHills Casino",
+      "logoSrc": "/images/home/direct-advertiser/lucky-hills.png",
+      "logoAlt": "LuckyHills Casino logo",
+      "href": "/casino/luckyhills"
+    },
+    {
+      "id": "your-brand",
+      "name": "Your brand could be here",
+      "isPlaceholder": true,
+      "placeholderLabel": "Your brand could be here"
+    }
+  ],
+  "cooperation": [
+    {
+      "id": "sub-affiliate",
+      "title": "Sub Affiliate",
+      "description": "Start with 5% by default"
+    },
+    {
+      "id": "fix-revshare",
+      "title": "Fix RevShare",
+      "description": "Start with 30% by default"
+    },
+    {
+      "id": "revenue-share",
+      "title": "Revenue Share",
+      "description": "Get up to 65% casino income (based on NGR)"
+    },
+    {
+      "id": "hybrid",
+      "title": "Hybrid",
+      "description": "CPA $150+ with RevShare 30%+"
+    }
+  ],
+  "cta": {
+    "title": "Ready to start?",
+    "button": { "label": "Become a partner", "path": "/contact" }
+  },
+  "glow": {
+    "src": "/images/home/direct-advertiser/glow.png",
+    "alt": ""
+  }
+}

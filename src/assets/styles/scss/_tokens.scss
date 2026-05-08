@@ -1,0 +1,163 @@
+/// Makeberry Affiliates — design tokens
+/// Источник: Figma `Components` (Bg / Text / Icon / Border) + `Header / 1440 / 360`.
+:root {
+  /* ============================================================
+   * Background
+   * ============================================================ */
+  --color-bg-page: #000000; /* Bg/Primary */
+  --color-bg-surface: #141414; /* Bg/Surface */
+  --color-bg-subtle: rgba(255, 255, 255, 0.1); /* Bg/Subtle (#ffffff1a) */
+  --color-bg-hovered: rgba(255, 255, 255, 0.15); /* Bg/Hovered (#ffffff26) */
+  --color-bg-disabled: #1f1f1f; /* Bg/Disabled */
+  --color-bg-inverted: #ffffff; /* Bg/Inverted */
+  --color-bg-overlay: rgba(20, 20, 20, 0.7); /* Bg/Overlay (#141414b2) */
+  --color-bg-brand: #ff0180; /* Bg/Brand/Default */
+  --color-bg-brand-hovered: #b80054; /* Bg/Brand/Hovered */
+  --color-bg-brand-soft: rgba(
+    255,
+    1,
+    128,
+    0.15
+  ); /* Makeberry Rose/600 Alpha-15 */
+  --color-bg-card: #1a1a1a; /* Project-specific (между surface и page) */
+
+  /* Floating header / mobile menu */
+  --color-bg-overlay-header: var(--color-bg-overlay);
+  --color-bg-overlay-menu: rgba(16, 16, 16, 0.85);
+
+  /* Legacy aliases (для обратной совместимости со старыми компонентами) */
+  --color-brand: var(--color-bg-brand);
+  --color-brand-hover: var(--color-bg-brand-hovered);
+  --color-brand-disabled: #662240;
+  --color-bg-elevated: var(--color-bg-surface);
+
+  /* ============================================================
+   * Text
+   * ============================================================ */
+  --color-text-primary: #ffffff; /* Text/Primary */
+  --color-text-secondary: #d9d9d9; /* Text/Secondary */
+  --color-text-tertiary: #b7b7b7; /* Text/Tetriary */
+  --color-text-disabled: #535353; /* Text/Disabled */
+  --color-text-inverted: #000000; /* Text/Inverted */
+  --color-text-accent: #ff0180; /* Text/Accent */
+  --color-text-link: #d9d9d9; /* Text/Link/Default */
+  --color-text-link-accent: var(--color-text-accent); /* Text/Link/Accent */
+  --color-text-muted: rgba(
+    255,
+    255,
+    255,
+    0.48
+  ); /* Project-specific (subtle hint) */
+
+  /* ============================================================
+   * Icon (alias на text — единая палитра)
+   * ============================================================ */
+  --color-icon-primary: var(--color-text-primary);
+  --color-icon-secondary: var(--color-text-secondary);
+  --color-icon-disabled: var(--color-text-disabled);
+  --color-icon-accent: var(--color-text-accent);
+  --color-icon-link: var(--color-text-link);
+  --color-icon-link-accent: var(--color-text-link-accent);
+
+  /* ============================================================
+   * Border
+   * ============================================================ */
+  --color-border-subtle: rgba(
+    255,
+    255,
+    255,
+    0.1
+  ); /* Border/Subtle (#ffffff1a) */
+  --color-border-default: rgba(
+    255,
+    255,
+    255,
+    0.15
+  ); /* Border/Default (#ffffff26) */
+  --color-border-bold: #ffffff; /* Border/Bold */
+  --color-border-brand: #ff0180; /* Border/Brand/Default */
+  --color-border-strong: rgba(
+    255,
+    255,
+    255,
+    0.24
+  ); /* Project-specific (hover icon-button) */
+
+  /* ============================================================
+   * Palette primitives
+   * ============================================================ */
+  --color-neutral-0-alpha-80: rgba(
+    255,
+    255,
+    255,
+    0.8
+  ); /* Neutral/0/Alpha-80 (#ffffffcc) */
+
+  /* ============================================================
+   * Status (success / warning) — based on Figma Contacts/Verified & Error
+   * ============================================================ */
+  --color-state-success: #b2ffa9; /* зелёный (verified icon)        */
+  --color-state-warning: #f28123; /* оранжевый (alert-circle icon)  */
+  --color-border-success-soft: rgba(
+    178,
+    255,
+    169,
+    0.3
+  ); /* подсветка input в verified */
+
+  /* ============================================================
+   * Effects
+   * ============================================================ */
+  --color-focus-ring: #ff0180;
+  --shadow-card: 0 24px 64px rgba(0, 0, 0, 0.45);
+
+  /* ============================================================
+   * Radius
+   * ============================================================ */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-pill: 100px;
+
+  /* ============================================================
+   * Layout
+   * ============================================================ */
+  --container-narrow: 980px;
+  --container-default: 1040px;
+  --container-wide: 1200px;
+  --container-max: 1440px;
+  --container-content: 1320px;
+  --container-pad-desktop: 60px;
+  --container-pad-tablet: 32px;
+  --container-pad-mobile: 16px;
+  --container-inner-pad: 60px;
+
+  /* Floating header */
+  --header-pill-height: 72px;
+  --header-pill-offset: 24px;
+  --header-pill-inset: 24px;
+  --header-mobile-height: 72px;
+  --header-offset: calc(
+    var(--header-pill-height) + var(--header-pill-offset) * 2
+  );
+
+  /* ============================================================
+   * Z-index
+   * ============================================================ */
+  --z-header: 100;
+  --z-drawer: 200;
+  --z-modal: 300;
+
+  /* ============================================================
+   * Motion
+   * ============================================================ */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.25s ease;
+}
+
+@media (max-width: 1279px) {
+  :root {
+    --header-offset: var(--header-mobile-height);
+  }
+}
