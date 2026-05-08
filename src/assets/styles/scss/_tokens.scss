@@ -27,9 +27,6 @@
 
   /* Legacy aliases (для обратной совместимости со старыми компонентами) */
   --color-brand: var(--color-bg-brand);
-  --color-brand-hover: var(--color-bg-brand-hovered);
-  --color-brand-disabled: #662240;
-  --color-bg-elevated: var(--color-bg-surface);
 
   /* ============================================================
    * Text
@@ -41,7 +38,6 @@
   --color-text-inverted: #000000; /* Text/Inverted */
   --color-text-accent: #ff0180; /* Text/Accent */
   --color-text-link: #d9d9d9; /* Text/Link/Default */
-  --color-text-link-accent: var(--color-text-accent); /* Text/Link/Accent */
   --color-text-muted: rgba(
     255,
     255,
@@ -53,11 +49,7 @@
    * Icon (alias на text — единая палитра)
    * ============================================================ */
   --color-icon-primary: var(--color-text-primary);
-  --color-icon-secondary: var(--color-text-secondary);
   --color-icon-disabled: var(--color-text-disabled);
-  --color-icon-accent: var(--color-text-accent);
-  --color-icon-link: var(--color-text-link);
-  --color-icon-link-accent: var(--color-text-link-accent);
 
   /* ============================================================
    * Border
@@ -109,29 +101,23 @@
    * Effects
    * ============================================================ */
   --color-focus-ring: #ff0180;
-  --shadow-card: 0 24px 64px rgba(0, 0, 0, 0.45);
 
   /* ============================================================
    * Radius
    * ============================================================ */
-  --radius-sm: 8px;
   --radius-md: 12px;
-  --radius-lg: 16px;
   --radius-xl: 24px;
   --radius-pill: 100px;
 
   /* ============================================================
    * Layout
    * ============================================================ */
-  --container-narrow: 980px;
   --container-default: 1040px;
-  --container-wide: 1200px;
   --container-max: 1440px;
   --container-content: 1320px;
   --container-pad-desktop: 60px;
   --container-pad-tablet: 32px;
   --container-pad-mobile: 16px;
-  --container-inner-pad: 60px;
 
   /* Floating header */
   --header-pill-height: 72px;
@@ -147,7 +133,6 @@
    * ============================================================ */
   --z-header: 100;
   --z-drawer: 200;
-  --z-modal: 300;
 
   /* ============================================================
    * Motion

@@ -33,11 +33,7 @@ const footer = useFooter()
         </div>
 
         <nav class="app-footer__nav" aria-label="Footer">
-          <div
-            v-for="column in footer.columns"
-            :key="column.title"
-            class="app-footer__column"
-          >
+          <div v-for="column in footer.columns" :key="column.title" class="app-footer__column">
             <h3 class="app-footer__column-title">{{ column.title }}</h3>
             <ul class="app-footer__column-list">
               <li v-for="link in column.links" :key="link.label">
@@ -102,11 +98,7 @@ const footer = useFooter()
             {{ footer.awards.label }}
           </span>
           <ul class="app-footer__award-list">
-            <li
-              v-for="award in footer.awards.items"
-              :key="award.id"
-              class="app-footer__award"
-            >
+            <li v-for="award in footer.awards.items" :key="award.id" class="app-footer__award">
               <img
                 :src="award.src"
                 :alt="award.alt"
@@ -256,10 +248,9 @@ const footer = useFooter()
   align-items: flex-start;
   gap: to-rem(48);
 
-  @include mq($from: tablet) {
+  @include mq($from: mobile) {
     flex-direction: row;
     gap: to-rem(50);
-    align-items: flex-start;
   }
 }
 
@@ -321,7 +312,6 @@ const footer = useFooter()
  * ============================================================ */
 .app-footer__pa {
   display: flex;
-  flex-direction: column;
   align-items: stretch;
   gap: to-rem(48);
 
@@ -481,7 +471,7 @@ const footer = useFooter()
   align-items: center;
   gap: to-rem(16);
 
-  @include mq($from: tablet) {
+  @include mq($from: mobile) {
     justify-content: center;
     gap: to-rem(24);
   }
