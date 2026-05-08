@@ -59,21 +59,17 @@ function onLeave(el: Element): void {
 </script>
 
 <template>
-  <section
-    id="faq"
-    class="home-faq"
-    data-section="faq"
-  >
-    <img
-      :src="content.glow.src"
-      :alt="content.glow.alt"
-      class="home-faq__glow"
-      aria-hidden="true"
-      loading="lazy"
-      decoding="async"
-    />
-
+  <section id="faq" class="home-faq" data-section="faq">
     <div class="home-faq__inner">
+      <img
+        :src="content.glow.src"
+        :alt="content.glow.alt"
+        class="home-faq__glow"
+        aria-hidden="true"
+        loading="lazy"
+        decoding="async"
+      />
+
       <h2 class="home-faq__title">{{ content.title }}</h2>
 
       <div class="home-faq__content">
@@ -102,10 +98,7 @@ function onLeave(el: Element): void {
               @click="toggle(item.id)"
             >
               <span class="home-faq__question">{{ item.question }}</span>
-              <span
-                class="home-faq__toggle"
-                aria-hidden="true"
-              >
+              <span class="home-faq__toggle" aria-hidden="true">
                 <BaseIcon name="chevron-down" :size="24" />
               </span>
             </button>
@@ -153,6 +146,22 @@ function onLeave(el: Element): void {
   overflow-x: clip;
 }
 
+.home-faq__inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: to-rem(1320);
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: to-rem(48);
+
+  @include mq($from: tablet) {
+    gap: to-rem(70);
+  }
+}
+
 /* ============================================================
  * Glow — pink radial декорация в левом верхнем углу.
  * Figma desktop : left -311, top -136, w 989.28, h 742.26
@@ -169,26 +178,11 @@ function onLeave(el: Element): void {
   z-index: 0;
 
   @include mq($from: tablet) {
-    top: to-rem(-136);
+    top: to-rem(-236);
     left: to-rem(-311);
-    width: to-rem(989.28);
-    height: to-rem(742.26);
-  }
-}
-
-.home-faq__inner {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  max-width: to-rem(1320);
-  margin-inline: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: to-rem(48);
-
-  @include mq($from: tablet) {
-    gap: to-rem(70);
+    width: to-rem(742.26);
+    height: to-rem(989.28);
+    transform: scaleX(-1);
   }
 }
 

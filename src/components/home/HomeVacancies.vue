@@ -8,25 +8,25 @@ const content = useHomeVacancies()
 
 <template>
   <section id="vacancies" class="home-vacancies" data-section="vacancies">
-    <img
-      :src="content.glow.src"
-      :alt="content.glow.alt"
-      class="home-vacancies__glow"
-      aria-hidden="true"
-      loading="lazy"
-      decoding="async"
-    />
-
-    <img
-      :src="content.target.src"
-      :alt="content.target.alt"
-      class="home-vacancies__target"
-      aria-hidden="true"
-      loading="lazy"
-      decoding="async"
-    />
-
     <div class="home-vacancies__inner">
+      <img
+        :src="content.glow.src"
+        :alt="content.glow.alt"
+        class="home-vacancies__glow"
+        aria-hidden="true"
+        loading="lazy"
+        decoding="async"
+      />
+
+      <img
+        :src="content.target.src"
+        :alt="content.target.alt"
+        class="home-vacancies__target"
+        aria-hidden="true"
+        loading="lazy"
+        decoding="async"
+      />
+
       <h2 class="home-vacancies__title">{{ content.title }}</h2>
 
       <div class="home-vacancies__content">
@@ -91,13 +91,12 @@ const content = useHomeVacancies()
   pointer-events: none;
   user-select: none;
   z-index: 0;
-  transform: rotate(90deg);
 
   @include mq($from: tablet) {
-    top: to-rem(-67);
-    right: to-rem(-474.28);
-    width: to-rem(989.282);
-    height: to-rem(742.264);
+    top: to-rem(-167);
+    right: to-rem(-290);
+    width: to-rem(742);
+    height: to-rem(989);
   }
 }
 
@@ -111,8 +110,8 @@ const content = useHomeVacancies()
   @include mq($from: tablet) {
     display: block;
     position: absolute;
-    top: to-rem(122);
-    right: to-rem(44);
+    top: to-rem(22);
+    right: to-rem(-20);
     width: to-rem(200);
     height: to-rem(200);
     pointer-events: none;
@@ -163,6 +162,8 @@ const content = useHomeVacancies()
 
 /* ============================================================
  * Cards — 1 col; ≥ mobile две колонки; ≥ tablet три.
+ * Третья карточка только с tablet: на мобиле в макете две карточки + View All
+ * (полный список — отдельная страница / URL позже).
  * ============================================================ */
 .home-vacancies__cards {
   list-style: none;
@@ -198,6 +199,14 @@ const content = useHomeVacancies()
 
   &:hover {
     border-color: var(--color-border-default);
+  }
+
+  &:nth-child(3) {
+    display: none;
+
+    @include mq($from: tablet) {
+      display: flex;
+    }
   }
 }
 

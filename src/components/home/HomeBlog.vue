@@ -99,6 +99,7 @@ const previewArticles = computed(() => articles.slice(0, 3))
 
 /* ============================================================
  * List — 1 col; ≥ mobile две; ≥ tablet три (как превью на всю ширину).
+ * Третья карточка только с tablet: на мобиле две + кнопка «все» → /blog.
  * ============================================================ */
 .home-blog__list {
   list-style: none;
@@ -122,6 +123,14 @@ const previewArticles = computed(() => articles.slice(0, 3))
 
 .home-blog__item {
   display: flex;
+
+  &:nth-child(3) {
+    display: none;
+
+    @include mq($from: tablet) {
+      display: flex;
+    }
+  }
 }
 
 .home-blog__item > :deep(*) {

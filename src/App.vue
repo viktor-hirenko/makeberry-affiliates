@@ -10,12 +10,45 @@ const route = useRoute()
   <div class="app-root">
     <AppHeader />
     <main class="app-main" :class="{ 'app-main--flush': route.meta.flushTop }">
-      <!-- Никаких <Transition> — иначе при out-in между unmount старой
-           и mount новой страницы <main> пустеет, footer прыгает под header,
-           и пользователь успевает увидеть «промежуточный кадр» (header + footer
-           без контента). Для лендинга мгновенная навигация выглядит лучше. -->
-      <RouterView />
+      <!-- Обёртка flex:1 — при mode=out-in между leave и enter слот кратко пустой; без flex:1 main мог бы схлопнуться -->
+      <div class="app-main__view">
+        <RouterView v-slot="{ Component, route }">
+          <!-- out-in: нет одновременно двух full-page в DOM → не «просвечивает» список блога под статьёй -->
+          <!-- leave: 0 — старый view не «полупрозрачно висит»; enter — мягко появляется новый -->
+          <Transition name="page-fade" mode="out-in" :duration="{ enter: 250, leave: 0 }">
+            <component :is="Component" :key="route.fullPath" />
+          </Transition>
+        </RouterView>
+      </div>
     </main>
     <AppFooter v-if="!route.meta.hideFooter" />
   </div>
 </template>
+
+<style>
+.app-main__view {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/*
+ * Enter совпадает с :duration enter (250). Leave мгновенный — без полупрозрачного наложения двух маршрутов.
+ */
+.page-fade-enter-active {
+  transition: opacity 250ms ease;
+}
+
+.page-fade-enter-from {
+  opacity: 0;
+}
+
+.page-fade-leave-active {
+  transition: none;
+}
+
+.page-fade-leave-to {
+  opacity: 0;
+}
+</style>
