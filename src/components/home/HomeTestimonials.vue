@@ -426,12 +426,8 @@ $testimonials-gaps-between: to-rem(40);
 }
 
 /* ============================================================
- * Navigation arrows
- * - На mobile/tablet (<1280) скрыты ВСЕГДА — по Figma 3861:20632
- *   на мобильном только dots + swipe gestures.
- * - На desktop (≥1280): появляются только когда watch-overflow
- *   видит overflow (т.е. testimonials > 3). При 3 testimonials
- *   их прячет .is-locked.
+ * Navigation arrows — только при тройном ряду (≥ tablet, как swiperBreakpoints).
+ * На узких ширинах только dots + swipe. При отсутствии overflow — .is-locked.
  * ============================================================ */
 .home-testimonials__nav {
   position: absolute;

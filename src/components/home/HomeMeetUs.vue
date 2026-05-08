@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { nextTick } from 'vue'
 import { Navigation, Pagination } from 'swiper/modules'
+import type { Swiper as SwiperInstance } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 
 import 'swiper/css'
@@ -7,9 +9,32 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 
 import BaseIcon from '@/components/ui/BaseIcon.vue'
+import { BREAKPOINT_MOBILE_PX, BREAKPOINT_TABLET_PX } from '@/constants/breakpoints'
 import { useHomeMeetUs } from '@/composables/useContent'
 
 const content = useHomeMeetUs()
+
+/** &lt; mobile: 1; mobile–tablet: 2; ≥ tablet: 3 (числа — min-width, как в SCSS `mq`) */
+const meetUsSwiperBreakpoints = {
+  [BREAKPOINT_MOBILE_PX]: {
+    slidesPerView: 2,
+    slidesPerGroup: 2,
+    spaceBetween: 16,
+  },
+  [BREAKPOINT_TABLET_PX]: {
+    slidesPerView: 3,
+    slidesPerGroup: 1,
+    spaceBetween: 20,
+  },
+}
+
+function onMeetUsSwiper(swiper: SwiperInstance) {
+  /* После mount иногда нужен повторный расчёт ширины слайдов (breakpoints). */
+  nextTick(() => {
+    swiper.updateSize()
+    swiper.updateSlides()
+  })
+}
 
 const navConfig = {
   prevEl: '.home-meet-us__nav--prev',
@@ -32,18 +57,15 @@ const navConfig = {
         <Swiper
           class="home-meet-us__swiper"
           :modules="[Navigation, Pagination]"
+          breakpoints-base="window"
           :slides-per-view="1"
+          :slides-per-group="1"
           :space-between="16"
           :watch-overflow="true"
           :navigation="navConfig"
           :pagination="{ clickable: true, el: '.home-meet-us__pagination' }"
-          :breakpoints="{
-            1024: {
-              slidesPerView: 3,
-              slidesPerGroup: 1,
-              spaceBetween: 20,
-            },
-          }"
+          :breakpoints="meetUsSwiperBreakpoints"
+          @swiper="onMeetUsSwiper"
         >
           <SwiperSlide
             v-for="event in content.items"
@@ -163,8 +185,7 @@ const navConfig = {
 
 /* ============================================================
  * Slider wrapper — relative для абсолютных стрелок
- * Mobile  : column gap 32 (без padding под стрелки — их нет)
- * Desktop : padding-inline 60 для стрелок, gap 32
+ * Стрелки только при 3 слайдах в ряд (≥ tablet); до этого — только dots + swipe.
  * ============================================================ */
 .home-meet-us__slider-wrap {
   position: relative;
@@ -185,11 +206,7 @@ const navConfig = {
 
 /*
  * Slide
- * Mobile : ширину задаёт Swiper (slidesPerView=1) — НЕ задаём width/
- *   max-width вручную (иначе появятся щели и сквозь них видно соседние
- *   карточки — известный баг).
- * Desktop: тоже не задаём width — Swiper делит контейнер на 3 равные
- *   части (slidesPerView=3, spaceBetween=20).
+ * Ширину задаёт Swiper (1 / 2 / 3) — не задаём width вручную.
  *
  * Высота карточки 416px по Figma 2819:2055 (cover 200 + body 216).
  */
@@ -309,10 +326,7 @@ const navConfig = {
 }
 
 /* ============================================================
- * Navigation arrows
- * - Mobile : скрыты ВСЕГДА (Figma 3861:20654 — только pagination dots)
- * - Desktop: показываются, но Swiper их прячет через .is-locked
- *   когда нечего листать (3 cards помещаются в 3 view).
+ * Navigation arrows — только при 3 карточках в ряд (≥ tablet)
  * ============================================================ */
 .home-meet-us__nav {
   display: none;

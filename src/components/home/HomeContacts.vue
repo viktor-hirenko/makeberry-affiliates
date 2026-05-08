@@ -303,9 +303,7 @@ function handleInput() {
 }
 
 /* ============================================================
- * Slider wrapper
- * &lt; mobile: без padding под стрелки (стрелки скрыты)
- * ≥ mobile   : padding-inline под абсолютные стрелки (1→2 слайда на mobile–tablet)
+ * Slider wrapper — стрелки только при 4 карточках в ряд (≥ tablet)
  * ============================================================ */
 .home-contacts__slider-wrap {
   position: relative;
@@ -315,7 +313,7 @@ function handleInput() {
   align-items: center;
   gap: to-rem(32);
 
-  @include mq($from: mobile) {
+  @include mq($from: tablet) {
     padding-inline: to-rem(60);
   }
 }
@@ -442,13 +440,7 @@ function handleInput() {
 }
 
 /* ============================================================
- * Navigation arrows — копия логики из Meet Us / Direct Advertiser
- * &lt; mobile: скрыты
- * ≥ mobile : top на уровне центра photo (= половина стороны квадрата фото)
- *           Карточка квадратная, height ≈ width. Используем 50% от
- *           высоты swiper — это центр photo, потому что body снизу.
- *           На самом деле проще: top по фотке, фотка занимает первые
- *           285×285 в карточке. Карточка 285+24+108=417 → 285/2=142.5.
+ * Navigation arrows — только при 4 карточках в ряд (≥ tablet)
  * ============================================================ */
 .home-contacts__nav {
   display: none;
@@ -466,11 +458,9 @@ function handleInput() {
     background-color var(--transition-base),
     color var(--transition-base);
 
-  @include mq($from: mobile) {
+  @include mq($from: tablet) {
     display: inline-flex;
     position: absolute;
-    /* photo квадратная = ширина карточки. Карточка = (1200 - 60) / 4 = 285.
-       центр photo по высоте = 285/2 = 142.5px от верха слайдер-контейнера. */
     top: to-rem(142.5);
     transform: translateY(-50%);
     z-index: 2;
@@ -497,13 +487,13 @@ function handleInput() {
 }
 
 .home-contacts__nav--prev {
-  @include mq($from: mobile) {
+  @include mq($from: tablet) {
     left: 0;
   }
 }
 
 .home-contacts__nav--next {
-  @include mq($from: mobile) {
+  @include mq($from: tablet) {
     right: 0;
   }
 }

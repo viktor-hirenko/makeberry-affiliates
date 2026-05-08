@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { nextTick } from 'vue'
 import { Navigation, Pagination } from 'swiper/modules'
+import type { Swiper as SwiperInstance } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 
 import 'swiper/css'
@@ -8,9 +10,31 @@ import 'swiper/css/pagination'
 
 import BaseButton from '@/components/ui/BaseButton.vue'
 import BaseIcon from '@/components/ui/BaseIcon.vue'
+import { BREAKPOINT_MOBILE_PX, BREAKPOINT_TABLET_PX } from '@/constants/breakpoints'
 import { useHomeDirectAdvertiser } from '@/composables/useContent'
 
 const content = useHomeDirectAdvertiser()
+
+/** &lt; mobile: 1; mobile–tablet: 2; ≥ tablet: 4 */
+const directSwiperBreakpoints = {
+  [BREAKPOINT_MOBILE_PX]: {
+    slidesPerView: 2,
+    slidesPerGroup: 2,
+    spaceBetween: 16,
+  },
+  [BREAKPOINT_TABLET_PX]: {
+    slidesPerView: 4,
+    slidesPerGroup: 4,
+    spaceBetween: 20,
+  },
+}
+
+function onDirectSwiper(swiper: SwiperInstance) {
+  nextTick(() => {
+    swiper.updateSize()
+    swiper.updateSlides()
+  })
+}
 
 const navConfig = {
   prevEl: '.home-direct__nav--prev',
@@ -38,18 +62,15 @@ const navConfig = {
         <Swiper
           class="home-direct__swiper"
           :modules="[Navigation, Pagination]"
+          breakpoints-base="window"
           :slides-per-view="1"
+          :slides-per-group="1"
           :space-between="16"
           :watch-overflow="true"
           :navigation="navConfig"
           :pagination="{ clickable: true, el: '.home-direct__pagination' }"
-          :breakpoints="{
-            1024: {
-              slidesPerView: 4,
-              slidesPerGroup: 4,
-              spaceBetween: 20,
-            },
-          }"
+          :breakpoints="directSwiperBreakpoints"
+          @swiper="onDirectSwiper"
         >
           <SwiperSlide
             v-for="partner in content.partners"
@@ -216,7 +237,7 @@ const navConfig = {
   gap: to-rem(20);
 
   @include mq($from: tablet) {
-    padding-inline: to-rem(60); /* место под стрелки */
+    padding-inline: to-rem(60); /* место под стрелки — только при 4 в ряд */
     gap: to-rem(32);
   }
 }
@@ -338,10 +359,7 @@ const navConfig = {
 }
 
 /* ============================================================
- * Slider arrows — desktop only, vertically centered, outside cards
- * Используем нативные <button> + Swiper Navigation модуль:
- * Swiper сам выставит is-disabled (на крайних слайдах) и
- * is-locked (когда слайдер не нуждается в перелистывании).
+ * Slider arrows — только при 4 карточках в ряд (≥ tablet)
  * ============================================================ */
 .home-direct__nav {
   display: none;
