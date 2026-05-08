@@ -156,7 +156,8 @@
   --transition-base: 0.25s ease;
 }
 
-@media (max-width: 1279px) {
+/* Согласовано с AppHeader: компактный бар при ширине < 1024 → один `--header-offset`; от 1024 — отступ под pill. */
+@media (max-width: 1023px) {
   :root {
     --header-offset: var(--header-mobile-height);
   }

@@ -14,7 +14,18 @@ import type { NavLink } from '@/types/content'
 const nav = useNav()
 const route = useRoute()
 const { width } = useWindowSize()
-const isMobile = computed(() => width.value < 1280)
+
+/** Совпадает с `$breakpoints.tablet` / `@include mq($from: tablet)` — горизонтальная навигация в pill. */
+const BREAKPOINT_NAV_DESKTOP_PX = 1024
+/** Полный вордмарк «Makeberry» в SVG; до этого порога — только mark (шире места под ссылки 1024–1279). */
+const BREAKPOINT_LOGO_FULL_PX = 1280
+
+/** Компактный бар + drawer при ширине < 1024; pill с навигацией от 1024. */
+const isCompactBar = computed(() => width.value < BREAKPOINT_NAV_DESKTOP_PX)
+const showDesktopNav = computed(() => !isCompactBar.value)
+const logoVariant = computed<'full' | 'mark'>(() =>
+  width.value >= BREAKPOINT_LOGO_FULL_PX ? 'full' : 'mark'
+)
 
 const openDropdown = ref<string | null>(null)
 const mobileMenuOpen = ref(false)
@@ -29,7 +40,7 @@ watch(
   () => {
     openDropdown.value = null
     mobileMenuOpen.value = false
-  },
+  }
 )
 
 function isLinkActive(link: NavLink): boolean {
@@ -43,7 +54,7 @@ function isLinkActive(link: NavLink): boolean {
     return route.path === link.path || route.path.startsWith(`${link.path}/`)
   }
   if (link.children?.length) {
-    return link.children.some((child) => route.path.startsWith(child.path))
+    return link.children.some(child => route.path.startsWith(child.path))
   }
   return false
 }
@@ -64,19 +75,13 @@ function closeMobileMenu() {
   mobileMenuOpen.value = false
 }
 
-const showDesktop = computed(() => !isMobile.value)
 </script>
 
 <template>
-  <header ref="headerRef" class="app-header" :class="{ 'app-header--mobile': isMobile }">
-    <div v-if="showDesktop" class="app-header__pill">
-      <RouterLink
-        to="/"
-        class="app-header__logo"
-        :aria-label="nav.logoAlt"
-        @click="closeDropdown"
-      >
-        <BaseLogo variant="full" :aria-label="nav.logoAlt" :height="40" />
+  <header ref="headerRef" class="app-header" :class="{ 'app-header--mobile': isCompactBar }">
+    <div v-if="showDesktopNav" class="app-header__pill">
+      <RouterLink to="/" class="app-header__logo" :aria-label="nav.logoAlt" @click="closeDropdown">
+        <BaseLogo :variant="logoVariant" :aria-label="nav.logoAlt" :height="40" />
       </RouterLink>
 
       <nav class="app-header__nav" aria-label="Main">
