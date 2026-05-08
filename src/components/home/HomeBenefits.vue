@@ -163,7 +163,7 @@ const content = useHomeBenefits()
 }
 
 /* ============================================================
- * Grid — 1 col mobile, 2 col tablet, 3 col desktop
+ * Grid — 1 col; ≥ mobile две колонки; ≥ desktop три.
  * ============================================================ */
 .home-benefits__grid {
   list-style: none;
@@ -174,13 +174,13 @@ const content = useHomeBenefits()
   grid-template-columns: 1fr;
   gap: to-rem(16);
 
-  @include mq($from: tablet) {
-    grid-template-columns: repeat(2, 1fr);
+  @include mq($from: mobile) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: to-rem(20);
   }
 
   @include mq($from: desktop) {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: to-rem(20);
   }
 }

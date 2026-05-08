@@ -116,9 +116,7 @@ const previewArticles = computed(() => articles.slice(0, 3))
 }
 
 /* ============================================================
- * List
- * Mobile  : 1 col, gap 48
- * Desktop : 3 col, gap 20
+ * List — 1 col; ≥ mobile две; ≥ tablet три (как превью на всю ширину).
  * ============================================================ */
 .home-blog__list {
   list-style: none;
@@ -128,6 +126,11 @@ const previewArticles = computed(() => articles.slice(0, 3))
   display: grid;
   grid-template-columns: 1fr;
   gap: to-rem(48);
+
+  @include mq($from: mobile) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: to-rem(20);
+  }
 
   @include mq($from: tablet) {
     grid-template-columns: repeat(3, minmax(0, 1fr));

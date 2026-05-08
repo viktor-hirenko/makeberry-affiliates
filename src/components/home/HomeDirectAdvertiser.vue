@@ -446,25 +446,25 @@ const navConfig = {
 }
 
 /* ============================================================
- * Cooperation models — outer surface card with pink-bordered pill
- * Mobile : column stack, gap 20
- * Desktop: 4 in row, equal width, gap 20, max-width 1200
+ * Cooperation models — 1 col; ≥ mobile 2×2; ≥ tablet один ряд из 4.
  * ============================================================ */
 .home-direct__cooperation {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: to-rem(20);
   margin: 0;
   padding: 0;
   list-style: none;
   width: 100%;
 
-  @include mq($from: tablet) {
-    flex-direction: row;
-    align-items: stretch;
+  @include mq($from: mobile) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     max-width: to-rem(1200);
     margin-inline: auto;
+  }
+
+  @include mq($from: tablet) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
@@ -472,14 +472,10 @@ const navConfig = {
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  min-width: 0;
   background-color: var(--color-bg-surface);
   border: 1px solid var(--color-border-subtle);
   border-radius: to-rem(44);
-
-  @include mq($from: tablet) {
-    flex: 1 0 0;
-    min-width: 0;
-  }
 }
 
 .home-direct__model-pill {

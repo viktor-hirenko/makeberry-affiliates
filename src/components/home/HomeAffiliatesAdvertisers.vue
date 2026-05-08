@@ -6,11 +6,7 @@ const content = useHomeAffiliatesAdvertisers()
 </script>
 
 <template>
-  <section
-    id="affiliates-advertisers"
-    class="home-aff-adv"
-    data-section="affiliates-advertisers"
-  >
+  <section id="affiliates-advertisers" class="home-aff-adv" data-section="affiliates-advertisers">
     <article
       v-for="card in content.cards"
       :key="card.id"
@@ -64,14 +60,16 @@ const content = useHomeAffiliatesAdvertisers()
 
 /* ============================================================
  * Section
- * Mobile (Figma 360 — py 70 / px 16 / column / gap 60)
- * Desktop (Figma 1440 — py 170 / px 160 / row / gap 40)
+ * До mobile: одна колонка, gap 60
+ * От mobile: две карточки в ряд, gap 40
+ * От tablet: увеличенные отступы секции
  * ============================================================ */
 .home-aff-adv {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: start;
+  justify-items: stretch;
   gap: to-rem(60);
   background-color: var(--color-bg-page);
   padding: to-rem(70) to-rem(16);
@@ -86,13 +84,12 @@ const content = useHomeAffiliatesAdvertisers()
   overflow-x: clip;
 
   @include mq($from: mobile) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: to-rem(20);
     padding-inline: to-rem(32);
   }
 
   @include mq($from: tablet) {
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: center;
     gap: to-rem(40);
     padding: to-rem(170) to-rem(60);
   }
@@ -112,13 +109,14 @@ const content = useHomeAffiliatesAdvertisers()
   flex-direction: column;
   align-items: stretch;
   width: 100%;
+  min-width: 0;
   background-color: var(--color-bg-surface);
   border: 1px solid var(--color-border-subtle);
   border-radius: var(--radius-xl);
 
-  @include mq($from: tablet) {
-    flex: 0 1 to-rem(460);
+  @include mq($from: mobile) {
     max-width: to-rem(460);
+    justify-self: center;
   }
 }
 

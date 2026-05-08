@@ -91,12 +91,12 @@ const about = useHomeAbout()
 
 /* ============================================================
  * Grid
- * Mobile/Tablet: single column stack — image card скрыт.
- * Desktop (≥1024): 4 cols × 3 rows asymmetric grid:
- *
- *   | b1 | b2  | img | b3 |
- *   | .  | b4  | b5  | b6 |
- *   | b7 | .   | b8  | .  |
+ * До mobile: одна колонка, без картинки.
+ * mobile–tablet (768–1023): 3 колонки; пустые ячейки — точка (.) в
+ *   grid-template-areas. Каждое имя (b1…b8) только один прямоугольник;
+ *   нельзя дублировать b7 в разных рядах. Ниже — плотная сетка с «дырами»
+ *   в духе десктопа (дыра слева во 2-м ряду, две дыры в последнем).
+ * От tablet: полная 4-колоночная сетка как в макете.
  * ============================================================ */
 .home-about__grid {
   display: flex;
@@ -104,8 +104,21 @@ const about = useHomeAbout()
   gap: to-rem(16);
   width: 100%;
 
-  @include mq($from: tablet) {
+  @include mq($from: mobile) {
     display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-auto-rows: auto;
+    grid-template-areas:
+      'b1 b2 img'
+      '.  b3 b4'
+      'b5 b6  .'
+      '.  b7  b8';
+    gap: to-rem(16);
+    max-width: to-rem(900);
+    margin-inline: auto;
+  }
+
+  @include mq($from: tablet) {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     grid-auto-rows: minmax(to-rem(220), auto);
     grid-template-areas:
@@ -169,23 +182,35 @@ const about = useHomeAbout()
 .home-about__card--image {
   display: none;
 
-  @include mq($from: tablet) {
+  @include mq($from: mobile) {
     display: flex;
     align-items: center;
     justify-content: center;
+    align-self: start;
     padding: 0;
     background-color: transparent;
     border-color: var(--color-border-default);
     overflow: hidden;
+  }
+
+  @include mq($from: tablet) {
+    align-self: stretch;
   }
 }
 
 .home-about__pendant {
   display: block;
   width: 100%;
-  height: 100%;
   object-fit: contain;
   user-select: none;
   pointer-events: none;
+
+  @include mq($from: mobile) {
+    height: auto;
+  }
+
+  @include mq($from: tablet) {
+    height: 100%;
+  }
 }
 </style>

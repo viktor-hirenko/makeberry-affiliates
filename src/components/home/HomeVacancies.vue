@@ -180,7 +180,7 @@ const content = useHomeVacancies()
 }
 
 /* ============================================================
- * Cards — mobile stacked (gap 16), desktop 3 в ряд (gap 20).
+ * Cards — 1 col; ≥ mobile две колонки; ≥ tablet три.
  * ============================================================ */
 .home-vacancies__cards {
   list-style: none;
@@ -190,6 +190,11 @@ const content = useHomeVacancies()
   display: grid;
   grid-template-columns: 1fr;
   gap: to-rem(16);
+
+  @include mq($from: mobile) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: to-rem(20);
+  }
 
   @include mq($from: tablet) {
     grid-template-columns: repeat(3, minmax(0, 1fr));
