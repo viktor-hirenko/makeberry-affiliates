@@ -8,15 +8,33 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 
 import BaseIcon from '@/components/ui/BaseIcon.vue'
+import { BREAKPOINT_MOBILE_PX, BREAKPOINT_TABLET_PX } from '@/constants/breakpoints'
 import { useHomeContacts } from '@/composables/useContent'
 
 const content = useHomeContacts()
 
+/**
+ * Swiper breakpoints (числа = min-width):
+ * - &lt; mobile: 1 слайд (узкий телефон)
+ * - mobile–tablet: 2 слайда (раньше здесь был 1 слайд + max-width обёртки + fade)
+ * - ≥ tablet: 4 слайда
+ */
+const contactsSwiperBreakpoints = {
+  [BREAKPOINT_MOBILE_PX]: {
+    slidesPerView: 2,
+    slidesPerGroup: 2,
+    spaceBetween: 16,
+  },
+  [BREAKPOINT_TABLET_PX]: {
+    slidesPerView: 4,
+    slidesPerGroup: 4,
+    spaceBetween: 20,
+  },
+}
+
 /* ------------------------------------------------------------------
- * Swiper config — единый подход (Direct Advertiser / Meet Us / Contacts)
- * mobile  : slidesPerView 1, slidesPerGroup 1, spaceBetween 16
- * desktop : slidesPerView 4, slidesPerGroup 4 (full-page swap), spaceBetween 20
- * watch-overflow: navigation/pagination сами лочатся, если нечего листать
+ * Swiper: см. contactsSwiperBreakpoints; только effect slide.
+ * watch-overflow: навигация/пагинация лочатся, если нечего листать
  * ------------------------------------------------------------------ */
 const navConfig = {
   prevEl: '.home-contacts__nav--prev',
@@ -63,11 +81,7 @@ function handleInput() {
 </script>
 
 <template>
-  <section
-    id="contacts"
-    class="home-contacts"
-    data-section="contacts"
-  >
+  <section id="contacts" class="home-contacts" data-section="contacts">
     <img
       :src="content.glow.src"
       :alt="content.glow.alt"
@@ -90,13 +104,7 @@ function handleInput() {
           :watch-overflow="true"
           :navigation="navConfig"
           :pagination="{ clickable: true, el: '.home-contacts__pagination' }"
-          :breakpoints="{
-            1024: {
-              slidesPerView: 4,
-              slidesPerGroup: 4,
-              spaceBetween: 20,
-            },
-          }"
+          :breakpoints="contactsSwiperBreakpoints"
         >
           <SwiperSlide
             v-for="contact in content.items"
@@ -167,10 +175,7 @@ function handleInput() {
           <p class="home-contacts__form-subtitle">{{ content.form.subtitle }}</p>
         </header>
 
-        <form
-          class="home-contacts__form-body"
-          @submit.prevent="handleVerify"
-        >
+        <form class="home-contacts__form-body" @submit.prevent="handleVerify">
           <div
             class="home-contacts__input"
             :class="{
@@ -188,10 +193,7 @@ function handleInput() {
               :aria-invalid="status === 'error'"
               @input="handleInput"
             />
-            <button
-              type="submit"
-              class="home-contacts__input-btn"
-            >
+            <button type="submit" class="home-contacts__input-btn">
               {{ content.form.buttonLabel }}
             </button>
           </div>
@@ -206,11 +208,10 @@ function handleInput() {
             role="status"
             aria-live="polite"
           >
-            <BaseIcon
-              :name="status === 'verified' ? 'verified' : 'alert-circle'"
-              :size="24"
-            />
-            <span>{{ status === 'verified' ? content.form.verifiedLabel : content.form.errorLabel }}</span>
+            <BaseIcon :name="status === 'verified' ? 'verified' : 'alert-circle'" :size="24" />
+            <span>{{
+              status === 'verified' ? content.form.verifiedLabel : content.form.errorLabel
+            }}</span>
           </div>
         </form>
       </div>
@@ -303,8 +304,8 @@ function handleInput() {
 
 /* ============================================================
  * Slider wrapper
- * Mobile  : без padding под стрелки (их нет)
- * Desktop : padding-inline 60 для абсолютных стрелок по краям
+ * &lt; mobile: без padding под стрелки (стрелки скрыты)
+ * ≥ mobile   : padding-inline под абсолютные стрелки (1→2 слайда на mobile–tablet)
  * ============================================================ */
 .home-contacts__slider-wrap {
   position: relative;
@@ -314,7 +315,7 @@ function handleInput() {
   align-items: center;
   gap: to-rem(32);
 
-  @include mq($from: tablet) {
+  @include mq($from: mobile) {
     padding-inline: to-rem(60);
   }
 }
@@ -324,9 +325,7 @@ function handleInput() {
 }
 
 /*
- * Slide
- * Mobile  : ширину задаёт Swiper (slidesPerView=1) — НЕ задаём width.
- * Desktop : тоже — Swiper делит контейнер на 4 равные части.
+ * Slide — ширину задаёт Swiper (1 / 2 / 4 по breakpoints).
  */
 .home-contacts__slide {
   height: auto;
@@ -444,8 +443,8 @@ function handleInput() {
 
 /* ============================================================
  * Navigation arrows — копия логики из Meet Us / Direct Advertiser
- * Mobile  : скрыты
- * Desktop : top на уровне центра photo (= ширина карточки / 2)
+ * &lt; mobile: скрыты
+ * ≥ mobile : top на уровне центра photo (= половина стороны квадрата фото)
  *           Карточка квадратная, height ≈ width. Используем 50% от
  *           высоты swiper — это центр photo, потому что body снизу.
  *           На самом деле проще: top по фотке, фотка занимает первые
@@ -467,7 +466,7 @@ function handleInput() {
     background-color var(--transition-base),
     color var(--transition-base);
 
-  @include mq($from: tablet) {
+  @include mq($from: mobile) {
     display: inline-flex;
     position: absolute;
     /* photo квадратная = ширина карточки. Карточка = (1200 - 60) / 4 = 285.
@@ -498,13 +497,13 @@ function handleInput() {
 }
 
 .home-contacts__nav--prev {
-  @include mq($from: tablet) {
+  @include mq($from: mobile) {
     left: 0;
   }
 }
 
 .home-contacts__nav--next {
-  @include mq($from: tablet) {
+  @include mq($from: mobile) {
     right: 0;
   }
 }
@@ -546,7 +545,9 @@ function handleInput() {
   flex-direction: column;
   align-items: center;
   gap: to-rem(24);
-  margin-top: to-rem(22); /* 70 - 48 (gap inner) = 22 → даём docs gap, но реально margin даёт +22 поверх gap */
+  margin-top: to-rem(
+    22
+  ); /* 70 - 48 (gap inner) = 22 → даём docs gap, но реально margin даёт +22 поверх gap */
 
   @include mq($from: tablet) {
     margin-top: to-rem(30); /* 100 - 70 = 30 */

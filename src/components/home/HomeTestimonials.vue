@@ -8,9 +8,19 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 
 import BaseIcon from '@/components/ui/BaseIcon.vue'
+import { BREAKPOINT_TABLET_PX } from '@/constants/breakpoints'
 import { useHomeTestimonials } from '@/composables/useContent'
 
 const content = useHomeTestimonials()
+
+/** Ключ совпадает с CSS `@include mq($from: tablet)` и упругими ширинами слайдов. */
+const swiperBreakpoints = {
+  [BREAKPOINT_TABLET_PX]: {
+    slidesPerView: 'auto' as const,
+    spaceBetween: 20,
+    allowTouchMove: false,
+  },
+}
 
 /*
  * Индекс «центрального» (большого) testimonial-а — это позиция в массиве,
@@ -29,11 +39,7 @@ const navConfig = {
 </script>
 
 <template>
-  <section
-    id="testimonials"
-    class="home-testimonials"
-    data-section="testimonials"
-  >
+  <section id="testimonials" class="home-testimonials" data-section="testimonials">
     <img
       src="/images/home/testimonials/glow.png"
       alt=""
@@ -55,13 +61,7 @@ const navConfig = {
           :watch-overflow="true"
           :navigation="navConfig"
           :pagination="{ clickable: true, el: '.home-testimonials__pagination' }"
-          :breakpoints="{
-            1280: {
-              slidesPerView: 'auto',
-              spaceBetween: 20,
-              allowTouchMove: false,
-            },
-          }"
+          :breakpoints="swiperBreakpoints"
         >
           <SwiperSlide
             v-for="(item, index) in content.items"
@@ -225,71 +225,59 @@ const navConfig = {
   flex-direction: column;
   align-items: center;
   gap: to-rem(32);
+  /* Упругие ширины слайдов через 100cqi в `.home-testimonials__slide`. */
+  container-type: inline-size;
+  container-name: testimonials-slider;
 }
 
 .home-testimonials__swiper {
   width: 100%;
 
   /*
-   * align-items: center — на десктопе у нас side cards 280h и
-   * центральная 352h, вертикально центруем по центру.
+   * Вертикально центруем слайды в ряду (mobile и tablet+).
+   * На tablet+ высота колонок задаётся aspect-ratio на слайде — центральная
+   * шире и выше боковых (макет 350×280 / 460×352); без stretch все три
+   * одинаковой высоты не будут — так и задумано.
    *
-   * justify-content применяется ТОЛЬКО на десктопе. На mobile это
-   * ломает swiper translate3d (slidesPerView=1, 3 slide'а суммарно
-   * шире wrapper'а — flex centering сдвигает wrapper влево/вправо
-   * на половину overflow, а Swiper потом ещё translate'ит сверху —
-   * результат: слайды «улетают» и пропадают из viewport).
+   * justify-content на tablet+: на mobile не трогаем — иначе ломается
+   * translate3d при slidesPerView=1 (см. историю в репо).
    */
   :deep(.swiper-wrapper) {
     align-items: center;
-  }
 
-  /*
-   * Десктоп: 3 фикс-карточки (350+460+350+gap*2 = 1200) уже swiper'а
-   * (1320). watch-overflow lock'ит swiper → translate не применяется →
-   * безопасно центрируем группу через flex.
-   */
-  @media (min-width: 1280px) {
-    :deep(.swiper-wrapper) {
+    @include mq($from: tablet) {
       justify-content: center;
     }
   }
 }
 
+/* Пропорции макета: боковые 350, центр 460 → сумма 1160; два gap по 20 (Swiper spaceBetween). */
+$testimonials-slide-span: 1160;
+$testimonials-gaps-between: to-rem(40);
+
 /* ============================================================
  * Slide
- * Mobile/Tablet (<1280): slidesPerView=1, карточка 328×400 (по Figma
- *   3861:20632). Все 3 testimonial-а доступны через dots + swipe.
- *   Стрелок на мобильном НЕТ (по Figma).
- *
- * Desktop (≥1280): slidesPerView='auto', side 350×280, центральная
- *   460×352. Сумма 350+460+350+20×2 = 1200 ≤ container 1320 →
- *   все 3 видны одновременно → watch-overflow скрывает контролы.
- *   Точно та же логика, что в Direct Advertiser.
+ * До tablet: slidesPerView=1, высота карточки 400 (Figma).
+ * ≥ tablet: упругая ширина; высота из пропорций макета — центр выше боковых.
  * ============================================================ */
 .home-testimonials__slide {
-  /*
-   * Mobile/Tablet: ширину slide задаёт сам Swiper по slidesPerView=1
-   * (= ширина контейнера inner — padding section). НЕ задаём width/
-   * max-width вручную, иначе образуется «щель» между слайдами и
-   * сквозь неё видно соседние карточки (Swiper translate'ит wrapper
-   * на основе своей ширины, а не нашего max-width).
-   *
-   * Высоту фиксируем 400px по Figma 3861:20632.
-   */
   height: to-rem(400);
   display: flex;
 
-  @media (min-width: 1280px) {
-    width: to-rem(350);
-    height: to-rem(280);
+  @include mq($from: tablet) {
+    box-sizing: border-box;
+    width: calc((100cqi - #{$testimonials-gaps-between}) * 350 / #{$testimonials-slide-span});
+    max-width: to-rem(350);
+    height: auto;
+    // aspect-ratio: 350 / 280;
   }
 }
 
 .home-testimonials__slide--center {
-  @media (min-width: 1280px) {
-    width: to-rem(460);
-    height: to-rem(352);
+  @include mq($from: tablet) {
+    width: calc((100cqi - #{$testimonials-gaps-between}) * 460 / #{$testimonials-slide-span});
+    max-width: to-rem(460);
+    // aspect-ratio: 460 / 352;
   }
 }
 
@@ -308,13 +296,13 @@ const navConfig = {
   opacity: 1;
 
   /* На десктопе боковые карточки приглушаем (по Figma). */
-  @media (min-width: 1280px) {
+  @include mq($from: tablet) {
     opacity: 0.7;
   }
 }
 
 .home-testimonials__card--center {
-  @media (min-width: 1280px) {
+  @include mq($from: tablet) {
     opacity: 1;
   }
 }
@@ -350,14 +338,14 @@ const navConfig = {
   text-overflow: ellipsis;
   @include font-body-s-regular;
 
-  @media (min-width: 1280px) {
+  @include mq($from: tablet) {
     -webkit-line-clamp: 3;
     line-clamp: 3;
   }
 }
 
 .home-testimonials__card--center .home-testimonials__text {
-  @media (min-width: 1280px) {
+  @include mq($from: tablet) {
     -webkit-line-clamp: 6;
     line-clamp: 6;
   }
@@ -417,7 +405,7 @@ const navConfig = {
   text-decoration: none;
   transition: background-color var(--transition-base);
 
-  @media (min-width: 1280px) {
+  @include mq($from: tablet) {
     visibility: hidden;
   }
 
@@ -432,7 +420,7 @@ const navConfig = {
 }
 
 .home-testimonials__card--center .home-testimonials__cta {
-  @media (min-width: 1280px) {
+  @include mq($from: tablet) {
     visibility: visible;
   }
 }
@@ -463,7 +451,7 @@ const navConfig = {
   transition: background-color var(--transition-base);
   transform: translateY(calc(-50% - #{to-rem(24)}));
 
-  @media (min-width: 1280px) {
+  @include mq($from: tablet) {
     display: inline-flex;
   }
 
