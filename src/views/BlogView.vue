@@ -21,25 +21,25 @@ function loadMore() {
 
 <template>
   <article class="blog-page">
-    <!-- Декоративные гловы (только desktop) -->
-    <img
-      :src="meta.glow.leftSrc"
-      :alt="meta.glow.alt"
-      class="blog-page__glow blog-page__glow--left"
-      aria-hidden="true"
-      loading="eager"
-      decoding="async"
-    />
-    <img
-      :src="meta.glow.rightSrc"
-      :alt="meta.glow.alt"
-      class="blog-page__glow blog-page__glow--right"
-      aria-hidden="true"
-      loading="eager"
-      decoding="async"
-    />
-
     <div class="blog-page__inner">
+      <!-- Декоративные гловы (только desktop) -->
+      <img
+        :src="meta.glow.leftSrc"
+        :alt="meta.glow.alt"
+        class="blog-page__glow blog-page__glow--left"
+        aria-hidden="true"
+        loading="eager"
+        decoding="async"
+      />
+      <img
+        :src="meta.glow.rightSrc"
+        :alt="meta.glow.alt"
+        class="blog-page__glow blog-page__glow--right"
+        aria-hidden="true"
+        loading="eager"
+        decoding="async"
+      />
+
       <!-- HEADER: title + декоративные badges -->
       <header class="blog-page__header">
         <h1 class="blog-page__title">{{ meta.title }}</h1>
@@ -67,11 +67,7 @@ function loadMore() {
 
       <!-- GRID -->
       <div class="blog-page__grid">
-        <ArticleCard
-          v-for="article in visibleArticles"
-          :key="article.slug"
-          :article="article"
-        />
+        <ArticleCard v-for="article in visibleArticles" :key="article.slug" :article="article" />
       </div>
 
       <!-- View More button -->
@@ -100,9 +96,11 @@ function loadMore() {
  * Гловы — абсолютно позиционируем относительно секции.
  * ============================================================ */
 .blog-page {
-  position: relative;
-  background-color: var(--color-bg-page);
   @include section-padding-default;
+
+  position: relative;
+  padding-block-start: to-rem(160);
+  background-color: var(--color-bg-page);
   overflow: hidden;
 }
 
@@ -114,6 +112,8 @@ function loadMore() {
  * ============================================================ */
 .blog-page__glow {
   position: absolute;
+  max-width: unset;
+  height: auto;
   pointer-events: none;
   user-select: none;
   z-index: 0;
@@ -121,15 +121,13 @@ function loadMore() {
 
 .blog-page__glow--left {
   width: to-rem(500);
-  height: to-rem(375);
-  top: to-rem(-63);
+  top: to-rem(-207);
   left: to-rem(-183);
 
   @include mq($from: tablet) {
     width: to-rem(989);
-    height: to-rem(742);
-    top: to-rem(-269);
-    left: to-rem(-354);
+    top: to-rem(-429);
+    left: to-rem(-454);
   }
 }
 
@@ -137,11 +135,16 @@ function loadMore() {
   /* На mobile правой гловы нет (Figma 3861:19714) */
   display: none;
 
+  @include mq($from: mobile) {
+    display: block;
+    width: to-rem(1094);
+    top: to-rem(-456);
+    right: to-rem(-513);
+  }
+
   @include mq($from: tablet) {
     display: block;
-    width: to-rem(1206);
-    height: to-rem(840);
-    top: to-rem(-43);
+    top: to-rem(-392);
     right: to-rem(-322);
   }
 }
@@ -224,6 +227,10 @@ function loadMore() {
   top: var(--badge-y, 0);
   left: 50%;
   transform: translateX(calc(-50% + var(--badge-x, 0px)));
+
+  &:last-child {
+    z-index: -1;
+  }
 }
 
 /* Базовый стиль для бейджей */
@@ -266,14 +273,20 @@ function loadMore() {
 
 /* ============================================================
  * GRID — articles
- * Mobile  : 1 col, gap 48
- * Desktop : 3 col, gap 20 (Figma 2503:5464)
+ * Узкий телефон (меньше 768px): 1 col, gap 48
+ * mobile–tablet (768–1023): 2 col, gap 20 — как сетки на главной
+ * ≥ tablet: 3 col (Figma 2503:5464)
  * ============================================================ */
 .blog-page__grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: to-rem(48);
   width: 100%;
+
+  @include mq($from: mobile, $until: tablet) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: to-rem(20);
+  }
 
   @include mq($from: tablet) {
     grid-template-columns: repeat(3, minmax(0, 1fr));

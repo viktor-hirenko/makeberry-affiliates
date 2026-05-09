@@ -84,9 +84,10 @@ const content = useHomeVacancies()
  * ============================================================ */
 .home-vacancies__glow {
   position: absolute;
-  top: to-rem(-72.9);
-  right: to-rem(-278.26);
+  top: to-rem(-172);
+  right: to-rem(-278);
   width: to-rem(598.264);
+  max-width: unset;
   height: to-rem(797.36);
   pointer-events: none;
   user-select: none;
@@ -95,8 +96,6 @@ const content = useHomeVacancies()
   @include mq($from: tablet) {
     top: to-rem(-167);
     right: to-rem(-290);
-    width: to-rem(742);
-    height: to-rem(989);
   }
 }
 
@@ -263,6 +262,7 @@ const content = useHomeVacancies()
 .home-vacancies__desc {
   margin: 0;
   width: 100%;
+  flex-grow: 1;
   font-family: var(--font-sans);
   font-weight: 400;
   font-size: to-rem(16);

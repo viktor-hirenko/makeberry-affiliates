@@ -71,7 +71,7 @@ defineProps<Props>()
   overflow: hidden;
   background-color: var(--color-bg-page);
   /* Hero рисуется flush до верха viewport (header floating оверлеит). */
-  margin-top: calc(-1 * var(--header-offset));
+  // margin-top: calc(-1 * var(--header-offset));
 
   /* Mobile (Figma 360 — pt 200 / px 16 / pb 70) */
   padding: to-rem(200) var(--container-pad-mobile) to-rem(70);
@@ -110,7 +110,7 @@ defineProps<Props>()
   img {
     position: absolute;
     display: block;
-    max-width: none;
+    // max-width: none;
 
     /* Mobile: PNG (720×1328) — pink-каскад в top-center-right.
        На 360 viewport нативная ширина PNG = 200% контейнера, и пинк

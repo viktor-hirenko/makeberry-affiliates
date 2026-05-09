@@ -13,7 +13,7 @@
       "variant": "brand-fill",
       "rotate": 5.62,
       "offsetX": -372.84,
-      "offsetY": 19.64
+      "offsetY": 27.64
     },
     {
       "id": "insights",
@@ -21,7 +21,7 @@
       "variant": "outlined-white",
       "rotate": -8.84,
       "offsetX": -188.96,
-      "offsetY": 4.64
+      "offsetY": 17.64
     },
     {
       "id": "announcements",
@@ -29,7 +29,7 @@
       "variant": "outlined-brand",
       "rotate": 5.3,
       "offsetX": 238.01,
-      "offsetY": 0
+      "offsetY": 12
     },
     {
       "id": "news",
@@ -37,7 +37,7 @@
       "variant": "brand-fill",
       "rotate": -6.1,
       "offsetX": 430.45,
-      "offsetY": 31.64
+      "offsetY": 39.64
     }
   ]
 }

@@ -7,47 +7,93 @@
   },
   "whatYouGet": {
     "title": "What You Get",
-    "badge": "1/5",
     "cards": [
       {
-        "id": "a1",
-        "title": "Transparent Measurement",
-        "descriptionHtml": "<p>Lifecycle dashboards align acquisition and CRM experiments without spreadsheet gymnastics.</p>",
-        "illustrationSrc": "/images/logo-makeberry.svg",
-        "illustrationAlt": "Measurement"
+        "id": "hub",
+        "title": "Makeberry Hub",
+        "stickerKey": "hub",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "html": "Makeberry Hub removes the key bottlenecks that limit your growth and gives you the tools to scale profitably."
+          },
+          {
+            "type": "list",
+            "items": [
+              "Access to larger budgets and higher caps",
+              "Advanced analytics with clear visibility into player value, retention, and LTV",
+              "Full tech infrastructure, including tracking, apps, and payments",
+              "Business development that unlocks new opportunities and handles product-side operations"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "html": "You focus on scaling traffic and increasing profit – we take care of the rest."
+          }
+        ]
       },
       {
-        "id": "a2",
-        "title": "Hybrid Economics",
-        "descriptionHtml": "<p>Structured bundles tuned to tier readiness — reconciliation mirrors finance statements.</p>",
-        "illustrationSrc": "/images/logo-makeberry.svg",
-        "illustrationAlt": "Economics"
+        "id": "analytics",
+        "title": "Transparent analytics with product-level data",
+        "stickerKey": "analytics",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "html": "You get full visibility across all key performance metrics, including registrations, FTDs, deposits and revenue, all updated in real time."
+          },
+          {
+            "type": "paragraph",
+            "html": "You also gain access to our internal analytics hub, where affiliate data is aligned with product data. This gives you a clearer view of how players behave inside each brand, how retention develops and how value grows over time."
+          }
+        ]
       },
       {
-        "id": "a3",
-        "title": "Partner Success",
-        "descriptionHtml": "<p>Dedicated managers anchor weekly cadences with actionable agendas — not status theater.</p>",
-        "illustrationSrc": "/images/logo-makeberry.svg",
-        "illustrationAlt": "Success"
+        "id": "exclusive",
+        "title": "Exclusive offers from a direct advertiser",
+        "stickerKey": "exclusive",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "html": "We are the direct advertiser for 3 established casino products: RocketPlay, WinSpirit and LuckyHills. For you, that means:"
+          },
+          {
+            "type": "list",
+            "items": [
+              "Direct communication with decision-makers",
+              "Fast approvals and quick adjustments",
+              "Flexible commercial models aligned with your acquisition strategy",
+              "Custom promos and ready-to-use creatives",
+              "Product-level insights"
+            ]
+          }
+        ]
       },
       {
-        "id": "a4",
-        "title": "Creative Velocity",
-        "descriptionHtml": "<p>Approval rails tuned for regulated bursts — localization packs ship faster.</p>",
-        "illustrationSrc": "/images/logo-makeberry.svg",
-        "illustrationAlt": "Creative"
+        "id": "infrastructure",
+        "title": "Infrastructure built for scale",
+        "stickerKey": "infrastructure",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "html": "You plug into proprietary infrastructure designed for volume and long-term growth."
+          }
+        ]
       },
       {
-        "id": "a5",
-        "title": "Governance",
-        "descriptionHtml": "<p>Brand safety checkpoints align affiliates and operators before budgets scale.</p>",
-        "illustrationSrc": "/images/logo-makeberry.svg",
-        "illustrationAlt": "Governance"
+        "id": "manager",
+        "title": "Dedicated manager",
+        "stickerKey": "manager",
+        "blocks": [
+          {
+            "type": "paragraph",
+            "html": "You work with a hands-on partner who understands traffic sources, testing cycles and optimisation logic. Someone who reviews performance with you, challenges your approach when needed and gives practical input backed by deep product knowledge."
+          }
+        ]
       }
     ]
   },
   "cta": {
-    "titleHtml": "Ready to scale with clarity?",
-    "button": { "label": "Talk to Us", "path": "/#contacts" }
+    "titleHtml": "<span class=\"primary\">Makeberry Affiliates is built for affiliates who expect more than a standard offer.</span> <span class=\"muted\">If you’re focused on long-term, controlled scaling, we should talk.</span>",
+    "button": { "label": "Register", "path": "/#contacts" }
   }
 }

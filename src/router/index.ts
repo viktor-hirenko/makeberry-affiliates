@@ -30,19 +30,25 @@ export const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     { path: '/', name: 'home', component: HomeView, meta: { title: 'Makeberry Affiliates' } },
-    { path: '/blog', name: 'blog', component: BlogView, meta: { title: 'Blog' } },
+    {
+      path: '/blog',
+      name: 'blog',
+      component: BlogView,
+      /* Как not-found: hero/glowы до верха viewport под floating header — без pt у main. */
+      meta: { title: 'Blog', flushTop: true },
+    },
     {
       path: '/blog/:slug',
       name: 'article',
       component: ArticleView,
-      meta: { title: 'Article' },
+      meta: { title: 'Article', flushTop: true },
       props: true,
     },
     {
       path: '/affiliates',
       name: 'affiliates',
       component: AffiliatesView,
-      meta: { title: 'For Affiliates' },
+      meta: { title: 'For Affiliates', flushTop: true },
     },
     {
       path: '/advertisers',

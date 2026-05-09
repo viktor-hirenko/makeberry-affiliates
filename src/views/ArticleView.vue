@@ -28,25 +28,25 @@ function isTextSection(section: ArticleSection): boolean {
 
 <template>
   <article v-if="article" class="article">
-    <!-- Декоративные гловы -->
-    <img
-      :src="blogMeta.glow.leftSrc"
-      :alt="blogMeta.glow.alt"
-      class="article__glow article__glow--left"
-      aria-hidden="true"
-      loading="eager"
-      decoding="async"
-    />
-    <img
-      :src="blogMeta.glow.rightSrc"
-      :alt="blogMeta.glow.alt"
-      class="article__glow article__glow--right"
-      aria-hidden="true"
-      loading="eager"
-      decoding="async"
-    />
-
     <div class="article__inner">
+      <!-- Декоративные гловы -->
+      <img
+        :src="blogMeta.glow.leftSrc"
+        :alt="blogMeta.glow.alt"
+        class="article__glow article__glow--left"
+        aria-hidden="true"
+        loading="eager"
+        decoding="async"
+      />
+      <img
+        :src="blogMeta.glow.rightSrc"
+        :alt="blogMeta.glow.alt"
+        class="article__glow article__glow--right"
+        aria-hidden="true"
+        loading="eager"
+        decoding="async"
+      />
+
       <!-- BACK link -->
       <RouterLink to="/blog" class="article__back">
         <span>Back</span>
@@ -84,18 +84,8 @@ function isTextSection(section: ArticleSection): boolean {
         <template v-for="section in article.sections" :key="section.id">
           <!-- Image row -->
           <div v-if="isImageRow(section)" class="article__images">
-            <figure
-              v-for="img in section.images"
-              :key="img.alt"
-              class="article__image"
-            >
-              <img
-                v-if="img.src"
-                :src="img.src"
-                :alt="img.alt"
-                loading="lazy"
-                decoding="async"
-              />
+            <figure v-for="img in section.images" :key="img.alt" class="article__image">
+              <img v-if="img.src" :src="img.src" :alt="img.alt" loading="lazy" decoding="async" />
               <div v-else class="article__image-placeholder" aria-hidden="true" />
             </figure>
           </div>
@@ -105,24 +95,12 @@ function isTextSection(section: ArticleSection): boolean {
             <h2 v-if="section.title" class="article__section-title">
               {{ section.title }}
             </h2>
-            <div
-              v-if="section.bodyHtml"
-              class="article__section-body"
-              v-html="section.bodyHtml"
-            />
-            <div
-              v-for="sub in section.subsections"
-              :key="sub.id"
-              class="article__subsection"
-            >
+            <div v-if="section.bodyHtml" class="article__section-body" v-html="section.bodyHtml" />
+            <div v-for="sub in section.subsections" :key="sub.id" class="article__subsection">
               <p v-if="sub.title" class="article__subsection-title">
                 {{ sub.title }}
               </p>
-              <div
-                v-if="sub.bodyHtml"
-                class="article__subsection-body"
-                v-html="sub.bodyHtml"
-              />
+              <div v-if="sub.bodyHtml" class="article__subsection-body" v-html="sub.bodyHtml" />
             </div>
           </section>
         </template>
@@ -171,9 +149,11 @@ function isTextSection(section: ArticleSection): boolean {
  * Desktop : px 60, py 100
  * ============================================================ */
 .article {
-  position: relative;
-  background-color: var(--color-bg-page);
   @include section-padding-default;
+
+  position: relative;
+  padding-block-start: to-rem(160);
+  background-color: var(--color-bg-page);
   overflow: hidden;
 }
 
@@ -182,33 +162,38 @@ function isTextSection(section: ArticleSection): boolean {
  * ============================================================ */
 .article__glow {
   position: absolute;
+  max-width: unset;
+  height: auto;
   pointer-events: none;
   user-select: none;
-  z-index: 0;
+  z-index: -1;
 }
 
 .article__glow--left {
   width: to-rem(500);
-  height: to-rem(375);
-  top: to-rem(-63);
+  top: to-rem(-207);
   left: to-rem(-183);
 
   @include mq($from: tablet) {
     width: to-rem(989);
-    height: to-rem(742);
-    top: to-rem(-269);
-    left: to-rem(-354);
+    top: to-rem(-429);
+    left: to-rem(-454);
   }
 }
 
 .article__glow--right {
   display: none;
 
+  @include mq($from: mobile) {
+    display: block;
+    width: to-rem(1094);
+    top: to-rem(-456);
+    right: to-rem(-513);
+  }
+
   @include mq($from: tablet) {
     display: block;
-    width: to-rem(1206);
-    height: to-rem(840);
-    top: to-rem(-43);
+    top: to-rem(-392);
     right: to-rem(-322);
   }
 }

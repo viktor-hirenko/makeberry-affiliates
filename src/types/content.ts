@@ -495,17 +495,53 @@ export interface PageHeroBlock {
   cta?: { label: string; path: string }
 }
 
+/**
+ * Карточка секции «What You Get» (Affiliates / Advertisers).
+ *
+ * Структура по Figma (2655:1593, 2653:1233 и др.):
+ * - bg-surface, border subtle 1px, radius 24
+ * - Header (padding 24)         → заголовок Headline/H4
+ * - Divider (Line 5)            → 1px subtle border
+ * - Content (padding 24)        → набор блоков (параграфы / списки)
+ * - Sticker (~200×200 desktop)  → 3D-иллюстрация, абсолютная,
+ *                                 «вылетает» за пределы карточки,
+ *                                 с rotation
+ *
+ * Stickerkey хранится в JSON, а координаты/размер/rotation — в
+ * компоненте секции, потому что это часть дизайна (не контента) и
+ * параметры уникальны для каждой карточки и зафиксированы в макете.
+ */
+export interface WhatYouGetCardBlock {
+  /** Обычный параграф (внутри допустим inline-HTML). */
+  type: 'paragraph'
+  html: string
+}
+
+export interface WhatYouGetCardListBlock {
+  /** Маркированный список (list-disc). */
+  type: 'list'
+  items: string[]
+}
+
+export type WhatYouGetCardContent =
+  | WhatYouGetCardBlock
+  | WhatYouGetCardListBlock
+
+/**
+ * `stickerKey` — ключ конфига sticker-иллюстрации в компоненте
+ * секции (мапа: ключ → src/size/offset/rotate). Если у карточки нет
+ * декоративной иконки — поле опускается.
+ */
 export interface WhatYouGetCard {
   id: string
   title: string
-  descriptionHtml: string
-  illustrationSrc?: string
-  illustrationAlt?: string
+  blocks: WhatYouGetCardContent[]
+  stickerKey?: string
 }
 
 export interface AffiliatesPageContent {
   hero: PageHeroBlock
-  whatYouGet: { title: string; badge?: string; cards: WhatYouGetCard[] }
+  whatYouGet: { title: string; cards: WhatYouGetCard[] }
   cta: { titleHtml: string; button: { label: string; path: string } }
 }
 

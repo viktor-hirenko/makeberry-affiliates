@@ -169,10 +169,11 @@ function onLeave(el: Element): void {
  * ============================================================ */
 .home-faq__glow {
   position: absolute;
-  top: to-rem(-107.9);
-  left: to-rem(-317);
-  width: to-rem(756.01);
-  height: to-rem(567.24);
+  top: to-rem(-175);
+  left: to-rem(-390);
+  width: to-rem(756);
+  max-width: unset;
+  height: auto;
   pointer-events: none;
   user-select: none;
   z-index: 0;
@@ -180,8 +181,8 @@ function onLeave(el: Element): void {
   @include mq($from: tablet) {
     top: to-rem(-236);
     left: to-rem(-311);
-    width: to-rem(742.26);
-    height: to-rem(989.28);
+    width: to-rem(742);
+    height: to-rem(989);
     transform: scaleX(-1);
   }
 }
