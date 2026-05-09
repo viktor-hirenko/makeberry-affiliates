@@ -124,8 +124,12 @@ onBeforeUnmount(() => {
 const badgeText = computed(() => `${activeIndex.value + 1}/${Math.max(1, props.cards.length)}`)
 
 /**
- * Sticker-конфиг для каждой карточки. Координаты/размер/rotation
- * взяты из Figma (For Affiliates desktop 2653:1227, mobile 3861:19073).
+ * Sticker-конфиг для каждой карточки. Координаты/размер взяты из Figma
+ * (For Affiliates desktop 2653:1227, mobile 3861:19073).
+ *
+ * Поворот стикера НЕ задаётся здесь: PNG-файлы экспортированы из Figma
+ * уже с применённым rotation, любая попытка крутить их в CSS поверх
+ * сделает только хуже.
  *
  * Значения прокидываются в шаблон через CSS-vars (`--st-*`), которые
  * читает `.wyg-card__sticker` ниже. Это позволяет описывать параметры
@@ -145,8 +149,6 @@ interface StickerConfig {
   right: number
   topMobile: number
   rightMobile: number
-  /** Rotation в градусах. */
-  rotate: number
 }
 
 const STICKER_CONFIG: Record<string, StickerConfig> = {
@@ -159,7 +161,6 @@ const STICKER_CONFIG: Record<string, StickerConfig> = {
     right: -81,
     topMobile: -45,
     rightMobile: -25,
-    rotate: 15,
   },
   analytics: {
     src: '/images/affiliates/card-2-pie.png',
@@ -170,7 +171,6 @@ const STICKER_CONFIG: Record<string, StickerConfig> = {
     right: -94,
     topMobile: -51,
     rightMobile: -7,
-    rotate: -25,
   },
   exclusive: {
     src: '/images/affiliates/card-3-ball.png',
@@ -181,7 +181,6 @@ const STICKER_CONFIG: Record<string, StickerConfig> = {
     right: -122,
     topMobile: -80,
     rightMobile: -40,
-    rotate: -14,
   },
   infrastructure: {
     src: '/images/affiliates/card-4-blocks.png',
@@ -192,7 +191,6 @@ const STICKER_CONFIG: Record<string, StickerConfig> = {
     right: -75,
     topMobile: -45,
     rightMobile: -10,
-    rotate: -8,
   },
   manager: {
     src: '/images/affiliates/card-5-megaphone.png',
@@ -203,7 +201,6 @@ const STICKER_CONFIG: Record<string, StickerConfig> = {
     right: -61,
     topMobile: -50,
     rightMobile: -10,
-    rotate: 0,
   },
 }
 
@@ -221,7 +218,6 @@ function stickerStyle(s: StickerConfig): Record<string, string> {
     '--st-h-m': `${s.sizeMobile}px`,
     '--st-top-m': `${s.topMobile}px`,
     '--st-right-m': `${s.rightMobile}px`,
-    '--st-rotate': `${s.rotate}deg`,
   }
 }
 </script>
@@ -398,7 +394,7 @@ function stickerStyle(s: StickerConfig): Record<string, string> {
  * Desktop: абсолютом приклеен к правому-верхнему углу заголовка
  * (как в макете «What You Get [1/5]»). Mobile: inline после h2. */
 .wyg__badge {
-  display: inline-flex;
+  display: none;
   align-items: center;
   justify-content: center;
   padding: to-rem(8) to-rem(16);
@@ -421,6 +417,7 @@ function stickerStyle(s: StickerConfig): Record<string, string> {
     top: to-rem(-25);
     /* Положение из Figma (badge x=357 при title 590px шириной). */
     left: to-rem(357);
+    display: inline-flex;
     margin-left: 0;
     font-size: to-rem(18);
     line-height: to-rem(24);
@@ -438,7 +435,7 @@ function stickerStyle(s: StickerConfig): Record<string, string> {
 .wyg__cards {
   display: flex;
   flex-direction: column;
-  gap: to-rem(60);
+  gap: to-rem(80);
   list-style: none;
   margin: 0;
   padding: 0;
@@ -526,9 +523,12 @@ function stickerStyle(s: StickerConfig): Record<string, string> {
 /* ============================================================
  * Sticker (3D illustration)
  *
- * Координаты/размер/rotation приходят из компонента через CSS-vars
+ * Координаты/размер приходят из компонента через CSS-vars
  * (`--st-*` для desktop, `--st-*-m` для mobile), поэтому верстка
  * одна на все 5 карточек, а уникальные параметры — в `STICKER_CONFIG`.
+ *
+ * Поворот сюда не приходит: PNG экспортированы из Figma уже
+ * повёрнутыми, дополнительный rotate в CSS будет его дублировать.
  * ============================================================ */
 .wyg-card__sticker {
   position: absolute;
@@ -539,7 +539,6 @@ function stickerStyle(s: StickerConfig): Record<string, string> {
   height: var(--st-h-m);
   top: var(--st-top-m);
   right: var(--st-right-m);
-  rotate: var(--st-rotate);
 
   img {
     display: block;
