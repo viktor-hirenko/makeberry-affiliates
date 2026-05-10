@@ -177,7 +177,7 @@ const navConfig = {
     width: calc(100% + 2 * var(--container-pad-tablet));
   }
 
-  @include mq($from: tablet) {
+  @include mq($from: desktop) {
     padding-inline: var(--container-pad-desktop);
   }
 }

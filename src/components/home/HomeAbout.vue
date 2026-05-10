@@ -58,6 +58,7 @@ const about = useHomeAbout()
 
   @include mq($from: tablet) {
     gap: to-rem(70);
+    padding-inline: to-rem(160);
   }
 
   @include mq($from: desktop) {
@@ -94,13 +95,14 @@ const about = useHomeAbout()
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     grid-auto-rows: auto;
+    grid-auto-rows: minmax(to-rem(220), auto);
     grid-template-areas:
       'b1 b2 img'
       '.  b3 b4'
       'b5 b6  .'
       '.  b7  b8';
     gap: to-rem(16);
-    max-width: to-rem(900);
+    max-width: to-rem(980);
     margin-inline: auto;
   }
 
@@ -193,6 +195,7 @@ const about = useHomeAbout()
 
   @include mq($from: mobile) {
     height: auto;
+    max-height: to-rem(220);
   }
 
   @include mq($from: tablet) {

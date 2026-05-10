@@ -146,7 +146,12 @@ const footer = useFooter()
 /* ============================================================
  * Section
  * Mobile  : px 16, pt 70, pb 16, gap 60
- * Desktop : px 150, pt 80, pb 40, gap 100
+ * Tablet  : px 60 (= --container-pad-desktop), pt 80, pb 40, gap 80
+ *           — на 1024 макетные 150px padding'ов "съедают" 300px ширины,
+ *             из-за чего Partners + Awards не помещаются в одну строку.
+ *             На tablet поджимаем до 60, чтобы layout соответствовал
+ *             desktop-варианту "Partners | Awards".
+ * Desktop : px 150, pt 80, pb 40, gap 100 (как в Figma)
  * ============================================================ */
 .app-footer {
   background-color: var(--color-bg-surface);
@@ -163,6 +168,11 @@ const footer = useFooter()
   gap: to-rem(60);
 
   @include mq($from: tablet) {
+    padding: to-rem(80) to-rem(60) to-rem(40);
+    gap: to-rem(80);
+  }
+
+  @include mq($from: desktop) {
     padding: to-rem(80) to-rem(150) to-rem(40);
     gap: to-rem(100);
   }
@@ -239,8 +249,10 @@ const footer = useFooter()
 
 /* ============================================================
  * Nav columns
- * Mobile : column gap 48
- * Desktop: row gap 50, каждая колонка 200
+ * Mobile : column, gap 48
+ * Tablet : row, gap 24, колонки auto-width — иначе 4×200 + 3×50 = 950px
+ *          плюс brand-блок не помещаются в 1024
+ * Desktop: row, gap 50, каждая колонка 200 (как в Figma)
  * ============================================================ */
 .app-footer__nav {
   display: flex;
@@ -250,6 +262,10 @@ const footer = useFooter()
 
   @include mq($from: mobile) {
     flex-direction: row;
+    gap: to-rem(24);
+  }
+
+  @include mq($from: desktop) {
     gap: to-rem(50);
   }
 }
@@ -259,7 +275,11 @@ const footer = useFooter()
   flex-direction: column;
   align-items: flex-start;
   gap: to-rem(24);
-  width: to-rem(200);
+  width: auto;
+
+  @include mq($from: desktop) {
+    width: to-rem(200);
+  }
 }
 
 .app-footer__column-title {
@@ -308,7 +328,9 @@ const footer = useFooter()
 /* ============================================================
  * Partners + Awards
  * Mobile : column, gap 48
- * Desktop: row, justify center, gap 120
+ * Tablet : row, gap 40 (Partners 4 logos ~627px + Awards 102px должны
+ *          уместиться в 1024 после поджатого inner padding'а)
+ * Desktop: row, gap 120 (как в Figma)
  * ============================================================ */
 .app-footer__pa {
   display: flex;
@@ -319,6 +341,10 @@ const footer = useFooter()
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    gap: to-rem(40);
+  }
+
+  @include mq($from: desktop) {
     gap: to-rem(120);
   }
 }
@@ -365,6 +391,10 @@ const footer = useFooter()
 
   @include mq($from: tablet) {
     flex-wrap: nowrap;
+    gap: to-rem(20);
+  }
+
+  @include mq($from: desktop) {
     gap: to-rem(32);
   }
 }

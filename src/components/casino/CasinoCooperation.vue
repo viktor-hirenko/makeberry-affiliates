@@ -27,20 +27,12 @@ defineProps<Props>()
       <h2 class="casino-coop__title">{{ content.title }}</h2>
 
       <ul class="casino-coop__grid" role="list">
-        <li
-          v-for="model in content.models"
-          :key="model.id"
-          class="casino-coop__card"
-        >
+        <li v-for="model in content.models" :key="model.id" class="casino-coop__card">
           <div class="casino-coop__pill">
             <span class="casino-coop__pill-text">{{ model.title }}</span>
           </div>
           <div class="casino-coop__body">
-            <p
-              v-for="(line, index) in model.lines"
-              :key="index"
-              class="casino-coop__line"
-            >
+            <p v-for="(line, index) in model.lines" :key="index" class="casino-coop__line">
               {{ line }}
             </p>
           </div>
@@ -65,10 +57,6 @@ defineProps<Props>()
   position: relative;
   background-color: var(--color-bg-page);
   @include section-padding-default;
-
-  @include mq($from: desktop) {
-    padding-inline: to-rem(200);
-  }
 }
 
 .casino-coop__inner {
@@ -107,11 +95,15 @@ defineProps<Props>()
   gap: to-rem(20);
   width: 100%;
 
-  @include mq($from: tablet) {
+  @include mq($from: mobile) {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @include mq($from: desktop) {
+  @include mq($from: tablet, $until: wide) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include mq($from: 1280px) {
     grid-template-columns: repeat(4, 1fr);
     max-width: to-rem(1200);
     margin-inline: auto;

@@ -89,9 +89,9 @@ defineProps<Props>()
   isolation: isolate;
   overflow: hidden;
   background-color: var(--color-bg-page);
-  margin-top: calc(-1 * var(--header-offset));
-  padding: calc(var(--header-offset) + #{to-rem(40)}) var(--container-pad-mobile)
-    to-rem(70);
+  // margin-top: calc(-1 * var(--header-offset));
+  // padding: calc(var(--header-offset) + #{to-rem(40)}) var(--container-pad-mobile) to-rem(70);
+  padding: to-rem(170) var(--container-pad-mobile) to-rem(70);
 
   @include mq($from: mobile) {
     padding-inline: var(--container-pad-tablet);
@@ -137,17 +137,21 @@ defineProps<Props>()
   z-index: 1;
   display: flex;
   flex-direction: column-reverse;
-  align-items: center;
+  // align-items: center;
   gap: to-rem(40);
   width: 100%;
   max-width: var(--container-default);
   margin-inline: auto;
 
-  @include mq($from: tablet) {
+  @include mq($from: mobile) {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    gap: to-rem(40);
+    gap: 0;
+  }
+
+  @include mq($from: tablet) {
+    gap: to-rem(80);
   }
 }
 
@@ -163,7 +167,7 @@ defineProps<Props>()
   gap: to-rem(32);
   width: 100%;
 
-  @include mq($from: tablet) {
+  @include mq($from: mobile) {
     flex: 0 1 to-rem(570);
     width: to-rem(570);
     gap: to-rem(48);
@@ -183,7 +187,7 @@ defineProps<Props>()
   line-height: to-rem(48);
   letter-spacing: -0.01em;
 
-  @include mq($from: tablet) {
+  @include mq($from: mobile) {
     @include font-h2;
   }
 }
@@ -194,7 +198,7 @@ defineProps<Props>()
   gap: to-rem(32);
   width: 100%;
 
-  @include mq($from: tablet) {
+  @include mq($from: mobile) {
     gap: to-rem(40);
   }
 }
@@ -207,7 +211,7 @@ defineProps<Props>()
   color: var(--color-text-secondary);
   @include font-body-s-regular;
 
-  @include mq($from: tablet) {
+  @include mq($from: mobile) {
     @include font-body-l-regular;
   }
 }
@@ -228,10 +232,10 @@ defineProps<Props>()
   gap: to-rem(24);
   width: 100%;
 
-  @include mq($from: tablet) {
+  @include mq($from: mobile) {
     flex-wrap: nowrap;
     align-items: stretch;
-    height: to-rem(108);
+    // height: to-rem(108);
   }
 }
 
@@ -242,7 +246,7 @@ defineProps<Props>()
   flex: 0 0 to-rem(140);
   width: to-rem(140);
 
-  @include mq($from: tablet) {
+  @include mq($from: mobile) {
     flex: 1 0 0;
     min-width: 0;
     width: auto;
@@ -282,7 +286,7 @@ defineProps<Props>()
 .casino-hero__cta {
   align-self: stretch;
 
-  @include mq($from: tablet) {
+  @include mq($from: mobile) {
     align-self: flex-start;
   }
 }
@@ -300,7 +304,7 @@ defineProps<Props>()
   width: to-rem(130);
   height: to-rem(130);
 
-  @include mq($from: tablet) {
+  @include mq($from: mobile) {
     width: to-rem(280);
     height: to-rem(280);
   }

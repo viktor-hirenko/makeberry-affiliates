@@ -141,12 +141,13 @@ defineProps<Props>()
   gap: to-rem(20);
   width: 100%;
 
-  @include mq($from: tablet) {
-    grid-template-columns: repeat(2, 1fr);
+  @include mq($from: mobile) {
+    gap: to-rem(20);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  @include mq($from: desktop) {
-    grid-template-columns: repeat(3, 1fr);
+  @include mq($from: tablet) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -195,7 +196,6 @@ defineProps<Props>()
 .casino-highlights__card-text {
   margin: 0;
   padding: to-rem(20);
-  text-align: center;
   color: var(--color-text-secondary);
   @include font-body-s-regular;
 

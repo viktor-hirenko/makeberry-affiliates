@@ -36,6 +36,7 @@ const content = useHomeBenefits()
 
 <style scoped lang="scss">
 @use '@/assets/styles/scss/media' as *;
+@use '@/assets/styles/scss/section-patterns' as *;
 @use '@/assets/styles/scss/typography' as *;
 @use '@/assets/styles/scss/units' as *;
 
@@ -53,13 +54,15 @@ const content = useHomeBenefits()
   padding: to-rem(70) var(--container-pad-mobile);
   overflow-x: clip;
 
-  @include mq($from: mobile) {
-    padding-inline: var(--container-pad-tablet);
-  }
+  // @include mq($from: mobile) {
+  //   padding-inline: var(--container-pad-tablet);
+  // }
 
-  @include mq($from: desktop) {
-    padding: to-rem(100) to-rem(120);
-  }
+  // @include mq($from: desktop) {
+  //   padding: to-rem(100) to-rem(120);
+  // }
+
+  @include section-padding-default;
 }
 
 .home-benefits__inner {
@@ -123,7 +126,7 @@ const content = useHomeBenefits()
     gap: to-rem(20);
   }
 
-  @include mq($from: desktop) {
+  @include mq($from: tablet) {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: to-rem(20);
   }

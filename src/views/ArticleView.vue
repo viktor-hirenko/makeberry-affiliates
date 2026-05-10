@@ -524,7 +524,7 @@ function isTextSection(section: ArticleSection): boolean {
   gap: to-rem(8);
   width: 100%;
 
-  @include mq($from: tablet) {
+  @include mq($from: mobile) {
     width: to-rem(286);
   }
 }

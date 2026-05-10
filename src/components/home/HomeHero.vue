@@ -117,7 +117,7 @@ function handleScrollClick() {
   gap: to-rem(48);
   align-items: stretch;
 
-  @include mq($from: tablet) {
+  @include mq($from: mobile) {
     align-items: center;
     max-width: var(--container-content);
     margin-inline: auto;
@@ -134,7 +134,7 @@ function handleScrollClick() {
   margin: 0;
   width: 100%;
 
-  @include mq($from: tablet) {
+  @include mq($from: mobile) {
     gap: to-rem(8);
   }
 }
@@ -145,7 +145,7 @@ function handleScrollClick() {
   gap: to-rem(16);
   width: 100%;
 
-  @include mq($from: tablet) {
+  @include mq($from: mobile) {
     justify-content: center;
     gap: to-rem(24);
   }
@@ -161,7 +161,7 @@ function handleScrollClick() {
   text-align: left;
   white-space: nowrap;
 
-  @include mq($from: tablet) {
+  @include mq($from: mobile) {
     text-align: center;
   }
 }
@@ -172,7 +172,7 @@ function handleScrollClick() {
   /* На мобайл/таблет позволяем переносить, чтобы длинная фраза не обрезалась. */
   white-space: normal;
 
-  @include mq($from: tablet) {
+  @include mq($from: mobile) {
     white-space: nowrap;
   }
 }
@@ -207,7 +207,7 @@ function handleScrollClick() {
     outline-offset: 2px;
   }
 
-  @include mq($from: tablet) {
+  @include mq($from: mobile) {
     padding: to-rem(16);
     width: to-rem(80);
     height: to-rem(80);
@@ -219,7 +219,7 @@ function handleScrollClick() {
   width: to-rem(24);
   height: to-rem(24);
 
-  @include mq($from: tablet) {
+  @include mq($from: mobile) {
     width: to-rem(48);
     height: to-rem(48);
   }
@@ -238,7 +238,7 @@ function handleScrollClick() {
     width: 100%;
   }
 
-  @include mq($from: tablet) {
+  @include mq($from: mobile) {
     flex-direction: row;
     justify-content: center;
     gap: to-rem(8);

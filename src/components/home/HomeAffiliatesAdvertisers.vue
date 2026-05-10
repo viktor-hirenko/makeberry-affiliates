@@ -89,12 +89,13 @@ const content = useHomeAffiliatesAdvertisers()
     padding-inline: var(--container-pad-tablet);
   }
 
+  // @include mq($from: tablet) {
+  //   gap: to-rem(40);
+  //   padding: to-rem(170) var(--container-pad-desktop);
+  // }
+
   @include mq($from: tablet) {
     gap: to-rem(40);
-    padding: to-rem(170) var(--container-pad-desktop);
-  }
-
-  @include mq($from: desktop) {
     padding-inline: to-rem(160);
   }
 }

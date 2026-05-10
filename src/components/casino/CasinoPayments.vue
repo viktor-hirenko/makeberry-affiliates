@@ -128,6 +128,11 @@ defineProps<Props>()
   align-items: stretch;
   gap: to-rem(20);
 
+  @include mq($from: mobile) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: to-rem(24);
+  }
+
   @include mq($from: tablet) {
     grid-template-columns: 1fr 1fr;
     gap: to-rem(24);

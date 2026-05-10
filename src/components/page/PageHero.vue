@@ -76,9 +76,9 @@ defineProps<Props>()
   /* Mobile (Figma 360 — pt 200 / px 16 / pb 70) */
   padding: to-rem(200) var(--container-pad-mobile) to-rem(70);
 
-  @include mq($from: tablet) {
+  @include mq($from: mobile) {
     /* Tablet — даём нормальный inline-padding, но не забиваем 160 */
-    padding: to-rem(200) var(--container-pad-desktop) to-rem(100);
+    padding: to-rem(200) var(--container-pad-tablet) to-rem(100);
   }
 
   @include mq($from: desktop) {
@@ -163,7 +163,7 @@ defineProps<Props>()
   width: 100%;
   align-items: stretch;
 
-  @include mq($from: tablet) {
+  @include mq($from: mobile) {
     gap: to-rem(48);
     max-width: to-rem(518);
     align-items: flex-start;
@@ -176,7 +176,7 @@ defineProps<Props>()
   gap: to-rem(32);
   width: 100%;
 
-  @include mq($from: tablet) {
+  @include mq($from: mobile) {
     gap: to-rem(40);
   }
 }
@@ -219,7 +219,7 @@ defineProps<Props>()
   letter-spacing: to-rem(-0.4);
   color: var(--color-text-primary);
 
-  @include mq($from: desktop) {
+  @include mq($from: mobile) {
     font-size: to-rem(64);
     line-height: to-rem(72);
     letter-spacing: to-rem(-0.64);
@@ -238,7 +238,7 @@ defineProps<Props>()
   letter-spacing: to-rem(-0.16);
   color: var(--color-text-secondary);
 
-  @include mq($from: desktop) {
+  @include mq($from: mobile) {
     font-size: to-rem(18);
     letter-spacing: to-rem(-0.18);
   }
@@ -250,7 +250,7 @@ defineProps<Props>()
 .page-hero__cta {
   align-self: stretch;
 
-  @include mq($from: tablet) {
+  @include mq($from: mobile) {
     align-self: flex-start;
   }
 }

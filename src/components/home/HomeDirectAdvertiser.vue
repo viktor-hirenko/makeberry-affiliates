@@ -230,7 +230,7 @@ const navConfig = {
     width: calc(100% + 2 * var(--container-pad-tablet));
   }
 
-  @include mq($from: tablet) {
+  @include mq($from: desktop) {
     padding-inline: var(--container-pad-desktop); /* место под стрелки — только при 4 в ряд */
     gap: to-rem(32);
   }
@@ -449,11 +449,15 @@ const navConfig = {
 }
 
 /* ============================================================
- * Cooperation models — 1 col; ≥ mobile 2×2; ≥ tablet один ряд из 4.
+ * Cooperation models — как `.casino-coop__grid` (CasinoCooperation.vue):
+ * mobile : 1 колонка
+ * tablet : 2 колонки (2×2 для четырёх карточек)
+ * desktop: 4 колонки, max-width 1200 по центру
  * ============================================================ */
 .home-direct__cooperation {
   display: grid;
   grid-template-columns: 1fr;
+  align-items: stretch;
   gap: to-rem(20);
   margin: 0;
   padding: 0;
@@ -461,13 +465,14 @@ const navConfig = {
   width: 100%;
 
   @include mq($from: mobile) {
+    gap: to-rem(20);
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    max-width: to-rem(1200);
-    margin-inline: auto;
   }
 
   @include mq($from: tablet) {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+    max-width: to-rem(1200);
+    margin-inline: auto;
   }
 }
 
@@ -505,6 +510,10 @@ const navConfig = {
   text-align: center;
 
   @include mq($from: tablet) {
+    @include font-h5;
+  }
+
+  @include mq($from: desktop) {
     @include font-h4;
   }
 }

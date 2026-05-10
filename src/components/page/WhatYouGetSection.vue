@@ -306,6 +306,10 @@ function stickerStyle(s: StickerConfig): Record<string, string> {
   overflow-x: clip;
   padding: to-rem(70) var(--container-pad-mobile);
 
+  @include mq($from: mobile) {
+    padding: to-rem(70) var(--container-pad-tablet) to-rem(100);
+  }
+
   @include mq($from: tablet) {
     padding: to-rem(100) var(--container-pad-desktop);
   }
