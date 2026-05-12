@@ -52,6 +52,7 @@ function handleScrollClick() {
 
 <style scoped lang="scss">
 @use '@/assets/styles/scss/media' as *;
+@use '@/assets/styles/scss/section-patterns' as *;
 @use '@/assets/styles/scss/typography' as *;
 @use '@/assets/styles/scss/units' as *;
 
@@ -67,20 +68,23 @@ function handleScrollClick() {
      .app-main добавляет padding-top: var(--header-offset), компенсируем. */
   margin-top: calc(-1 * var(--header-offset));
 
-  /* Mobile defaults (Figma 360 — pt 220 / pb 70 / px 16) */
-  padding: to-rem(220) var(--container-pad-mobile) to-rem(70);
+  @include section-padding(
+    $desktop-inline: to-rem(160),
+    $mobile-top: to-rem(220),
+    $mobile-bottom: to-rem(70),
+    $desktop-top: to-rem(280),
+    $desktop-bottom: to-rem(150)
+  );
 
   @include mq($from: mobile) {
-    padding: to-rem(240) var(--container-pad-tablet) to-rem(100);
+    padding-top: to-rem(240);
+    padding-bottom: to-rem(100);
   }
 
   @include mq($from: tablet) {
-    /* Desktop (Figma 1440 — pt 280 / pb 150 / px 160) */
-    padding: to-rem(280) var(--container-pad-desktop) to-rem(150);
-  }
-
-  @include mq($from: desktop) {
-    padding: to-rem(280) to-rem(160) to-rem(150);
+    padding-top: to-rem(280);
+    padding-bottom: to-rem(150);
+    padding-inline: var(--container-pad-desktop);
   }
 }
 
@@ -119,7 +123,7 @@ function handleScrollClick() {
 
   @include mq($from: mobile) {
     align-items: center;
-    max-width: var(--container-content);
+    max-width: var(--container-md);
     margin-inline: auto;
   }
 }
@@ -154,7 +158,7 @@ function handleScrollClick() {
 .home-hero__title-text {
   font-family: var(--font-sans);
   font-weight: 600;
-  font-size: clamp(#{to-rem(48)}, 4.5vw + 0.5rem, #{to-rem(72)});
+  font-size: to-rem(72);
   line-height: 1.111;
   letter-spacing: -0.01em;
   color: var(--color-text-primary);

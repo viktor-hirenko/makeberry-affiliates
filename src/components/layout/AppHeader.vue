@@ -154,13 +154,7 @@ function closeMobileMenu() {
         <BaseButton variant="secondary" size="small" :to="nav.ctaPath">
           {{ nav.ctaLabel }}
         </BaseButton>
-        <IconButton
-          icon="menu"
-          label="Open menu"
-          :size="40"
-          variant="ghost"
-          @click="openMobileMenu"
-        />
+        <IconButton icon="menu" label="Open menu" :size="24" variant="ghost" @click="openMobileMenu" />
       </div>
     </div>
 

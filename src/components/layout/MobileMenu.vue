@@ -78,7 +78,7 @@ const ctaPath = computed(() => props.nav.ctaPath)
         <RouterLink to="/" class="mobile-menu__logo" :aria-label="nav.logoAlt" @click="handleClose">
           <BaseLogo variant="full" :aria-label="nav.logoAlt" :height="40" />
         </RouterLink>
-        <IconButton icon="x" label="Close menu" :size="40" @click="handleClose" />
+        <IconButton icon="x" label="Close menu" :size="24" variant="ghost" @click="handleClose" />
       </div>
 
       <nav class="mobile-menu__nav" aria-label="Mobile">

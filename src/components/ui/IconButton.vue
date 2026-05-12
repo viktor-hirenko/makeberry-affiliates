@@ -5,7 +5,8 @@ import BaseIcon from '@/components/ui/BaseIcon.vue'
 export interface IconButtonProps {
   icon: string
   label: string
-  size?: 32 | 40 | 56
+  /** 24 — иконка 24px без фиксированного квадрата (хедер/меню по макету). */
+  size?: 24 | 32 | 40 | 56
   disabled?: boolean
   variant?: 'subtle' | 'ghost' | 'outline'
 }
@@ -21,7 +22,9 @@ const emit = defineEmits<{
 }>()
 
 const iconSize = computed((): 16 | 24 | 32 => {
-  return props.size <= 32 ? 16 : 24
+  if (props.size === 24) return 24
+  if (props.size <= 32) return 16
+  return 24
 })
 
 function handleClick(event: MouseEvent) {
@@ -53,14 +56,15 @@ function handleClick(event: MouseEvent) {
   justify-content: center;
   padding: 0;
   border-radius: var(--radius-pill);
-  border: 1px solid transparent;
+  border: 0;
   background: transparent;
   color: var(--color-icon-primary);
   cursor: pointer;
   transition:
     background-color var(--transition-base),
     border-color var(--transition-base),
-    color var(--transition-base);
+    color var(--transition-base),
+    opacity var(--transition-base);
 
   &:focus-visible {
     outline: 2px solid var(--color-focus-ring);
@@ -71,6 +75,12 @@ function handleClick(event: MouseEvent) {
 /* ============================================================
  * Sizes
  * ============================================================ */
+.icon-button--24 {
+  width: auto;
+  height: auto;
+  border-radius: 0;
+}
+
 .icon-button--32 {
   width: 32px;
   height: 32px;
@@ -101,12 +111,13 @@ function handleClick(event: MouseEvent) {
   background-color: transparent;
 
   &:hover:not(:disabled) {
-    background-color: var(--color-bg-subtle);
+    background-color: transparent;
+    opacity: 0.85;
   }
 }
 
 .icon-button--outline {
-  border-color: var(--color-border-default);
+  border: 1px solid var(--color-border-default);
 
   &:hover:not(:disabled) {
     border-color: var(--color-border-strong);
@@ -121,5 +132,11 @@ function handleClick(event: MouseEvent) {
   color: var(--color-icon-disabled);
   border-color: transparent;
   cursor: not-allowed;
+  opacity: 1;
+}
+
+.icon-button--ghost:disabled {
+  background-color: transparent;
+  opacity: 0.4;
 }
 </style>

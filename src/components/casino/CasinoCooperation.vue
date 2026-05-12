@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import PillHeaderCard from '@/components/shared/PillHeaderCard.vue'
 import type { CasinoCooperationContent } from '@/types/content'
 
 /**
@@ -9,10 +10,9 @@ import type { CasinoCooperationContent } from '@/types/content'
  * - Desktop : 4 карточки в ряду равной ширины (max-width 1200px),
  *            каждая — pill-заголовок поверх + многострочное описание.
  *
- * Структура карточки (одна для всех 4):
- *   bg-surface, rounded-44, border subtle
- *   ├─ pill-header: bg-page, 2px brand-border, pill-radius, p 24
- *   └─ body: padding 24, multi-paragraph description
+ * Сама карточка (обвязка + pill-заголовок) — переиспользуемый
+ * компонент `PillHeaderCard`. Здесь остаётся только сетка/секция и
+ * содержимое body-слота (несколько строк описания).
  */
 interface Props {
   content: CasinoCooperationContent
@@ -27,16 +27,14 @@ defineProps<Props>()
       <h2 class="casino-coop__title">{{ content.title }}</h2>
 
       <ul class="casino-coop__grid" role="list">
-        <li v-for="model in content.models" :key="model.id" class="casino-coop__card">
-          <div class="casino-coop__pill">
-            <span class="casino-coop__pill-text">{{ model.title }}</span>
-          </div>
-          <div class="casino-coop__body">
-            <p v-for="(line, index) in model.lines" :key="index" class="casino-coop__line">
-              {{ line }}
-            </p>
-          </div>
-        </li>
+        <PillHeaderCard
+          v-for="model in content.models"
+          :key="model.id"
+          :title="model.title"
+          :body-gap="16"
+        >
+          <p v-for="(line, index) in model.lines" :key="index">{{ line }}</p>
+        </PillHeaderCard>
       </ul>
     </div>
   </section>
@@ -107,61 +105,5 @@ defineProps<Props>()
   }
 }
 
-/* ============================================================
- * Card — bg-surface, radius 44, border subtle.
- * ============================================================ */
-.casino-coop__card {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  background-color: var(--color-bg-surface);
-  border: 1px solid var(--color-border-subtle);
-  border-radius: to-rem(44);
-}
-
-.casino-coop__pill {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: to-rem(20);
-  background-color: var(--color-bg-page);
-  border: 2px solid var(--color-border-brand);
-  border-radius: var(--radius-pill);
-
-  @include mq($from: tablet) {
-    padding: to-rem(24);
-  }
-}
-
-.casino-coop__pill-text {
-  font-family: var(--font-sans);
-  font-weight: 500;
-  font-size: to-rem(24);
-  line-height: to-rem(32);
-  letter-spacing: to-rem(-0.24);
-  color: var(--color-text-primary);
-  text-align: center;
-  white-space: nowrap;
-
-  @include mq($from: tablet) {
-    @include font-h4;
-  }
-}
-
-.casino-coop__body {
-  display: flex;
-  flex-direction: column;
-  gap: to-rem(16);
-  padding: to-rem(20);
-
-  @include mq($from: tablet) {
-    padding: to-rem(24);
-  }
-}
-
-.casino-coop__line {
-  margin: 0;
-  color: var(--color-text-secondary);
-  @include font-body-s-regular;
-}
+/* Карточка целиком — `PillHeaderCard`. Внутренний layout/типографика — там же. */
 </style>

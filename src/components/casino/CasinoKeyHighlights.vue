@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import PillHeaderCard from '@/components/shared/PillHeaderCard.vue'
 import type { CasinoKeyHighlightsContent } from '@/types/content'
 
 /**
@@ -11,8 +12,7 @@ import type { CasinoKeyHighlightsContent } from '@/types/content'
  *            3 карточки в ряду с pink-bordered pill-заголовком сверху и
  *            body-описанием в карточке.
  *
- * Карточка-обвязка: bg-surface, radius 44, border subtle.
- * Pill-заголовок:    bg-page, border 2px brand, radius pill, padding 24.
+ * Сама карточка с pill-заголовком — переиспользуемый `PillHeaderCard`.
  */
 interface Props {
   content: CasinoKeyHighlightsContent
@@ -37,12 +37,9 @@ defineProps<Props>()
       </div>
 
       <ul class="casino-highlights__grid" role="list">
-        <li v-for="card in content.cards" :key="card.id" class="casino-highlights__card">
-          <div class="casino-highlights__card-pill">
-            <span class="casino-highlights__card-title">{{ card.title }}</span>
-          </div>
-          <p class="casino-highlights__card-text">{{ card.description }}</p>
-        </li>
+        <PillHeaderCard v-for="card in content.cards" :key="card.id" :title="card.title">
+          <p>{{ card.description }}</p>
+        </PillHeaderCard>
       </ul>
     </div>
   </section>
@@ -147,56 +144,5 @@ defineProps<Props>()
   }
 }
 
-/* ============================================================
- * Card — bg-surface, radius 44 по Figma, border subtle.
- * ============================================================ */
-.casino-highlights__card {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  background-color: var(--color-bg-surface);
-  border: 1px solid var(--color-border-subtle);
-  border-radius: to-rem(44);
-}
-
-/* Pill-заголовок: bg-page (черная заливка), 2px розовый border,
- * pill-радиус, padding 20 mobile / 24 desktop. */
-.casino-highlights__card-pill {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: to-rem(20);
-  background-color: var(--color-bg-page);
-  border: 2px solid var(--color-border-brand);
-  border-radius: var(--radius-pill);
-
-  @include mq($from: tablet) {
-    padding: to-rem(24);
-  }
-}
-
-.casino-highlights__card-title {
-  font-family: var(--font-sans);
-  font-weight: 500;
-  font-size: to-rem(24);
-  line-height: to-rem(32);
-  letter-spacing: to-rem(-0.24);
-  color: var(--color-text-primary);
-  text-align: center;
-
-  @include mq($from: tablet) {
-    @include font-h4;
-  }
-}
-
-.casino-highlights__card-text {
-  margin: 0;
-  padding: to-rem(20);
-  color: var(--color-text-secondary);
-  @include font-body-s-regular;
-
-  @include mq($from: tablet) {
-    padding: to-rem(24);
-  }
-}
+/* Карточка целиком — `PillHeaderCard`. Внутренний layout/типографика — там же. */
 </style>

@@ -8,6 +8,7 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 
+import PillHeaderCard from '@/components/shared/PillHeaderCard.vue'
 import BaseButton from '@/components/ui/BaseButton.vue'
 import BaseIcon from '@/components/ui/BaseIcon.vue'
 import { BREAKPOINT_MOBILE_PX, BREAKPOINT_TABLET_PX } from '@/constants/breakpoints'
@@ -127,12 +128,13 @@ const navConfig = {
       </div>
 
       <ul class="home-direct__cooperation">
-        <li v-for="model in content.cooperation" :key="model.id" class="home-direct__model">
-          <div class="home-direct__model-pill">
-            <span class="home-direct__model-title">{{ model.title }}</span>
-          </div>
-          <p class="home-direct__model-desc">{{ model.description }}</p>
-        </li>
+        <PillHeaderCard
+          v-for="model in content.cooperation"
+          :key="model.id"
+          :title="model.title"
+        >
+          <p>{{ model.description }}</p>
+        </PillHeaderCard>
       </ul>
 
       <div class="home-direct__cta">
@@ -475,55 +477,6 @@ const navConfig = {
     max-width: to-rem(1200);
     margin-inline: auto;
   }
-}
-
-.home-direct__model {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  min-width: 0;
-  background-color: var(--color-bg-surface);
-  border: 1px solid var(--color-border-subtle);
-  border-radius: to-rem(44);
-}
-
-.home-direct__model-pill {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: to-rem(20);
-  background-color: var(--color-bg-page);
-  border: 2px solid var(--color-border-brand);
-  border-radius: var(--radius-pill);
-
-  @include mq($from: tablet) {
-    padding: to-rem(24);
-  }
-}
-
-.home-direct__model-title {
-  font-family: var(--font-sans);
-  font-weight: 500;
-  font-size: to-rem(24);
-  line-height: to-rem(32);
-  letter-spacing: -0.01em;
-  color: var(--color-text-primary);
-  text-align: center;
-
-  @include mq($from: tablet) {
-    @include font-h5;
-  }
-
-  @include mq($from: desktop) {
-    @include font-h4;
-  }
-}
-
-.home-direct__model-desc {
-  margin: 0;
-  padding: to-rem(24);
-  @include font-body-s-regular;
-  color: var(--color-text-secondary);
 }
 
 /* ============================================================

@@ -225,7 +225,8 @@ const content = useHomeAffiliatesAdvertisers()
     width: to-rem(200);
     height: to-rem(200);
     top: to-rem(-87);
-    right: to-rem(-41);
+    top: to-rem(-102);
+    right: to-rem(-47);
   }
 }
 
@@ -239,8 +240,8 @@ const content = useHomeAffiliatesAdvertisers()
     width: to-rem(200);
     height: to-rem(200);
     top: auto;
-    bottom: to-rem(-150);
-    right: to-rem(-119);
+    bottom: to-rem(-126);
+    right: to-rem(-109);
   }
 }
 </style>

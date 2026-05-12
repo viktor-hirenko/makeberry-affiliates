@@ -39,6 +39,7 @@ $section-stack-gap: to-rem(48);
   }
 }
 
+
 @mixin container($max-width: var(--container-2xl)) {
   width: 100%;
   max-width: $max-width;
