@@ -60,6 +60,7 @@ defineProps<Props>()
 
 <style scoped lang="scss">
 @use '@/assets/styles/scss/media' as *;
+@use '@/assets/styles/scss/section-patterns' as *;
 @use '@/assets/styles/scss/units' as *;
 
 /* ============================================================
@@ -76,19 +77,14 @@ defineProps<Props>()
   position: relative;
   overflow-x: clip;
   background-color: var(--color-bg-page);
-  padding: to-rem(190) var(--container-pad-mobile) to-rem(240);
 
-  @include mq($from: mobile) {
-    padding-inline: var(--container-pad-tablet);
-  }
-
-  @include mq($from: tablet) {
-    padding: to-rem(120) var(--container-pad-desktop);
-  }
-
-  @include mq($from: desktop) {
-    padding: to-rem(150) to-rem(200);
-  }
+  @include section-padding(
+    $mobile-top: to-rem(190),
+    $mobile-bottom: to-rem(190),
+    $desktop-inline: to-rem(200),
+    $desktop-top: to-rem(150),
+    $desktop-bottom: to-rem(150)
+  );
 }
 
 /* ============================================================
@@ -96,12 +92,11 @@ defineProps<Props>()
  * ============================================================ */
 .casino-about__inner {
   position: relative;
-  width: 100%;
-  max-width: var(--container-default);
-  margin-inline: auto;
   display: flex;
   flex-direction: column;
   gap: to-rem(32);
+
+  @include container(var(--container-default));
 }
 
 .casino-about__text {

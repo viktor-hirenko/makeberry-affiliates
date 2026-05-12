@@ -77,12 +77,9 @@ defineProps<Props>()
 .casino-cta {
   position: relative;
   background-color: var(--color-bg-page);
-  @include section-padding-default;
   overflow-x: clip;
 
-  @include mq($from: desktop) {
-    padding-inline: to-rem(260);
-  }
+  @include section-padding($desktop-inline: to-rem(200));
 }
 
 /* ============================================================
@@ -110,13 +107,12 @@ defineProps<Props>()
 .casino-cta__inner {
   position: relative;
   z-index: 1;
-  width: 100%;
-  max-width: to-rem(920);
-  margin-inline: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: to-rem(40);
+
+  @include container(var(--container-cta));
 
   @include mq($from: tablet) {
     gap: to-rem(70);
@@ -165,7 +161,7 @@ defineProps<Props>()
   width: 100%;
   max-width: to-rem(360);
 
-  @include mq($from: tablet) {
+  @include mq($from: mobile) {
     flex-direction: row;
     align-items: flex-start;
     justify-content: center;
@@ -179,8 +175,8 @@ defineProps<Props>()
   width: 100%;
   text-align: center;
 
-  @include mq($from: tablet) {
-    width: auto;
+  @include mq($from: mobile) {
+    width: to-rem(250);
   }
 }
 </style>

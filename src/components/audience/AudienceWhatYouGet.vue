@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
-import type { WhatYouGetCard } from '@/types/content'
+import type { WhatYouGetCard, WhatYouGetCardSticker } from '@/types/content'
 
 /**
- * Секция «What You Get» (Affiliates / Advertisers).
+ * Секция «What You Get» страницы-аудитории (Affiliates / Advertisers).
  *
  * Layout (Figma 2653:1227 / 2655:1576):
  * - bg-page; на desktop — 2 колонки: title слева (sticky) + колонка
@@ -17,8 +17,8 @@ import type { WhatYouGetCard } from '@/types/content'
  *   обычным потоком уходят вверх; когда низ `.wyg__cards` проходит
  *   точку залипания заголовка, sticky-rail отлипает и уезжает
  *   вместе с последней карточкой → CTA снизу.
- *   IntersectionObserver обновляет бейдж 1/5 → 5/5 по пересечению
- *   центра viewport.
+ *   IntersectionObserver обновляет бейдж 1/N → N/N по пересечению
+ *   центра viewport (N = `cards.length`, 5 у affiliates, 4 у advertisers).
  *
  * Карточка (Figma 2655:1593 / 2653:1233):
  * - bg-surface, border subtle 1px, radius 24.
@@ -26,10 +26,11 @@ import type { WhatYouGetCard } from '@/types/content'
  * - Divider: 1px subtle.
  * - Content: padding 24, body 2 regular (16/24, secondary), включая
  *   list-disc (отступ 24, gap 4 между пунктами).
- * - Sticker: 3D-иллюстрация ~200×200 desktop / ~100×100 mobile,
- *   абсолютная, «вылетает» за правый-верхний угол карточки, с rotation.
- *   Параметры стикеров — в `STICKER_CONFIG` ниже (это часть дизайна,
- *   не контента, поэтому не в JSON).
+ * - Sticker: 3D-иллюстрация ~200×200 desktop / ~100×110 mobile,
+ *   абсолютная, «вылетает» за правый-верхний угол карточки. Параметры
+ *   приходят прямо из данных карточки (`card.sticker`) — каждая
+ *   аудитория хранит свои размеры/смещения в `audiences.json`,
+ *   компонент только прокидывает их в CSS-vars.
  *
  * Бейдж: pill bg-surface + 2px brand pink border, rotate 10°,
  * текст `N/M`. Счётчик обновляется при пересечении центра viewport.
@@ -124,100 +125,23 @@ onBeforeUnmount(() => {
 const badgeText = computed(() => `${activeIndex.value + 1}/${Math.max(1, props.cards.length)}`)
 
 /**
- * Sticker-конфиг для каждой карточки. Координаты/размер взяты из Figma
- * (For Affiliates desktop 2653:1227, mobile 3861:19073).
+ * Прокидываем размеры/смещения стикера из `card.sticker` в CSS-vars.
+ * Так компонент остаётся универсальным, а уникальные значения каждой
+ * карточки приходят из `audiences.json` (см. `WhatYouGetCardSticker`).
  *
- * Поворот стикера НЕ задаётся здесь: PNG-файлы экспортированы из Figma
- * уже с применённым rotation, любая попытка крутить их в CSS поверх
- * сделает только хуже.
- *
- * Значения прокидываются в шаблон через CSS-vars (`--st-*`), которые
- * читает `.wyg-card__sticker` ниже. Это позволяет описывать параметры
- * в одном месте, табличкой, и не плодить 5 BEM-модификаторов с
- * дублирующими свойствами.
+ * Поворот не задаётся: PNG-ассеты экспортированы из Figma уже
+ * повёрнутыми, CSS-rotate сверху только сломает вид.
  */
-interface StickerConfig {
-  src: string
-  alt: string
-  /** Размер на desktop (px). */
-  size: number
-  /** Размер на mobile (px). */
-  sizeMobile: number
-  /** Offset top desktop (px). */
-  top: number
-  /** Offset right desktop (px). */
-  right: number
-  topMobile: number
-  rightMobile: number
-}
-
-const STICKER_CONFIG: Record<string, StickerConfig> = {
-  hub: {
-    src: '/images/affiliates/card-1-bubbles.png',
-    alt: 'Makeberry Hub',
-    size: 200,
-    sizeMobile: 100,
-    top: -81,
-    right: -81,
-    topMobile: -45,
-    rightMobile: -25,
-  },
-  analytics: {
-    src: '/images/affiliates/card-2-pie.png',
-    alt: 'Analytics',
-    size: 150,
-    sizeMobile: 100,
-    top: -94,
-    right: -94,
-    topMobile: -51,
-    rightMobile: -7,
-  },
-  exclusive: {
-    src: '/images/affiliates/card-3-ball.png',
-    alt: 'Exclusive offers',
-    size: 200,
-    sizeMobile: 110,
-    top: -147,
-    right: -122,
-    topMobile: -80,
-    rightMobile: -40,
-  },
-  infrastructure: {
-    src: '/images/affiliates/card-4-blocks.png',
-    alt: 'Infrastructure',
-    size: 150,
-    sizeMobile: 100,
-    top: -70,
-    right: -75,
-    topMobile: -45,
-    rightMobile: -10,
-  },
-  manager: {
-    src: '/images/affiliates/card-5-megaphone.png',
-    alt: 'Dedicated manager',
-    size: 150,
-    sizeMobile: 100,
-    top: -76,
-    right: -61,
-    topMobile: -50,
-    rightMobile: -10,
-  },
-}
-
-function stickerFor(card: WhatYouGetCard): StickerConfig | null {
-  return card.stickerKey ? (STICKER_CONFIG[card.stickerKey] ?? null) : null
-}
-
-function stickerStyle(s: StickerConfig): Record<string, string> {
+function stickerStyle(sticker: WhatYouGetCardSticker): Record<string, string> {
   return {
-    '--st-w': `${s.size}px`,
-    '--st-h': `${s.size}px`,
-    '--st-top': `${s.top}px`,
-    '--st-right': `${s.right}px`,
-    '--st-w-m': `${s.sizeMobile}px`,
-    '--st-h-m': `${s.sizeMobile}px`,
-    '--st-top-m': `${s.topMobile}px`,
-    '--st-right-m': `${s.rightMobile}px`,
+    '--st-w': `${sticker.desktop.size}px`,
+    '--st-h': `${sticker.desktop.size}px`,
+    '--st-top': `${sticker.desktop.top}px`,
+    '--st-right': `${sticker.desktop.right}px`,
+    '--st-w-m': `${sticker.mobile.size}px`,
+    '--st-h-m': `${sticker.mobile.size}px`,
+    '--st-top-m': `${sticker.mobile.top}px`,
+    '--st-right-m': `${sticker.mobile.right}px`,
   }
 }
 </script>
@@ -248,20 +172,14 @@ function stickerStyle(s: StickerConfig): Record<string, string> {
           role="listitem"
           :data-card-index="index"
         >
-          <template v-if="stickerFor(card)">
-            <div
-              class="wyg-card__sticker"
-              :style="stickerStyle(stickerFor(card)!)"
-              aria-hidden="true"
-            >
-              <img
-                :src="stickerFor(card)!.src"
-                :alt="stickerFor(card)!.alt"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-          </template>
+          <div
+            v-if="card.sticker"
+            class="wyg-card__sticker"
+            :style="stickerStyle(card.sticker)"
+            aria-hidden="true"
+          >
+            <img :src="card.sticker.src" :alt="card.sticker.alt" loading="lazy" decoding="async" />
+          </div>
 
           <header class="wyg-card__header">
             <h3 class="wyg-card__title">{{ card.title }}</h3>
@@ -289,6 +207,7 @@ function stickerStyle(s: StickerConfig): Record<string, string> {
 
 <style scoped lang="scss">
 @use '@/assets/styles/scss/media' as *;
+@use '@/assets/styles/scss/section-patterns' as *;
 @use '@/assets/styles/scss/typography' as *;
 @use '@/assets/styles/scss/units' as *;
 
@@ -304,28 +223,20 @@ function stickerStyle(s: StickerConfig): Record<string, string> {
   position: relative;
   background-color: var(--color-bg-page);
   overflow-x: clip;
-  padding: to-rem(70) var(--container-pad-mobile);
 
-  @include mq($from: mobile) {
-    padding: to-rem(70) var(--container-pad-tablet) to-rem(100);
-  }
-
-  @include mq($from: tablet) {
-    padding: to-rem(100) var(--container-pad-desktop);
-  }
-
-  @include mq($from: desktop) {
-    padding: to-rem(100) to-rem(160);
-  }
+  @include section-padding(
+    $desktop-inline: to-rem(160),
+    $desktop-top: to-rem(160),
+    $desktop-bottom: to-rem(160)
+  );
 }
 
 .wyg__inner {
-  width: 100%;
-  max-width: var(--container-max);
-  margin-inline: auto;
   display: flex;
   flex-direction: column;
   gap: to-rem(60);
+
+  @include container(var(--container-xl));
 
   @include mq($from: tablet) {
     display: grid;
@@ -445,7 +356,15 @@ function stickerStyle(s: StickerConfig): Record<string, string> {
   padding: 0;
   width: 100%;
 
+  @include mq($from: mobile) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: to-rem(20);
+    row-gap: to-rem(80);
+  }
+
   @include mq($from: tablet) {
+    display: flex;
     width: to-rem(460);
     gap: to-rem(200);
   }
@@ -551,7 +470,7 @@ function stickerStyle(s: StickerConfig): Record<string, string> {
     object-fit: contain;
   }
 
-  @include mq($from: tablet) {
+  @include mq($from: wide) {
     width: var(--st-w);
     height: var(--st-h);
     top: var(--st-top);

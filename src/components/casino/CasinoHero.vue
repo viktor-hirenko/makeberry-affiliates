@@ -74,6 +74,7 @@ defineProps<Props>()
 
 <style scoped lang="scss">
 @use '@/assets/styles/scss/media' as *;
+@use '@/assets/styles/scss/section-patterns' as *;
 @use '@/assets/styles/scss/typography' as *;
 @use '@/assets/styles/scss/units' as *;
 
@@ -89,21 +90,14 @@ defineProps<Props>()
   isolation: isolate;
   overflow: hidden;
   background-color: var(--color-bg-page);
-  // margin-top: calc(-1 * var(--header-offset));
-  // padding: calc(var(--header-offset) + #{to-rem(40)}) var(--container-pad-mobile) to-rem(70);
-  padding: to-rem(170) var(--container-pad-mobile) to-rem(70);
 
-  @include mq($from: mobile) {
-    padding-inline: var(--container-pad-tablet);
-  }
-
-  @include mq($from: tablet) {
-    padding: to-rem(230) var(--container-pad-desktop) to-rem(100);
-  }
-
-  @include mq($from: desktop) {
-    padding: to-rem(230) to-rem(200) to-rem(100);
-  }
+  @include section-padding(
+    $mobile-top: to-rem(170),
+    $mobile-bottom: to-rem(70),
+    $desktop-inline: to-rem(200),
+    $desktop-top: to-rem(230),
+    $desktop-bottom: to-rem(100)
+  );
 }
 
 /* ============================================================
@@ -139,9 +133,8 @@ defineProps<Props>()
   flex-direction: column-reverse;
   // align-items: center;
   gap: to-rem(40);
-  width: 100%;
-  max-width: var(--container-default);
-  margin-inline: auto;
+
+  @include container(var(--container-default));
 
   @include mq($from: mobile) {
     flex-direction: row;

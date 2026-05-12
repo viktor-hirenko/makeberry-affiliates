@@ -3,18 +3,21 @@ import BaseButton from '@/components/ui/BaseButton.vue'
 import type { PageHeroBlock } from '@/types/content'
 
 /**
- * Универсальный hero для страниц "For Affiliates" и "For Advertisers".
+ * Hero страницы-аудитории (`/affiliates`, `/advertisers`).
+ *
  * По Figma макет двух страниц идентичен: меняется только содержимое
  * (`badge / titleHtml / subtitleHtml / cta`), а декор справа сверху
  * один и тот же — pre-composited PNG (pink + cables, уже с поворотом
  * и mix-blend-luminosity, запечёнными в изображении).
  *
  * Figma:
- * - For Affiliates desktop: 3861:13319
- * - For Affiliates mobile:  3861:19275
- * - Hero рисуется flush до верха viewport — header floating оверлеит
- *   контент, поэтому компенсируем `padding-top` глобального <main>
- *   через отрицательный `margin-top: calc(-1 * var(--header-offset))`.
+ * - For Affiliates  desktop: 3861:13319 / mobile: 3861:19275
+ * - For Advertisers desktop: 3861:13309 (тот же `cables` ассет, тот же
+ *   rotation -42.08deg, mix-blend luminosity — изображение общее).
+ *
+ * Hero рисуется flush до верха viewport — header floating оверлеит
+ * контент, поэтому компенсируем `padding-top` глобального <main>
+ * через `meta.flushTop` в router'е (см. App.vue).
  */
 interface Props {
   hero: PageHeroBlock
@@ -24,67 +27,66 @@ defineProps<Props>()
 </script>
 
 <template>
-  <section class="page-hero" data-section="hero">
-    <picture class="page-hero__decor" aria-hidden="true">
-      <source media="(min-width: 1024px)" srcset="/images/page-hero/bg-desktop.png" />
-      <img
-        src="/images/page-hero/bg-mobile.png"
-        alt=""
-        loading="eager"
-        decoding="async"
-        fetchpriority="high"
-      />
-    </picture>
+  <section class="audience-hero" data-section="hero">
+    <div class="audience-hero__inner">
+      <picture class="audience-hero__decor" aria-hidden="true">
+        <source media="(min-width: 1024px)" srcset="/images/page-hero/bg-desktop.png" />
+        <img
+          src="/images/page-hero/bg-mobile.png"
+          alt=""
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+        />
+      </picture>
 
-    <div class="page-hero__content">
-      <div class="page-hero__text">
-        <div class="page-hero__title-block">
-          <span v-if="hero.badge" class="page-hero__badge">{{ hero.badge }}</span>
-          <h1 class="page-hero__title" v-html="hero.titleHtml" />
+      <div class="audience-hero__content">
+        <div class="audience-hero__text">
+          <div class="audience-hero__title-block">
+            <span v-if="hero.badge" class="audience-hero__badge">{{ hero.badge }}</span>
+            <h1 class="audience-hero__title" v-html="hero.titleHtml" />
+          </div>
+          <p class="audience-hero__copy" v-html="hero.subtitleHtml" />
         </div>
-        <p class="page-hero__copy" v-html="hero.subtitleHtml" />
-      </div>
 
-      <BaseButton
-        v-if="hero.cta"
-        variant="primary"
-        size="large"
-        :to="hero.cta.path"
-        class="page-hero__cta"
-      >
-        {{ hero.cta.label }}
-      </BaseButton>
+        <BaseButton
+          v-if="hero.cta"
+          variant="primary"
+          size="large"
+          :to="hero.cta.path"
+          class="audience-hero__cta"
+        >
+          {{ hero.cta.label }}
+        </BaseButton>
+      </div>
     </div>
   </section>
 </template>
 
 <style scoped lang="scss">
 @use '@/assets/styles/scss/media' as *;
+@use '@/assets/styles/scss/section-patterns' as *;
 @use '@/assets/styles/scss/units' as *;
 
 /* ============================================================
  * Section
  * ============================================================ */
-.page-hero {
+.audience-hero {
   position: relative;
   isolation: isolate;
   overflow: hidden;
   background-color: var(--color-bg-page);
   /* Hero рисуется flush до верха viewport (header floating оверлеит). */
-  // margin-top: calc(-1 * var(--header-offset));
 
-  /* Mobile (Figma 360 — pt 200 / px 16 / pb 70) */
-  padding: to-rem(200) var(--container-pad-mobile) to-rem(70);
+  @include section-padding(
+    $desktop-inline: to-rem(160),
+    $mobile-top: to-rem(200),
+    $desktop-top: to-rem(200)
+  );
+}
 
-  @include mq($from: mobile) {
-    /* Tablet — даём нормальный inline-padding, но не забиваем 160 */
-    padding: to-rem(200) var(--container-pad-tablet) to-rem(100);
-  }
-
-  @include mq($from: desktop) {
-    /* Desktop (Figma 1440 — pt 200 / px 160 / pb 100) */
-    padding: to-rem(200) to-rem(160) to-rem(100);
-  }
+.audience-hero__inner {
+  @include container(var(--container-xl));
 }
 
 /* ============================================================
@@ -98,7 +100,7 @@ defineProps<Props>()
  * чтобы изображение тянулось вправо и сверху, а transparent
  * нижне-левый угол PNG оставался прозрачным.
  * ============================================================ */
-.page-hero__decor {
+.audience-hero__decor {
   position: absolute;
   inset: 0;
   z-index: 0;
@@ -154,7 +156,7 @@ defineProps<Props>()
 /* ============================================================
  * Content stack
  * ============================================================ */
-.page-hero__content {
+.audience-hero__content {
   position: relative;
   z-index: 1;
   display: flex;
@@ -170,7 +172,7 @@ defineProps<Props>()
   }
 }
 
-.page-hero__text {
+.audience-hero__text {
   display: flex;
   flex-direction: column;
   gap: to-rem(32);
@@ -181,7 +183,7 @@ defineProps<Props>()
   }
 }
 
-.page-hero__title-block {
+.audience-hero__title-block {
   display: flex;
   flex-direction: column;
   gap: to-rem(24);
@@ -191,7 +193,7 @@ defineProps<Props>()
 /* ============================================================
  * Badge
  * ============================================================ */
-.page-hero__badge {
+.audience-hero__badge {
   align-self: flex-start;
   display: inline-flex;
   align-items: center;
@@ -210,7 +212,7 @@ defineProps<Props>()
 /* ============================================================
  * Title — Headline H2 (40/48 mobile, 64/72 desktop)
  * ============================================================ */
-.page-hero__title {
+.audience-hero__title {
   margin: 0;
   font-family: var(--font-sans);
   font-weight: 600;
@@ -229,7 +231,7 @@ defineProps<Props>()
 /* ============================================================
  * Copy — Body 2 mobile, Body 1 desktop
  * ============================================================ */
-.page-hero__copy {
+.audience-hero__copy {
   margin: 0;
   font-family: var(--font-sans);
   font-weight: 400;
@@ -247,7 +249,7 @@ defineProps<Props>()
 /* ============================================================
  * CTA button — full width on mobile, natural width on desktop
  * ============================================================ */
-.page-hero__cta {
+.audience-hero__cta {
   align-self: stretch;
 
   @include mq($from: mobile) {

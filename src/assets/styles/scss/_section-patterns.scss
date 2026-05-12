@@ -5,16 +5,42 @@
 /// Подключать только там, где эта тройка совпадает с макетом (см. grep по проекту).
 /// Если у секции другой финальный брейкпоинт или другие числа — не использовать.
 @mixin section-padding-default {
-  padding: to-rem(70) var(--container-pad-mobile);
+  padding-block: to-rem(70);
+  padding-inline: var(--container-pad-mobile);
 
   @include mq($from: mobile) {
     padding-inline: var(--container-pad-tablet);
   }
 
-  @include mq($from: tablet) {
-    padding: to-rem(100) var(--container-pad-desktop);
+  @include mq($from: wide) {
+    padding-block: to-rem(100);
+    padding-inline: to-rem(120);
   }
 }
 
 /// Частый вертикальный шаг между блоками внутри секции (не конвертируем автоматически — только там, где уже 48px).
 $section-stack-gap: to-rem(48);
+
+@mixin section-padding(
+  $desktop-inline: to-rem(60),
+  $mobile-top: to-rem(70),
+  $mobile-bottom: to-rem(70),
+  $desktop-top: to-rem(100),
+  $desktop-bottom: to-rem(100)
+) {
+  padding-top: $mobile-top;
+  padding-bottom: $mobile-bottom;
+  padding-inline: var(--container-pad-x);
+
+  @include mq($from: wide) {
+    padding-top: $desktop-top;
+    padding-bottom: $desktop-bottom;
+    padding-inline: $desktop-inline;
+  }
+}
+
+@mixin container($max-width: var(--container-2xl)) {
+  width: 100%;
+  max-width: $max-width;
+  margin-inline: auto;
+}

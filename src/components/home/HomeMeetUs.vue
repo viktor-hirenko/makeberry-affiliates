@@ -129,7 +129,8 @@ const navConfig = {
 .home-meet-us {
   position: relative;
   background-color: var(--color-bg-page);
-  @include section-padding-default;
+
+  @include section-padding(to-rem(60));
 }
 
 .home-meet-us__inner {

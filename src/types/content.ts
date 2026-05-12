@@ -505,11 +505,11 @@ export interface PageHeroBlock {
  * - Content (padding 24)        → набор блоков (параграфы / списки)
  * - Sticker (~200×200 desktop)  → 3D-иллюстрация, абсолютная,
  *                                 «вылетает» за пределы карточки,
- *                                 с rotation
+ *                                 с rotation, запечённым в PNG.
  *
- * Stickerkey хранится в JSON, а координаты/размер/rotation — в
- * компоненте секции, потому что это часть дизайна (не контента) и
- * параметры уникальны для каждой карточки и зафиксированы в макете.
+ * Конфиг стикера живёт прямо на карточке (в JSON), а не в коде
+ * компонента — потому что параметры уникальны для каждой карточки
+ * и каждой аудитории. Компонент только читает CSS-vars и рендерит.
  */
 export interface WhatYouGetCardBlock {
   /** Обычный параграф (внутри допустим inline-HTML). */
@@ -528,21 +528,54 @@ export type WhatYouGetCardContent =
   | WhatYouGetCardListBlock
 
 /**
- * `stickerKey` — ключ конфига sticker-иллюстрации в компоненте
- * секции (мапа: ключ → src/size/offset/rotate). Если у карточки нет
- * декоративной иконки — поле опускается.
+ * Sticker-иллюстрация карточки (3D PNG, выходит за правый-верхний угол).
+ *
+ * Координаты в px, потому что они приходят прямо из Figma (см. node
+ * 2655:1593 etc.). Размеры/смещения для desktop и mobile задаются
+ * отдельно — на mobile стикер меньше и сдвинут ближе к карточке.
+ *
+ * Поворот PNG **не задаётся** здесь: ассеты экспортированы из Figma
+ * уже с применённой ротацией; CSS-rotate сверху только сломает вид.
  */
+export interface WhatYouGetCardSticker {
+  src: string
+  alt: string
+  desktop: { size: number; top: number; right: number }
+  mobile: { size: number; top: number; right: number }
+}
+
 export interface WhatYouGetCard {
   id: string
   title: string
   blocks: WhatYouGetCardContent[]
-  stickerKey?: string
+  sticker?: WhatYouGetCardSticker
 }
 
-export interface AffiliatesPageContent {
+/**
+ * Финальный CTA на странице аудитории.
+ *
+ * `titleHtml` — две части в одной строке: основная (`.primary`) и
+ * приглушённая (`.muted`). Стилизуются через `:deep()` в компоненте.
+ * `glow` — декоративный PNG за текстом; src/alt из JSON, а
+ * позиционирование/rotate — в SCSS компонента (модификатор по slug),
+ * по аналогии с `HomeDirectAdvertiser`.
+ */
+export interface AudienceCtaBlock {
+  titleHtml: string
+  button: { label: string; path: string }
+  glow: { src: string; alt: string }
+}
+
+/**
+ * Контент одной страницы-аудитории (`/affiliates` или `/advertisers`).
+ * Одна и та же структура — два набора данных, один шаблон (см.
+ * `AudienceView` + `audience/*` components, по аналогии с casino).
+ */
+export interface AudiencePageContent {
+  slug: 'affiliates' | 'advertisers'
   hero: PageHeroBlock
   whatYouGet: { title: string; cards: WhatYouGetCard[] }
-  cta: { titleHtml: string; button: { label: string; path: string } }
+  cta: AudienceCtaBlock
 }
 
 /* ----------------------------------------------------------------

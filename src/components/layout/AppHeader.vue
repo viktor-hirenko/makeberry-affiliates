@@ -170,7 +170,9 @@ function closeMobileMenu() {
 
 <style scoped lang="scss">
 @use '@/assets/styles/scss/media' as *;
+@use '@/assets/styles/scss/section-patterns' as *;
 @use '@/assets/styles/scss/typography' as *;
+@use '@/assets/styles/scss/units' as *;
 
 .app-header {
   position: fixed;
@@ -207,8 +209,8 @@ function closeMobileMenu() {
 .app-header__pill {
   position: relative;
   max-width: calc(var(--container-max) - var(--header-pill-inset) * 2);
-  padding: 16px;
-  gap: 16px;
+  padding: to-rem(16);
+  gap: to-rem(16);
   background-color: var(--color-bg-overlay-header);
   border: 1px solid var(--color-border-subtle);
   border-radius: var(--radius-pill);
@@ -218,7 +220,7 @@ function closeMobileMenu() {
 
 .app-header__bar {
   height: var(--header-mobile-height);
-  padding: 16px;
+  padding: to-rem(16);
   box-sizing: border-box;
   min-width: 0;
   overflow-x: clip;
@@ -243,7 +245,7 @@ function closeMobileMenu() {
 .app-header__list {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: to-rem(8);
 }
 
 .app-header__item {
@@ -256,8 +258,8 @@ function closeMobileMenu() {
   display: inline-flex;
   align-items: center;
   gap: 0;
-  height: 40px;
-  padding: 8px;
+  height: to-rem(40);
+  padding: to-rem(8);
   border: 0;
   background: transparent;
   color: var(--color-text-link);
@@ -270,7 +272,7 @@ function closeMobileMenu() {
     color var(--transition-base);
 
   > span {
-    padding-inline: 8px;
+    padding-inline: to-rem(8);
     white-space: nowrap;
   }
 
@@ -303,17 +305,17 @@ function closeMobileMenu() {
 
 .app-header__dropdown {
   position: absolute;
-  top: calc(100% + 8px);
+  top: calc(100% + #{to-rem(8)});
   left: 50%;
   transform: translateX(-50%);
-  min-width: 185px;
-  padding: 16px;
+  min-width: to-rem(185);
+  padding: to-rem(16);
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: to-rem(16);
   background-color: var(--color-bg-overlay-header);
   border: 1px solid var(--color-border-subtle);
-  border-radius: 20px;
+  border-radius: to-rem(20);
   backdrop-filter: blur(12.5px);
   -webkit-backdrop-filter: blur(12.5px);
 }
@@ -335,7 +337,7 @@ function closeMobileMenu() {
 .app-header__actions {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: to-rem(16);
   flex-shrink: 0;
 }
 
@@ -354,6 +356,6 @@ function closeMobileMenu() {
 .dropdown-enter-from,
 .dropdown-leave-to {
   opacity: 0;
-  transform: translate(-50%, -6px);
+  transform: translate(-50%, #{to-rem(-6)});
 }
 </style>

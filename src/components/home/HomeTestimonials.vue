@@ -145,6 +145,7 @@ const navConfig = {
 
 <style scoped lang="scss">
 @use '@/assets/styles/scss/media' as *;
+@use '@/assets/styles/scss/section-patterns' as *;
 @use '@/assets/styles/scss/typography' as *;
 @use '@/assets/styles/scss/units' as *;
 
@@ -166,13 +167,7 @@ const navConfig = {
    * Лишний горизонтальный вылет страницы режется у body (main.scss).
    */
 
-  @include mq($from: mobile) {
-    padding-inline: var(--container-pad-tablet);
-  }
-
-  @include mq($from: desktop) {
-    padding: to-rem(100) var(--container-pad-desktop);
-  }
+  @include section-padding(to-rem(60));
 }
 
 /* ============================================================

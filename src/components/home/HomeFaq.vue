@@ -142,8 +142,17 @@ function onLeave(el: Element): void {
 .home-faq {
   position: relative;
   background-color: var(--color-bg-page);
-  @include section-padding-default;
   overflow-x: clip;
+
+  @include section-padding(to-rem(230));
+
+  @include mq($from: tablet) {
+    padding-inline: to-rem(150);
+  }
+
+  @include mq($from: wide) {
+    padding-inline: to-rem(230);
+  }
 }
 
 .home-faq__inner {

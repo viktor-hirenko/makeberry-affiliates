@@ -1,3 +1,8 @@
+@use 'media' as *;
+@use 'units' as *;
+@use 'breakpoints' as *;
+@use 'sass:meta';
+
 /// Makeberry Affiliates — design tokens
 /// Источник: Figma `Components` (Bg / Text / Icon / Border) + `Header / 1440 / 360`.
 :root {
@@ -112,12 +117,22 @@
   /* ============================================================
    * Layout
    * ============================================================ */
-  --container-default: 1040px;
-  --container-max: 1440px;
   --container-content: 1320px;
   --container-pad-desktop: 60px;
   --container-pad-tablet: 32px;
   --container-pad-mobile: 16px;
+  /* Дефолт для миксина `section-padding` (_section-patterns.scss); на mobile переопределяется там же. */
+  --container-pad-x: 16px;
+
+  --container-max: #{to-rem(1440)};
+  --container-2xl: #{to-rem(1200)};
+  --container-xl: #{to-rem(1120)};
+  --container-lg: #{to-rem(980)};
+  --container-md: #{to-rem(800)};
+  --container-sm: #{to-rem(450)};
+
+  --container-default: #{to-rem(1040)};
+  --container-cta: #{to-rem(920)};
 
   /* Floating header */
   --header-pill-height: 72px;
@@ -142,6 +157,13 @@
 }
 
 /* Согласовано с AppHeader: компактный бар при ширине < 1024 → один `--header-offset`; от 1024 — отступ под pill. */
+
+@include mq($from: mobile) {
+  :root {
+    --container-pad-x: 32px;
+  }
+}
+
 @media (max-width: 1023px) {
   :root {
     --header-offset: var(--header-mobile-height);

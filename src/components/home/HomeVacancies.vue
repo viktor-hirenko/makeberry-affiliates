@@ -69,8 +69,9 @@ const content = useHomeVacancies()
 .home-vacancies {
   position: relative;
   background-color: var(--color-bg-page);
-  @include section-padding-default;
   overflow-x: clip;
+
+  @include section-padding(to-rem(120));
 }
 
 /* ============================================================

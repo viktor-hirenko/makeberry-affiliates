@@ -67,12 +67,9 @@ defineProps<Props>()
 .casino-payments {
   position: relative;
   background-color: var(--color-bg-page);
-  @include section-padding-default;
   overflow-x: clip;
 
-  @include mq($from: desktop) {
-    padding-inline: to-rem(200);
-  }
+  @include section-padding($desktop-inline: to-rem(200));
 }
 
 /* ============================================================
@@ -100,12 +97,11 @@ defineProps<Props>()
 .casino-payments__inner {
   position: relative;
   z-index: 1;
-  width: 100%;
-  max-width: var(--container-default);
-  margin-inline: auto;
   display: flex;
   flex-direction: column;
   gap: to-rem(48);
+
+  @include container(var(--container-default));
 
   @include mq($from: tablet) {
     gap: to-rem(70);

@@ -54,15 +54,11 @@ const about = useHomeAbout()
   align-items: center;
   gap: to-rem(48);
   background-color: var(--color-bg-page);
-  @include section-padding-default;
+
+  @include section-padding(to-rem(160));
 
   @include mq($from: tablet) {
     gap: to-rem(70);
-    padding-inline: to-rem(160);
-  }
-
-  @include mq($from: desktop) {
-    padding-inline: to-rem(200);
   }
 }
 

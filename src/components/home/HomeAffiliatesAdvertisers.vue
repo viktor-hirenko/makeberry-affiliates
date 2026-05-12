@@ -55,6 +55,7 @@ const content = useHomeAffiliatesAdvertisers()
 
 <style scoped lang="scss">
 @use '@/assets/styles/scss/media' as *;
+@use '@/assets/styles/scss/section-patterns' as *;
 @use '@/assets/styles/scss/typography' as *;
 @use '@/assets/styles/scss/units' as *;
 
@@ -72,7 +73,7 @@ const content = useHomeAffiliatesAdvertisers()
   gap: to-rem(60);
   margin-inline: auto;
   background-color: var(--color-bg-page);
-  padding: to-rem(70) var(--container-pad-mobile);
+  // padding: to-rem(70) var(--container-pad-mobile);
   /*
    * Декорации (sparkle / cursor) намеренно вылезают за карточки
    * через position: absolute + отрицательные top/right/bottom.
@@ -81,22 +82,17 @@ const content = useHomeAffiliatesAdvertisers()
    * Используем overflow-x: clip — он не ломает sticky-родителей
    * и точечно режет только горизонтальный «вылет».
    */
-  overflow-x: clip;
+  // overflow-x: clip;
+
+  @include section-padding(to-rem(160));
 
   @include mq($from: mobile) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: to-rem(20);
-    padding-inline: var(--container-pad-tablet);
   }
-
-  // @include mq($from: tablet) {
-  //   gap: to-rem(40);
-  //   padding: to-rem(170) var(--container-pad-desktop);
-  // }
 
   @include mq($from: tablet) {
     gap: to-rem(40);
-    padding-inline: to-rem(160);
   }
 }
 

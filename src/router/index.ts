@@ -16,8 +16,7 @@ declare module 'vue-router' {
 import HomeView from '@/views/HomeView.vue'
 import BlogView from '@/views/BlogView.vue'
 import ArticleView from '@/views/ArticleView.vue'
-import AffiliatesView from '@/views/AffiliatesView.vue'
-import AdvertisersView from '@/views/AdvertisersView.vue'
+import AudienceView from '@/views/AudienceView.vue'
 import CasinoView from '@/views/CasinoView.vue'
 import NotFoundView from '@/views/NotFoundView.vue'
 import { getCasinoBySlug } from '@/composables/useContent'
@@ -44,17 +43,23 @@ export const router = createRouter({
       meta: { title: 'Article', flushTop: true },
       props: true,
     },
+    /* Audience pages: `/affiliates` и `/advertisers` шарят один шаблон
+     * (AudienceView) и разные датасеты в `audiences.json`. Slug
+     * фиксированный (приходит через `props`), а не из URL — оставляем
+     * чистые маршруты для SEO и совместимости со ссылками из навигации. */
     {
       path: '/affiliates',
       name: 'affiliates',
-      component: AffiliatesView,
+      component: AudienceView,
+      props: { slug: 'affiliates' },
       meta: { title: 'For Affiliates', flushTop: true },
     },
     {
       path: '/advertisers',
       name: 'advertisers',
-      component: AdvertisersView,
-      meta: { title: 'For Advertisers' },
+      component: AudienceView,
+      props: { slug: 'advertisers' },
+      meta: { title: 'For Advertisers', flushTop: true },
     },
     {
       path: '/casino/:slug',

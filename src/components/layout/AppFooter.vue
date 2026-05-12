@@ -141,6 +141,7 @@ const footer = useFooter()
 
 <style scoped lang="scss">
 @use '@/assets/styles/scss/media' as *;
+@use '@/assets/styles/scss/section-patterns' as *;
 @use '@/assets/styles/scss/units' as *;
 
 /* ============================================================
@@ -156,26 +157,21 @@ const footer = useFooter()
 .app-footer {
   background-color: var(--color-bg-surface);
   overflow-x: clip;
+
+  @include section-padding(
+    $desktop-inline: to-rem(150),
+    $desktop-top: to-rem(80),
+    $desktop-bottom: to-rem(40),
+    $mobile-bottom: to-rem(16)
+  );
 }
 
 .app-footer__inner {
-  width: 100%;
-  max-width: to-rem(1440);
-  margin-inline: auto;
-  padding: to-rem(70) var(--container-pad-mobile) to-rem(16);
   display: flex;
   flex-direction: column;
   gap: to-rem(60);
 
-  @include mq($from: tablet) {
-    padding: to-rem(80) to-rem(60) to-rem(40);
-    gap: to-rem(80);
-  }
-
-  @include mq($from: desktop) {
-    padding: to-rem(80) to-rem(150) to-rem(40);
-    gap: to-rem(100);
-  }
+  @include container(to-rem(1140));
 }
 
 /* ============================================================
@@ -189,7 +185,7 @@ const footer = useFooter()
   align-items: flex-start;
   gap: to-rem(60);
 
-  @include mq($from: tablet) {
+  @include mq($from: mobile) {
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
@@ -334,10 +330,11 @@ const footer = useFooter()
  * ============================================================ */
 .app-footer__pa {
   display: flex;
+  flex-direction: column;
   align-items: stretch;
   gap: to-rem(48);
 
-  @include mq($from: tablet) {
+  @include mq($from: mobile) {
     flex-direction: row;
     align-items: center;
     justify-content: center;

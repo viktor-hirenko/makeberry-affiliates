@@ -1,5 +1,5 @@
 import rawArticles from '@/data/articles.json'
-import rawAffiliates from '@/data/affiliates.json'
+import rawAudiences from '@/data/audiences.json'
 import rawBlog from '@/data/blog.json'
 import rawCasinos from '@/data/casinos.json'
 import rawFooter from '@/data/footer.json'
@@ -17,8 +17,8 @@ import rawHomeTestimonials from '@/data/home-testimonials.json'
 import rawHomeVacancies from '@/data/home-vacancies.json'
 import rawNav from '@/data/nav.json'
 import type {
-  AffiliatesPageContent,
   ArticleDetail,
+  AudiencePageContent,
   BlogContent,
   CasinoPageContent,
   FooterConfig,
@@ -121,8 +121,21 @@ export function getAdjacentArticles(slug: string): {
   }
 }
 
-export function useAffiliatesPage(): AffiliatesPageContent {
-  return rawAffiliates as AffiliatesPageContent
+/**
+ * Контент страниц-аудиторий (For Affiliates / For Advertisers).
+ *
+ * Обе страницы построены по одному шаблону (`AudienceView` + компоненты
+ * в `components/audience/*`) и отличаются только данными. Здесь
+ * выдаём весь массив и точечный лук по slug — точно так же,
+ * как у casino direct-advertiser страниц.
+ */
+export function useAudiences(): AudiencePageContent[] {
+  const raw = rawAudiences as { audiences: AudiencePageContent[] }
+  return raw.audiences
+}
+
+export function getAudienceBySlug(slug: string): AudiencePageContent | undefined {
+  return useAudiences().find((audience) => audience.slug === slug)
 }
 
 export function useCasinos(): CasinoPageContent[] {

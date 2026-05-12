@@ -62,21 +62,17 @@ defineProps<Props>()
 .casino-highlights {
   position: relative;
   background-color: var(--color-bg-page);
-  @include section-padding-default;
 
-  @include mq($from: desktop) {
-    padding-inline: to-rem(200);
-  }
+  @include section-padding($desktop-inline: to-rem(200));
 }
 
 .casino-highlights__inner {
   position: relative;
-  width: 100%;
-  max-width: var(--container-default);
-  margin-inline: auto;
   display: flex;
   flex-direction: column;
   gap: to-rem(48);
+
+  @include container(var(--container-default));
 
   @include mq($from: tablet) {
     gap: to-rem(70);

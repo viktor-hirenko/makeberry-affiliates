@@ -56,17 +56,17 @@ defineProps<Props>()
 .casino-coop {
   position: relative;
   background-color: var(--color-bg-page);
-  @include section-padding-default;
+
+  @include section-padding($desktop-inline: to-rem(120));
 }
 
 .casino-coop__inner {
-  width: 100%;
-  max-width: var(--container-max);
-  margin-inline: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: to-rem(48);
+
+  @include container(var(--container-2xl));
 
   @include mq($from: tablet) {
     gap: to-rem(70);
@@ -86,25 +86,22 @@ defineProps<Props>()
  * горизонтали и общие высоты карточек равны.
  * ============================================================ */
 .casino-coop__grid {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   display: grid;
   grid-template-columns: 1fr;
   align-items: stretch;
   gap: to-rem(20);
+  margin: 0;
+  padding: 0;
+  list-style: none;
   width: 100%;
 
   @include mq($from: mobile) {
-    grid-template-columns: repeat(2, 1fr);
+    gap: to-rem(20);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  @include mq($from: tablet, $until: wide) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  @include mq($from: 1280px) {
-    grid-template-columns: repeat(4, 1fr);
+  @include mq($from: tablet) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     max-width: to-rem(1200);
     margin-inline: auto;
   }

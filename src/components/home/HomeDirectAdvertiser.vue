@@ -160,7 +160,8 @@ const navConfig = {
   position: relative;
   isolation: isolate;
   background-color: var(--color-bg-page);
-  @include section-padding-default;
+
+  @include section-padding;
   /*
    * Без overflow-x: свайпер full-bleed до tablet (как Testimonials).
    * Горизонталь страницы — body (main.scss).

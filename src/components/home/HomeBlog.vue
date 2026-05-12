@@ -13,30 +13,18 @@ const previewArticles = computed(() => articles.slice(0, 3))
 </script>
 
 <template>
-  <section
-    id="blog"
-    class="home-blog"
-    data-section="blog"
-  >
+  <section id="blog" class="home-blog" data-section="blog">
     <div class="home-blog__inner">
       <h2 class="home-blog__title">{{ content.title }}</h2>
 
       <div class="home-blog__content">
         <ul class="home-blog__list">
-          <li
-            v-for="article in previewArticles"
-            :key="article.slug"
-            class="home-blog__item"
-          >
+          <li v-for="article in previewArticles" :key="article.slug" class="home-blog__item">
             <ArticleCard :article="article" />
           </li>
         </ul>
 
-        <BaseButton
-          variant="secondary"
-          :to="content.viewAll.href"
-          class="home-blog__cta"
-        >
+        <BaseButton variant="secondary" :to="content.viewAll.href" class="home-blog__cta">
           {{ content.viewAll.label }}
         </BaseButton>
       </div>
@@ -59,7 +47,8 @@ const previewArticles = computed(() => articles.slice(0, 3))
 .home-blog {
   position: relative;
   background-color: var(--color-bg-page);
-  @include section-padding-default;
+
+  @include section-padding(to-rem(120));
 }
 
 .home-blog__inner {

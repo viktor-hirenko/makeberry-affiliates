@@ -96,12 +96,15 @@ function loadMore() {
  * Гловы — абсолютно позиционируем относительно секции.
  * ============================================================ */
 .blog-page {
-  @include section-padding-default;
-
   position: relative;
-  padding-block-start: to-rem(160);
   background-color: var(--color-bg-page);
   overflow: hidden;
+
+  @include section-padding(
+    $desktop-inline: to-rem(120),
+    $mobile-top: to-rem(160),
+    $desktop-top: to-rem(160)
+  );
 }
 
 /* ============================================================

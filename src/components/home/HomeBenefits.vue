@@ -51,18 +51,9 @@ const content = useHomeBenefits()
   flex-direction: column;
   align-items: center;
   background-color: var(--color-bg-page);
-  padding: to-rem(70) var(--container-pad-mobile);
   overflow-x: clip;
 
-  // @include mq($from: mobile) {
-  //   padding-inline: var(--container-pad-tablet);
-  // }
-
-  // @include mq($from: desktop) {
-  //   padding: to-rem(100) to-rem(120);
-  // }
-
-  @include section-padding-default;
+  @include section-padding(to-rem(120));
 }
 
 .home-benefits__inner {

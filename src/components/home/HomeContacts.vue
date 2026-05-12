@@ -235,7 +235,8 @@ function handleInput() {
 .home-contacts {
   position: relative;
   background-color: var(--color-bg-page);
-  @include section-padding-default;
+
+  @include section-padding(to-rem(60));
 }
 
 .home-contacts__inner {
@@ -384,9 +385,10 @@ function handleInput() {
   line-height: to-rem(32);
   letter-spacing: -0.01em;
   color: var(--color-text-primary);
-  white-space: pre-wrap;
 
   @include mq($from: tablet) {
+    white-space: pre-wrap;
+
     @include font-h4;
   }
 }

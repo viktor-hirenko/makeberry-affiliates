@@ -295,31 +295,29 @@ onBeforeUnmount(() => {
   padding-block: to-rem(70);
   overflow-x: clip;
 
-  @include mq($from: tablet) {
+  @include mq($from: wide) {
     gap: to-rem(70);
     padding-block: to-rem(100);
   }
 }
 
 .home-map__inner {
+  --container-pad-x-local: var(--container-pad-mobile);
+
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   max-width: var(--container-max);
   margin-inline: auto;
-  padding-inline: var(--container-pad-mobile);
+  padding-inline: var(--container-pad-x-local);
 
   @include mq($from: mobile) {
-    padding-inline: var(--container-pad-tablet);
+    --container-pad-x-local: var(--container-pad-x);
   }
 
-  @include mq($from: tablet) {
-    padding-inline: var(--container-pad-desktop);
-  }
-
-  @include mq($from: desktop) {
-    padding-inline: to-rem(120);
+  @include mq($from: wide) {
+    --container-pad-x-local: #{to-rem(120)};
   }
 }
 
