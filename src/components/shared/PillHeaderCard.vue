@@ -83,6 +83,13 @@ const rootStyle = props.bodyGap
   }
 }
 
+/*
+ * Pill-заголовок:
+ *  • <1440 — 24/32, чтобы длинные заголовки (Revenue Share, Sub-Affiliate)
+ *    помещались с воздухом в узкой карточке планшета (1024–1439, ~230px).
+ *  • ≥1440 — H4 32/40, как в Figma desktop-фреймах
+ *    (3838-10833 / 3861-21411 / 3861-21370), где карточка ~285px.
+ */
 .phc__pill-text {
   font-family: var(--font-sans);
   font-weight: 500;
@@ -93,7 +100,7 @@ const rootStyle = props.bodyGap
   text-align: center;
   white-space: nowrap;
 
-  @include mq($from: tablet) {
+  @include mq($from: desktop) {
     @include font-h4;
   }
 }
