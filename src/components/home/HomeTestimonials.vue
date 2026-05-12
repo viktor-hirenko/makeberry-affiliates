@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { nextTick } from 'vue'
 import { Navigation, Pagination } from 'swiper/modules'
+import type { Swiper as SwiperInstance } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 
 import 'swiper/css'
@@ -13,27 +14,77 @@ import { useHomeTestimonials } from '@/composables/useContent'
 
 const content = useHomeTestimonials()
 
-/** Mobile (768): две колонки; tablet (1024): тройной ряд с упругими ширинами (CSS). */
+/**
+ * Конфиг по брейкпоинтам:
+ *  • < 768          → 1 слайд (база `slides-per-view="1"` на компоненте).
+ *  • 768 – 1023     → 2 слайда равной ширины (как Meet Us).
+ *  • ≥ 1024         → focal-карусель: `slidesPerView: 3` + `centeredSlides` +
+ *                      `centeredSlidesBounds`. Видны три слайда: small | BIG | small.
+ *                      Активный = визуально центральный, увеличен через
+ *                      `transform: scale` в CSS. Все слайды одной фактической
+ *                      ширины (= bbox = «small» 350/1160), это критично —
+ *                      без этого Swiper рассинхронизирует `slidesGrid`
+ *                      при смене активного и активный встаёт не по центру.
+ *
+ * Важно: `centeredSlidesBounds: true` нужен по двум причинам:
+ *   1. Соответствие Figma — 4 testimonials → 2 snap-state → 2 точки pagination.
+ *   2. Без bounds первый/последний слайды могут стать активными, и тогда
+ *      по краям видны пустые offset-зоны (та самая «дыра в начале/конце»).
+ *      С bounds первый/последний прижимаются к краю swiper-контейнера и
+ *      всегда находятся в позиции «small-сосед», что и нужно по дизайну.
+ *
+ * `centeredSlides: false` на mobile-BP — обязательно: Swiper не сбрасывает
+ * параметры с большего BP при возврате на меньший. Без явного `false`
+ * центрирование «протекает» вниз и ломает 2-колоночный mobile-layout.
+ */
 const swiperBreakpoints = {
   [BREAKPOINT_MOBILE_PX]: {
     slidesPerView: 2,
+    slidesPerGroup: 1,
     spaceBetween: 16,
     allowTouchMove: true,
+    centeredSlides: false,
+    centeredSlidesBounds: false,
   },
   [BREAKPOINT_TABLET_PX]: {
-    slidesPerView: 'auto' as const,
-    spaceBetween: 20,
-    allowTouchMove: false,
+    slidesPerView: 3,
+    slidesPerGroup: 1,
+    /*
+     * spaceBetween рассчитан с учётом scale-overlap активного слайда:
+     * active visually расширяется на (1.314 - 1) / 2 = 0.157 от bbox в каждую
+     * сторону. Чтобы между визуальными краями active и сосeда оставался
+     * корректный gap (~20px по Figma), spaceBetween ≈ bbox*0.157 + 20 ≈ 67-70.
+     */
+    spaceBetween: 70,
+    allowTouchMove: true,
+    centeredSlides: true,
+    centeredSlidesBounds: true,
   },
 }
 
-/*
- * Индекс «центрального» (большого) testimonial-а — это позиция в массиве,
- * а НЕ swiper-active. Для 3 элементов — index 1, для 5 — index 2.
- * Если в JSON будет другое количество, центральная карточка автоматически
- * сдвинется на середину.
- */
-const centerIndex = computed(() => Math.floor(content.items.length / 2))
+function onTestimonialsSwiper(swiper: SwiperInstance) {
+  /*
+   * Пересчёт геометрии после mount + после стабилизации layout.
+   * Без этого на cold-load (медленные шрифты / медленный hydration / lazy
+   * картинки в карточках) Swiper рассчитывает `slidesGrid` из «черновых»
+   * размеров — и активный слайд встаёт не по центру (виден как пустое
+   * место + сдвинутая карточка). `document.fonts.ready` + повторный
+   * `update()` после `requestAnimationFrame` решают проблему.
+   */
+  nextTick(() => {
+    swiper.update()
+  })
+
+  if (typeof window !== 'undefined' && 'fonts' in document) {
+    document.fonts.ready.then(() => {
+      requestAnimationFrame(() => {
+        if (!swiper.destroyed) {
+          swiper.update()
+        }
+      })
+    })
+  }
+}
 
 const navConfig = {
   prevEl: '.home-testimonials__nav--prev',
@@ -61,23 +112,25 @@ const navConfig = {
         <Swiper
           class="home-testimonials__swiper"
           :modules="[Navigation, Pagination]"
+          breakpoints-base="window"
           :slides-per-view="1"
+          :slides-per-group="1"
           :space-between="16"
           :watch-overflow="true"
+          :observer="true"
+          :observe-parents="true"
+          :update-on-window-resize="true"
           :navigation="navConfig"
           :pagination="{ clickable: true, el: '.home-testimonials__pagination' }"
           :breakpoints="swiperBreakpoints"
+          @swiper="onTestimonialsSwiper"
         >
           <SwiperSlide
             v-for="(item, index) in content.items"
             :key="index"
             class="home-testimonials__slide"
-            :class="{ 'home-testimonials__slide--center': index === centerIndex }"
           >
-            <article
-              class="home-testimonials__card"
-              :class="{ 'home-testimonials__card--center': index === centerIndex }"
-            >
+            <article class="home-testimonials__card">
               <div class="home-testimonials__card-top">
                 <img
                   src="/images/home/testimonials/quote.svg"
@@ -147,28 +200,14 @@ const navConfig = {
 @use '@/assets/styles/scss/mixins' as *;
 
 /* ============================================================
- * Section
- * Mobile (Figma 360 — px 16, py 70)
- * Desktop (Figma 1440 — px 60, py 100)
+ * Section — те же отступы, что у Meet Us / Contacts.
  * ============================================================ */
 .home-testimonials {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: to-rem(70) var(--container-pad-mobile);
-  /*
-   * Не режем по X: слайдер ниже выходит отрицательными margin на ширину
-   * секционных паддингов — горизонтальный клип здесь обрезал бы карточки.
-   * Лишний горизонтальный вылет страницы режется у body (main.scss).
-   */
 
   @include section-padding(to-rem(60));
 }
 
-/* ============================================================
- * Decoration: pink glow слева
- * ============================================================ */
 .home-testimonials__glow {
   position: absolute;
   top: to-rem(-250);
@@ -191,14 +230,8 @@ const navConfig = {
   z-index: 1;
   width: 100%;
   max-width: to-rem(1320);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: to-rem(48);
-
-  @include mq($from: desktop) {
-    gap: to-rem(70);
-  }
+  margin-inline: auto;
+  @include section-stack($align: center);
 }
 
 .home-testimonials__title {
@@ -206,11 +239,11 @@ const navConfig = {
 }
 
 /* ============================================================
- * Slider wrapper — relative для позиционирования стрелок
- * До tablet: full-bleed — компенсируем padding секции (margin), чтобы
- * при свайпе трек не резался родительским padding; сам контент колонки
- * задаём padding на `.home-testimonials__swiper` ниже.
- * Упругие ширины слайдов через 100cqi в `.home-testimonials__slide`.
+ * Slider wrapper — относительный контекст для абсолютных стрелок.
+ * Полная калька с HomeMeetUs:
+ *   • <  1024  → full-bleed: компенсируем секционный padding
+ *                отрицательным margin (свайп-зона = ширина viewport).
+ *   • ≥  1280  → padding-inline для места под стрелки навигации.
  * ============================================================ */
 .home-testimonials__slider-wrap {
   position: relative;
@@ -219,91 +252,116 @@ const navConfig = {
   flex-direction: column;
   align-items: center;
   gap: to-rem(32);
-  container-type: inline-size;
-  container-name: testimonials-slider;
 
-  @include mq($until: mobile) {
-    margin-inline: calc(-1 * var(--container-pad-mobile));
-    width: calc(100% + 2 * var(--container-pad-mobile));
+  @include mq($until: tablet) {
+    margin-inline: calc(-1 * var(--container-pad-x));
+    // width: calc(100% + 2 * var(--container-pad-x));
   }
 
-  @include mq($from: mobile, $until: tablet) {
-    margin-inline: calc(-1 * var(--container-pad-tablet));
-    width: calc(100% + 2 * var(--container-pad-tablet));
+  @include mq($from: wide) {
+    padding-inline: var(--container-pad-x);
   }
 }
 
 .home-testimonials__swiper {
   width: 100%;
   box-sizing: border-box;
+}
 
-  /*
-   * Инсет карточки = как у заголовка: та же величина, что padding секции.
-   * Обёртка выше full-bleed, поэтому при свайпе слайды могут заходить
-   * в зону «отступов», не обрезаясь — ширина слайда визуально = колонка.
-   */
-  @include mq($until: mobile) {
-    padding-inline: var(--container-pad-mobile);
-  }
+/*
+ * Wrapper выравнивания:
+ *   • <  1024 → `stretch`: оба слайда (slidesPerView: 2) одной высоты
+ *               по самому высокому — это норма для grid-подобной mobile-сетки.
+ *   • ≥  1024 → `center`: focal-carousel. Слайды РАЗНОЙ высоты по контенту
+ *               (active с line-clamp:6, side с line-clamp:3 → визуально
+ *               отличаются), центрируются по вертикали друг относительно
+ *               друга — как в макете Figma.
+ *               Без этого `stretch` + `height: fit-content` всё равно дал бы
+ *               один visual-bbox у всех слайдов (Swiper-wrapper выставляет
+ *               собственную высоту = max child), и side-карточки выглядели
+ *               бы прижатыми к верху с пустотой снизу.
+ */
+:deep(.swiper-wrapper) {
+  display: flex;
+  align-items: stretch;
 
-  @include mq($from: mobile, $until: tablet) {
-    padding-inline: var(--container-pad-tablet);
-  }
-
-  /*
-   * До tablet: stretch — в одном ряду (2 слайда на 768+) одинаковая высота.
-   * От tablet: center — разная высота центра и боковых (макет только ≥1024).
-   *
-   * justify-content на tablet+: на узкой ширине не трогаем — иначе ломается
-   * translate3d при slidesPerView=1 (см. историю в репо).
-   */
-  :deep(.swiper-wrapper) {
-    align-items: stretch;
-
-    @include mq($from: tablet) {
-      align-items: center;
-      justify-content: center;
-    }
+  @include mq($from: tablet) {
+    align-items: center;
   }
 }
 
-/* Пропорции макета: боковые 350, центр 460 → сумма 1160; два gap по 20 (Swiper spaceBetween). */
-$testimonials-slide-span: 1160;
-$testimonials-gaps-between: to-rem(40);
-
 /* ============================================================
- * Slide
- * До mobile: slidesPerView=1, высота карточки 400 (Figma).
- * mobile–до tablet (768–1023): slidesPerView=2; ряд одной высоты (wrapper stretch).
- * ≥ tablet: упругая ширина; разная высота центра и боковых только здесь.
+ * Slide — focal-carousel pattern (small | BIG | small)
+ * ============================================================
+ *   • <  1024  → ширину задаёт Swiper (slidesPerView=1/2). Высота auto.
+ *   • ≥  1024  → Swiper задаёт ОДИНАКОВУЮ ширину bbox всем слайдам через
+ *                `slidesPerView: 3` (= small в макете). Активный
+ *                расширяется ТОЛЬКО ПО ШИРИНЕ через `transform: scaleX(1.314)`,
+ *                где 1.314 ≈ 460/350 (пропорции big/small из Figma).
+ *                Высота карточек — `fit-content` (по контенту):
+ *                active с line-clamp:6 + footer-CTA естественно выше,
+ *                side с line-clamp:3 — короче. Wrapper align-items: center
+ *                выравнивает их по вертикали — как в макете.
+ *
+ *                Чтобы текст внутри активной карточки не «растягивался»
+ *                по горизонтали из-за parent scaleX, у `.card` ставится
+ *                counter-scale: width = 131.4% от родителя + scaleX(0.761).
+ *                Math: parent_scale (1.314) × child_scale (0.761) = 1, при
+ *                этом CSS-layout текста идёт по реальной ширине 394px →
+ *                строки переносятся правильно.
  * ============================================================ */
-.home-testimonials__slide {
-  height: to-rem(400);
-  display: flex;
+$testimonials-active-scale: 1.314; // 460 / 350 — пропорция big к small по Figma
+$testimonials-active-scale-inverse: calc(1 / 1.314); // ≈ 0.761
 
-  @include mq($from: mobile) {
-    height: auto;
-  }
+.home-testimonials__slide {
+  height: auto;
+  display: flex;
 
   @include mq($from: tablet) {
     box-sizing: border-box;
-    width: calc((100cqi - #{$testimonials-gaps-between}) * 350 / #{$testimonials-slide-span});
-    max-width: to-rem(350);
-    height: auto;
-    // aspect-ratio: 350 / 280;
+    opacity: 0.7;
+    transform-origin: center center;
+    transition:
+      transform var(--transition-base),
+      opacity var(--transition-base);
+    will-change: transform;
   }
 }
 
-.home-testimonials__slide--center {
+.home-testimonials__slide.swiper-slide-active {
   @include mq($from: tablet) {
-    width: calc((100cqi - #{$testimonials-gaps-between}) * 460 / #{$testimonials-slide-span});
-    max-width: to-rem(460);
-    // aspect-ratio: 460 / 352;
+    transform: scaleX($testimonials-active-scale);
+    opacity: 1;
+    z-index: 2;
   }
 }
+
+/* Counter-scale для содержимого активной карточки. */
+.swiper-slide-active .home-testimonials__card {
+  @include mq($from: tablet) {
+    transform: scaleX($testimonials-active-scale-inverse);
+    transform-origin: center center;
+    /* Расширяем CSS-ширину так, чтобы после собственного scaleX(0.761) и
+       родительского scaleX(1.314) визуальная ширина совпала с bbox-визуалом
+       parent (394px на 1280). Это даёт «настоящий» 394-wide layout для
+       контента, без визуального растяжения текста. */
+    width: calc(100% / 0.761);
+    margin-inline: calc((100% - 100% / 0.761) / 2);
+  }
+}
+
+/*
+ * Намеренно НЕ скрываем «дальние» слайды через visibility: hidden:
+ * Swiper меняет классы slide синхронно со стартом transition, и слайд,
+ * который только-только перестал быть `swiper-slide-prev` (уходит за левый
+ * край), мгновенно получал бы `visibility: hidden` ещё в полёте — на глаз
+ * это выглядело как «он не уехал, а исчез». У `.swiper` уже стоит
+ * `overflow: hidden` (из swiper.css), поэтому уехавшие слайды просто
+ * скрываются за краем контейнера сами.
+ */
 
 /* ============================================================
- * Card
+ * Card — оформление общее. На десктопе боковые приглушены.
  * ============================================================ */
 .home-testimonials__card {
   display: flex;
@@ -314,17 +372,16 @@ $testimonials-gaps-between: to-rem(40);
   border: 1px solid var(--color-border-subtle);
   border-radius: var(--radius-xl);
   overflow: hidden;
-  opacity: 1;
 
-  /* На десктопе боковые карточки приглушаем (по Figma). */
+  /*
+   * На десктопе высота — по контенту (`fit-content`). Без этого `display: flex`
+   * родителя (slide / wrapper align-items: stretch) растягивал бы side-карточки
+   * до высоты active (с line-clamp:6) и всё выглядело как одинаковые квадраты.
+   * Сейчас active естественно выше small'ов (3 vs 6 строк текста + footer-CTA),
+   * как и в фокальном паттерне Figma.
+   */
   @include mq($from: tablet) {
-    opacity: 0.7;
-  }
-}
-
-.home-testimonials__card--center {
-  @include mq($from: tablet) {
-    opacity: 1;
+    height: fit-content;
   }
 }
 
@@ -345,8 +402,8 @@ $testimonials-gaps-between: to-rem(40);
 }
 
 /*
- * Текст: на mobile до 8 строк (Figma 280×192h = 8×24).
- * На десктопе — 3 строки на side, 6 строк на center.
+ * Текст: 8 строк до tablet (Figma mobile), 3/6 строк на side/center
+ * на ≥ 1024 (по Figma desktop).
  */
 .home-testimonials__text {
   margin: 0;
@@ -365,7 +422,7 @@ $testimonials-gaps-between: to-rem(40);
   }
 }
 
-.home-testimonials__card--center .home-testimonials__text {
+.swiper-slide-active .home-testimonials__text {
   @include mq($from: tablet) {
     -webkit-line-clamp: 6;
     line-clamp: 6;
@@ -410,8 +467,8 @@ $testimonials-gaps-between: to-rem(40);
 }
 
 /*
- * CTA: на mobile/tablet всегда видна (одна карточка = full content).
- * На десктопе — только у центральной (по Figma).
+ * CTA: видна на всех карточках до 1024 (по Figma mobile),
+ * на ≥ 1024 — только у активной (центральной) карточки.
  */
 .home-testimonials__cta {
   display: inline-flex;
@@ -440,39 +497,39 @@ $testimonials-gaps-between: to-rem(40);
   }
 }
 
-.home-testimonials__card--center .home-testimonials__cta {
+.swiper-slide-active .home-testimonials__cta {
   @include mq($from: tablet) {
     visibility: visible;
   }
 }
 
 /* ============================================================
- * Navigation arrows — только при тройном ряду (≥ tablet, как swiperBreakpoints).
- * На узких ширинах только dots + swipe. При отсутствии overflow — .is-locked.
+ * Navigation arrows — только ≥ 1280 (как в Meet Us).
+ * На 1024-1279 — пагинация + свайп.
  * ============================================================ */
 .home-testimonials__nav {
-  position: absolute;
-  top: 50%;
-  z-index: 2;
   display: none;
   align-items: center;
   justify-content: center;
   width: to-rem(40);
   height: to-rem(40);
-  padding: 0;
+  padding: to-rem(8);
   border: none;
   border-radius: var(--radius-pill);
   background-color: var(--color-bg-subtle);
   color: var(--color-icon-primary);
   cursor: pointer;
   transition: background-color var(--transition-base);
-  transform: translateY(calc(-50% - #{to-rem(24)}));
 
-  @include mq($from: tablet) {
+  @include mq($from: wide) {
     display: inline-flex;
+    position: absolute;
+    top: 50%;
+    transform: translateY(calc(-50% - #{to-rem(24)}));
+    z-index: 2;
   }
 
-  &:hover {
+  &:hover:not(.is-disabled):not(.is-locked) {
     background-color: var(--color-bg-hovered);
   }
 
@@ -487,59 +544,65 @@ $testimonials-gaps-between: to-rem(40);
     pointer-events: none;
   }
 
-  /*
-   * Lock-класс ставит сам Swiper, когда watch-overflow определяет,
-   * что листать нечего. Прячем тогда стрелки даже на десктопе.
-   */
   &.is-locked {
     display: none;
   }
 }
 
 .home-testimonials__nav--prev {
-  left: 0;
+  @include mq($from: wide) {
+    left: 0;
+  }
 }
 
 .home-testimonials__nav--next {
-  right: 0;
+  @include mq($from: wide) {
+    right: 0;
+  }
 }
 
 /* ============================================================
- * Pagination — dots, видны только если есть что листать.
+ * Pagination — Swiper bullets, лочатся когда нечего листать.
+ *
+ * На ≥ 1024 у фокального паттерна (slidesPerView: 3 +
+ * centeredSlidesBounds: true) реальных snap-позиций всего две — active
+ * может быть только slide 1 или slide N-2 (крайние слайды никогда не
+ * становятся центральными). Swiper при этом всё равно рисует bullets
+ * по числу слайдов (4 для нас) и подсвечивает их по indexу slidesGrid:
+ *   activeIndex 1 → bullet[0],
+ *   activeIndex 2 → bullet[2].
+ * Поэтому скрываем bullet[1] и bullet[3] (`:nth-child(2)` и
+ * `:nth-child(4)`) — остаются ровно две точки, обе подсвечиваются как
+ * надо. Если в будущем testimonials станет больше 4 — это правило
+ * проще заменить на кастомный paginator от snapGrid.length.
  * ============================================================ */
 .home-testimonials__pagination {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: to-rem(8);
-  padding-top: to-rem(8);
+  width: 100%;
 
   :deep(.swiper-pagination-bullet) {
     width: to-rem(8);
     height: to-rem(8);
     margin: 0;
-    border-radius: 50%;
-    background-color: var(--color-bg-subtle);
+    background-color: var(--color-text-disabled);
     opacity: 1;
-    cursor: pointer;
+    border-radius: 50%;
     transition: background-color var(--transition-base);
+    cursor: pointer;
   }
 
   :deep(.swiper-pagination-bullet-active) {
     background-color: var(--color-text-primary);
   }
 
-  /*
-   * Когда в Swiper стоит pagination-lock (нечего листать) —
-   * скрываем dots вместе со стрелками.
-   */
-  :deep(.swiper-pagination-lock) {
-    display: none;
+  @include mq($from: tablet) {
+    :deep(.swiper-pagination-bullet:nth-child(2)),
+    :deep(.swiper-pagination-bullet:nth-child(4)) {
+      display: none;
+    }
   }
-}
-
-/* Скрываем сам контейнер пагинации, когда внутри ничего нет. */
-.home-testimonials__slider-wrap:has(.swiper-pagination-lock) .home-testimonials__pagination {
-  display: none;
 }
 </style>
