@@ -279,18 +279,15 @@ function handleInput() {
   align-items: center;
   gap: to-rem(32);
 
-  @include mq($until: mobile) {
-    margin-inline: calc(-1 * var(--container-pad-mobile));
-    width: calc(100% + 2 * var(--container-pad-mobile));
+  /* Full-bleed до wide, возврат места под стрелки только на ≥1280
+     (там же показываются и сами стрелки — см. .home-contacts__nav). */
+  @include mq($until: wide) {
+    margin-inline: calc(-1 * var(--container-pad-x));
+    // width: calc(100% + 2 * var(--container-pad-x));
   }
 
-  @include mq($from: mobile, $until: tablet) {
-    margin-inline: calc(-1 * var(--container-pad-tablet));
-    width: calc(100% + 2 * var(--container-pad-tablet));
-  }
-
-  @include mq($from: tablet) {
-    padding-inline: var(--container-pad-desktop);
+  @include mq($from: wide) {
+    padding-inline: var(--container-pad-x);
   }
 }
 
@@ -298,12 +295,9 @@ function handleInput() {
   width: 100%;
   box-sizing: border-box;
 
-  @include mq($until: mobile) {
-    padding-inline: var(--container-pad-mobile);
-  }
-
-  @include mq($from: mobile, $until: tablet) {
-    padding-inline: var(--container-pad-tablet);
+  /* До wide — full-bleed: инсет совпадает с секционным padding-x. */
+  @include mq($until: wide) {
+    // padding-inline: var(--container-pad-x);
   }
 }
 
@@ -426,7 +420,8 @@ function handleInput() {
 }
 
 /* ============================================================
- * Navigation arrows — только при 4 карточках в ряд (≥ tablet)
+ * Navigation arrows — появляются с ≥1280 (wide), когда у slider-wrap
+ * есть padding-inline=60 под стрелки. На 1024-1279 — full-bleed + dots.
  * ============================================================ */
 .home-contacts__nav {
   display: none;
@@ -444,7 +439,7 @@ function handleInput() {
     background-color var(--transition-base),
     color var(--transition-base);
 
-  @include mq($from: tablet) {
+  @include mq($from: wide) {
     display: inline-flex;
     position: absolute;
     top: to-rem(142.5);
@@ -473,13 +468,13 @@ function handleInput() {
 }
 
 .home-contacts__nav--prev {
-  @include mq($from: tablet) {
+  @include mq($from: wide) {
     left: 0;
   }
 }
 
 .home-contacts__nav--next {
-  @include mq($from: tablet) {
+  @include mq($from: wide) {
     right: 0;
   }
 }
@@ -625,7 +620,7 @@ function handleInput() {
   align-items: center;
   justify-content: center;
   height: to-rem(40);
-  padding: to-rem(8) var(--container-pad-mobile);
+  padding: to-rem(8) to-rem(16);
   background-color: var(--color-bg-inverted);
   color: var(--color-text-inverted);
   border: none;

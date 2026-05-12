@@ -61,8 +61,7 @@ function handleScrollClick() {
   isolation: isolate;
   overflow: hidden;
   /* Hero рисуется flush до верха viewport (под плавающим хедером).
-     .app-main добавляет padding-top: var(--header-offset), компенсируем. */
-  margin-top: calc(-1 * var(--header-offset));
+     padding-top ниже учитывает высоту header-pill — header не наезжает. */
 
   @include section-padding(
     $desktop-inline: to-rem(160),
@@ -80,7 +79,7 @@ function handleScrollClick() {
   @include mq($from: tablet) {
     padding-top: to-rem(280);
     padding-bottom: to-rem(150);
-    padding-inline: var(--container-pad-desktop);
+    /* padding-inline уже задаётся через section-padding → var(--container-pad-x) (60 на ≥1024). */
   }
 }
 

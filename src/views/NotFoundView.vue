@@ -44,25 +44,20 @@ import BaseButton from '@/components/ui/BaseButton.vue'
 /* ============================================================
  * Section root
  * Страница идёт flush до верха viewport (header floating overlay'ит
- * контент сверху) — это включается через router meta.flushTop = true,
- * благодаря чему .app-main отдаёт нам нулевой padding-top (см. main.scss
- * → .app-main--flush). Hero занимает полный 100svh, футер скрыт.
+ * контент сверху). Hero занимает полный 100svh, футер скрыт через
+ * router meta.hideFooter.
  * ============================================================ */
 .not-found {
   position: relative;
   min-height: 100svh;
-  padding: to-rem(24) var(--container-pad-mobile);
+  padding: to-rem(24) var(--container-pad-x);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
 
-  @include mq($from: mobile) {
-    padding-inline: var(--container-pad-tablet);
-  }
-
   @include mq($from: tablet) {
-    padding: to-rem(40) var(--container-pad-desktop);
+    padding-block: to-rem(40);
   }
 }
 

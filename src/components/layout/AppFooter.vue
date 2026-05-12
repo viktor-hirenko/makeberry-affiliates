@@ -145,7 +145,7 @@ const footer = useFooter()
 /* ============================================================
  * Section
  * Mobile  : px 16, pt 70, pb 16, gap 60
- * Tablet  : px 60 (= --container-pad-desktop), pt 80, pb 40, gap 80
+ * Tablet  : px 60 (= --container-pad-x на ≥1024), pt 80, pb 40, gap 80
  *           — на 1024 макетные 150px padding'ов "съедают" 300px ширины,
  *             из-за чего Partners + Awards не помещаются в одну строку.
  *             На tablet поджимаем до 60, чтобы layout соответствовал
@@ -349,7 +349,7 @@ const footer = useFooter()
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: to-rem(8) var(--container-pad-mobile);
+  padding: to-rem(8) to-rem(16);
   background-color: var(--color-bg-surface);
   border: 2px solid var(--color-border-brand);
   border-radius: var(--radius-pill);

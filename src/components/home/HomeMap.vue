@@ -299,7 +299,10 @@ onBeforeUnmount(() => {
 }
 
 .home-map__inner {
-  --container-pad-x-local: var(--container-pad-mobile);
+  /* Локальный паддинг наследует адаптивный --container-pad-x (16/32/60),
+     но на ≥1280 переопределяется до 120 — макет HomeMap-секции хочет
+     более широкий отступ для табов и мини-карты. */
+  --container-pad-x-local: var(--container-pad-x);
 
   display: flex;
   flex-direction: column;
@@ -308,10 +311,6 @@ onBeforeUnmount(() => {
   max-width: var(--container-max);
   margin-inline: auto;
   padding-inline: var(--container-pad-x-local);
-
-  @include mq($from: mobile) {
-    --container-pad-x-local: var(--container-pad-x);
-  }
 
   @include mq($from: wide) {
     --container-pad-x-local: #{to-rem(120)};
@@ -356,7 +355,7 @@ onBeforeUnmount(() => {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: to-rem(8) var(--container-pad-mobile);
+  padding: to-rem(8) to-rem(16);
   background-color: transparent;
   border: 0;
   border-radius: var(--radius-pill);
@@ -554,7 +553,7 @@ onBeforeUnmount(() => {
   width: 100%;
   min-width: 0;
   margin: 0;
-  padding: to-rem(4) var(--container-pad-mobile);
+  padding: to-rem(4) to-rem(16);
   padding-inline: 0;
   list-style: none;
   overflow-x: auto;

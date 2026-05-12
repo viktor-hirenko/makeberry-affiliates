@@ -47,22 +47,18 @@ body {
   flex-direction: column;
 }
 
+/*
+ * Header у нас плавающий (position: fixed/absolute поверх контента),
+ * поэтому <main> идёт flush до верха viewport. Каждая первая
+ * (hero) секция страницы сама задаёт собственный `padding-top`,
+ * который заведомо больше высоты хедера — контент не заезжает.
+ * Отдельный `padding-top: var(--header-offset)` у main больше не нужен.
+ */
 .app-main {
   flex: 1;
   display: flex;
   flex-direction: column;
   min-height: 0;
-
-  @include mq($from: tablet) {
-    padding-top: var(--header-offset);
-  }
-}
-
-/* Hero-страницы (например, 404), где контент идёт flush до верха
- * viewport — header floating поверх. Включается через router meta:
- * { flushTop: true } и биндинг класса в App.vue. */
-.app-main--flush {
-  padding-top: 0;
 }
 
 .section {

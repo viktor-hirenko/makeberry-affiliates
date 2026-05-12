@@ -6,10 +6,6 @@ declare module 'vue-router' {
     title?: string
     /** Скрыть футер на странице (например, на 404). */
     hideFooter?: boolean
-    /** Отменить дефолтный padding-top: var(--header-offset) у <main>.
-     *  Используется для hero-страниц, где контент должен идти flush
-     *  до самого верха viewport (header floating поверх). */
-    flushTop?: boolean
   }
 }
 
@@ -33,14 +29,13 @@ export const router = createRouter({
       path: '/blog',
       name: 'blog',
       component: BlogView,
-      /* Как not-found: hero/glowы до верха viewport под floating header — без pt у main. */
-      meta: { title: 'Blog', flushTop: true },
+      meta: { title: 'Blog' },
     },
     {
       path: '/blog/:slug',
       name: 'article',
       component: ArticleView,
-      meta: { title: 'Article', flushTop: true },
+      meta: { title: 'Article' },
       props: true,
     },
     /* Audience pages: `/affiliates` и `/advertisers` шарят один шаблон
@@ -52,14 +47,14 @@ export const router = createRouter({
       name: 'affiliates',
       component: AudienceView,
       props: { slug: 'affiliates' },
-      meta: { title: 'For Affiliates', flushTop: true },
+      meta: { title: 'For Affiliates' },
     },
     {
       path: '/advertisers',
       name: 'advertisers',
       component: AudienceView,
       props: { slug: 'advertisers' },
-      meta: { title: 'For Advertisers', flushTop: true },
+      meta: { title: 'For Advertisers' },
     },
     {
       path: '/casino/:slug',
@@ -82,7 +77,7 @@ export const router = createRouter({
       path: '/:pathMatch(.*)*',
       name: 'not-found',
       component: NotFoundView,
-      meta: { title: 'Page not found', hideFooter: true, flushTop: true },
+      meta: { title: 'Page not found', hideFooter: true },
     },
   ],
   scrollBehavior(to, _from, saved) {

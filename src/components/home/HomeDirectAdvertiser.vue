@@ -215,18 +215,14 @@ const navConfig = {
   flex-direction: column;
   gap: to-rem(20);
 
-  @include mq($until: mobile) {
-    margin-inline: calc(-1 * var(--container-pad-mobile));
-    width: calc(100% + 2 * var(--container-pad-mobile));
+  /* Full-bleed: см. комментарий в HomeMeetUs. */
+  @include mq($until: tablet) {
+    margin-inline: calc(-1 * var(--container-pad-x));
+    width: calc(100% + 2 * var(--container-pad-x));
   }
 
-  @include mq($from: mobile, $until: tablet) {
-    margin-inline: calc(-1 * var(--container-pad-tablet));
-    width: calc(100% + 2 * var(--container-pad-tablet));
-  }
-
-  @include mq($from: desktop) {
-    padding-inline: var(--container-pad-desktop); /* место под стрелки — только при 4 в ряд */
+  @include mq($from: wide) {
+    padding-inline: var(--container-pad-x); /* место под стрелки на ≥1280 */
     gap: to-rem(32);
   }
 }
@@ -235,12 +231,8 @@ const navConfig = {
   width: 100%;
   box-sizing: border-box;
 
-  @include mq($until: mobile) {
-    padding-inline: var(--container-pad-mobile);
-  }
-
-  @include mq($from: mobile, $until: tablet) {
-    padding-inline: var(--container-pad-tablet);
+  @include mq($until: tablet) {
+    padding-inline: var(--container-pad-x);
   }
 }
 
@@ -357,12 +349,13 @@ const navConfig = {
 }
 
 /* ============================================================
- * Slider arrows — только при 4 карточках в ряд (≥ tablet)
+ * Slider arrows — появляются с ≥1280 (wide), когда у slider-wrap
+ * есть место под padding-inline=60. На 1024-1279 — только swipe + dots.
  * ============================================================ */
 .home-direct__nav {
   display: none;
 
-  @include mq($from: tablet) {
+  @include mq($from: wide) {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -405,13 +398,13 @@ const navConfig = {
 }
 
 .home-direct__nav--prev {
-  @include mq($from: tablet) {
+  @include mq($from: wide) {
     left: 0;
   }
 }
 
 .home-direct__nav--next {
-  @include mq($from: tablet) {
+  @include mq($from: wide) {
     right: 0;
   }
 }

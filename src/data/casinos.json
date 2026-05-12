@@ -31,14 +31,44 @@
             "id": "p2",
             "parts": [
               { "text": "Operating under a Curaçao licence, WinSpirit offers a " },
-              { "text": "stable, scalable product well suited to performance-driven traffic.", "strong": true }
+              {
+                "text": "stable, scalable product well suited to performance-driven traffic.",
+                "strong": true
+              }
             ]
           }
         ],
         "badges": [
-          { "id": "free-spins", "label": "Free spins", "variant": "outlined-brand", "rotate": -6.06, "top": -3.5, "right": 3.81, "mobileTop": -9.75, "mobileLeft": 6.19 },
-          { "id": "cashback", "label": "Cashback", "variant": "brand-fill", "rotate": 5.62, "top": 0.44, "right": 0.22, "mobileTop": -6.5, "mobileLeft": 10.81 },
-          { "id": "tournaments", "label": "Tournaments", "variant": "outlined-bold", "rotate": 8.02, "top": 8.19, "right": 2.88, "mobileTop": 27.44, "mobileLeft": 8.06 }
+          {
+            "id": "free-spins",
+            "label": "Free spins",
+            "variant": "outlined-brand",
+            "rotate": -6.06,
+            "top": -3.5,
+            "right": 3.81,
+            "mobileTop": -9.75,
+            "mobileLeft": 6.19
+          },
+          {
+            "id": "cashback",
+            "label": "Cashback",
+            "variant": "brand-fill",
+            "rotate": 5.62,
+            "top": 0.44,
+            "right": 0.22,
+            "mobileTop": -6.5,
+            "mobileLeft": 10.81
+          },
+          {
+            "id": "tournaments",
+            "label": "Tournaments",
+            "variant": "outlined-bold",
+            "rotate": 8.02,
+            "top": 8.19,
+            "right": 2.88,
+            "mobileTop": 27.44,
+            "mobileLeft": 8.06
+          }
         ]
       },
       "keyHighlights": {
@@ -140,7 +170,12 @@
         },
         "buttons": [
           { "label": "Start Promoting", "href": "/affiliates", "variant": "primary" },
-          { "label": "Visit WinSpirit Casino", "href": "https://winspirit.com", "variant": "tetriary", "external": true }
+          {
+            "label": "Visit WinSpirit Casino",
+            "href": "https://winspirit.com",
+            "variant": "tetriary",
+            "external": true
+          }
         ]
       }
     },
@@ -166,15 +201,47 @@
           {
             "id": "p1",
             "parts": [
-              { "text": "Regular tournaments, interactive game features, and a tiered VIP system", "strong": true },
-              { "text": " keep users active, while strong localisation and flexible payment options support easy scaling across markets." }
+              {
+                "text": "Regular tournaments, interactive game features, and a tiered VIP system",
+                "strong": true
+              },
+              {
+                "text": " keep users active, while strong localisation and flexible payment options support easy scaling across markets."
+              }
             ]
           }
         ],
         "badges": [
-          { "id": "interactive-games", "label": "Interactive games", "variant": "outlined-brand", "rotate": -6.06, "top": -4.44, "right": 4.35, "mobileTop": -9.75, "mobileLeft": 4.19 },
-          { "id": "vip-system", "label": "VIP system", "variant": "brand-fill", "rotate": 5.62, "top": -1, "right": 2.16, "mobileTop": -6.5, "mobileLeft": 10.81 },
-          { "id": "tournaments", "label": "Tournaments", "variant": "outlined-bold", "rotate": 6.78, "top": 6.54, "right": 4.84, "mobileTop": 18.44, "mobileLeft": 8.06 }
+          {
+            "id": "interactive-games",
+            "label": "Interactive games",
+            "variant": "outlined-brand",
+            "rotate": -6.06,
+            "top": -4.44,
+            "right": 4.35,
+            "mobileTop": -9.75,
+            "mobileLeft": 4.19
+          },
+          {
+            "id": "vip-system",
+            "label": "VIP system",
+            "variant": "brand-fill",
+            "rotate": 5.62,
+            "top": -1,
+            "right": 2.16,
+            "mobileTop": -6.5,
+            "mobileLeft": 10.81
+          },
+          {
+            "id": "tournaments",
+            "label": "Tournaments",
+            "variant": "outlined-bold",
+            "rotate": 6.78,
+            "top": 6.54,
+            "right": 4.84,
+            "mobileTop": 18.44,
+            "mobileLeft": 8.06
+          }
         ]
       },
       "keyHighlights": {
@@ -277,7 +344,12 @@
         },
         "buttons": [
           { "label": "Start Promoting", "href": "/affiliates", "variant": "primary" },
-          { "label": "Visit RocketPlay Casino", "href": "https://rocketplay.com", "variant": "tetriary", "external": true }
+          {
+            "label": "Visit RocketPlay Casino",
+            "href": "https://rocketplay.com",
+            "variant": "tetriary",
+            "external": true
+          }
         ]
       }
     },
@@ -312,14 +384,44 @@
             "id": "p2",
             "parts": [
               { "text": "Launched in 2025, LuckyHills offers buyers a key advantage: " },
-              { "text": "a clean player base with mostly first-time users, leading to fewer duplicates, smoother funnels, and higher first-deposit conversion.", "strong": true }
+              {
+                "text": "a clean player base with mostly first-time users, leading to fewer duplicates, smoother funnels, and higher first-deposit conversion.",
+                "strong": true
+              }
             ]
           }
         ],
         "badges": [
-          { "id": "vip-programme", "label": "VIP programme", "variant": "outlined-brand", "rotate": -6.06, "top": -3.06, "right": -0.91, "mobileTop": -9.75, "mobileLeft": 5.06 },
-          { "id": "gamification", "label": "Gamification", "variant": "brand-fill", "rotate": 5.62, "top": 0.44, "right": -1.46, "mobileTop": -6.5, "mobileLeft": 10.81 },
-          { "id": "collectible-rewards", "label": "Collectible rewards", "variant": "outlined-bold", "rotate": 8.44, "top": 9.17, "right": -4.23, "mobileTop": 27.44, "mobileLeft": 5.06 }
+          {
+            "id": "vip-programme",
+            "label": "VIP programme",
+            "variant": "outlined-brand",
+            "rotate": -6.06,
+            "top": -3.06,
+            "right": -0.91,
+            "mobileTop": -9.75,
+            "mobileLeft": 5.06
+          },
+          {
+            "id": "gamification",
+            "label": "Gamification",
+            "variant": "brand-fill",
+            "rotate": 5.62,
+            "top": 0.44,
+            "right": -1.46,
+            "mobileTop": -6.5,
+            "mobileLeft": 10.81
+          },
+          {
+            "id": "collectible-rewards",
+            "label": "Collectible rewards",
+            "variant": "outlined-bold",
+            "rotate": 8.44,
+            "top": 9.17,
+            "right": -4.23,
+            "mobileTop": 27.44,
+            "mobileLeft": 5.06
+          }
         ]
       },
       "keyHighlights": {
@@ -420,7 +522,12 @@
         },
         "buttons": [
           { "label": "Start Promoting", "href": "/affiliates", "variant": "primary" },
-          { "label": "Visit LuckyHills Casino", "href": "https://luckyhills.com", "variant": "tetriary", "external": true }
+          {
+            "label": "Visit LuckyHills Casino",
+            "href": "https://luckyhills.com",
+            "variant": "tetriary",
+            "external": true
+          }
         ]
       }
     }

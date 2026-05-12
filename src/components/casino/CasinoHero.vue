@@ -13,8 +13,7 @@ import type { CasinoHero } from '@/types/content'
  *   stats — column, единая glow-композиция в правом верхнем углу.
  *
  * Hero рисуется flush до верха viewport — header floating оверлеит,
- * поэтому компенсируем `padding-top: var(--header-offset)` глобального
- * <main> через отрицательный `margin-top`.
+ * собственный padding-top секции (см. ниже) уже учитывает высоту хедера.
  */
 interface Props {
   hero: CasinoHero

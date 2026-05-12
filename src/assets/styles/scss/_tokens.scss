@@ -117,11 +117,15 @@
   /* ============================================================
    * Layout
    * ============================================================ */
-  
-  --container-pad-desktop: 60px;
-  --container-pad-tablet: 32px;
-  --container-pad-mobile: 16px;
-  /* Дефолт для миксина `section-padding` (_section-patterns.scss); на mobile переопределяется там же. */
+
+  /* Адаптивный отступ от края контейнера до края viewport.
+     Меняется через media queries ниже:
+       < 768  → 16px
+       ≥ 768  → 32px
+       ≥ 1024 → 60px
+     Используется во всех контейнерных секциях и full-bleed обёртках
+     слайдеров. Намеренно в `px`, а не в `rem`: это layout-токен от
+     края экрана, и он не должен «дышать» вместе с fluid html font-size. */
   --container-pad-x: 16px;
 
   --container-max: #{to-rem(1440)};
@@ -162,6 +166,12 @@
 @include mq($from: mobile) {
   :root {
     --container-pad-x: 32px;
+  }
+}
+
+@include mq($from: tablet) {
+  :root {
+    --container-pad-x: 60px;
   }
 }
 

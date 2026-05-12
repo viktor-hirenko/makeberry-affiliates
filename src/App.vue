@@ -9,7 +9,7 @@ const route = useRoute()
 <template>
   <div class="app-root">
     <AppHeader />
-    <main class="app-main" :class="{ 'app-main--flush': route.meta.flushTop }">
+    <main class="app-main">
       <!-- Обёртка flex:1 — при mode=out-in между leave и enter слот кратко пустой; без flex:1 main мог бы схлопнуться -->
       <div class="app-main__view">
         <RouterView v-slot="{ Component, route }">

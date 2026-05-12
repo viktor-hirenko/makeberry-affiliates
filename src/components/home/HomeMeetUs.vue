@@ -157,18 +157,16 @@ const navConfig = {
   align-items: center;
   gap: to-rem(32);
 
-  @include mq($until: mobile) {
-    margin-inline: calc(-1 * var(--container-pad-mobile));
-    width: calc(100% + 2 * var(--container-pad-mobile));
+  /* Full-bleed: компенсируем секционный padding (var(--container-pad-x))
+     отрицательным margin, инсет возвращаем на .__swiper ниже. */
+  @include mq($until: tablet) {
+    margin-inline: calc(-1 * var(--container-pad-x));
+    // width: calc(100% + 2 * var(--container-pad-x));
   }
 
-  @include mq($from: mobile, $until: tablet) {
-    margin-inline: calc(-1 * var(--container-pad-tablet));
-    width: calc(100% + 2 * var(--container-pad-tablet));
-  }
-
-  @include mq($from: desktop) {
-    padding-inline: var(--container-pad-desktop);
+  /* На ≥1280 возвращаем место под стрелки навигации (60px от края). */
+  @include mq($from: wide) {
+    padding-inline: var(--container-pad-x);
   }
 }
 
@@ -176,12 +174,8 @@ const navConfig = {
   width: 100%;
   box-sizing: border-box;
 
-  @include mq($until: mobile) {
-    padding-inline: var(--container-pad-mobile);
-  }
-
-  @include mq($from: mobile, $until: tablet) {
-    padding-inline: var(--container-pad-tablet);
+  @include mq($until: tablet) {
+    // padding-inline: var(--container-pad-x);
   }
 }
 
@@ -312,7 +306,9 @@ const navConfig = {
 }
 
 /* ============================================================
- * Navigation arrows — только при 3 карточках в ряд (≥ tablet)
+ * Navigation arrows — появляются с ≥1280 (wide), когда у slider-wrap
+ * есть padding-inline=60 под стрелки. На 1024-1279 их прячем — там
+ * full-bleed слайдер с partial-видимостью + dots/swipe (без стрелок).
  * ============================================================ */
 .home-meet-us__nav {
   display: none;
@@ -330,7 +326,7 @@ const navConfig = {
     background-color var(--transition-base),
     color var(--transition-base);
 
-  @include mq($from: tablet) {
+  @include mq($from: wide) {
     display: inline-flex;
     position: absolute;
     /* Центрируем по cover (image-area 200h) — стрелки на уровне лого. */
@@ -361,13 +357,13 @@ const navConfig = {
 }
 
 .home-meet-us__nav--prev {
-  @include mq($from: tablet) {
+  @include mq($from: wide) {
     left: 0;
   }
 }
 
 .home-meet-us__nav--next {
-  @include mq($from: tablet) {
+  @include mq($from: wide) {
     right: 0;
   }
 }

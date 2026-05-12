@@ -23,6 +23,13 @@
       "href": "/casino/luckyhills"
     },
     {
+      "id": "test-extra-partner",
+      "name": "Test Partner",
+      "logoSrc": "/images/home/direct-advertiser/lucky-hills.png",
+      "logoAlt": "Test Partner logo",
+      "href": "/casino/luckyhills"
+    },
+    {
       "id": "your-brand",
       "name": "Your brand could be here",
       "isPlaceholder": true,

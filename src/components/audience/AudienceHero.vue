@@ -16,8 +16,7 @@ import type { PageHeroBlock } from '@/types/content'
  *   rotation -42.08deg, mix-blend luminosity — изображение общее).
  *
  * Hero рисуется flush до верха viewport — header floating оверлеит
- * контент, поэтому компенсируем `padding-top` глобального <main>
- * через `meta.flushTop` в router'е (см. App.vue).
+ * контент, собственный padding-top секции уже учитывает высоту хедера.
  */
 interface Props {
   hero: PageHeroBlock

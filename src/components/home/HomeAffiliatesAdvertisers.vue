@@ -69,7 +69,6 @@ const content = useHomeAffiliatesAdvertisers()
   justify-items: stretch;
   gap: to-rem(60);
   margin-inline: auto;
-  // padding: to-rem(70) var(--container-pad-mobile);
   /*
    * Декорации (sparkle / cursor) намеренно вылезают за карточки
    * через position: absolute + отрицательные top/right/bottom.

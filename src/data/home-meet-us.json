@@ -41,6 +41,20 @@
         { "label": "Prague, Czech Republic" },
         { "label": "Stand A6", "outlined": true }
       ]
+    },
+    {
+      "id": "test-extra-event",
+      "name": "Test Event\n2026",
+      "logoSrc": "/images/home/meet-us/ice-logo.svg",
+      "logoAlt": "Test Event 2026 logo",
+      "logoWidth": 136,
+      "logoHeight": 55,
+      "bgColor": "#832459",
+      "tags": [
+        { "label": "April 1–3" },
+        { "label": "Test, Test City" },
+        { "label": "Stand T1", "outlined": true }
+      ]
     }
   ]
 }

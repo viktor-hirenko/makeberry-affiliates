@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import { nextTick } from 'vue'
-import { Navigation, Pagination } from 'swiper/modules'
+import { nextTick, ref, shallowRef } from 'vue'
+import { Navigation } from 'swiper/modules'
 import type { Swiper as SwiperInstance } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 
 import 'swiper/css'
 import 'swiper/css/navigation'
-import 'swiper/css/pagination'
 
 import BaseIcon from '@/components/ui/BaseIcon.vue'
 import { BREAKPOINT_MOBILE_PX, BREAKPOINT_TABLET_PX } from '@/constants/breakpoints'
@@ -62,17 +61,66 @@ const swiperBreakpoints = {
   },
 }
 
+/**
+ * Кастомный paginator (вместо Swiper Pagination module).
+ *
+ * Зачем не `Pagination` из коробки:
+ *   • Swiper рисует bullets по `slides.length` (= 4 для нас).
+ *   • При `centeredSlidesBounds: true` `snapGrid` Swiper'а имеет
+ *     дубли (`[0, 0, X, X]`), реальных snap-позиций — 2.
+ *     Native bullets оказываются 4, а active подсвечивается по
+ *     индексу slidesGrid (0 → bullet[0], 1 → bullet[2]) — два
+ *     bullet'а никогда не загораются.
+ *   • Любой захардкоженный CSS-хак под 4 слайда сломается, как
+ *     только в `home-testimonials.json` появится 5-й testimonial.
+ *
+ * Своя пагинация:
+ *   • точек = количество УНИКАЛЬНЫХ snap-позиций (с tolerance 0.5px),
+ *   • активная точка = текущая snap-позиция,
+ *   • переход — `swiper.slideTo(slideIdx)`, где slideIdx — первый
+ *     слайд из `slidesGrid`, у которого translate равен выбранному.
+ *
+ * Работает для любого количества testimonials и любых брейкпоинтов.
+ */
+const swiperRef = shallowRef<SwiperInstance | null>(null)
+const uniqueSnaps = ref<number[]>([])
+const currentSnap = ref(0)
+
+const SNAP_TOLERANCE = 0.5
+
+function syncSnaps() {
+  const sw = swiperRef.value
+  if (!sw || sw.destroyed) return
+
+  const grid = sw.snapGrid as number[]
+  const unique: number[] = []
+  for (const v of grid) {
+    if (!unique.some((u) => Math.abs(u - v) < SNAP_TOLERANCE)) unique.push(v)
+  }
+  uniqueSnaps.value = unique
+
+  const currentTranslate = -sw.translate
+  const idx = unique.findIndex((u) => Math.abs(u - currentTranslate) < SNAP_TOLERANCE)
+  currentSnap.value = idx >= 0 ? idx : 0
+}
+
 function onTestimonialsSwiper(swiper: SwiperInstance) {
+  swiperRef.value = swiper
+
+  swiper.on('slideChange', syncSnaps)
+  swiper.on('snapGridLengthChange', syncSnaps)
+  swiper.on('breakpoint', syncSnaps)
+  swiper.on('resize', syncSnaps)
+
   /*
    * Пересчёт геометрии после mount + после стабилизации layout.
-   * Без этого на cold-load (медленные шрифты / медленный hydration / lazy
-   * картинки в карточках) Swiper рассчитывает `slidesGrid` из «черновых»
-   * размеров — и активный слайд встаёт не по центру (виден как пустое
-   * место + сдвинутая карточка). `document.fonts.ready` + повторный
-   * `update()` после `requestAnimationFrame` решают проблему.
+   * Без этого на cold-load (медленные шрифты / lazy-картинки) Swiper
+   * рассчитывает `slidesGrid` из «черновых» размеров — и активный
+   * слайд встаёт не по центру. `document.fonts.ready` решает.
    */
   nextTick(() => {
     swiper.update()
+    syncSnaps()
   })
 
   if (typeof window !== 'undefined' && 'fonts' in document) {
@@ -80,10 +128,22 @@ function onTestimonialsSwiper(swiper: SwiperInstance) {
       requestAnimationFrame(() => {
         if (!swiper.destroyed) {
           swiper.update()
+          syncSnaps()
         }
       })
     })
   }
+}
+
+function goToSnap(idx: number) {
+  const sw = swiperRef.value
+  if (!sw) return
+  const target = uniqueSnaps.value[idx]
+  if (target === undefined) return
+
+  const slidesGrid = sw.slidesGrid as number[]
+  const slideIdx = slidesGrid.findIndex((g) => Math.abs(g - target) < SNAP_TOLERANCE)
+  if (slideIdx >= 0) sw.slideTo(slideIdx)
 }
 
 const navConfig = {
@@ -111,7 +171,7 @@ const navConfig = {
       <div class="home-testimonials__slider-wrap">
         <Swiper
           class="home-testimonials__swiper"
-          :modules="[Navigation, Pagination]"
+          :modules="[Navigation]"
           breakpoints-base="window"
           :slides-per-view="1"
           :slides-per-group="1"
@@ -121,7 +181,6 @@ const navConfig = {
           :observe-parents="true"
           :update-on-window-resize="true"
           :navigation="navConfig"
-          :pagination="{ clickable: true, el: '.home-testimonials__pagination' }"
           :breakpoints="swiperBreakpoints"
           @swiper="onTestimonialsSwiper"
         >
@@ -190,7 +249,24 @@ const navConfig = {
           <BaseIcon name="chevron-right" :size="24" />
         </button>
 
-        <div class="home-testimonials__pagination" aria-hidden="true"></div>
+        <div
+          v-if="uniqueSnaps.length > 1"
+          class="home-testimonials__pagination"
+          role="tablist"
+          aria-label="Testimonials pagination"
+        >
+          <button
+            v-for="(_, i) in uniqueSnaps"
+            :key="i"
+            type="button"
+            role="tab"
+            class="home-testimonials__pagination-bullet"
+            :class="{ 'is-active': i === currentSnap }"
+            :aria-label="`Go to testimonial group ${i + 1}`"
+            :aria-selected="i === currentSnap ? 'true' : 'false'"
+            @click="goToSnap(i)"
+          />
+        </div>
       </div>
     </div>
   </section>
@@ -562,19 +638,9 @@ $testimonials-active-scale-inverse: calc(1 / 1.314); // ≈ 0.761
 }
 
 /* ============================================================
- * Pagination — Swiper bullets, лочатся когда нечего листать.
- *
- * На ≥ 1024 у фокального паттерна (slidesPerView: 3 +
- * centeredSlidesBounds: true) реальных snap-позиций всего две — active
- * может быть только slide 1 или slide N-2 (крайние слайды никогда не
- * становятся центральными). Swiper при этом всё равно рисует bullets
- * по числу слайдов (4 для нас) и подсвечивает их по indexу slidesGrid:
- *   activeIndex 1 → bullet[0],
- *   activeIndex 2 → bullet[2].
- * Поэтому скрываем bullet[1] и bullet[3] (`:nth-child(2)` и
- * `:nth-child(4)`) — остаются ровно две точки, обе подсвечиваются как
- * надо. Если в будущем testimonials станет больше 4 — это правило
- * проще заменить на кастомный paginator от snapGrid.length.
+ * Pagination — кастомный, рендерится во Vue по `uniqueSnaps`.
+ * Количество точек = реальное число snap-позиций для текущего BP,
+ * автоматически масштабируется при добавлении testimonials.
  * ============================================================ */
 .home-testimonials__pagination {
   display: flex;
@@ -582,27 +648,26 @@ $testimonials-active-scale-inverse: calc(1 / 1.314); // ≈ 0.761
   justify-content: center;
   gap: to-rem(8);
   width: 100%;
+}
 
-  :deep(.swiper-pagination-bullet) {
-    width: to-rem(8);
-    height: to-rem(8);
-    margin: 0;
-    background-color: var(--color-text-disabled);
-    opacity: 1;
-    border-radius: 50%;
-    transition: background-color var(--transition-base);
-    cursor: pointer;
-  }
+.home-testimonials__pagination-bullet {
+  width: to-rem(8);
+  height: to-rem(8);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background-color: var(--color-text-disabled);
+  border-radius: 50%;
+  transition: background-color var(--transition-base);
+  cursor: pointer;
 
-  :deep(.swiper-pagination-bullet-active) {
+  &.is-active {
     background-color: var(--color-text-primary);
   }
 
-  @include mq($from: tablet) {
-    :deep(.swiper-pagination-bullet:nth-child(2)),
-    :deep(.swiper-pagination-bullet:nth-child(4)) {
-      display: none;
-    }
+  &:focus-visible {
+    outline: 2px solid var(--color-focus-ring);
+    outline-offset: 2px;
   }
 }
 </style>
