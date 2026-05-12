@@ -117,7 +117,7 @@
   /* ============================================================
    * Layout
    * ============================================================ */
-  --container-content: 1320px;
+  
   --container-pad-desktop: 60px;
   --container-pad-tablet: 32px;
   --container-pad-mobile: 16px;
@@ -132,6 +132,7 @@
   --container-sm: #{to-rem(450)};
 
   --container-default: #{to-rem(1040)};
+  --container-content: #{to-rem(1320)};
   --container-cta: #{to-rem(920)};
 
   /* Floating header */

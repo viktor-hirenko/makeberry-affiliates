@@ -46,8 +46,7 @@ withDefaults(defineProps<ArticleCardProps>(), {
 </template>
 
 <style scoped lang="scss">
-@use '@/assets/styles/scss/media' as *;
-@use '@/assets/styles/scss/units' as *;
+@use '@/assets/styles/scss/mixins' as *;
 
 /* Layout (Figma 2556:1182):
  * Карточка = column, gap 24:

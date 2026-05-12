@@ -38,10 +38,7 @@ const about = useHomeAbout()
 </template>
 
 <style scoped lang="scss">
-@use '@/assets/styles/scss/media' as *;
-@use '@/assets/styles/scss/section-patterns' as *;
-@use '@/assets/styles/scss/typography' as *;
-@use '@/assets/styles/scss/units' as *;
+@use '@/assets/styles/scss/mixins' as *;
 
 /* ============================================================
  * Section
@@ -53,7 +50,6 @@ const about = useHomeAbout()
   flex-direction: column;
   align-items: center;
   gap: to-rem(48);
-  background-color: var(--color-bg-page);
 
   @include section-padding(to-rem(160));
 

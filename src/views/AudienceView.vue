@@ -49,7 +49,6 @@ watch(
 
 <style scoped lang="scss">
 .audience-page {
-  background-color: var(--color-bg-page);
   color: var(--color-text-primary);
   display: flex;
   flex-direction: column;

@@ -1,0 +1,21 @@
+/// Barrel-файл всех SCSS-помощников проекта.
+///
+/// Подключай одним импортом в `<style scoped>` Vue-компонентов:
+///
+///   @use '@/assets/styles/scss/mixins' as *;
+///
+/// Тогда сразу доступны:
+///   • `to-rem()` (units)
+///   • `mq()` (media)
+///   • `font-h2/h3/h4/h5`, `font-section-title`, `font-body-*`, `font-caption-*` (typography)
+///   • `section-padding()`, `slider-container()`, `container()`, `$section-stack-gap` (section-patterns)
+///
+/// Имена не пересекаются между файлами — конфликтов при `as *` нет.
+///
+/// Если нужен лишь один-два миксина — допустим точечный импорт
+/// (например `@use '@/assets/styles/scss/typography' as *`), но единый барреля
+/// предпочтительнее для маркетинговых компонентов.
+@forward 'units';
+@forward 'media';
+@forward 'typography';
+@forward 'section-patterns';

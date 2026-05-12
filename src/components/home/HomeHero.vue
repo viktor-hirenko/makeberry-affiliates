@@ -51,10 +51,7 @@ function handleScrollClick() {
 </template>
 
 <style scoped lang="scss">
-@use '@/assets/styles/scss/media' as *;
-@use '@/assets/styles/scss/section-patterns' as *;
-@use '@/assets/styles/scss/typography' as *;
-@use '@/assets/styles/scss/units' as *;
+@use '@/assets/styles/scss/mixins' as *;
 
 /* ============================================================
  * Section
@@ -63,7 +60,6 @@ function handleScrollClick() {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  background-color: var(--color-bg-page);
   /* Hero рисуется flush до верха viewport (под плавающим хедером).
      .app-main добавляет padding-top: var(--header-offset), компенсируем. */
   margin-top: calc(-1 * var(--header-offset));

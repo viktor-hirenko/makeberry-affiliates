@@ -206,10 +206,7 @@ function stickerStyle(sticker: WhatYouGetCardSticker): Record<string, string> {
 </template>
 
 <style scoped lang="scss">
-@use '@/assets/styles/scss/media' as *;
-@use '@/assets/styles/scss/section-patterns' as *;
-@use '@/assets/styles/scss/typography' as *;
-@use '@/assets/styles/scss/units' as *;
+@use '@/assets/styles/scss/mixins' as *;
 
 /* ============================================================
  * Section
@@ -221,7 +218,6 @@ function stickerStyle(sticker: WhatYouGetCardSticker): Record<string, string> {
  * ============================================================ */
 .wyg {
   position: relative;
-  background-color: var(--color-bg-page);
   overflow-x: clip;
 
   @include section-padding(

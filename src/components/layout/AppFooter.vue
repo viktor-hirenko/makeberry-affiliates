@@ -140,9 +140,7 @@ const footer = useFooter()
 </template>
 
 <style scoped lang="scss">
-@use '@/assets/styles/scss/media' as *;
-@use '@/assets/styles/scss/section-patterns' as *;
-@use '@/assets/styles/scss/units' as *;
+@use '@/assets/styles/scss/mixins' as *;
 
 /* ============================================================
  * Section
@@ -167,10 +165,7 @@ const footer = useFooter()
 }
 
 .app-footer__inner {
-  display: flex;
-  flex-direction: column;
-  gap: to-rem(60);
-
+  @include section-stack($gap-mobile: to-rem(60), $gap-tablet: null);
   @include container(to-rem(1140));
 }
 

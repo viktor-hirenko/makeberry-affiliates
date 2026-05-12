@@ -35,10 +35,7 @@ const content = useHomeBenefits()
 </template>
 
 <style scoped lang="scss">
-@use '@/assets/styles/scss/media' as *;
-@use '@/assets/styles/scss/section-patterns' as *;
-@use '@/assets/styles/scss/typography' as *;
-@use '@/assets/styles/scss/units' as *;
+@use '@/assets/styles/scss/mixins' as *;
 
 /* ============================================================
  * Section
@@ -50,7 +47,6 @@ const content = useHomeBenefits()
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--color-bg-page);
   overflow-x: clip;
 
   @include section-padding(to-rem(120));

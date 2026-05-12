@@ -33,10 +33,7 @@ const previewArticles = computed(() => articles.slice(0, 3))
 </template>
 
 <style scoped lang="scss">
-@use '@/assets/styles/scss/media' as *;
-@use '@/assets/styles/scss/section-patterns' as *;
-@use '@/assets/styles/scss/typography' as *;
-@use '@/assets/styles/scss/units' as *;
+@use '@/assets/styles/scss/mixins' as *;
 
 /* ============================================================
  * Section
@@ -46,7 +43,6 @@ const previewArticles = computed(() => articles.slice(0, 3))
  * ============================================================ */
 .home-blog {
   position: relative;
-  background-color: var(--color-bg-page);
 
   @include section-padding(to-rem(120));
 }
@@ -56,14 +52,7 @@ const previewArticles = computed(() => articles.slice(0, 3))
   width: 100%;
   max-width: to-rem(1320);
   margin-inline: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: to-rem(48);
-
-  @include mq($from: tablet) {
-    gap: to-rem(70);
-  }
+  @include section-stack;
 }
 
 /* ============================================================

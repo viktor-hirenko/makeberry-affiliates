@@ -220,10 +220,7 @@ function handleInput() {
 </template>
 
 <style scoped lang="scss">
-@use '@/assets/styles/scss/media' as *;
-@use '@/assets/styles/scss/section-patterns' as *;
-@use '@/assets/styles/scss/typography' as *;
-@use '@/assets/styles/scss/units' as *;
+@use '@/assets/styles/scss/mixins' as *;
 
 /* ============================================================
  * Section
@@ -234,7 +231,6 @@ function handleInput() {
  * ============================================================ */
 .home-contacts {
   position: relative;
-  background-color: var(--color-bg-page);
 
   @include section-padding(to-rem(60));
 }
@@ -242,17 +238,8 @@ function handleInput() {
 .home-contacts__inner {
   position: relative;
   z-index: 1;
-  width: 100%;
-  max-width: to-rem(1320);
-  margin-inline: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: to-rem(48);
-
-  @include mq($from: tablet) {
-    gap: to-rem(70);
-  }
+  @include section-stack($align: center);
+  @include container(var(--container-content));
 }
 
 .home-contacts__glow {
@@ -602,7 +589,7 @@ function handleInput() {
   width: 100%;
   transition: border-color var(--transition-base);
 
-  @include mq($from: tablet) {
+  @include mq($from: mobile) {
     width: to-rem(450);
   }
 

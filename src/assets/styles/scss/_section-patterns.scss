@@ -21,6 +21,36 @@
 /// Частый вертикальный шаг между блоками внутри секции (не конвертируем автоматически — только там, где уже 48px).
 $section-stack-gap: to-rem(48);
 
+/// Стандартный flex-стек содержимого секции: column-flex с gap, который растёт
+/// от mobile к tablet+. Покрывает большинство `.section__inner`-обёрток
+/// (Home/Casino/Audience). Container/max-width оставляем родителю — это орто.
+///
+/// @param $align       — `align-items`; `null` => не выводится (= flex default `stretch`).
+///                       Используй `center` явно, когда контент центрируется.
+/// @param $gap-mobile  — gap до tablet. По умолчанию 48px.
+/// @param $gap-tablet  — gap с tablet (1024+). По умолчанию 70px.
+///                       `null` => без media-перехода (gap не меняется).
+@mixin section-stack(
+  $align: null,
+  $gap-mobile: to-rem(48),
+  $gap-tablet: to-rem(70)
+) {
+  display: flex;
+  flex-direction: column;
+
+  @if $align != null {
+    align-items: $align;
+  }
+
+  gap: $gap-mobile;
+
+  @if $gap-tablet != null {
+    @include mq($from: tablet) {
+      gap: $gap-tablet;
+    }
+  }
+}
+
 @mixin section-padding(
   $desktop-inline: to-rem(60),
   $mobile-top: to-rem(70),
@@ -44,4 +74,35 @@ $section-stack-gap: to-rem(48);
   width: 100%;
   max-width: $max-width;
   margin-inline: auto;
+}
+
+/// Контейнер для слайдер-секций: full-bleed inside, padding-inline переключается
+/// по брейкпоинтам (desktop/tablet/mobile), детям — flex column с gap.
+///
+/// Используется в DirectAdvertiserSlider, VacanciesSlider, TestimonialsSlider,
+/// TeamSlider, MeetUsSlider. Все они идентичны по обёртке и отличаются только
+/// величиной `gap`.
+///
+/// @param $gap         — базовый gap (desktop/wide). По умолчанию `32px`.
+/// @param $gap-mobile  — gap для < tablet (1024); если не указан — наследует $gap.
+@mixin slider-container($gap: 32px, $gap-mobile: null) {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad-desktop);
+  display: flex;
+  flex-direction: column;
+  gap: $gap;
+
+  @include mq($until: tablet) {
+    padding-inline: var(--container-pad-tablet);
+
+    @if $gap-mobile != null {
+      gap: $gap-mobile;
+    }
+  }
+
+  @include mq($until: mobile) {
+    padding-inline: var(--container-pad-mobile);
+  }
 }

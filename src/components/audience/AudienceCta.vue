@@ -51,9 +51,7 @@ defineProps<Props>()
 </template>
 
 <style scoped lang="scss">
-@use '@/assets/styles/scss/media' as *;
-@use '@/assets/styles/scss/section-patterns' as *;
-@use '@/assets/styles/scss/units' as *;
+@use '@/assets/styles/scss/mixins' as *;
 
 /* ============================================================
  * CTA (Figma 2653:1262 / 2655:1611)
@@ -65,7 +63,6 @@ defineProps<Props>()
  * ============================================================ */
 .audience-cta {
   position: relative;
-  background-color: var(--color-bg-page);
   overflow: clip;
 
   @include section-padding(
@@ -127,17 +124,9 @@ defineProps<Props>()
 .audience-cta__inner {
   position: relative;
   z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   text-align: center;
-  gap: to-rem(40);
-
+  @include section-stack($align: center, $gap-mobile: to-rem(40));
   @include container(var(--container-cta));
-
-  @include mq($from: tablet) {
-    gap: to-rem(70);
-  }
 }
 
 .audience-cta__text {

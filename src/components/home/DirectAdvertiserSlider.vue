@@ -59,7 +59,7 @@ defineProps<{ data: DirectAdvertiserSection }>()
 </template>
 
 <style scoped lang="scss">
-@use '@/assets/styles/scss/media' as *;
+@use '@/assets/styles/scss/mixins' as *;
 
 .direct-advertiser {
   position: relative;
@@ -70,22 +70,7 @@ defineProps<{ data: DirectAdvertiserSection }>()
 .direct-advertiser__inner {
   position: relative;
   z-index: 1;
-  width: 100%;
-  max-width: var(--container-max);
-  margin-inline: auto;
-  padding-inline: var(--container-pad-desktop);
-  display: flex;
-  flex-direction: column;
-  gap: 48px;
-
-  @include mq($until: tablet) {
-    padding-inline: var(--container-pad-tablet);
-    gap: 32px;
-  }
-
-  @include mq($until: mobile) {
-    padding-inline: var(--container-pad-mobile);
-  }
+  @include slider-container($gap: 48px, $gap-mobile: 32px);
 }
 
 .direct-advertiser__slide {

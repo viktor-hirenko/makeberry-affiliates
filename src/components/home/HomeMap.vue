@@ -276,9 +276,7 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped lang="scss">
-@use '@/assets/styles/scss/media' as *;
-@use '@/assets/styles/scss/typography' as *;
-@use '@/assets/styles/scss/units' as *;
+@use '@/assets/styles/scss/mixins' as *;
 
 /* ============================================================
  * Section
@@ -291,7 +289,6 @@ onBeforeUnmount(() => {
   flex-direction: column;
   align-items: stretch;
   gap: to-rem(48);
-  background-color: var(--color-bg-page);
   padding-block: to-rem(70);
   overflow-x: clip;
 

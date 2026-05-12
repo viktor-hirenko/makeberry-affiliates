@@ -139,9 +139,7 @@ function isTextSection(section: ArticleSection): boolean {
 </template>
 
 <style scoped lang="scss">
-@use '@/assets/styles/scss/media' as *;
-@use '@/assets/styles/scss/section-patterns' as *;
-@use '@/assets/styles/scss/units' as *;
+@use '@/assets/styles/scss/mixins' as *;
 
 /* ============================================================
  * Section root
@@ -151,7 +149,6 @@ function isTextSection(section: ArticleSection): boolean {
 .article {
   position: relative;
   padding-block-start: to-rem(160);
-  background-color: var(--color-bg-page);
   overflow: hidden;
 
   @include section-padding(
@@ -211,14 +208,10 @@ function isTextSection(section: ArticleSection): boolean {
   width: 100%;
   max-width: to-rem(1320);
   margin-inline: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: to-rem(48);
+  @include section-stack($align: center, $gap-tablet: to-rem(56));
 
   @include mq($from: tablet) {
     max-width: to-rem(1200);
-    gap: to-rem(56);
   }
 }
 

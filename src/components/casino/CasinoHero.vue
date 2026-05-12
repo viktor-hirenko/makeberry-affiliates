@@ -73,10 +73,7 @@ defineProps<Props>()
 </template>
 
 <style scoped lang="scss">
-@use '@/assets/styles/scss/media' as *;
-@use '@/assets/styles/scss/section-patterns' as *;
-@use '@/assets/styles/scss/typography' as *;
-@use '@/assets/styles/scss/units' as *;
+@use '@/assets/styles/scss/mixins' as *;
 
 /* ============================================================
  * Section
@@ -89,7 +86,6 @@ defineProps<Props>()
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  background-color: var(--color-bg-page);
 
   @include section-padding(
     $mobile-top: to-rem(170),

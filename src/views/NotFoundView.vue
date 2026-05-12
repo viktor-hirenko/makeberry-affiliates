@@ -39,8 +39,7 @@ import BaseButton from '@/components/ui/BaseButton.vue'
 </template>
 
 <style scoped lang="scss">
-@use '@/assets/styles/scss/media' as *;
-@use '@/assets/styles/scss/units' as *;
+@use '@/assets/styles/scss/mixins' as *;
 
 /* ============================================================
  * Section root
@@ -51,7 +50,6 @@ import BaseButton from '@/components/ui/BaseButton.vue'
  * ============================================================ */
 .not-found {
   position: relative;
-  background-color: var(--color-bg-page);
   min-height: 100svh;
   padding: to-rem(24) var(--container-pad-mobile);
   display: flex;

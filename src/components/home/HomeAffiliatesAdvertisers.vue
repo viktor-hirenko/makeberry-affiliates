@@ -54,10 +54,7 @@ const content = useHomeAffiliatesAdvertisers()
 </template>
 
 <style scoped lang="scss">
-@use '@/assets/styles/scss/media' as *;
-@use '@/assets/styles/scss/section-patterns' as *;
-@use '@/assets/styles/scss/typography' as *;
-@use '@/assets/styles/scss/units' as *;
+@use '@/assets/styles/scss/mixins' as *;
 
 /* ============================================================
  * Section
@@ -72,7 +69,6 @@ const content = useHomeAffiliatesAdvertisers()
   justify-items: stretch;
   gap: to-rem(60);
   margin-inline: auto;
-  background-color: var(--color-bg-page);
   // padding: to-rem(70) var(--container-pad-mobile);
   /*
    * Декорации (sparkle / cursor) намеренно вылезают за карточки

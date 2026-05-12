@@ -59,9 +59,7 @@ defineProps<Props>()
 </template>
 
 <style scoped lang="scss">
-@use '@/assets/styles/scss/media' as *;
-@use '@/assets/styles/scss/section-patterns' as *;
-@use '@/assets/styles/scss/units' as *;
+@use '@/assets/styles/scss/mixins' as *;
 
 /* ============================================================
  * Section
@@ -76,7 +74,6 @@ defineProps<Props>()
 .casino-about {
   position: relative;
   overflow-x: clip;
-  background-color: var(--color-bg-page);
 
   @include section-padding(
     $mobile-top: to-rem(190),
@@ -92,10 +89,7 @@ defineProps<Props>()
  * ============================================================ */
 .casino-about__inner {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: to-rem(32);
-
+  @include section-stack($gap-mobile: to-rem(32), $gap-tablet: null);
   @include container(var(--container-default));
 }
 

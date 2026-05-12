@@ -41,10 +41,7 @@ defineProps<Props>()
 </template>
 
 <style scoped lang="scss">
-@use '@/assets/styles/scss/media' as *;
-@use '@/assets/styles/scss/section-patterns' as *;
-@use '@/assets/styles/scss/typography' as *;
-@use '@/assets/styles/scss/units' as *;
+@use '@/assets/styles/scss/mixins' as *;
 
 /* ============================================================
  * Section
@@ -53,22 +50,13 @@ defineProps<Props>()
  * ============================================================ */
 .casino-coop {
   position: relative;
-  background-color: var(--color-bg-page);
 
   @include section-padding($desktop-inline: to-rem(120));
 }
 
 .casino-coop__inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: to-rem(48);
-
+  @include section-stack($align: center);
   @include container(var(--container-2xl));
-
-  @include mq($from: tablet) {
-    gap: to-rem(70);
-  }
 }
 
 /* ============================================================

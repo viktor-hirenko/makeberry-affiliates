@@ -128,10 +128,7 @@ function onLeave(el: Element): void {
 </template>
 
 <style scoped lang="scss">
-@use '@/assets/styles/scss/media' as *;
-@use '@/assets/styles/scss/section-patterns' as *;
-@use '@/assets/styles/scss/typography' as *;
-@use '@/assets/styles/scss/units' as *;
+@use '@/assets/styles/scss/mixins' as *;
 
 /* ============================================================
  * Section
@@ -141,7 +138,6 @@ function onLeave(el: Element): void {
  * ============================================================ */
 .home-faq {
   position: relative;
-  background-color: var(--color-bg-page);
   overflow-x: clip;
 
   @include section-padding(to-rem(230));
@@ -161,14 +157,7 @@ function onLeave(el: Element): void {
   width: 100%;
   max-width: to-rem(1320);
   margin-inline: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: to-rem(48);
-
-  @include mq($from: tablet) {
-    gap: to-rem(70);
-  }
+  @include section-stack;
 }
 
 /* ============================================================

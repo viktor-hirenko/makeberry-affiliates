@@ -134,7 +134,7 @@ const ctaPath = computed(() => props.nav.ctaPath)
 </template>
 
 <style scoped lang="scss">
-@use '@/assets/styles/scss/typography' as *;
+@use '@/assets/styles/scss/mixins' as *;
 
 .mobile-menu {
   position: fixed;
