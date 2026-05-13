@@ -23,7 +23,7 @@ useScrollLock(toRef(props, 'open'))
 
 function findActiveParent(): string | null {
   for (const link of props.nav.links) {
-    if (link.children?.some((child) => route.path.startsWith(child.path))) {
+    if (link.children?.some(child => route.path.startsWith(child.path))) {
       return link.label
     }
   }
@@ -32,10 +32,10 @@ function findActiveParent(): string | null {
 
 watch(
   () => props.open,
-  (open) => {
+  open => {
     if (open) expanded.value = findActiveParent()
   },
-  { immediate: true },
+  { immediate: true }
 )
 
 function isParentExpanded(link: NavLink): boolean {
@@ -88,7 +88,7 @@ const ctaPath = computed(() => props.nav.ctaPath)
               v-if="link.children?.length"
               type="button"
               class="mobile-menu__row mobile-menu__row--toggle"
-              :class="{ 'is-active': isParentExpanded(link) }"
+              :class="{ 'is-expanded': isParentExpanded(link) }"
               :aria-expanded="isParentExpanded(link)"
               @click="toggleSection(link.label)"
             >
@@ -115,7 +115,12 @@ const ctaPath = computed(() => props.nav.ctaPath)
                     :class="{ 'is-active': isChildActive(child.path) }"
                     @click="handleClose"
                   >
-                    {{ child.label }}
+                    <span>{{ child.label }}</span>
+                    <span
+                      v-if="isChildActive(child.path)"
+                      class="mobile-menu__dot"
+                      aria-hidden="true"
+                    />
                   </RouterLink>
                 </li>
               </ul>
@@ -207,10 +212,11 @@ const ctaPath = computed(() => props.nav.ctaPath)
 
 .mobile-menu__row--toggle .base-icon {
   flex-shrink: 0;
+  color: var(--color-text-primary);
   transition: transform var(--transition-base);
 }
 
-.mobile-menu__row--toggle.is-active .base-icon {
+.mobile-menu__row--toggle.is-expanded .base-icon {
   transform: rotate(180deg);
 }
 
@@ -232,24 +238,39 @@ const ctaPath = computed(() => props.nav.ctaPath)
 
 .mobile-menu__sublink {
   @include font-body-s-regular;
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   color: var(--color-text-tertiary);
   text-decoration: none;
   transition: color var(--transition-base);
 
+  > span:first-child {
+    flex: 1 0 0;
+    min-width: 0;
+  }
+
   &:hover,
-  &:focus-visible,
-  &.is-active {
+  &:focus-visible {
     color: var(--color-text-primary);
+  }
+
+  &.is-active {
+    color: var(--color-text-accent);
   }
 }
 
 .mobile-menu__footer {
-  margin-top: 40px;
   display: flex;
+  margin-top: 40px;
+  justify-content: center;
 
   .base-button {
     width: 100%;
+
+    @include mq($from: mobile) {
+      width: auto;
+    }
   }
 }
 
