@@ -63,7 +63,6 @@ defineProps<Props>()
  * ============================================================ */
 .audience-cta {
   position: relative;
-  overflow: clip;
 
   @include section-padding(
     $desktop-inline: to-rem(160),
@@ -79,8 +78,9 @@ defineProps<Props>()
  * ============================================================ */
 .audience-cta__glow {
   position: absolute;
+  width: to-rem(923);
+  height: to-rem(394);
   max-width: unset;
-  height: auto;
   z-index: 0;
   pointer-events: none;
   user-select: none;
@@ -88,14 +88,14 @@ defineProps<Props>()
 
 .audience-cta--affiliates {
   .audience-cta__glow {
-    right: to-rem(-656);
-    bottom: to-rem(-368);
-    width: to-rem(1222);
+    bottom: to-rem(-238);
+    right: to-rem(-447);
 
     @include mq($from: wide) {
-      right: to-rem(-720px);
-      bottom: to-rem(-230);
+      right: to-rem(-736);
+      bottom: to-rem(-206);
       width: to-rem(1222);
+      height: to-rem(521);
     }
   }
 
@@ -107,13 +107,18 @@ defineProps<Props>()
 
 .audience-cta--advertisers {
   .audience-cta__glow {
-    left: to-rem(-576);
-    bottom: to-rem(-448);
-    width: to-rem(1222);
+    right: unset;
+    left: to-rem(-400);
+    bottom: to-rem(-320);
+    width: to-rem(923);
+    height: to-rem(714);
 
     @include mq($from: wide) {
-      left: to-rem(-792px);
+      right: unset;
+      left: to-rem(-792);
       bottom: to-rem(-393);
+      width: to-rem(1222);
+      height: to-rem(946);
     }
   }
 }
@@ -127,6 +132,10 @@ defineProps<Props>()
   text-align: center;
   @include section-stack($align: center, $gap-mobile: to-rem(40));
   @include container(var(--container-cta));
+
+  .audience-cta--affiliates & {
+    max-width: to-rem(970);
+  }
 }
 
 .audience-cta__text {
@@ -153,8 +162,6 @@ defineProps<Props>()
 }
 
 .audience-cta__btn {
-  // align-self: stretch;
-
   @include mq($from: tablet) {
     align-self: center;
   }

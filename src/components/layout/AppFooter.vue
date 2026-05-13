@@ -153,6 +153,7 @@ const footer = useFooter()
  * Desktop : px 150, pt 80, pb 40, gap 100 (как в Figma)
  * ============================================================ */
 .app-footer {
+  z-index: 1;
   background-color: var(--color-bg-surface);
   overflow-x: clip;
 
