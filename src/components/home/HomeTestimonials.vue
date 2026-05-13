@@ -14,6 +14,15 @@ import { useHomeTestimonials } from '@/composables/useContent'
 const content = useHomeTestimonials()
 
 /**
+ * Расстояние между слайдами на desktop focal (≥1024).
+ * Swiper принимает `number` (px) или `string` с `%`: доля от `swiper.size`
+ * пересчитывается при resize/update — см. swiper-core `updateSlides`.
+ * Фиксированные ~70px на узких десктопах (1080–1200) давали слишком широкий
+ * зазор относительно соседних секций; `6.482%` держит пропорцию к ширине трека.
+ */
+const TESTIMONIALS_DESKTOP_SPACE_BETWEEN = '6.482%'
+
+/**
  * Конфиг по брейкпоинтам:
  *  • < 768          → 1 слайд (база `slides-per-view="1"` на компоненте).
  *  • 768 – 1023     → 2 слайда равной ширины (как Meet Us).
@@ -49,12 +58,11 @@ const swiperBreakpoints = {
     slidesPerView: 3,
     slidesPerGroup: 1,
     /*
-     * spaceBetween рассчитан с учётом scale-overlap активного слайда:
-     * active visually расширяется на (1.314 - 1) / 2 = 0.157 от bbox в каждую
-     * сторону. Чтобы между визуальными краями active и сосeда оставался
-     * корректный gap (~20px по Figma), spaceBetween ≈ bbox*0.157 + 20 ≈ 67-70.
+     * Интервал в % от ширины Swiper — масштабируется с viewport без ручного
+     * подбора px на каждую ширину. Визуальный зазор между карточками с учётом
+     * `scaleX(1.314)` на active по-прежнему близок к макету (~20px на 1280+).
      */
-    spaceBetween: 70,
+    spaceBetween: TESTIMONIALS_DESKTOP_SPACE_BETWEEN,
     allowTouchMove: true,
     centeredSlides: true,
     centeredSlidesBounds: true,
@@ -95,12 +103,12 @@ function syncSnaps() {
   const grid = sw.snapGrid as number[]
   const unique: number[] = []
   for (const v of grid) {
-    if (!unique.some((u) => Math.abs(u - v) < SNAP_TOLERANCE)) unique.push(v)
+    if (!unique.some(u => Math.abs(u - v) < SNAP_TOLERANCE)) unique.push(v)
   }
   uniqueSnaps.value = unique
 
   const currentTranslate = -sw.translate
-  const idx = unique.findIndex((u) => Math.abs(u - currentTranslate) < SNAP_TOLERANCE)
+  const idx = unique.findIndex(u => Math.abs(u - currentTranslate) < SNAP_TOLERANCE)
   currentSnap.value = idx >= 0 ? idx : 0
 }
 
@@ -142,7 +150,7 @@ function goToSnap(idx: number) {
   if (target === undefined) return
 
   const slidesGrid = sw.slidesGrid as number[]
-  const slideIdx = slidesGrid.findIndex((g) => Math.abs(g - target) < SNAP_TOLERANCE)
+  const slideIdx = slidesGrid.findIndex(g => Math.abs(g - target) < SNAP_TOLERANCE)
   if (slideIdx >= 0) sw.slideTo(slideIdx)
 }
 
@@ -397,10 +405,16 @@ $testimonials-active-scale-inverse: calc(1 / 1.314); // ≈ 0.761
     box-sizing: border-box;
     opacity: 0.7;
     transform-origin: center center;
-    transition:
-      transform var(--transition-base),
-      opacity var(--transition-base);
-    will-change: transform;
+    /*
+     * Без transition на transform/opacity: плавный scaleX на слайде
+     * конфликтовал с мгновенной сменой line-clamp у текста (3 ↔ 6 строк) —
+     * визуально казалось «перекосом» / растягиванием не в ту плоскость.
+     * Резкая смена состояния при перелистывании выглядит спокойнее.
+     */
+    // transition:
+    //   transform var(--transition-base),
+    //   opacity var(--transition-base);
+    // will-change: transform;
   }
 }
 
