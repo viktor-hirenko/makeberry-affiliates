@@ -1,0 +1,202 @@
+{
+  "slug": "winspirit",
+  "name": "WinSpirit Casino",
+  "hero": {
+    "title": "WinSpirit Casino",
+    "intro": "WinSpirit Casino is a dynamic iGaming brand launched in 2022, designed to deliver a smooth and intuitive player experience from the very first visit.",
+    "logo": {
+      "src": "/images/casino/hero/winspirit.svg",
+      "alt": "WinSpirit Casino logo"
+    },
+    "stats": [
+      {
+        "number": "01",
+        "titleStrong": "High converting",
+        "titleRest": " funnels"
+      },
+      {
+        "number": "02",
+        "titleStrong": "Fast & reliable ",
+        "titleRest": "payments"
+      },
+      {
+        "number": "03",
+        "titleStrong": "Strong retention",
+        "titleRest": " & player value"
+      }
+    ],
+    "cta": {
+      "label": "Get Started",
+      "href": "https://winspirit.com"
+    }
+  },
+  "about": {
+    "paragraphs": [
+      {
+        "id": "p1",
+        "parts": [
+          {
+            "text": "The product is supported by a consistent promotional cycle, including a 100% first deposit bonus, weekly cashback, free spins, and regular tournaments, driving engagement and repeat deposits."
+          }
+        ]
+      },
+      {
+        "id": "p2",
+        "parts": [
+          {
+            "text": "Operating under a Curaçao licence, WinSpirit offers a "
+          },
+          {
+            "text": "stable, scalable product well suited to performance-driven traffic.",
+            "strong": true
+          }
+        ]
+      }
+    ],
+    "badges": [
+      {
+        "id": "free-spins",
+        "label": "Free spins",
+        "variant": "outlined-brand",
+        "rotate": -6.06,
+        "top": -3.5,
+        "right": 3.81,
+        "mobileTop": -9.75,
+        "mobileLeft": 6.19
+      },
+      {
+        "id": "cashback",
+        "label": "Cashback",
+        "variant": "brand-fill",
+        "rotate": 5.62,
+        "top": 0.44,
+        "right": 0.22,
+        "mobileTop": -6.5,
+        "mobileLeft": 10.81
+      },
+      {
+        "id": "tournaments",
+        "label": "Tournaments",
+        "variant": "outlined-bold",
+        "rotate": 8.02,
+        "top": 8.19,
+        "right": 2.88,
+        "mobileTop": 27.44,
+        "mobileLeft": 8.06
+      }
+    ]
+  },
+  "keyHighlights": {
+    "title": "Key Highlights",
+    "decoration": {
+      "src": "/images/casino/key-highlights/sparkle.png",
+      "alt": ""
+    },
+    "cards": [
+      {
+        "id": "geos",
+        "title": "Top GEOs",
+        "description": "CA, IT, DE, SE, NZ, AT, HU, NO, IE, FI, CH, DK, PT"
+      },
+      {
+        "id": "languages",
+        "title": "Languages",
+        "description": "English (including CA, IN), French (including CA), Portuguese (including BR), Spanish, German, Italian"
+      },
+      {
+        "id": "currencies",
+        "title": "Currencies",
+        "description": "EUR, USD, CAD, NZD, INR, BRL"
+      }
+    ]
+  },
+  "payments": {
+    "title": "Payments & Withdrawals",
+    "glow": {
+      "src": "/images/casino/payments/glow.png",
+      "alt": ""
+    },
+    "lists": [
+      {
+        "id": "deposits",
+        "title": "Payment Methods",
+        "items": [
+          "Card Payments: Visa, Mastercard, Apple Pay, Google Pay",
+          "Crypto: Bitcoin, Bitcoin Cash, Litecoin, Ethereum, XRP, DAI, USDC, Tether, TRX, DOGE, WhitePay",
+          "Bank Transfers: Sofort, Noda, Giropay, Open Banking",
+          "Local methods: Interac, POLi, Pix, Boleto",
+          "Vouchers: Neosurf, Flexepin, PaysafeCard, CashtoCode",
+          "E-wallets: MiFinity, PayDo, eZeeWallet, MuchBetter, BPWallet"
+        ]
+      },
+      {
+        "id": "withdrawals",
+        "title": "Withdrawal Methods",
+        "items": [
+          "Card Payments: Visa, Mastercard",
+          "Bank Transfers: Inpay, SEPA, Interac",
+          "Crypto: Bitcoin, Bitcoin Cash, Litecoin, Ethereum, XRP, DAI, USDC, Tether, TRX, DOGE, WhitePay",
+          "E-wallets: MiFinity, PayDo, eZeeWallet",
+          "Interac"
+        ]
+      }
+    ]
+  },
+  "cooperation": {
+    "title": "Cooperation Models",
+    "models": [
+      {
+        "id": "cpa",
+        "title": "CPA",
+        "lines": [
+          "Up to €600 per player",
+          "Access to exclusive campaigns, premium traffic deals, and on-time payouts"
+        ]
+      },
+      {
+        "id": "revenue-share",
+        "title": "Revenue Share",
+        "lines": [
+          "Up to 60% lifetime revenue",
+          "Unlimited earning potential with no negative carryover and no hidden fees"
+        ]
+      },
+      {
+        "id": "hybrid",
+        "title": "Hybrid",
+        "lines": [
+          "Flexible commission plans",
+          "Lower-risk model with long-term value and no hidden fees"
+        ]
+      },
+      {
+        "id": "sub-affiliate",
+        "title": "Sub-Affiliate",
+        "lines": [
+          "5% lifetime revenue"
+        ]
+      }
+    ]
+  },
+  "bottomCta": {
+    "textPrimary": "As a direct advertiser for WinSpirit Casino,",
+    "textSecondary": " we remove unnecessary layers between you and the brand, ensuring faster communication and better conditions for scaling.",
+    "glow": {
+      "src": "/images/casino/cta/glow.png",
+      "alt": ""
+    },
+    "buttons": [
+      {
+        "label": "Start Promoting",
+        "href": "/affiliates",
+        "variant": "primary"
+      },
+      {
+        "label": "Visit WinSpirit Casino",
+        "href": "https://winspirit.com",
+        "variant": "tetriary",
+        "external": true
+      }
+    ]
+  }
+}

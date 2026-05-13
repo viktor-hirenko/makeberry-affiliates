@@ -74,6 +74,31 @@ export interface FooterConfig {
   legal?: string
 }
 
+/**
+ * Все секции главной страницы (локаль `en/pages/home.json`).
+ * Ключи совпадают с публичным API `useHome*()` в `useContent.ts`.
+ */
+export interface HomePageContent {
+  hero: HomeHeroContent
+  about: HomeAboutContent
+  affiliatesAdvertisers: HomeAffiliatesAdvertisersContent
+  directAdvertiser: HomeDirectAdvertiserContent
+  map: HomeMapContent
+  benefits: HomeBenefitsContent
+  testimonials: HomeTestimonialsContent
+  meetUs: HomeMeetUsContent
+  contacts: HomeContactsContent
+  faq: HomeFaqContent
+  vacancies: HomeVacanciesContent
+  blog: HomeBlogContent
+}
+
+export interface NotFoundPageContent {
+  title: string
+  copy: string
+  cta: { label: string; path: string }
+}
+
 export interface HomeHeroContent {
   titleLineLeft: string
   titleLineBottom: string
@@ -371,7 +396,7 @@ export interface HomeVacanciesContent {
 /* ----------------------------------------------------------------
  * Home — Blog
  *
- * Карточки берём напрямую из общего articles.json (первые 3),
+ * Карточки берём напрямую из `useArticles()` (первые 3),
  * чтобы slug/excerpt/image совпадали со страницей блога.
  * Тут только заголовок секции и кнопка "View All".
  * ---------------------------------------------------------------- */

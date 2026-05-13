@@ -1,0 +1,48 @@
+{
+  "slug": "prague-gaming-tech-summit",
+  "title": "Prague Gaming & TECH Summit",
+  "excerpt": "Three days of conversations on retention, compliance, and creative throughput. Our biggest takeaways from the Prague Gaming & TECH Summit floor and what they mean for partner programs.",
+  "imageSrc": "",
+  "imageAlt": "Prague Gaming summit",
+  "date": "2026-02-22",
+  "tags": [
+    "Events",
+    "Networking",
+    "iGaming"
+  ],
+  "heroImageSrc": "",
+  "heroImageAlt": "Prague Gaming summit",
+  "introHtml": "<p>The Prague Gaming & TECH Summit is one of the densest events on the Central European calendar — three days of operator, supplier, and affiliate conversations under one roof. We sent a small team focused on retention, compliance, and creative throughput, and came back with a clear list of priorities.</p><p>This recap is for partners and advertisers who could not be on-site but want a short, opinionated summary of what mattered.</p>",
+  "sections": [
+    {
+      "id": "themes",
+      "title": "What Stood Out on the Floor",
+      "bodyHtml": "<p>The most repeated topics across stages and side rooms were retention economics, the operational cost of compliance, and the speed at which creative is now produced and tested. The market is clearly moving from raw acquisition spend to a more disciplined, lifecycle-driven view of player value.</p><p>Smaller, focused teams that ship fast were consistently outperforming larger, slower setups — a pattern we hear from our own partners every quarter.</p>",
+      "subsections": [
+        {
+          "id": "talking-points",
+          "title": "The most actionable talking points we noted:",
+          "bodyHtml": "<ul><li>Retention curves now matter more than first-deposit volume</li><li>Compliance is becoming a creative constraint, not just a legal one</li><li>Creative testing cycles are dropping from weeks to days</li><li>Data partnerships are replacing one-way reporting</li></ul>"
+        }
+      ]
+    },
+    {
+      "id": "gallery",
+      "images": [
+        {
+          "src": "",
+          "alt": "Main stage panel"
+        },
+        {
+          "src": "",
+          "alt": "Networking lounge"
+        }
+      ]
+    },
+    {
+      "id": "takeaways",
+      "title": "What We Are Bringing Back to Partners",
+      "bodyHtml": "<p>Internally, the summit reinforced three priorities: faster creative iteration with our top affiliates, a tighter feedback loop on player quality data, and clearer compliance guidance baked directly into the partner UI.</p><p>You can already see early steps of this work on <a href=\"https://affiliate.makeberry.com\">affiliate.makeberry.com</a> — and we'll have more to share with active partners in the coming weeks.</p>"
+    }
+  ]
+}

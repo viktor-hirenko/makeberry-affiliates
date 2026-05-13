@@ -11,7 +11,7 @@ import type { CasinoAboutContent } from '@/types/content'
  * - Desktop (Figma 1440 — px 200 / py 150): текст слева (fix-width),
  *   бейджи абсолютом по `top` / `right` относительно __inner (frame 1440).
  *
- * Все координаты берём из data (см. casinos.json) — это позволяет
+ * Все координаты берём из data (см. `en/pages/casinos/*.json`) — это позволяет
  * точно повторить Figma для каждого казино, не плодя per-component CSS.
  */
 interface Props {

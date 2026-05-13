@@ -14,7 +14,7 @@ import { getCasinoBySlug } from '@/composables/useContent'
  * Casino direct-advertiser landing.
  *
  * Маршрут: `/casino/:slug` (slug ∈ winspirit | rocketplay | luckyhills).
- * Контент берётся из `casinos.json` через `getCasinoBySlug`. Если slug
+ * Контент берётся из `en/pages/casinos/<slug>.json` через `getCasinoBySlug`. Если slug
  * неизвестен — редиректим на `/not-found` (используем replace,
  * чтобы пользователь не вернулся "Назад" обратно на пустую страницу).
  *

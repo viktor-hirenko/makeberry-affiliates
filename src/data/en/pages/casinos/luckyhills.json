@@ -1,0 +1,201 @@
+{
+  "slug": "luckyhills",
+  "name": "LuckyHills Casino",
+  "hero": {
+    "title": "LuckyHills Casino",
+    "intro": "LuckyHills is a unique iGaming brand built around the concept of a vibrant Casino City, operating under a Curaçao licence.",
+    "logo": {
+      "src": "/images/casino/hero/luckyhills.png",
+      "alt": "LuckyHills Casino logo"
+    },
+    "stats": [
+      {
+        "number": "01",
+        "titleStrong": "High converting",
+        "titleRest": " funnels"
+      },
+      {
+        "number": "02",
+        "titleStrong": "Fast & reliable ",
+        "titleRest": "payments"
+      },
+      {
+        "number": "03",
+        "titleStrong": "Strong retention",
+        "titleRest": " & player value"
+      }
+    ],
+    "cta": {
+      "label": "Get Started",
+      "href": "https://luckyhills.com"
+    }
+  },
+  "about": {
+    "paragraphs": [
+      {
+        "id": "p1",
+        "parts": [
+          {
+            "text": "The brand leverages gamification – progression systems, collectible rewards, and a structured VIP programme – supported by continuous promotions to drive engagement and repeat deposits."
+          }
+        ]
+      },
+      {
+        "id": "p2",
+        "parts": [
+          {
+            "text": "Launched in 2025, LuckyHills offers buyers a key advantage: "
+          },
+          {
+            "text": "a clean player base with mostly first-time users, leading to fewer duplicates, smoother funnels, and higher first-deposit conversion.",
+            "strong": true
+          }
+        ]
+      }
+    ],
+    "badges": [
+      {
+        "id": "vip-programme",
+        "label": "VIP programme",
+        "variant": "outlined-brand",
+        "rotate": -6.06,
+        "top": -3.06,
+        "right": -0.91,
+        "mobileTop": -9.75,
+        "mobileLeft": 5.06
+      },
+      {
+        "id": "gamification",
+        "label": "Gamification",
+        "variant": "brand-fill",
+        "rotate": 5.62,
+        "top": 0.44,
+        "right": -1.46,
+        "mobileTop": -6.5,
+        "mobileLeft": 10.81
+      },
+      {
+        "id": "collectible-rewards",
+        "label": "Collectible rewards",
+        "variant": "outlined-bold",
+        "rotate": 8.44,
+        "top": 9.17,
+        "right": -4.23,
+        "mobileTop": 27.44,
+        "mobileLeft": 5.06
+      }
+    ]
+  },
+  "keyHighlights": {
+    "title": "Key Highlights",
+    "decoration": {
+      "src": "/images/casino/key-highlights/sparkle.png",
+      "alt": ""
+    },
+    "cards": [
+      {
+        "id": "geos",
+        "title": "Top GEOs",
+        "description": "CA, NZ, DE, AT, DK, FI, NO, CH, SE, HU, IE, IT, PT"
+      },
+      {
+        "id": "languages",
+        "title": "Languages",
+        "description": "English (including CA), French (including CA), Portuguese, Spanish, German, Italian"
+      },
+      {
+        "id": "currencies",
+        "title": "Currencies",
+        "description": "EUR, USD, CAD, NZD"
+      }
+    ]
+  },
+  "payments": {
+    "title": "Payments & Withdrawals",
+    "glow": {
+      "src": "/images/casino/payments/glow.png",
+      "alt": ""
+    },
+    "lists": [
+      {
+        "id": "deposits",
+        "title": "Payment Methods",
+        "items": [
+          "Card Payments: Visa, Mastercard, Apple Pay, Google Pay",
+          "Crypto: Bitcoin, Bitcoin Cash, Litecoin, Ethereum, XRP, DAI, USDC, Tether, Whitepay, Dogecoin, TRX",
+          "Interac (E-Transfer and Request for money)",
+          "Bank Transfers (for Europe): Noda, Open Banking",
+          "Voucher: CashtoCode",
+          "E-wallets: MiFinity"
+        ]
+      },
+      {
+        "id": "withdrawals",
+        "title": "Withdrawal Methods",
+        "items": [
+          "Card Payments: Visa, Mastercard",
+          "Crypto: Bitcoin, Bitcoin Cash, Litecoin, Ethereum, XRP, DAI, USDC, Tether, Whitepay, Dogecoin, TRX",
+          "Bank Transfers: Inpay, SEPA",
+          "Interac"
+        ]
+      }
+    ]
+  },
+  "cooperation": {
+    "title": "Cooperation Models",
+    "models": [
+      {
+        "id": "cpa",
+        "title": "CPA",
+        "lines": [
+          "Up to €600 per player",
+          "Access to exclusive campaigns, premium traffic deals, and on-time payouts"
+        ]
+      },
+      {
+        "id": "revenue-share",
+        "title": "Revenue Share",
+        "lines": [
+          "Up to 60% lifetime revenue",
+          "Unlimited earning potential with no negative carryover and no hidden fees"
+        ]
+      },
+      {
+        "id": "hybrid",
+        "title": "Hybrid",
+        "lines": [
+          "Flexible commission plans",
+          "Lower-risk model with long-term value and no hidden fees"
+        ]
+      },
+      {
+        "id": "sub-affiliate",
+        "title": "Sub-Affiliate",
+        "lines": [
+          "5% lifetime revenue"
+        ]
+      }
+    ]
+  },
+  "bottomCta": {
+    "textPrimary": "As a direct advertiser for LuckyHills Casino,",
+    "textSecondary": " we remove unnecessary layers between you and the brand, ensuring faster communication and better conditions for scaling.",
+    "glow": {
+      "src": "/images/casino/cta/glow.png",
+      "alt": ""
+    },
+    "buttons": [
+      {
+        "label": "Start Promoting",
+        "href": "/affiliates",
+        "variant": "primary"
+      },
+      {
+        "label": "Visit LuckyHills Casino",
+        "href": "https://luckyhills.com",
+        "variant": "tetriary",
+        "external": true
+      }
+    ]
+  }
+}

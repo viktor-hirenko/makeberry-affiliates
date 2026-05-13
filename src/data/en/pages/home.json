@@ -1,0 +1,1080 @@
+{
+  "hero": {
+    "titleLineLeft": "We Make",
+    "titleLineBottom": "You Get a Berry!",
+    "scroll": {
+      "icon": "arrow-down-left",
+      "label": "Scroll to next section",
+      "targetId": "about"
+    },
+    "primaryCta": {
+      "label": "Affiliates",
+      "path": "/affiliates"
+    },
+    "secondaryCta": {
+      "label": "Advertisers",
+      "path": "/advertisers"
+    },
+    "background": {
+      "desktop": "/images/home/hero/bg-desktop.png",
+      "mobile": "/images/home/hero/bg-mobile.png",
+      "alt": ""
+    }
+  },
+  "about": {
+    "title": "About Us",
+    "blocks": [
+      {
+        "id": "01",
+        "parts": [
+          {
+            "text": "Performance ecosystem built for "
+          },
+          {
+            "text": "affiliates and advertisers",
+            "bold": true
+          }
+        ]
+      },
+      {
+        "id": "02",
+        "parts": [
+          {
+            "text": "Founded in 2021"
+          }
+        ]
+      },
+      {
+        "id": "03",
+        "parts": [
+          {
+            "text": "In-house media",
+            "bold": true
+          },
+          {
+            "text": " buying across key traffic channels"
+          }
+        ]
+      },
+      {
+        "id": "04",
+        "parts": [
+          {
+            "text": "Direct advertiser for"
+          },
+          {
+            "text": " 3 iGaming products",
+            "bold": true
+          }
+        ]
+      },
+      {
+        "id": "05",
+        "parts": [
+          {
+            "text": "Makeberry Hub,",
+            "bold": true
+          },
+          {
+            "text": " built to maximise media buyers’ profit"
+          }
+        ]
+      },
+      {
+        "id": "06",
+        "parts": [
+          {
+            "text": "Strong SEO traffic",
+            "bold": true
+          },
+          {
+            "text": " with consistent, high-quality volume"
+          }
+        ]
+      },
+      {
+        "id": "07",
+        "parts": [
+          {
+            "text": "Portfolio of exclusive, "
+          },
+          {
+            "text": "high-converting brands",
+            "bold": true
+          }
+        ]
+      },
+      {
+        "id": "08",
+        "parts": [
+          {
+            "text": "Fully focused on "
+          },
+          {
+            "text": "iGaming",
+            "bold": true
+          }
+        ]
+      }
+    ],
+    "image": {
+      "src": "/images/home/about/pendant.png",
+      "alt": "Makeberry Affiliates pendant"
+    }
+  },
+  "affiliatesAdvertisers": {
+    "cards": [
+      {
+        "id": "affiliates",
+        "title": "For Affiliates",
+        "description": "Select premium offers with lucrative payouts that align perfectly with your traffic. Say goodbye to tedious negotiations and the hassle of managing financial and statistical matters. Simply focus on driving traffic, and let our Gaming platform handle everything else seamlessly.",
+        "primaryCta": {
+          "label": "Affiliates",
+          "path": "/affiliates"
+        },
+        "secondaryCta": {
+          "label": "Sign Up",
+          "path": "/sign-up"
+        },
+        "decoration": {
+          "src": "/images/home/affiliates-advertisers/sparkle.png",
+          "alt": "Sparkle decoration"
+        }
+      },
+      {
+        "id": "advertisers",
+        "title": "For Advertisers",
+        "description": "Entice authentic players to your offerings by tapping into the most suitable traffic channels. Trusted by leading SEO sites, media agencies, and renowned brands in the Gaming realm, our platform ensures unparalleled exposure for your casino and betting brands.",
+        "primaryCta": {
+          "label": "Advertisers",
+          "path": "/advertisers"
+        },
+        "secondaryCta": {
+          "label": "Sign Up",
+          "path": "/sign-up"
+        },
+        "decoration": {
+          "src": "/images/home/affiliates-advertisers/cursor.png",
+          "alt": "Cursor click decoration"
+        }
+      }
+    ]
+  },
+  "directAdvertiser": {
+    "title": "Direct Advertiser",
+    "partners": [
+      {
+        "id": "rocket-play",
+        "name": "RocketPlay Casino",
+        "logoSrc": "/images/home/direct-advertiser/rocket-play.png",
+        "logoAlt": "RocketPlay Casino logo",
+        "href": "/casino/rocketplay"
+      },
+      {
+        "id": "win-spirit",
+        "name": "WinSpirit Casino",
+        "logoSrc": "/images/home/direct-advertiser/win-spirit.png",
+        "logoAlt": "WinSpirit Casino logo",
+        "href": "/casino/winspirit"
+      },
+      {
+        "id": "lucky-hills",
+        "name": "LuckyHills Casino",
+        "logoSrc": "/images/home/direct-advertiser/lucky-hills.png",
+        "logoAlt": "LuckyHills Casino logo",
+        "href": "/casino/luckyhills"
+      },
+      {
+        "id": "test-extra-partner",
+        "name": "Test Partner",
+        "logoSrc": "/images/home/direct-advertiser/lucky-hills.png",
+        "logoAlt": "Test Partner logo",
+        "href": "/casino/luckyhills"
+      },
+      {
+        "id": "your-brand",
+        "name": "Your brand could be here",
+        "isPlaceholder": true,
+        "placeholderLabel": "Your brand could be here"
+      }
+    ],
+    "cooperation": [
+      {
+        "id": "sub-affiliate",
+        "title": "Sub Affiliate",
+        "description": "Start with 5% by default"
+      },
+      {
+        "id": "fix-revshare",
+        "title": "Fix RevShare",
+        "description": "Start with 30% by default"
+      },
+      {
+        "id": "revenue-share",
+        "title": "Revenue Share",
+        "description": "Get up to 65% casino income (based on NGR)"
+      },
+      {
+        "id": "hybrid",
+        "title": "Hybrid",
+        "description": "CPA $150+ with RevShare 30%+"
+      }
+    ],
+    "cta": {
+      "title": "Ready to start?",
+      "button": {
+        "label": "Become a partner",
+        "path": "/contact"
+      }
+    },
+    "glow": {
+      "src": "/images/home/direct-advertiser/glow.png",
+      "alt": ""
+    }
+  },
+  "map": {
+    "title": "Our Map",
+    "tabs": [
+      {
+        "id": "all",
+        "label": "All"
+      },
+      {
+        "id": "tier-1",
+        "label": "Tier 1"
+      },
+      {
+        "id": "tier-2",
+        "label": "Tier 2"
+      },
+      {
+        "id": "tier-3",
+        "label": "Tier 3"
+      }
+    ],
+    "countries": [
+      {
+        "code": "US",
+        "name": "United States",
+        "tier": 1,
+        "offers": 124
+      },
+      {
+        "code": "CA",
+        "name": "Canada",
+        "tier": 1,
+        "offers": 100
+      },
+      {
+        "code": "GB",
+        "name": "United Kingdom",
+        "tier": 1,
+        "offers": 96
+      },
+      {
+        "code": "IE",
+        "name": "Ireland",
+        "tier": 1,
+        "offers": 38
+      },
+      {
+        "code": "DE",
+        "name": "Germany",
+        "tier": 1,
+        "offers": 88
+      },
+      {
+        "code": "FR",
+        "name": "France",
+        "tier": 1,
+        "offers": 72
+      },
+      {
+        "code": "IT",
+        "name": "Italy",
+        "tier": 1,
+        "offers": 64
+      },
+      {
+        "code": "ES",
+        "name": "Spain",
+        "tier": 1,
+        "offers": 58
+      },
+      {
+        "code": "PT",
+        "name": "Portugal",
+        "tier": 1,
+        "offers": 32
+      },
+      {
+        "code": "NL",
+        "name": "Netherlands",
+        "tier": 1,
+        "offers": 46
+      },
+      {
+        "code": "BE",
+        "name": "Belgium",
+        "tier": 1,
+        "offers": 28
+      },
+      {
+        "code": "CH",
+        "name": "Switzerland",
+        "tier": 1,
+        "offers": 30
+      },
+      {
+        "code": "AT",
+        "name": "Austria",
+        "tier": 1,
+        "offers": 24
+      },
+      {
+        "code": "SE",
+        "name": "Sweden",
+        "tier": 1,
+        "offers": 42
+      },
+      {
+        "code": "NO",
+        "name": "Norway",
+        "tier": 1,
+        "offers": 36
+      },
+      {
+        "code": "DK",
+        "name": "Denmark",
+        "tier": 1,
+        "offers": 34
+      },
+      {
+        "code": "FI",
+        "name": "Finland",
+        "tier": 1,
+        "offers": 30
+      },
+      {
+        "code": "AU",
+        "name": "Australia",
+        "tier": 1,
+        "offers": 78
+      },
+      {
+        "code": "NZ",
+        "name": "New Zealand",
+        "tier": 1,
+        "offers": 26
+      },
+      {
+        "code": "JP",
+        "name": "Japan",
+        "tier": 1,
+        "offers": 54
+      },
+      {
+        "code": "PL",
+        "name": "Poland",
+        "tier": 2,
+        "offers": 48
+      },
+      {
+        "code": "CZ",
+        "name": "Czechia",
+        "tier": 2,
+        "offers": 22
+      },
+      {
+        "code": "SK",
+        "name": "Slovakia",
+        "tier": 2,
+        "offers": 18
+      },
+      {
+        "code": "HU",
+        "name": "Hungary",
+        "tier": 2,
+        "offers": 24
+      },
+      {
+        "code": "RO",
+        "name": "Romania",
+        "tier": 2,
+        "offers": 30
+      },
+      {
+        "code": "BG",
+        "name": "Bulgaria",
+        "tier": 2,
+        "offers": 20
+      },
+      {
+        "code": "HR",
+        "name": "Croatia",
+        "tier": 2,
+        "offers": 16
+      },
+      {
+        "code": "GR",
+        "name": "Greece",
+        "tier": 2,
+        "offers": 28
+      },
+      {
+        "code": "EE",
+        "name": "Estonia",
+        "tier": 2,
+        "offers": 12
+      },
+      {
+        "code": "LV",
+        "name": "Latvia",
+        "tier": 2,
+        "offers": 12
+      },
+      {
+        "code": "LT",
+        "name": "Lithuania",
+        "tier": 2,
+        "offers": 14
+      },
+      {
+        "code": "MX",
+        "name": "Mexico",
+        "tier": 2,
+        "offers": 60
+      },
+      {
+        "code": "BR",
+        "name": "Brazil",
+        "tier": 2,
+        "offers": 92
+      },
+      {
+        "code": "AR",
+        "name": "Argentina",
+        "tier": 2,
+        "offers": 44
+      },
+      {
+        "code": "ZA",
+        "name": "South Africa",
+        "tier": 2,
+        "offers": 38
+      },
+      {
+        "code": "IL",
+        "name": "Israel",
+        "tier": 2,
+        "offers": 22
+      },
+      {
+        "code": "AE",
+        "name": "United Arab Emirates",
+        "tier": 2,
+        "offers": 36
+      },
+      {
+        "code": "SA",
+        "name": "Saudi Arabia",
+        "tier": 2,
+        "offers": 30
+      },
+      {
+        "code": "TR",
+        "name": "Türkiye",
+        "tier": 2,
+        "offers": 50
+      },
+      {
+        "code": "SG",
+        "name": "Singapore",
+        "tier": 2,
+        "offers": 24
+      },
+      {
+        "code": "UA",
+        "name": "Ukraine",
+        "tier": 3,
+        "offers": 32
+      },
+      {
+        "code": "GE",
+        "name": "Georgia",
+        "tier": 3,
+        "offers": 12
+      },
+      {
+        "code": "MN",
+        "name": "Mongolia",
+        "tier": 3,
+        "offers": 8
+      },
+      {
+        "code": "IN",
+        "name": "India",
+        "tier": 3,
+        "offers": 86
+      },
+      {
+        "code": "ID",
+        "name": "Indonesia",
+        "tier": 3,
+        "offers": 64
+      },
+      {
+        "code": "PH",
+        "name": "Philippines",
+        "tier": 3,
+        "offers": 42
+      },
+      {
+        "code": "VN",
+        "name": "Vietnam",
+        "tier": 3,
+        "offers": 38
+      },
+      {
+        "code": "TH",
+        "name": "Thailand",
+        "tier": 3,
+        "offers": 36
+      },
+      {
+        "code": "MY",
+        "name": "Malaysia",
+        "tier": 3,
+        "offers": 28
+      },
+      {
+        "code": "BD",
+        "name": "Bangladesh",
+        "tier": 3,
+        "offers": 22
+      },
+      {
+        "code": "PK",
+        "name": "Pakistan",
+        "tier": 3,
+        "offers": 26
+      },
+      {
+        "code": "EG",
+        "name": "Egypt",
+        "tier": 3,
+        "offers": 30
+      },
+      {
+        "code": "MA",
+        "name": "Morocco",
+        "tier": 3,
+        "offers": 18
+      },
+      {
+        "code": "NG",
+        "name": "Nigeria",
+        "tier": 3,
+        "offers": 24
+      },
+      {
+        "code": "KE",
+        "name": "Kenya",
+        "tier": 3,
+        "offers": 16
+      },
+      {
+        "code": "CO",
+        "name": "Colombia",
+        "tier": 3,
+        "offers": 32
+      },
+      {
+        "code": "PE",
+        "name": "Peru",
+        "tier": 3,
+        "offers": 22
+      },
+      {
+        "code": "CL",
+        "name": "Chile",
+        "tier": 3,
+        "offers": 28
+      },
+      {
+        "code": "EC",
+        "name": "Ecuador",
+        "tier": 3,
+        "offers": 14
+      },
+      {
+        "code": "UY",
+        "name": "Uruguay",
+        "tier": 3,
+        "offers": 10
+      }
+    ]
+  },
+  "benefits": {
+    "title": "Our Benefits",
+    "cards": [
+      {
+        "number": "01",
+        "title": "High-Performing Funnels",
+        "description": "Achieve conversion and FTD rates above market averages with streamlined registration and fast deposit flows."
+      },
+      {
+        "number": "02",
+        "title": "Real-Time Performance Tracking",
+        "description": "Gain full visibility and control over your traffic with accurate live data and intuitive reporting tools."
+      },
+      {
+        "number": "03",
+        "title": "Dedicated Support",
+        "description": "Work with an experienced account manager focused on improving results, resolving issues quickly, and scaling your campaigns."
+      },
+      {
+        "number": "04",
+        "title": "Flexible Commission Structures",
+        "description": "Choose CPA, RevShare up to 60%, or hybrid models tailored to your traffic and growth strategy."
+      },
+      {
+        "number": "05",
+        "title": "Strong Player Retention",
+        "description": "Increase player lifetime value with fast deposits, seamless UX, and retention-focused mechanics."
+      },
+      {
+        "number": "06",
+        "title": "No Negative Carryover",
+        "description": "Start each month with a clean balance and no carried-over losses."
+      },
+      {
+        "number": "07",
+        "title": "Fast & Secure Payments",
+        "description": "Receive reliable payouts on time, with no hidden fees or delays."
+      },
+      {
+        "number": "08",
+        "title": "Exclusive Promotional Campaigns",
+        "description": "Boost engagement and long-term retention with VIP rewards, loyalty programmes, tournaments, and gamified mechanics."
+      }
+    ]
+  },
+  "testimonials": {
+    "title": "Testimonials",
+    "items": [
+      {
+        "author": "Affiverse Media",
+        "text": "Working with Makeberry this 2025 has proved satisfying for Affiverse as the brand has grown immensely. The relationship with their team has been amazing. Makeberry is leaving its mark on the iGaming industry as they have shown to be more than just an agency",
+        "ctaHref": "https://affiversemedia.com"
+      },
+      {
+        "author": "iGB Affiliate",
+        "text": "Working with Makeberry this 2025 has proved satisfying for Affiverse as the brand has grown immensely. The relationship with their team has been amazing. Makeberry is leaving its mark on the iGaming industry as they have shown to be more than just an agency",
+        "ctaHref": "https://igbaffiliate.com"
+      },
+      {
+        "author": "SBC Media",
+        "text": "Working with Makeberry this 2025 has proved satisfying for Affiverse as the brand has grown immensely. The relationship with their team has been amazing. Makeberry is leaving its mark on the iGaming industry as they have shown to be more than just an agency",
+        "ctaHref": "https://sbcnews.co.uk"
+      },
+      {
+        "author": "Test Partner",
+        "text": "Working with Makeberry this 2025 has proved satisfying for Affiverse as the brand has grown immensely. The relationship with their team has been amazing. Makeberry is leaving its mark on the iGaming industry as they have shown to be more than just an agency",
+        "ctaHref": "https://example.com"
+      }
+    ]
+  },
+  "meetUs": {
+    "title": "Meet Us",
+    "items": [
+      {
+        "id": "ice-barcelona-2026",
+        "name": "ICE Barcelona\n2026",
+        "logoSrc": "/images/home/meet-us/ice-logo.svg",
+        "logoAlt": "ICE Barcelona 2026 logo",
+        "logoWidth": 136,
+        "logoHeight": 55,
+        "bgColor": "#5d2483",
+        "tags": [
+          {
+            "label": "January 19–21"
+          },
+          {
+            "label": "Spain, Barcelona"
+          },
+          {
+            "label": "Stand B12",
+            "outlined": true
+          }
+        ]
+      },
+      {
+        "id": "sbc-summit-rio-2026",
+        "name": "SBC Summit Rio\n2026",
+        "logoSrc": "/images/home/meet-us/sbc-logo.svg",
+        "logoAlt": "SBC Summit Rio 2026 logo",
+        "logoWidth": 132,
+        "logoHeight": 55,
+        "bgColor": "#248375",
+        "tags": [
+          {
+            "label": "March 3–5"
+          },
+          {
+            "label": "Brazil, Rio de Janeiro"
+          }
+        ]
+      },
+      {
+        "id": "prague-gaming-tech-summit-2026",
+        "name": "Prague Gaming & TECH Summit 2026",
+        "logoSrc": "/images/home/meet-us/prague-logo.svg",
+        "logoAlt": "Prague Gaming & TECH Summit 2026 logo",
+        "logoWidth": 137,
+        "logoHeight": 106,
+        "bgColor": "#3a2483",
+        "tags": [
+          {
+            "label": "March 24–25"
+          },
+          {
+            "label": "Prague, Czech Republic"
+          },
+          {
+            "label": "Stand A6",
+            "outlined": true
+          }
+        ]
+      },
+      {
+        "id": "test-extra-event",
+        "name": "Test Event\n2026",
+        "logoSrc": "/images/home/meet-us/ice-logo.svg",
+        "logoAlt": "Test Event 2026 logo",
+        "logoWidth": 136,
+        "logoHeight": 55,
+        "bgColor": "#832459",
+        "tags": [
+          {
+            "label": "April 1–3"
+          },
+          {
+            "label": "Test, Test City"
+          },
+          {
+            "label": "Stand T1",
+            "outlined": true
+          }
+        ]
+      }
+    ]
+  },
+  "contacts": {
+    "title": "Contacts",
+    "glow": {
+      "src": "/images/decorations/glow.png",
+      "alt": ""
+    },
+    "items": [
+      {
+        "id": "valentyn-halchuk",
+        "name": "Valentyn\nHalchuk",
+        "position": "Head of Makeberry BizDev",
+        "photoSrc": "/images/home/contacts/valentyn-halchuk.png",
+        "photoAlt": "Valentyn Halchuk",
+        "photoObjectPosition": "center top",
+        "socials": [
+          {
+            "type": "telegram",
+            "href": "https://t.me/valentyn_halchuk",
+            "label": "Telegram"
+          },
+          {
+            "type": "email",
+            "href": "mailto:valentyn@makeberry.com",
+            "label": "Email"
+          }
+        ],
+        "verifyTokens": [
+          "@valentyn_halchuk",
+          "valentyn@makeberry.com"
+        ]
+      },
+      {
+        "id": "roman-yakubovskyi",
+        "name": "Roman\nYakubovskyi",
+        "position": "Makeberry HUB Team Lead",
+        "photoSrc": "/images/home/contacts/roman-yakubovskyi.png",
+        "photoAlt": "Roman Yakubovskyi",
+        "photoObjectPosition": "center top",
+        "socials": [
+          {
+            "type": "telegram",
+            "href": "https://t.me/roman_yakubovskyi",
+            "label": "Telegram"
+          },
+          {
+            "type": "email",
+            "href": "mailto:roman.y@makeberry.com",
+            "label": "Email"
+          }
+        ],
+        "verifyTokens": [
+          "@roman_yakubovskyi",
+          "roman.y@makeberry.com"
+        ]
+      },
+      {
+        "id": "alona-didkivska",
+        "name": "Alona\nDidkivska",
+        "position": "Sales Team Lead",
+        "photoSrc": "/images/home/contacts/alona-didkivska.png",
+        "photoAlt": "Alona Didkivska",
+        "photoObjectPosition": "center top",
+        "socials": [
+          {
+            "type": "telegram",
+            "href": "https://t.me/alona_didkivska",
+            "label": "Telegram"
+          },
+          {
+            "type": "email",
+            "href": "mailto:alona@makeberry.com",
+            "label": "Email"
+          }
+        ],
+        "verifyTokens": [
+          "@alona_didkivska",
+          "alona@makeberry.com"
+        ]
+      },
+      {
+        "id": "serhii-solodchuk",
+        "name": "Serhii\nSolodchuk",
+        "position": "Influence Team Lead",
+        "photoSrc": "/images/home/contacts/serhii-solodchuk.png",
+        "photoAlt": "Serhii Solodchuk",
+        "photoObjectPosition": "center top",
+        "socials": [
+          {
+            "type": "telegram",
+            "href": "https://t.me/serhii_solodchuk",
+            "label": "Telegram"
+          },
+          {
+            "type": "email",
+            "href": "mailto:serhii@makeberry.com",
+            "label": "Email"
+          }
+        ],
+        "verifyTokens": [
+          "@serhii_solodchuk",
+          "serhii@makeberry.com"
+        ]
+      },
+      {
+        "id": "roman-hromov",
+        "name": "Roman\nHromov",
+        "position": "Head of Makeberry Affiliate",
+        "photoSrc": "/images/home/contacts/roman-hromov.png",
+        "photoAlt": "Roman Hromov",
+        "photoObjectPosition": "center top",
+        "socials": [
+          {
+            "type": "telegram",
+            "href": "https://t.me/roman_hromov",
+            "label": "Telegram"
+          },
+          {
+            "type": "email",
+            "href": "mailto:roman.h@makeberry.com",
+            "label": "Email"
+          }
+        ],
+        "verifyTokens": [
+          "@roman_hromov",
+          "@roman",
+          "roman.h@makeberry.com"
+        ]
+      },
+      {
+        "id": "kateryna-rybka",
+        "name": "Kateryna\nRybka",
+        "position": "Direct Adv Team Lead",
+        "photoSrc": "/images/home/contacts/kateryna-rybka.png",
+        "photoAlt": "Kateryna Rybka",
+        "photoObjectPosition": "center top",
+        "socials": [
+          {
+            "type": "telegram",
+            "href": "https://t.me/kateryna_rybka",
+            "label": "Telegram"
+          },
+          {
+            "type": "email",
+            "href": "mailto:kateryna@makeberry.com",
+            "label": "Email"
+          }
+        ],
+        "verifyTokens": [
+          "@kateryna_rybka",
+          "kateryna@makeberry.com"
+        ]
+      },
+      {
+        "id": "anna-tian",
+        "name": "Anna\nTian",
+        "position": "PR Makeberry Affiliate Team Lead",
+        "photoSrc": "/images/home/contacts/anna-tian.png",
+        "photoAlt": "Anna Tian",
+        "photoObjectPosition": "center top",
+        "socials": [
+          {
+            "type": "telegram",
+            "href": "https://t.me/anna_tian",
+            "label": "Telegram"
+          },
+          {
+            "type": "email",
+            "href": "mailto:anna@makeberry.com",
+            "label": "Email"
+          }
+        ],
+        "verifyTokens": [
+          "@anna_tian",
+          "anna@makeberry.com"
+        ]
+      },
+      {
+        "id": "oleksandr-kulyk",
+        "name": "Oleksandr\nKulyk",
+        "position": "VP of Makeberry Affiliate & BizDev",
+        "photoSrc": "/images/home/contacts/oleksandr-kulyk.png",
+        "photoAlt": "Oleksandr Kulyk",
+        "photoObjectPosition": "center top",
+        "socials": [
+          {
+            "type": "telegram",
+            "href": "https://t.me/oleksandr_kulyk",
+            "label": "Telegram"
+          },
+          {
+            "type": "email",
+            "href": "mailto:oleksandr@makeberry.com",
+            "label": "Email"
+          }
+        ],
+        "verifyTokens": [
+          "@oleksandr_kulyk",
+          "oleksandr@makeberry.com"
+        ]
+      }
+    ],
+    "form": {
+      "title": "Not sure it's us?",
+      "subtitle": "Check email or Telegram",
+      "placeholder": "Email or @telegram",
+      "buttonLabel": "Check",
+      "verifiedLabel": "Verified employee",
+      "errorLabel": "We couldn’t verify this contact"
+    }
+  },
+  "faq": {
+    "title": "FAQ",
+    "glow": {
+      "src": "/images/decorations/glow.png",
+      "alt": ""
+    },
+    "questionMark": {
+      "src": "/images/home/faq/question-mark.png",
+      "alt": ""
+    },
+    "defaultOpenId": "payouts-on-hold",
+    "items": [
+      {
+        "id": "payouts-on-hold",
+        "question": "Are payouts put on hold?",
+        "answer": "Payouts can be put on hold under certain conditions, such as fraud suspicion (If an affiliate’s traffic appears fraudulent, payouts may be paused pending further investigation) or quality verification. The hold may also be caused by any reasons for this that are specified within the framework of a particular deal."
+      },
+      {
+        "id": "register",
+        "question": "How do I register with Makeberry?",
+        "answer": "Visit the registration page, fill in your contact details and traffic sources, and our manager will get back to you within one business day to finalize the onboarding."
+      },
+      {
+        "id": "min-payout",
+        "question": "What is the minimum payout amount?",
+        "answer": "The default minimum payout is $100, but it can be adjusted individually depending on your traffic volume and the offers you work with."
+      },
+      {
+        "id": "countries",
+        "question": "What countries does Makeberry work with?",
+        "answer": "We run offers across Tier 1, Tier 2 and Tier 3 — including LATAM, Europe, Africa, MENA and Asia. The full live list and per-country payouts are available in your dashboard after registration."
+      },
+      {
+        "id": "prohibited-traffic",
+        "question": "What types of traffic are prohibited by Makeberry?",
+        "answer": "We do not accept incentivized traffic, brand bidding, fraudulent installs/leads, malware/popunder, misleading creatives, and any traffic that violates the brand’s terms or local regulations."
+      },
+      {
+        "id": "fraud-grounds",
+        "question": "On what grounds can traffic be considered fraudulent?",
+        "answer": "Indicators include abnormal conversion-to-deposit ratio, suspicious geo / device patterns, repeat fingerprints, bot signatures, and any data inconsistencies flagged by our anti-fraud system or by the brand."
+      },
+      {
+        "id": "earnings",
+        "question": "How much can affiliates earn with Makeberry?",
+        "answer": "Earnings depend on the model (CPA, RevShare or Hybrid), GEO and traffic quality. Our top affiliates earn well into six figures per month — your dedicated manager will help build the optimal plan for your sources."
+      }
+    ]
+  },
+  "vacancies": {
+    "title": "Open Vacancies",
+    "glow": {
+      "src": "/images/decorations/glow.png",
+      "alt": ""
+    },
+    "target": {
+      "src": "/images/home/vacancies/target.png",
+      "alt": ""
+    },
+    "cards": [
+      {
+        "id": "creative-designer",
+        "type": "Remote",
+        "title": "Creative designer",
+        "description": "We're looking for a talented Creative Designer to join our team — someone who can turn ideas into powerful visual stories and help shape the brand's identity.",
+        "learnMoreLabel": "Learn More",
+        "learnMoreHref": "/vacancies/creative-designer"
+      },
+      {
+        "id": "hr",
+        "type": "Remote",
+        "title": "H/R",
+        "description": "We're looking for an HR Specialist who's passionate about people and culture. Join our team to help build a strong, motivated, and happy workplace.",
+        "learnMoreLabel": "Learn More",
+        "learnMoreHref": "/vacancies/hr"
+      },
+      {
+        "id": "motion-designer",
+        "type": "Remote",
+        "title": "Motion Designer",
+        "description": "We're looking for a Motion Designer to bring ideas to life with animation, storytelling, and creative visuals. Join us and make our projects move!",
+        "learnMoreLabel": "Learn More",
+        "learnMoreHref": "/vacancies/motion-designer"
+      }
+    ],
+    "viewAll": {
+      "label": "View All Vacancies",
+      "href": "/vacancies"
+    }
+  },
+  "blog": {
+    "title": "Blog",
+    "viewAll": {
+      "label": "View All",
+      "href": "/blog"
+    }
+  }
+}

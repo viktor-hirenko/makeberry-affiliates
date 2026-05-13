@@ -1,0 +1,48 @@
+{
+  "slug": "affiliate-marketing-in-2026-edition-2",
+  "title": "Affiliate Marketing in 2026: A Deeper Cut",
+  "excerpt": "A second look at affiliate marketing in 2026 — this time focused on the operational mechanics: attribution, partner segmentation, and where the smart money is going.",
+  "imageSrc": "",
+  "imageAlt": "Affiliate Marketing in 2026 — Edition II",
+  "date": "2026-02-08",
+  "tags": [
+    "Trends",
+    "Industry Insights",
+    "Operations"
+  ],
+  "heroImageSrc": "",
+  "heroImageAlt": "Affiliate Marketing in 2026 — Edition II",
+  "introHtml": "<p>The first edition of this series looked at why traditional affiliate models are losing momentum. This second edition zooms in on the operational details: how leading networks segment partners, how attribution is changing under privacy pressure, and where budget is actually moving in 2026.</p><p>The headline is simple — quality, trust, and long-term relationships are reshaping how partner marketing performs.</p>",
+  "sections": [
+    {
+      "id": "segmentation",
+      "title": "Partner Segmentation Beyond Volume",
+      "bodyHtml": "<p>Volume-only ranking is no longer enough. Networks that perform well in 2026 segment partners by retention quality, support load, content style, and product fit. The result: smaller cohorts of partners get tailored terms and faster decision-making, instead of one flat program for everyone.</p><p>This shift requires cleaner data and tighter collaboration between BD, finance, and product — but it pays off in churn, payout efficiency, and partner NPS.</p>",
+      "subsections": [
+        {
+          "id": "signals",
+          "title": "Signals that we now weigh as heavily as raw volume:",
+          "bodyHtml": "<ul><li>30/60/90-day retention of referred users</li><li>Average revenue per referred user vs. cohort baseline</li><li>Time-to-first-conversion across creative formats</li><li>Compliance score and creative review velocity</li></ul>"
+        }
+      ]
+    },
+    {
+      "id": "gallery",
+      "images": [
+        {
+          "src": "",
+          "alt": "Cohort analysis dashboard"
+        },
+        {
+          "src": "",
+          "alt": "Partner performance tiers"
+        }
+      ]
+    },
+    {
+      "id": "where-budget-goes",
+      "title": "Where Affiliate Budget Is Actually Going",
+      "bodyHtml": "<p>Budget is consolidating around fewer, higher-trust partners, while exploration budget is reserved for fast tests with smaller, content-led teams. Coupon and incentive traffic still has a place, but only where it complements a clear retention story — not as a stand-alone bet.</p><p>To see how we are applying this in our own programs, head to <a href=\"https://affiliate.makeberry.com\">affiliate.makeberry.com</a> and check the partner overview.</p>"
+    }
+  ]
+}

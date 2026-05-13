@@ -29,7 +29,7 @@ import type { WhatYouGetCard, WhatYouGetCardSticker } from '@/types/content'
  * - Sticker: 3D-иллюстрация ~200×200 desktop / ~100×110 mobile,
  *   абсолютная, «вылетает» за правый-верхний угол карточки. Параметры
  *   приходят прямо из данных карточки (`card.sticker`) — каждая
- *   аудитория хранит свои размеры/смещения в `audiences.json`,
+ *   аудитория хранит свои размеры/смещения в `en/pages/affiliates/*.json`,
  *   компонент только прокидывает их в CSS-vars.
  *
  * Бейдж: pill bg-surface + 2px brand pink border, rotate 10°,
@@ -127,7 +127,7 @@ const badgeText = computed(() => `${activeIndex.value + 1}/${Math.max(1, props.c
 /**
  * Прокидываем размеры/смещения стикера из `card.sticker` в CSS-vars.
  * Так компонент остаётся универсальным, а уникальные значения каждой
- * карточки приходят из `audiences.json` (см. `WhatYouGetCardSticker`).
+ * карточки приходят из `en/pages/affiliates/*.json` (см. `WhatYouGetCardSticker`).
  *
  * Поворот не задаётся: PNG-ассеты экспортированы из Figma уже
  * повёрнутыми, CSS-rotate сверху только сломает вид.

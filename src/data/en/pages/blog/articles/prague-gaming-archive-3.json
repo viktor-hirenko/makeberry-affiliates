@@ -1,0 +1,48 @@
+{
+  "slug": "prague-gaming-archive-3",
+  "title": "From the Archive: Prague Gaming & TECH Summit",
+  "excerpt": "Notes from the Prague Gaming & TECH Summit floor, archived for the next planning cycle — the patterns that survived, and the ones that did not.",
+  "imageSrc": "",
+  "imageAlt": "Prague Gaming archive",
+  "date": "2025-09-28",
+  "tags": [
+    "Events",
+    "Archive",
+    "Strategy"
+  ],
+  "heroImageSrc": "",
+  "heroImageAlt": "Prague Gaming archive",
+  "introHtml": "<p>Notes from the Prague Gaming & TECH Summit floor, archived for the next planning cycle. Some patterns survived the year, others quietly disappeared. This is a short, opinionated post-mortem.</p><p>Mostly useful for teams preparing their own event strategy or roadmap reviews.</p>",
+  "sections": [
+    {
+      "id": "patterns-survived",
+      "title": "Patterns That Survived the Year",
+      "bodyHtml": "<p>The patterns that survived the year were the unglamorous ones: investing in player quality data, designing programs around long-term partner relationships, and treating compliance as part of the product rather than a checkbox at the end.</p><p>None of these were headline-worthy in Prague — but they were the ones quietly rewarded by the market over the following months.</p>",
+      "subsections": [
+        {
+          "id": "patterns-list",
+          "title": "Patterns we will keep investing in:",
+          "bodyHtml": "<ul><li>Long-term partner programs over short campaigns</li><li>Compliance as a product surface, not just a back-office task</li><li>Tighter feedback loops between affiliates and product teams</li><li>Honest reporting, even when numbers are uncomfortable</li></ul>"
+        }
+      ]
+    },
+    {
+      "id": "gallery",
+      "images": [
+        {
+          "src": "",
+          "alt": "Strategy whiteboard"
+        },
+        {
+          "src": "",
+          "alt": "Quarterly review meeting"
+        }
+      ]
+    },
+    {
+      "id": "patterns-faded",
+      "title": "Patterns That Did Not Make It",
+      "bodyHtml": "<p>Some of the loudest themes in Prague faded by the end of the year — purely volume-led narratives, generic creative bundles, and the assumption that compliance could be solved with tooling alone. They sounded compelling on stage and underperformed in the wild.</p><p>To see what we actually doubled down on instead, the most up-to-date overview lives on <a href=\"https://affiliate.makeberry.com\">affiliate.makeberry.com</a>.</p>"
+    }
+  ]
+}

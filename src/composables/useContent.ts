@@ -1,21 +1,9 @@
-import rawArticles from '@/data/articles.json'
-import rawAudiences from '@/data/audiences.json'
-import rawBlog from '@/data/blog.json'
-import rawCasinos from '@/data/casinos.json'
-import rawFooter from '@/data/footer.json'
-import rawHomeAbout from '@/data/home-about.json'
-import rawHomeAffAdv from '@/data/home-affiliates-advertisers.json'
-import rawHomeBenefits from '@/data/home-benefits.json'
-import rawHomeDirect from '@/data/home-direct-advertiser.json'
-import rawHomeHero from '@/data/home-hero.json'
-import rawHomeContacts from '@/data/home-contacts.json'
-import rawHomeBlog from '@/data/home-blog.json'
-import rawHomeFaq from '@/data/home-faq.json'
-import rawHomeMap from '@/data/home-map.json'
-import rawHomeMeetUs from '@/data/home-meet-us.json'
-import rawHomeTestimonials from '@/data/home-testimonials.json'
-import rawHomeVacancies from '@/data/home-vacancies.json'
-import rawNav from '@/data/nav.json'
+import rawHome from '../data/en/pages/home.json'
+import rawNotFound from '../data/en/pages/not-found.json'
+import rawBlog from '../data/en/pages/blog/index.json'
+import articleOrder from '../data/en/pages/blog/articles/order.json'
+import rawFooter from '../data/en/shared/footer.json'
+import rawNav from '../data/en/shared/nav.json'
 import type {
   ArticleDetail,
   AudiencePageContent,
@@ -28,14 +16,143 @@ import type {
   HomeBlogContent,
   HomeContactsContent,
   HomeDirectAdvertiserContent,
-  HomeHeroContent,
   HomeFaqContent,
+  HomeHeroContent,
   HomeMapContent,
   HomeMeetUsContent,
+  HomePageContent,
   HomeTestimonialsContent,
   HomeVacanciesContent,
   NavConfig,
+  NotFoundPageContent,
 } from '@/types/content'
+
+const home = rawHome as HomePageContent
+
+/** Порядок в массиве `useCasinos()` при известных slug (остальные — после них, по `localeCompare`). */
+const CASINO_SLUG_PREFERRED_ORDER: readonly string[] = ['winspirit', 'rocketplay', 'luckyhills']
+
+/** Порядок в массиве `useAudiences()` при известных slug (остальные — после них, по `localeCompare`). */
+const AUDIENCE_SLUG_PREFERRED_ORDER: readonly string[] = ['affiliates', 'advertisers']
+
+function getDefaultExport<T>(mod: unknown): T {
+  if (typeof mod === 'object' && mod !== null && 'default' in mod) {
+    return (mod as { default: T }).default
+  }
+  return mod as T
+}
+
+function sortBySlugPreference<T extends { slug: string }>(
+  items: T[],
+  preferred: readonly string[],
+): T[] {
+  const rank = new Map(preferred.map((slug, index) => [slug, index]))
+  return [...items].sort((a, b) => {
+    const ra = rank.get(a.slug)
+    const rb = rank.get(b.slug)
+    const fa = ra === undefined ? Number.POSITIVE_INFINITY : ra
+    const fb = rb === undefined ? Number.POSITIVE_INFINITY : rb
+    if (fa !== fb) return fa - fb
+    return a.slug.localeCompare(b.slug)
+  })
+}
+
+/**
+ * import.meta.glob — первый аргумент должен быть строковым литералом
+ * (ограничение Vite при статическом разборе), без переменных/констант.
+ */
+function buildArticlesFromGlob(): {
+  bySlug: Record<string, ArticleDetail>
+  ordered: ArticleDetail[]
+} {
+  const modules = import.meta.glob<{ default: ArticleDetail }>(
+    '../data/en/pages/blog/articles/*.json',
+    { eager: true },
+  )
+
+  const bySlug: Record<string, ArticleDetail> = {}
+  const orderSlugs = (articleOrder as { slugs: string[] }).slugs
+  const orderedSet = new Set(orderSlugs)
+
+  for (const filePath of Object.keys(modules)) {
+    if (filePath.endsWith('order.json')) {
+      continue
+    }
+    const article = getDefaultExport<ArticleDetail>(modules[filePath])
+    const { slug } = article
+    if (bySlug[slug]) {
+      throw new Error(`[useContent] Duplicate article slug "${slug}" in blog articles`)
+    }
+    bySlug[slug] = article
+  }
+
+  for (const slug of orderSlugs) {
+    if (!bySlug[slug]) {
+      throw new Error(`[useContent] order.json lists slug "${slug}" but no matching article JSON was found`)
+    }
+  }
+
+  for (const slug of Object.keys(bySlug)) {
+    if (!orderedSet.has(slug)) {
+      throw new Error(
+        `[useContent] Article JSON with slug "${slug}" must be listed in order.json (or remove the file)`,
+      )
+    }
+  }
+
+  const ordered = orderSlugs.map((slug) => bySlug[slug] as ArticleDetail)
+  return { bySlug, ordered }
+}
+
+const { bySlug: ARTICLES_BY_SLUG, ordered: RESOLVED_ARTICLES } = buildArticlesFromGlob()
+
+const { list: CASINOS, bySlug: CASINOS_BY_SLUG } = (() => {
+  const modules = import.meta.glob<{ default: CasinoPageContent }>(
+    '../data/en/pages/casinos/*.json',
+    { eager: true },
+  )
+  const bySlug: Record<string, CasinoPageContent> = {}
+  const items: CasinoPageContent[] = []
+
+  for (const filePath of Object.keys(modules)) {
+    const casino = getDefaultExport<CasinoPageContent>(modules[filePath])
+    const { slug } = casino
+    if (bySlug[slug]) {
+      throw new Error(`[useContent] Duplicate casino slug "${slug}"`)
+    }
+    bySlug[slug] = casino
+    items.push(casino)
+  }
+
+  return {
+    list: sortBySlugPreference(items, CASINO_SLUG_PREFERRED_ORDER),
+    bySlug,
+  }
+})()
+
+const { list: AUDIENCES, bySlug: AUDIENCES_BY_SLUG } = (() => {
+  const modules = import.meta.glob<{ default: AudiencePageContent }>(
+    '../data/en/pages/affiliates/*.json',
+    { eager: true },
+  )
+  const bySlug: Record<string, AudiencePageContent> = {}
+  const items: AudiencePageContent[] = []
+
+  for (const filePath of Object.keys(modules)) {
+    const audience = getDefaultExport<AudiencePageContent>(modules[filePath])
+    const { slug } = audience
+    if (bySlug[slug]) {
+      throw new Error(`[useContent] Duplicate audience slug "${slug}"`)
+    }
+    bySlug[slug] = audience
+    items.push(audience)
+  }
+
+  return {
+    list: sortBySlugPreference(items, AUDIENCE_SLUG_PREFERRED_ORDER),
+    bySlug,
+  }
+})()
 
 export function useNav(): NavConfig {
   return rawNav as NavConfig
@@ -45,52 +162,56 @@ export function useFooter(): FooterConfig {
   return rawFooter as FooterConfig
 }
 
+export function useNotFound(): NotFoundPageContent {
+  return rawNotFound as NotFoundPageContent
+}
+
 export function useHomeHero(): HomeHeroContent {
-  return rawHomeHero as HomeHeroContent
+  return home.hero
 }
 
 export function useHomeAbout(): HomeAboutContent {
-  return rawHomeAbout as HomeAboutContent
+  return home.about
 }
 
 export function useHomeAffiliatesAdvertisers(): HomeAffiliatesAdvertisersContent {
-  return rawHomeAffAdv as HomeAffiliatesAdvertisersContent
+  return home.affiliatesAdvertisers
 }
 
 export function useHomeDirectAdvertiser(): HomeDirectAdvertiserContent {
-  return rawHomeDirect as HomeDirectAdvertiserContent
+  return home.directAdvertiser
 }
 
 export function useHomeMap(): HomeMapContent {
-  return rawHomeMap as HomeMapContent
+  return home.map
 }
 
 export function useHomeBenefits(): HomeBenefitsContent {
-  return rawHomeBenefits as HomeBenefitsContent
+  return home.benefits
 }
 
 export function useHomeTestimonials(): HomeTestimonialsContent {
-  return rawHomeTestimonials as HomeTestimonialsContent
+  return home.testimonials
 }
 
 export function useHomeMeetUs(): HomeMeetUsContent {
-  return rawHomeMeetUs as HomeMeetUsContent
+  return home.meetUs
 }
 
 export function useHomeContacts(): HomeContactsContent {
-  return rawHomeContacts as HomeContactsContent
+  return home.contacts
 }
 
 export function useHomeFaq(): HomeFaqContent {
-  return rawHomeFaq as HomeFaqContent
+  return home.faq
 }
 
 export function useHomeVacancies(): HomeVacanciesContent {
-  return rawHomeVacancies as HomeVacanciesContent
+  return home.vacancies
 }
 
 export function useHomeBlog(): HomeBlogContent {
-  return rawHomeBlog as HomeBlogContent
+  return home.blog
 }
 
 export function useBlogMeta(): BlogContent {
@@ -98,12 +219,11 @@ export function useBlogMeta(): BlogContent {
 }
 
 export function useArticles(): ArticleDetail[] {
-  const raw = rawArticles as { articles: ArticleDetail[] }
-  return raw.articles
+  return RESOLVED_ARTICLES
 }
 
 export function getArticleBySlug(slug: string): ArticleDetail | undefined {
-  return useArticles().find((article) => article.slug === slug)
+  return ARTICLES_BY_SLUG[slug]
 }
 
 export function getAdjacentArticles(slug: string): {
@@ -130,19 +250,17 @@ export function getAdjacentArticles(slug: string): {
  * как у casino direct-advertiser страниц.
  */
 export function useAudiences(): AudiencePageContent[] {
-  const raw = rawAudiences as { audiences: AudiencePageContent[] }
-  return raw.audiences
+  return AUDIENCES
 }
 
 export function getAudienceBySlug(slug: string): AudiencePageContent | undefined {
-  return useAudiences().find((audience) => audience.slug === slug)
+  return AUDIENCES_BY_SLUG[slug]
 }
 
 export function useCasinos(): CasinoPageContent[] {
-  const raw = rawCasinos as { casinos: CasinoPageContent[] }
-  return raw.casinos
+  return CASINOS
 }
 
 export function getCasinoBySlug(slug: string): CasinoPageContent | undefined {
-  return useCasinos().find((casino) => casino.slug === slug)
+  return CASINOS_BY_SLUG[slug]
 }

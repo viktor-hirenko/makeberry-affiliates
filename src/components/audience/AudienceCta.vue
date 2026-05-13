@@ -10,7 +10,7 @@ import type { AudienceCtaBlock, AudiencePageContent } from '@/types/content'
  *   `-scale-y-100` + `rotate(-177.46deg)`.
  * - Advertisers CTA desktop: 2655:1611 — glow слева, `rotate(-27.42deg)`.
  *
- * Картинка glow и её alt приходят из `audiences.json` (`cta.glow`),
+ * Картинка glow и её alt приходят из `en/pages/affiliates/<slug>.json` (`cta.glow`),
  * а конкретное позиционирование/rotate задаётся в SCSS через
  * модификатор `.audience-cta--{slug}` (по аналогии с
  * `HomeDirectAdvertiser`, где glow тоже статичный PNG в обычной

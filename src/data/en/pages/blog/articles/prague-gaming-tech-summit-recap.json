@@ -1,0 +1,48 @@
+{
+  "slug": "prague-gaming-tech-summit-recap",
+  "title": "Prague Gaming Summit: Side Conversations That Mattered",
+  "excerpt": "The deals and ideas from the Prague Gaming & TECH Summit rarely happen on the main stage. A recap of the side conversations that actually shaped our partner roadmap.",
+  "imageSrc": "",
+  "imageAlt": "Prague Gaming summit recap",
+  "date": "2026-01-10",
+  "tags": [
+    "Events",
+    "Networking",
+    "Roadmap"
+  ],
+  "heroImageSrc": "",
+  "heroImageAlt": "Prague Gaming summit recap",
+  "introHtml": "<p>The Prague Gaming & TECH Summit is a public event with a private layer underneath it. Most of the value for our team came from corridor conversations, dinner tables, and quiet rooms away from the main stage. This recap focuses on those.</p><p>Some takeaways are tactical, some are cultural — together they already changed how we plan the next two quarters.</p>",
+  "sections": [
+    {
+      "id": "side-themes",
+      "title": "What Partners Were Quietly Saying",
+      "bodyHtml": "<p>Off-stage, almost every serious conversation revolved around three pressures: retention quality vs. acquisition cost, the operational cost of new compliance requirements, and the speed at which creative needs to be reproduced and localized.</p><p>Partners who already invested in their internal data, creative, and compliance stack are pulling ahead. Partners who treated those as cost centers are starting to feel the gap.</p>",
+      "subsections": [
+        {
+          "id": "themes-list",
+          "title": "Recurring topics in side conversations:",
+          "bodyHtml": "<ul><li>Migration from generic creatives to brand-led ones</li><li>Heavier focus on multi-market localization</li><li>Tighter integration between affiliate and CRM teams</li><li>Demand for clearer, partner-facing compliance guidance</li></ul>"
+        }
+      ]
+    },
+    {
+      "id": "gallery",
+      "images": [
+        {
+          "src": "",
+          "alt": "Partner meeting at the summit"
+        },
+        {
+          "src": "",
+          "alt": "Dinner conversation with operators"
+        }
+      ]
+    },
+    {
+      "id": "actions",
+      "title": "What We Are Doing About It",
+      "bodyHtml": "<p>We left Prague with a small, opinionated list: invest more in localized creative kits, expose more of our compliance guidance directly inside the partner UI, and accelerate the rollout of our extended reporting layer.</p><p>You can track most of these changes through <a href=\"https://affiliate.makeberry.com\">affiliate.makeberry.com</a>, and active partners will see them land first inside the dashboard.</p>"
+    }
+  ]
+}

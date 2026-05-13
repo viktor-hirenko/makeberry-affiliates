@@ -39,7 +39,7 @@ export const router = createRouter({
       props: true,
     },
     /* Audience pages: `/affiliates` и `/advertisers` шарят один шаблон
-     * (AudienceView) и разные датасеты в `audiences.json`. Slug
+     * (AudienceView) и разные датасеты в `en/pages/affiliates/*.json`. Slug
      * фиксированный (приходит через `props`), а не из URL — оставляем
      * чистые маршруты для SEO и совместимости со ссылками из навигации. */
     {

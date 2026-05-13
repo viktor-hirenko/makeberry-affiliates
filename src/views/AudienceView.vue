@@ -15,7 +15,7 @@ import { getAudienceBySlug } from '@/composables/useContent'
  * задаётся фиксированным `props` из router'а — поэтому URL остаются
  * чистыми (`/affiliates`, `/advertisers`), а view один.
  *
- * Если slug не найден в `audiences.json` (например, опечатка в
+ * Если slug не найден в `en/pages/affiliates/` (например, опечатка в
  * router config) — replace на `/not-found`, чтобы пользователь не
  * вернулся "Назад" на пустой экран.
  *

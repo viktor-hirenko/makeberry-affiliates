@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import BaseButton from '@/components/ui/BaseButton.vue'
+import { useNotFound } from '@/composables/useContent'
+
+const content = useNotFound()
 </script>
 
 <template>
@@ -28,10 +31,10 @@ import BaseButton from '@/components/ui/BaseButton.vue'
       </div>
 
       <div class="not-found__content">
-        <h1 class="not-found__title">Page is on the way</h1>
-        <p class="not-found__copy">While it’s traveling, you might want to check this instead.</p>
-        <BaseButton variant="secondary" size="large" to="/" class="not-found__cta">
-          Go Home
+        <h1 class="not-found__title">{{ content.title }}</h1>
+        <p class="not-found__copy">{{ content.copy }}</p>
+        <BaseButton variant="secondary" size="large" :to="content.cta.path" class="not-found__cta">
+          {{ content.cta.label }}
         </BaseButton>
       </div>
     </div>

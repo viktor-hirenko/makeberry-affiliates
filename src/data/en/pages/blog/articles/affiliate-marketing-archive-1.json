@@ -1,0 +1,48 @@
+{
+  "slug": "affiliate-marketing-archive-1",
+  "title": "From the Archive: Affiliate Marketing in 2026",
+  "excerpt": "An archived look at how affiliate strategies evolved in early 2026 — what teams expected, what actually happened, and which calls aged the best.",
+  "imageSrc": "",
+  "imageAlt": "Affiliate Marketing archive",
+  "date": "2025-10-30",
+  "tags": [
+    "Trends",
+    "Archive",
+    "Lessons"
+  ],
+  "heroImageSrc": "",
+  "heroImageAlt": "Affiliate Marketing archive",
+  "introHtml": "<p>An archived look at how affiliate strategies evolved in early 2026. Half retrospective, half checklist: what teams expected at the start of the year, what actually happened, and which strategic calls aged the best.</p><p>Useful as a sanity-check before locking in the next planning cycle.</p>",
+  "sections": [
+    {
+      "id": "predictions-vs-reality",
+      "title": "Predictions vs. Reality",
+      "bodyHtml": "<p>Most early-2026 predictions held up at a directional level — content-led affiliates would outperform coupon-only ones, attribution would get harder, and trust would beat volume. The interesting part is in the second decimal: how those shifts actually played out month by month.</p><p>A few calls aged better than expected, others needed quiet revision once real data came in.</p>",
+      "subsections": [
+        {
+          "id": "what-aged-well",
+          "title": "Predictions that aged especially well:",
+          "bodyHtml": "<ul><li>Tighter integration of affiliate and CRM teams</li><li>Rise of content-driven affiliate strategies</li><li>Slow decline of last-click-only attribution models</li><li>Higher demand for transparent partner reporting</li></ul>"
+        }
+      ]
+    },
+    {
+      "id": "gallery",
+      "images": [
+        {
+          "src": "",
+          "alt": "Archive timeline"
+        },
+        {
+          "src": "",
+          "alt": "Year-over-year comparison"
+        }
+      ]
+    },
+    {
+      "id": "what-changed",
+      "title": "What Quietly Changed in the Background",
+      "bodyHtml": "<p>The less-discussed change in 2026 was operational: how networks talk about quality, how partners share data, and how advertisers measure trust. It happened without big announcements, but it reshaped how budgets are allocated quarter by quarter.</p><p>If you want to see how we describe quality in plain language to our own partners, that part of the story lives on <a href=\"https://affiliate.makeberry.com\">affiliate.makeberry.com</a>.</p>"
+    }
+  ]
+}

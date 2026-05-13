@@ -1,0 +1,48 @@
+{
+  "slug": "sigma-central-europe-b2c-awards-2025-photos",
+  "title": "SiGMA Central Europe B2C Awards 2025 — In Pictures",
+  "excerpt": "The night in pictures: networking, celebrations, and well-earned recognitions from the SiGMA Central Europe B2C Awards 2025.",
+  "imageSrc": "",
+  "imageAlt": "SiGMA awards photos",
+  "date": "2025-12-04",
+  "tags": [
+    "Awards",
+    "Photos",
+    "Team"
+  ],
+  "heroImageSrc": "",
+  "heroImageAlt": "SiGMA awards photos",
+  "introHtml": "<p>The night in pictures: networking, celebrations, and well-earned recognitions. Words can describe the SiGMA Central Europe B2C Awards 2025 only so far — the photos do the rest.</p><p>This post is a short visual diary of the evening, with a few notes on what each moment really meant for the team behind the scenes.</p>",
+  "sections": [
+    {
+      "id": "before",
+      "title": "Before the Ceremony",
+      "bodyHtml": "<p>The hours before the ceremony are usually the calmest part of the night. Last-minute logistics, quiet check-ins with the team, a few photos in the lobby, and a shared list of operators we wanted to find on-site.</p><p>It is also the moment when most of the small surprises get planned — the ones that turn a routine event into a memorable one for the people who travelled with us.</p>",
+      "subsections": [
+        {
+          "id": "behind-scenes",
+          "title": "Small details we look for in the build-up:",
+          "bodyHtml": "<ul><li>Clear signage and a quick partner check-in flow</li><li>A short briefing for the team about category timings</li><li>A simple plan for who chats with which operator</li><li>A quiet corner reserved for in-depth conversations</li></ul>"
+        }
+      ]
+    },
+    {
+      "id": "gallery",
+      "images": [
+        {
+          "src": "",
+          "alt": "Pre-ceremony team photo"
+        },
+        {
+          "src": "",
+          "alt": "Lobby networking"
+        }
+      ]
+    },
+    {
+      "id": "after",
+      "title": "After the Last Award",
+      "bodyHtml": "<p>The post-ceremony hour is where the real value lives — partners are relaxed, conversations get more honest, and follow-ups stop being polite and start being concrete. Several roadmap items for the next quarter were sketched on napkins that night.</p><p>For more on what we are building together with these partners, the central hub remains <a href=\"https://affiliate.makeberry.com\">affiliate.makeberry.com</a>.</p>"
+    }
+  ]
+}

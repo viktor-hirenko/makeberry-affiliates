@@ -1,0 +1,166 @@
+{
+  "slug": "advertisers",
+  "hero": {
+    "badge": "For Advertisers",
+    "titleHtml": "You focus on building a strong iGaming product",
+    "subtitleHtml": "We make sure it scales in the right markets, through the right channels, with full control over performance and brand positioning.",
+    "cta": {
+      "label": "Register",
+      "path": "/#contacts"
+    }
+  },
+  "whatYouGet": {
+    "title": "What You Get",
+    "cards": [
+      {
+        "id": "management",
+        "title": "Full control over affiliate management",
+        "sticker": {
+          "src": "/images/advertisers/card-1-management.png",
+          "alt": "Affiliate management",
+          "desktop": {
+            "size": 200,
+            "top": -110,
+            "right": -100
+          },
+          "mobile": {
+            "size": 110,
+            "top": -75,
+            "right": -30
+          }
+        },
+        "blocks": [
+          {
+            "type": "paragraph",
+            "html": "As the direct advertiser for three iGaming brands, we have deep operational knowledge and hands-on experience across acquisition, retention and monetisation."
+          },
+          {
+            "type": "paragraph",
+            "html": "We can manage your affiliate programme end-to-end or step in to rebuild underperforming setups:"
+          },
+          {
+            "type": "list",
+            "items": [
+              "Redesign internal processes",
+              "Refine commercial terms",
+              "Enhance traffic quality monitoring and compliance standards",
+              "Ensure transparent reporting and payouts"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "brand-protection",
+        "title": "Brand protection",
+        "sticker": {
+          "src": "/images/advertisers/card-2-brand-protection.png",
+          "alt": "Brand protection",
+          "desktop": {
+            "size": 200,
+            "top": -124,
+            "right": -90
+          },
+          "mobile": {
+            "size": 110,
+            "top": -70,
+            "right": -20
+          }
+        },
+        "blocks": [
+          {
+            "type": "paragraph",
+            "html": "We actively monitor search results across key GEOs to detect parasite sites that misuse your brand or divert your traffic. Once identified, our team acts quickly to resolve these issues through complaints, trademark enforcement, and direct action."
+          },
+          {
+            "type": "paragraph",
+            "html": "With ongoing monitoring and clear reporting, we help protect your traffic, maintain your conversion rates, and keep control of your brand presence."
+          }
+        ]
+      },
+      {
+        "id": "media-buying",
+        "title": "Media buying",
+        "sticker": {
+          "src": "/images/advertisers/card-3-media-buying.png",
+          "alt": "Media buying",
+          "desktop": {
+            "size": 200,
+            "top": -83,
+            "right": -83
+          },
+          "mobile": {
+            "size": 110,
+            "top": -40,
+            "right": -20
+          }
+        },
+        "blocks": [
+          {
+            "type": "paragraph",
+            "html": "We deliver high-quality traffic from social platforms (Facebook, Instagram, TikTok), as well as Google and SEO."
+          },
+          {
+            "type": "list",
+            "items": [
+              "150+ experienced media buyers",
+              "In-house infrastructure covering the full cycle, from development to retention",
+              "Strong coverage across Tier 1–2 markets, with ongoing expansion into Tier 3"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "html": "We focus on sustainable growth and long-term partnerships, helping you maximise both acquisition and the value of your existing player base, including reactivating churned users."
+          }
+        ]
+      },
+      {
+        "id": "influencer",
+        "title": "Performance-driven influencer marketing",
+        "sticker": {
+          "src": "/images/advertisers/card-4-target.png",
+          "alt": "Performance-driven influencer marketing",
+          "desktop": {
+            "size": 200,
+            "top": -97,
+            "right": -90
+          },
+          "mobile": {
+            "size": 110,
+            "top": -68,
+            "right": -20
+          }
+        },
+        "blocks": [
+          {
+            "type": "paragraph",
+            "html": "We turn influencer marketing into a predictable acquisition channel focused on conversions and scalable growth."
+          },
+          {
+            "type": "list",
+            "items": [
+              "Our Influence Team pre-validates every creator through our campaigns before scaling",
+              "Multi-platform coverage across TikTok, YouTube, Twitch, and streaming platforms",
+              "Structured scaling: test → optimise → grow volume",
+              "Full creative control, including scripts, angles, and funnel strategy"
+            ]
+          },
+          {
+            "type": "paragraph",
+            "html": "We manage the entire process end-to-end, so you can focus on your product while we build and scale your acquisition channel."
+          }
+        ]
+      }
+    ]
+  },
+  "cta": {
+    "titleHtml": "<span class=\"primary\">Makeberry Affiliates is built for advertisers who want more than just traffic.</span> <span class=\"muted\">We help you grow in a structured, brand-safe and measurable way.</span>",
+    "button": {
+      "label": "Get in Touch",
+      "path": "/#contacts"
+    },
+    "glow": {
+      "src": "/images/advertisers/glow.png",
+      "alt": ""
+    }
+  }
+}

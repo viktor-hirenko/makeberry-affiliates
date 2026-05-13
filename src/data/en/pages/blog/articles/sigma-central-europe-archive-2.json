@@ -1,0 +1,48 @@
+{
+  "slug": "sigma-central-europe-archive-2",
+  "title": "From the Archive: SiGMA Central Europe B2C Awards 2025",
+  "excerpt": "Looking back at our nominations and what they meant for the team — beyond the trophies and the press release moments.",
+  "imageSrc": "",
+  "imageAlt": "SiGMA awards archive",
+  "date": "2025-10-15",
+  "tags": [
+    "Awards",
+    "Archive",
+    "Culture"
+  ],
+  "heroImageSrc": "",
+  "heroImageAlt": "SiGMA awards archive",
+  "introHtml": "<p>Looking back at our nominations at the SiGMA Central Europe B2C Awards 2025 and what they actually meant for the team — beyond the trophies, the press releases, and the polished post-event recaps.</p><p>The honest version is more interesting than the social-media version, and worth keeping in the archive.</p>",
+  "sections": [
+    {
+      "id": "internal-impact",
+      "title": "What the Nominations Changed Internally",
+      "bodyHtml": "<p>Externally, awards are a marketing asset. Internally, they are a recalibration moment. They confirm that long-running bets are working, give the team a shared milestone, and make it easier to defend a roadmap that prioritizes quality over short-term volume.</p><p>That internal effect is harder to measure, but it shows up in retention, in willingness to take on hard problems, and in how the team talks about the company in private.</p>",
+      "subsections": [
+        {
+          "id": "internal-effects",
+          "title": "Internal effects we noticed in the weeks after:",
+          "bodyHtml": "<ul><li>Stronger alignment between BD, product, and operations</li><li>More confident hiring conversations</li><li>Easier prioritization of long-term roadmap items</li><li>Increased pride and ownership across squads</li></ul>"
+        }
+      ]
+    },
+    {
+      "id": "gallery",
+      "images": [
+        {
+          "src": "",
+          "alt": "Internal celebration"
+        },
+        {
+          "src": "",
+          "alt": "Team strategy session"
+        }
+      ]
+    },
+    {
+      "id": "long-term",
+      "title": "What We Want to Be Remembered For",
+      "bodyHtml": "<p>Awards come and go. What we want to be remembered for is more boring and more durable: predictable partner programs, healthy player quality for advertisers, and a team that is genuinely good to work with.</p><p>If that resonates, the easiest way to get to know the brand is still <a href=\"https://affiliate.makeberry.com\">affiliate.makeberry.com</a>.</p>"
+    }
+  ]
+}

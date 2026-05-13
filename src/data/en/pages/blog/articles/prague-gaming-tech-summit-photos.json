@@ -1,0 +1,48 @@
+{
+  "slug": "prague-gaming-tech-summit-photos",
+  "title": "Prague Gaming & TECH Summit — In Pictures",
+  "excerpt": "A visual story of three days at the Prague Gaming & TECH Summit — keynotes, lounges, and the off-stage moments that built the most context.",
+  "imageSrc": "",
+  "imageAlt": "Prague Gaming summit photos",
+  "date": "2025-11-21",
+  "tags": [
+    "Events",
+    "Photos",
+    "iGaming"
+  ],
+  "heroImageSrc": "",
+  "heroImageAlt": "Prague Gaming summit photos",
+  "introHtml": "<p>A visual story of three days at the Prague Gaming & TECH Summit — keynotes, lounges, and the off-stage moments that built the most context for our roadmap.</p><p>This is the lighter companion to our Prague recap: the same days through a different lens.</p>",
+  "sections": [
+    {
+      "id": "main-stage",
+      "title": "Around the Main Stage",
+      "bodyHtml": "<p>The main stage gave the structure: clear panels, sharp moderators, and a strong selection of operators. The headline keynotes acted more like agenda-setters than deep dives — useful as a shared baseline for the side conversations that followed.</p><p>If you only have time for one part of an event like Prague, the main stage on day two is usually it.</p>",
+      "subsections": [
+        {
+          "id": "what-we-tracked",
+          "title": "What we tracked from the audience:",
+          "bodyHtml": "<ul><li>Live questions about retention and lifetime value</li><li>The framing of compliance topics across markets</li><li>How operators talked about data sharing</li><li>Audience reactions to honest cost discussions</li></ul>"
+        }
+      ]
+    },
+    {
+      "id": "gallery",
+      "images": [
+        {
+          "src": "",
+          "alt": "Keynote on the main stage"
+        },
+        {
+          "src": "",
+          "alt": "Side lounge networking"
+        }
+      ]
+    },
+    {
+      "id": "lounges",
+      "title": "Off-Stage and in the Lounges",
+      "bodyHtml": "<p>The hospitality lounges were where most of the actual planning happened. Smaller groups, tighter conversations, and a much higher signal-to-noise ratio than any panel could deliver.</p><p>Most of the meetings we held there will eventually surface as updates on <a href=\"https://affiliate.makeberry.com\">affiliate.makeberry.com</a>.</p>"
+    }
+  ]
+}
