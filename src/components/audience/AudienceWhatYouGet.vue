@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
-import type { WhatYouGetCard, WhatYouGetCardSticker } from '@/types/content'
+import type { WhatYouGetCard } from '@/types/content'
+import { toRem } from '@/utils/units'
 
 /**
  * Секция «What You Get» страницы-аудитории (Affiliates / Advertisers).
@@ -127,22 +128,31 @@ const badgeText = computed(() => `${activeIndex.value + 1}/${Math.max(1, props.c
 /**
  * Прокидываем размеры/смещения стикера из `card.sticker` в CSS-vars.
  * Так компонент остаётся универсальным, а уникальные значения каждой
- * карточки приходят из `en/pages/affiliates/*.json` (см. `WhatYouGetCardSticker`).
+ * карточки приходят из `en/pages/affiliates/*.json` (см. `WhatYouGetCard`).
  *
- * Поворот не задаётся: PNG-ассеты экспортированы из Figma уже
- * повёрнутыми, CSS-rotate сверху только сломает вид.
+ * По умолчанию rotate — `0deg`. Если у карточки есть `stickerRotateDeg`,
+ * прокидывается `--st-rotate` (см. `.wyg-card__sticker`).
  */
-function stickerStyle(sticker: WhatYouGetCardSticker): Record<string, string> {
-  return {
-    '--st-w': `${sticker.desktop.size}px`,
-    '--st-h': `${sticker.desktop.size}px`,
-    '--st-top': `${sticker.desktop.top}px`,
-    '--st-right': `${sticker.desktop.right}px`,
-    '--st-w-m': `${sticker.mobile.size}px`,
-    '--st-h-m': `${sticker.mobile.size}px`,
-    '--st-top-m': `${sticker.mobile.top}px`,
-    '--st-right-m': `${sticker.mobile.right}px`,
+function cardStickerStyle(card: WhatYouGetCard): Record<string, string> {
+  const sticker = card.sticker
+  if (!sticker) return {}
+
+  const vars: Record<string, string> = {
+    '--st-w': toRem(sticker.desktop.size),
+    '--st-h': toRem(sticker.desktop.size),
+    '--st-top': toRem(sticker.desktop.top),
+    '--st-right': toRem(sticker.desktop.right),
+    '--st-w-m': toRem(sticker.mobile.size),
+    '--st-h-m': toRem(sticker.mobile.size),
+    '--st-top-m': toRem(sticker.mobile.top),
+    '--st-right-m': toRem(sticker.mobile.right),
   }
+
+  if (typeof card.stickerRotateDeg === 'number') {
+    vars['--st-rotate'] = `${card.stickerRotateDeg}deg`
+  }
+
+  return vars
 }
 </script>
 
@@ -175,7 +185,7 @@ function stickerStyle(sticker: WhatYouGetCardSticker): Record<string, string> {
           <div
             v-if="card.sticker"
             class="wyg-card__sticker"
-            :style="stickerStyle(card.sticker)"
+            :style="cardStickerStyle(card)"
             aria-hidden="true"
           >
             <img :src="card.sticker.src" :alt="card.sticker.alt" loading="lazy" decoding="async" />
@@ -446,8 +456,8 @@ function stickerStyle(sticker: WhatYouGetCardSticker): Record<string, string> {
  * (`--st-*` для desktop, `--st-*-m` для mobile), поэтому верстка
  * одна на все 5 карточек, а уникальные параметры — в `STICKER_CONFIG`.
  *
- * Поворот сюда не приходит: PNG экспортированы из Figma уже
- * повёрнутыми, дополнительный rotate в CSS будет его дублировать.
+ * Дополнительный поворот: `--st-rotate` задаётся с карточки через
+ * опциональное поле `stickerRotateDeg` в JSON (по умолчанию `0deg`).
  * ============================================================ */
 .wyg-card__sticker {
   position: absolute;
@@ -458,12 +468,14 @@ function stickerStyle(sticker: WhatYouGetCardSticker): Record<string, string> {
   height: var(--st-h-m);
   top: var(--st-top-m);
   right: var(--st-right-m);
+  transform: rotate(var(--st-rotate, 0deg));
 
   img {
     display: block;
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
+    object-position: center;
   }
 
   @include mq($from: wide) {

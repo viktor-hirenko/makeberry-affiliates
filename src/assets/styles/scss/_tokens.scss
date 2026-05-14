@@ -6,6 +6,13 @@
 /// Makeberry Affiliates — design tokens
 /// Источник: Figma `Components` (Bg / Text / Icon / Border) + `Header / 1440 / 360`.
 :root {
+
+  /* ============================================================
+   * Typography
+   * ============================================================ */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-size-base: 16px;
+
   /* ============================================================
    * Background
    * ============================================================ */

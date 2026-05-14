@@ -16,17 +16,17 @@
         "id": "hub",
         "title": "Makeberry Hub",
         "sticker": {
-          "src": "/images/affiliates/card-1-bubbles.png",
+          "src": "/images/decorative-icons/sparkles.png",
           "alt": "Makeberry Hub",
           "desktop": {
             "size": 200,
-            "top": -81,
+            "top": -94,
             "right": -81
           },
           "mobile": {
-            "size": 100,
-            "top": -45,
-            "right": -25
+            "size": 110,
+            "top": -50,
+            "right": 0
           }
         },
         "blocks": [
@@ -53,7 +53,7 @@
         "id": "analytics",
         "title": "Transparent analytics with product-level data",
         "sticker": {
-          "src": "/images/affiliates/card-2-pie.png",
+          "src": "/images/decorative-icons/pie-chart.png",
           "alt": "Analytics",
           "desktop": {
             "size": 150,
@@ -61,8 +61,8 @@
             "right": -94
           },
           "mobile": {
-            "size": 100,
-            "top": -51,
+            "size": 80,
+            "top": -44,
             "right": -7
           }
         },
@@ -80,18 +80,19 @@
       {
         "id": "exclusive",
         "title": "Exclusive offers from a direct advertiser",
+        "stickerRotateDeg": -13.942,
         "sticker": {
-          "src": "/images/affiliates/card-3-ball.png",
+          "src": "/images/decorative-icons/badge.png",
           "alt": "Exclusive offers",
           "desktop": {
             "size": 200,
-            "top": -147,
-            "right": -122
+            "top": -120,
+            "right": -96
           },
           "mobile": {
             "size": 110,
-            "top": -80,
-            "right": -40
+            "top": -65,
+            "right": -34
           }
         },
         "blocks": [
@@ -115,7 +116,7 @@
         "id": "infrastructure",
         "title": "Infrastructure built for scale",
         "sticker": {
-          "src": "/images/affiliates/card-4-blocks.png",
+          "src": "/images/decorative-icons/docs-gears.png",
           "alt": "Infrastructure",
           "desktop": {
             "size": 150,
@@ -123,9 +124,9 @@
             "right": -75
           },
           "mobile": {
-            "size": 100,
-            "top": -45,
-            "right": -10
+            "size": 70,
+            "top": -40,
+            "right": -13
           }
         },
         "blocks": [
@@ -139,7 +140,7 @@
         "id": "manager",
         "title": "Dedicated manager",
         "sticker": {
-          "src": "/images/affiliates/card-5-megaphone.png",
+          "src": "/images/decorative-icons/megaphone.png",
           "alt": "Dedicated manager",
           "desktop": {
             "size": 150,
@@ -147,9 +148,9 @@
             "right": -61
           },
           "mobile": {
-            "size": 100,
-            "top": -50,
-            "right": -10
+            "size": 75,
+            "top": -42,
+            "right": -5
           }
         },
         "blocks": [
@@ -168,7 +169,7 @@
       "path": "/#contacts"
     },
     "glow": {
-      "src": "/images/affiliates/glow.png",
+      "src": "/images/decorations/glow-audience-affiliates.png",
       "alt": ""
     }
   }

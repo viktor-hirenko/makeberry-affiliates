@@ -5,7 +5,7 @@
     "title": "WinSpirit Casino",
     "intro": "WinSpirit Casino is a dynamic iGaming brand launched in 2022, designed to deliver a smooth and intuitive player experience from the very first visit.",
     "logo": {
-      "src": "/images/casino/hero/winspirit.svg",
+      "src": "/images/logos/advertisers/win-spirit/win-spirit-mark.svg",
       "alt": "WinSpirit Casino logo"
     },
     "stats": [
@@ -89,7 +89,7 @@
   "keyHighlights": {
     "title": "Key Highlights",
     "decoration": {
-      "src": "/images/casino/key-highlights/sparkle.png",
+      "src": "/images/decorative-icons/sparkles.png",
       "alt": ""
     },
     "cards": [
@@ -113,7 +113,7 @@
   "payments": {
     "title": "Payments & Withdrawals",
     "glow": {
-      "src": "/images/casino/payments/glow.png",
+      "src": "/images/decorations/glow-casino-payments.png",
       "alt": ""
     },
     "lists": [
@@ -182,7 +182,7 @@
     "textPrimary": "As a direct advertiser for WinSpirit Casino,",
     "textSecondary": " we remove unnecessary layers between you and the brand, ensuring faster communication and better conditions for scaling.",
     "glow": {
-      "src": "/images/casino/cta/glow.png",
+      "src": "/images/decorations/glow-casino-cta.png",
       "alt": ""
     },
     "buttons": [

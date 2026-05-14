@@ -166,7 +166,7 @@ const navConfig = {
   <section id="testimonials" class="home-testimonials" data-section="testimonials">
     <div class="home-testimonials__inner">
       <img
-        src="/images/home/testimonials/glow.png"
+        src="/images/decorations/glow-home-testimonials.png"
         alt=""
         class="home-testimonials__glow"
         aria-hidden="true"

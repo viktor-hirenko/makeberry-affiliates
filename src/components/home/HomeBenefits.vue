@@ -8,7 +8,7 @@ const content = useHomeBenefits()
   <section id="our-benefits" class="home-benefits" data-section="our-benefits">
     <div class="home-benefits__inner">
       <img
-        src="/images/home/our-benefits/glow.png"
+        src="/images/decorations/glow-home-benefits.png"
         alt=""
         class="home-benefits__glow"
         loading="lazy"

@@ -559,8 +559,8 @@ export type WhatYouGetCardContent =
  * 2655:1593 etc.). Размеры/смещения для desktop и mobile задаются
  * отдельно — на mobile стикер меньше и сдвинут ближе к карточке.
  *
- * Поворот PNG **не задаётся** здесь: ассеты экспортированы из Figma
- * уже с применённой ротацией; CSS-rotate сверху только сломает вид.
+ * Дополнительный поворот стикера в CSS задаётся на карточке через
+ * `stickerRotateDeg` (редкий случай, см. `AudienceWhatYouGet`).
  */
 export interface WhatYouGetCardSticker {
   src: string
@@ -574,6 +574,8 @@ export interface WhatYouGetCard {
   title: string
   blocks: WhatYouGetCardContent[]
   sticker?: WhatYouGetCardSticker
+  /** Доп. `rotate()` для контейнера стикера, градусы (опционально). */
+  stickerRotateDeg?: number
 }
 
 /**

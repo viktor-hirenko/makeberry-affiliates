@@ -25,7 +25,7 @@ defineProps<Props>()
 <template>
   <section class="casino-hero" data-section="casino-hero">
     <img
-      :src="'/images/casino/hero/glow.png'"
+      :src="'/images/decorations/glow-casino-hero.png'"
       alt=""
       class="casino-hero__glow"
       aria-hidden="true"

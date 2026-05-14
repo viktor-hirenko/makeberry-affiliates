@@ -5,7 +5,7 @@
     "title": "RocketPlay Casino",
     "intro": "RocketPlay Casino is a trusted iGaming brand launched in 2020. It operates under a Curaçao licence and is built around a dynamic and engaging player experience.",
     "logo": {
-      "src": "/images/casino/hero/rocketplay.svg",
+      "src": "/images/logos/advertisers/rocket-play/rocket-play-mark.svg",
       "alt": "RocketPlay Casino logo"
     },
     "stats": [
@@ -81,7 +81,7 @@
   "keyHighlights": {
     "title": "Key Highlights",
     "decoration": {
-      "src": "/images/casino/key-highlights/sparkle.png",
+      "src": "/images/decorative-icons/sparkles.png",
       "alt": ""
     },
     "cards": [
@@ -105,7 +105,7 @@
   "payments": {
     "title": "Payments & Withdrawals",
     "glow": {
-      "src": "/images/casino/payments/glow.png",
+      "src": "/images/decorations/glow-casino-payments.png",
       "alt": ""
     },
     "lists": [
@@ -175,7 +175,7 @@
     "textPrimary": "As a direct advertiser for RocketPlay Casino,",
     "textSecondary": " we remove unnecessary layers between you and the brand, ensuring faster communication and better conditions for scaling.",
     "glow": {
-      "src": "/images/casino/cta/glow.png",
+      "src": "/images/decorations/glow-casino-cta.png",
       "alt": ""
     },
     "buttons": [

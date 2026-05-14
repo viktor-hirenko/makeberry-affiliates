@@ -40,7 +40,7 @@
       {
         "id": "gpwa",
         "name": "GPWA",
-        "src": "/images/footer/gpwa.png",
+        "src": "/images/logos/partners/gpwa.png",
         "alt": "GPWA",
         "width": 120,
         "height": 45,
@@ -52,7 +52,7 @@
       {
         "id": "affpapa",
         "name": "AffPapa",
-        "src": "/images/footer/affpapa.png",
+        "src": "/images/logos/partners/affpapa.png",
         "alt": "AffPapa",
         "width": 147,
         "height": 45,
@@ -63,7 +63,7 @@
       {
         "id": "askgamblers",
         "name": "AskGamblers",
-        "src": "/images/footer/askgamblers.png",
+        "src": "/images/logos/partners/askgamblers.png",
         "alt": "AskGamblers",
         "width": 138,
         "height": 45,
@@ -75,7 +75,7 @@
       {
         "id": "affiverse",
         "name": "Affiverse Media",
-        "src": "/images/footer/affiverse.png",
+        "src": "/images/logos/partners/affiverse-media.png",
         "alt": "Affiverse Media",
         "width": 222,
         "height": 45,
@@ -90,7 +90,7 @@
     "items": [
       {
         "id": "affpapa-igaming-awards",
-        "src": "/images/footer/affpapa-awards.png",
+        "src": "/images/logos/awards/affpapa-award.png",
         "alt": "AffPapa iGaming Awards",
         "width": 102,
         "height": 64,

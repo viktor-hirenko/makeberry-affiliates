@@ -29,9 +29,9 @@ defineProps<Props>()
   <section class="audience-hero" data-section="hero">
     <div class="audience-hero__inner">
       <picture class="audience-hero__decor" aria-hidden="true">
-        <source media="(min-width: 1024px)" srcset="/images/page-hero/bg-desktop.png" />
+        <source media="(min-width: 1024px)" srcset="/images/hero/audience-bg-desktop.png" />
         <img
-          src="/images/page-hero/bg-mobile.png"
+          src="/images/hero/audience-bg-mobile.png"
           alt=""
           loading="eager"
           decoding="async"

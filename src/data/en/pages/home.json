@@ -16,8 +16,8 @@
       "path": "/advertisers"
     },
     "background": {
-      "desktop": "/images/home/hero/bg-desktop.png",
-      "mobile": "/images/home/hero/bg-mobile.png",
+      "desktop": "/images/hero/home-bg-desktop.png",
+      "mobile": "/images/hero/home-bg-mobile.png",
       "alt": ""
     }
   },
@@ -118,8 +118,8 @@
       }
     ],
     "image": {
-      "src": "/images/home/about/pendant.png",
-      "alt": "Makeberry Affiliates pendant"
+      "src": "/images/decorative-icons/badge.png",
+      "alt": "Makeberry badge"
     }
   },
   "affiliatesAdvertisers": {
@@ -137,7 +137,7 @@
           "path": "/sign-up"
         },
         "decoration": {
-          "src": "/images/home/affiliates-advertisers/sparkle.png",
+          "src": "/images/decorative-icons/sparkles.png",
           "alt": "Sparkle decoration"
         }
       },
@@ -154,7 +154,7 @@
           "path": "/sign-up"
         },
         "decoration": {
-          "src": "/images/home/affiliates-advertisers/cursor.png",
+          "src": "/images/decorative-icons/cursor.png",
           "alt": "Cursor click decoration"
         }
       }
@@ -166,28 +166,28 @@
       {
         "id": "rocket-play",
         "name": "RocketPlay Casino",
-        "logoSrc": "/images/home/direct-advertiser/rocket-play.png",
+        "logoSrc": "/images/logos/advertisers/rocket-play/rocket-play-lockup.png",
         "logoAlt": "RocketPlay Casino logo",
         "href": "/casino/rocketplay"
       },
       {
         "id": "win-spirit",
         "name": "WinSpirit Casino",
-        "logoSrc": "/images/home/direct-advertiser/win-spirit.png",
+        "logoSrc": "/images/logos/advertisers/win-spirit/win-spirit-lockup.png",
         "logoAlt": "WinSpirit Casino logo",
         "href": "/casino/winspirit"
       },
       {
         "id": "lucky-hills",
         "name": "LuckyHills Casino",
-        "logoSrc": "/images/home/direct-advertiser/lucky-hills.png",
+        "logoSrc": "/images/logos/advertisers/lucky-hills/lucky-hills-mark.png",
         "logoAlt": "LuckyHills Casino logo",
         "href": "/casino/luckyhills"
       },
       {
         "id": "test-extra-partner",
         "name": "Test Partner",
-        "logoSrc": "/images/home/direct-advertiser/lucky-hills.png",
+        "logoSrc": "/images/logos/advertisers/lucky-hills/lucky-hills-mark.png",
         "logoAlt": "Test Partner logo",
         "href": "/casino/luckyhills"
       },
@@ -228,7 +228,7 @@
       }
     },
     "glow": {
-      "src": "/images/home/direct-advertiser/glow.png",
+      "src": "/images/decorations/glow-casino-payments.png",
       "alt": ""
     }
   },
@@ -691,7 +691,7 @@
       {
         "id": "ice-barcelona-2026",
         "name": "ICE Barcelona\n2026",
-        "logoSrc": "/images/home/meet-us/ice-logo.svg",
+        "logoSrc": "/images/logos/events/ice-logo.svg",
         "logoAlt": "ICE Barcelona 2026 logo",
         "logoWidth": 136,
         "logoHeight": 55,
@@ -712,7 +712,7 @@
       {
         "id": "sbc-summit-rio-2026",
         "name": "SBC Summit Rio\n2026",
-        "logoSrc": "/images/home/meet-us/sbc-logo.svg",
+        "logoSrc": "/images/logos/events/sbc-logo.svg",
         "logoAlt": "SBC Summit Rio 2026 logo",
         "logoWidth": 132,
         "logoHeight": 55,
@@ -729,7 +729,7 @@
       {
         "id": "prague-gaming-tech-summit-2026",
         "name": "Prague Gaming & TECH Summit 2026",
-        "logoSrc": "/images/home/meet-us/prague-logo.svg",
+        "logoSrc": "/images/logos/events/prague-logo.svg",
         "logoAlt": "Prague Gaming & TECH Summit 2026 logo",
         "logoWidth": 137,
         "logoHeight": 106,
@@ -750,7 +750,7 @@
       {
         "id": "test-extra-event",
         "name": "Test Event\n2026",
-        "logoSrc": "/images/home/meet-us/ice-logo.svg",
+        "logoSrc": "/images/logos/events/ice-logo.svg",
         "logoAlt": "Test Event 2026 logo",
         "logoWidth": 136,
         "logoHeight": 55,
@@ -773,7 +773,7 @@
   "contacts": {
     "title": "Contacts",
     "glow": {
-      "src": "/images/decorations/glow.png",
+      "src": "/images/decorations/glow-base.png",
       "alt": ""
     },
     "items": [
@@ -781,7 +781,7 @@
         "id": "valentyn-halchuk",
         "name": "Valentyn\nHalchuk",
         "position": "Head of Makeberry BizDev",
-        "photoSrc": "/images/home/contacts/valentyn-halchuk.png",
+        "photoSrc": "/images/contacts/valentyn-halchuk.png",
         "photoAlt": "Valentyn Halchuk",
         "photoObjectPosition": "center top",
         "socials": [
@@ -805,7 +805,7 @@
         "id": "roman-yakubovskyi",
         "name": "Roman\nYakubovskyi",
         "position": "Makeberry HUB Team Lead",
-        "photoSrc": "/images/home/contacts/roman-yakubovskyi.png",
+        "photoSrc": "/images/contacts/roman-yakubovskyi.png",
         "photoAlt": "Roman Yakubovskyi",
         "photoObjectPosition": "center top",
         "socials": [
@@ -829,7 +829,7 @@
         "id": "alona-didkivska",
         "name": "Alona\nDidkivska",
         "position": "Sales Team Lead",
-        "photoSrc": "/images/home/contacts/alona-didkivska.png",
+        "photoSrc": "/images/contacts/alona-didkivska.png",
         "photoAlt": "Alona Didkivska",
         "photoObjectPosition": "center top",
         "socials": [
@@ -853,7 +853,7 @@
         "id": "serhii-solodchuk",
         "name": "Serhii\nSolodchuk",
         "position": "Influence Team Lead",
-        "photoSrc": "/images/home/contacts/serhii-solodchuk.png",
+        "photoSrc": "/images/contacts/serhii-solodchuk.png",
         "photoAlt": "Serhii Solodchuk",
         "photoObjectPosition": "center top",
         "socials": [
@@ -877,7 +877,7 @@
         "id": "roman-hromov",
         "name": "Roman\nHromov",
         "position": "Head of Makeberry Affiliate",
-        "photoSrc": "/images/home/contacts/roman-hromov.png",
+        "photoSrc": "/images/contacts/roman-hromov.png",
         "photoAlt": "Roman Hromov",
         "photoObjectPosition": "center top",
         "socials": [
@@ -902,7 +902,7 @@
         "id": "kateryna-rybka",
         "name": "Kateryna\nRybka",
         "position": "Direct Adv Team Lead",
-        "photoSrc": "/images/home/contacts/kateryna-rybka.png",
+        "photoSrc": "/images/contacts/kateryna-rybka.png",
         "photoAlt": "Kateryna Rybka",
         "photoObjectPosition": "center top",
         "socials": [
@@ -926,7 +926,7 @@
         "id": "anna-tian",
         "name": "Anna\nTian",
         "position": "PR Makeberry Affiliate Team Lead",
-        "photoSrc": "/images/home/contacts/anna-tian.png",
+        "photoSrc": "/images/contacts/anna-tian.png",
         "photoAlt": "Anna Tian",
         "photoObjectPosition": "center top",
         "socials": [
@@ -950,7 +950,7 @@
         "id": "oleksandr-kulyk",
         "name": "Oleksandr\nKulyk",
         "position": "VP of Makeberry Affiliate & BizDev",
-        "photoSrc": "/images/home/contacts/oleksandr-kulyk.png",
+        "photoSrc": "/images/contacts/oleksandr-kulyk.png",
         "photoAlt": "Oleksandr Kulyk",
         "photoObjectPosition": "center top",
         "socials": [
@@ -983,11 +983,11 @@
   "faq": {
     "title": "FAQ",
     "glow": {
-      "src": "/images/decorations/glow.png",
+      "src": "/images/decorations/glow-base.png",
       "alt": ""
     },
     "questionMark": {
-      "src": "/images/home/faq/question-mark.png",
+      "src": "/images/decorative-icons/question.png",
       "alt": ""
     },
     "defaultOpenId": "payouts-on-hold",
@@ -1032,11 +1032,11 @@
   "vacancies": {
     "title": "Open Vacancies",
     "glow": {
-      "src": "/images/decorations/glow.png",
+      "src": "/images/decorations/glow-base.png",
       "alt": ""
     },
     "target": {
-      "src": "/images/home/vacancies/target.png",
+      "src": "/images/decorative-icons/target.png",
       "alt": ""
     },
     "cards": [
