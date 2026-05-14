@@ -9,6 +9,7 @@ import IconButton from '@/components/ui/IconButton.vue'
 import MobileMenu from '@/components/layout/MobileMenu.vue'
 import { useWindowSize } from '@vueuse/core'
 import { useNav, useSharedUi } from '@/composables/useContent'
+import { BREAKPOINT_TABLET_PX, BREAKPOINT_WIDE_PX } from '@/constants/breakpoints'
 import type { NavLink } from '@/types/content'
 
 const nav = useNav()
@@ -17,15 +18,13 @@ const route = useRoute()
 const { width } = useWindowSize()
 
 /** Совпадает с `$breakpoints.tablet` / `@include mq($from: tablet)` — горизонтальная навигация в pill. */
-const BREAKPOINT_NAV_DESKTOP_PX = 1024
 /** Полный вордмарк «Makeberry» в SVG; до этого порога — только mark (шире места под ссылки 1024–1279). */
-const BREAKPOINT_LOGO_FULL_PX = 1280
 
 /** Компактный бар + drawer при ширине < 1024; pill с навигацией от 1024. */
-const isCompactBar = computed(() => width.value < BREAKPOINT_NAV_DESKTOP_PX)
+const isCompactBar = computed(() => width.value < BREAKPOINT_TABLET_PX)
 const showDesktopNav = computed(() => !isCompactBar.value)
 const logoVariant = computed<'full' | 'mark'>(() =>
-  width.value >= BREAKPOINT_LOGO_FULL_PX ? 'full' : 'mark'
+  width.value >= BREAKPOINT_WIDE_PX ? 'full' : 'mark'
 )
 
 const openDropdown = ref<string | null>(null)
