@@ -20,7 +20,7 @@ function loadMore() {
 </script>
 
 <template>
-  <article class="blog-page">
+  <div class="blog-page">
     <div class="blog-page__inner">
       <!-- Декоративные гловы (только desktop) -->
       <img
@@ -81,7 +81,7 @@ function loadMore() {
         {{ meta.loadMoreLabel }}
       </BaseButton>
     </div>
-  </article>
+  </div>
 </template>
 
 <style scoped lang="scss">

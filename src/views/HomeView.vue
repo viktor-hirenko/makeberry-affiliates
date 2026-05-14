@@ -14,7 +14,7 @@ import HomeVacancies from '@/components/home/HomeVacancies.vue'
 </script>
 
 <template>
-  <article class="home">
+  <div class="home">
     <HomeHero />
     <HomeAbout />
     <HomeAffiliatesAdvertisers />
@@ -27,7 +27,7 @@ import HomeVacancies from '@/components/home/HomeVacancies.vue'
     <HomeFaq />
     <HomeVacancies />
     <HomeBlog />
-  </article>
+  </div>
 </template>
 
 <style scoped lang="scss">

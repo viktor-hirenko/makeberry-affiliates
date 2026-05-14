@@ -37,14 +37,14 @@ watch(
 </script>
 
 <template>
-  <article v-if="casino" class="casino-page">
+  <div v-if="casino" class="casino-page">
     <CasinoHero :hero="casino.hero" />
     <CasinoAbout :about="casino.about" />
     <CasinoKeyHighlights :content="casino.keyHighlights" />
     <CasinoPayments :content="casino.payments" />
     <CasinoCooperation :content="casino.cooperation" />
     <CasinoBottomCta :content="casino.bottomCta" />
-  </article>
+  </div>
 </template>
 
 <style scoped lang="scss">

@@ -37,14 +37,14 @@ watch(
 </script>
 
 <template>
-  <article v-if="audience" class="audience-page">
+  <div v-if="audience" class="audience-page">
     <AudienceHero :hero="audience.hero" />
     <AudienceWhatYouGet
       :title="audience.whatYouGet.title"
       :cards="audience.whatYouGet.cards"
     />
     <AudienceCta :cta="audience.cta" :slug="audience.slug" />
-  </article>
+  </div>
 </template>
 
 <style scoped lang="scss">
