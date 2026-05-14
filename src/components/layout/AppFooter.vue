@@ -99,21 +99,36 @@ const footer = useFooter()
           </span>
           <ul class="app-footer__award-list">
             <li v-for="award in footer.awards.items" :key="award.id" class="app-footer__award">
-              <img
-                :src="award.src"
-                :alt="award.alt"
-                :width="award.width"
-                :height="award.height"
-                class="app-footer__award-img"
-                :style="{
-                  '--award-w': award.width + 'px',
-                  '--award-h': award.height + 'px',
-                  '--award-w-mobile': award.mobileWidth + 'px',
-                  '--award-h-mobile': award.mobileHeight + 'px',
-                }"
-                loading="lazy"
-                decoding="async"
-              />
+              <component
+                :is="award.href ? 'a' : 'div'"
+                v-bind="
+                  award.href
+                    ? {
+                        href: award.href,
+                        target: '_blank',
+                        rel: 'noopener noreferrer',
+                        'aria-label': award.name ?? award.alt,
+                      }
+                    : {}
+                "
+                class="app-footer__award-link"
+              >
+                <img
+                  :src="award.src"
+                  :alt="award.alt"
+                  :width="award.width"
+                  :height="award.height"
+                  class="app-footer__award-img"
+                  :style="{
+                    '--award-w': award.width + 'px',
+                    '--award-h': award.height + 'px',
+                    '--award-w-mobile': award.mobileWidth + 'px',
+                    '--award-h-mobile': award.mobileHeight + 'px',
+                  }"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </component>
             </li>
           </ul>
         </section>
@@ -392,7 +407,8 @@ const footer = useFooter()
   }
 }
 
-.app-footer__partner-link {
+.app-footer__partner-link,
+.app-footer__award-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;

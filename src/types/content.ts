@@ -54,6 +54,9 @@ export interface FooterAward {
   height: number
   mobileWidth: number
   mobileHeight: number
+  /** Подпись ссылки (aria-label), если задан href */
+  name?: string
+  href?: string
 }
 
 export interface FooterBottomLink {

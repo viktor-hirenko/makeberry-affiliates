@@ -90,12 +90,14 @@
     "items": [
       {
         "id": "affpapa-igaming-awards",
+        "name": "AffPapa iGaming Awards",
         "src": "/images/logos/awards/affpapa-award.png",
         "alt": "AffPapa iGaming Awards",
         "width": 102,
         "height": 64,
         "mobileWidth": 79,
-        "mobileHeight": 50
+        "mobileHeight": 50,
+        "href": "https://affpapa.com/igaming-awards-2026/"
       }
     ]
   },
