@@ -1,0 +1,36 @@
+{
+  "aria": {
+    "navMain": "Main",
+    "navMobile": "Mobile",
+    "navFooter": "Footer",
+    "navSite": "Site navigation",
+    "navArticle": "Article navigation",
+    "socialLinks": "Social links",
+    "callToAction": "Call to action",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "mapSvg": "World map highlighting countries where we operate",
+    "mapTabs": "Filter countries by tier",
+    "testimonialsPrev": "Previous testimonial",
+    "testimonialsNext": "Next testimonial",
+    "testimonialsPagination": "Testimonials pagination",
+    "testimonialsGroup": "Go to testimonial group {n}",
+    "testimonialsVisit": "Visit {author}",
+    "contactsPrev": "Previous contacts",
+    "contactsNext": "Next contacts",
+    "partnersPrev": "Previous partners",
+    "partnersNext": "Next partners",
+    "eventsPrev": "Previous event",
+    "eventsNext": "Next event"
+  },
+  "actions": {
+    "back": "Back",
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "map": {
+    "offers": "{count} offers",
+    "tierBadge": "Top in Tier {tier}",
+    "loadError": "Could not load the world map. Please try refreshing the page."
+  }
+}

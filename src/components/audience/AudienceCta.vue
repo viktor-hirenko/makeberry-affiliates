@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import BaseButton from '@/components/ui/BaseButton.vue'
+import { useSharedUi } from '@/composables/useContent'
 import type { AudienceCtaBlock, AudiencePageContent } from '@/types/content'
 
 /**
@@ -23,6 +24,8 @@ interface Props {
 }
 
 defineProps<Props>()
+
+const ui = useSharedUi()
 </script>
 
 <template>
@@ -30,7 +33,7 @@ defineProps<Props>()
     class="audience-cta"
     :class="`audience-cta--${slug}`"
     data-section="audience-cta"
-    aria-label="Call to action"
+    :aria-label="ui.aria.callToAction"
   >
     <div class="audience-cta__inner">
       <img

@@ -8,10 +8,11 @@ import BaseLogo from '@/components/ui/BaseLogo.vue'
 import IconButton from '@/components/ui/IconButton.vue'
 import MobileMenu from '@/components/layout/MobileMenu.vue'
 import { useWindowSize } from '@vueuse/core'
-import { useNav } from '@/composables/useContent'
+import { useNav, useSharedUi } from '@/composables/useContent'
 import type { NavLink } from '@/types/content'
 
 const nav = useNav()
+const ui = useSharedUi()
 const route = useRoute()
 const { width } = useWindowSize()
 
@@ -83,7 +84,7 @@ function closeMobileMenu() {
         <BaseLogo :variant="logoVariant" :aria-label="nav.logoAlt" :height="40" />
       </RouterLink>
 
-      <nav class="app-header__nav" aria-label="Main">
+      <nav class="app-header__nav" :aria-label="ui.aria.navMain">
         <ul class="app-header__list">
           <li
             v-for="link in nav.links"
@@ -154,7 +155,13 @@ function closeMobileMenu() {
         <BaseButton variant="secondary" size="small" :to="nav.ctaPath">
           {{ nav.ctaLabel }}
         </BaseButton>
-        <IconButton icon="menu" label="Open menu" :size="24" variant="ghost" @click="openMobileMenu" />
+        <IconButton
+          icon="menu"
+          :label="ui.aria.openMenu"
+          :size="24"
+          variant="ghost"
+          @click="openMobileMenu"
+        />
       </div>
     </div>
 

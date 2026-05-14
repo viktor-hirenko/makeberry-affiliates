@@ -9,9 +9,10 @@ import 'swiper/css/pagination'
 
 import BaseIcon from '@/components/ui/BaseIcon.vue'
 import { BREAKPOINT_MOBILE_PX, BREAKPOINT_TABLET_PX } from '@/constants/breakpoints'
-import { useHomeContacts } from '@/composables/useContent'
+import { useHomeContacts, useSharedUi } from '@/composables/useContent'
 
 const content = useHomeContacts()
+const ui = useSharedUi()
 
 /**
  * Swiper breakpoints (числа = min-width):
@@ -154,14 +155,14 @@ function handleInput() {
         <button
           type="button"
           class="home-contacts__nav home-contacts__nav--prev"
-          aria-label="Previous contacts"
+          :aria-label="ui.aria.contactsPrev"
         >
           <BaseIcon name="chevron-left" :size="24" />
         </button>
         <button
           type="button"
           class="home-contacts__nav home-contacts__nav--next"
-          aria-label="Next contacts"
+          :aria-label="ui.aria.contactsNext"
         >
           <BaseIcon name="chevron-right" :size="24" />
         </button>

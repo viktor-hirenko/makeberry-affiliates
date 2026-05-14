@@ -9,9 +9,10 @@ import 'swiper/css/navigation'
 
 import BaseIcon from '@/components/ui/BaseIcon.vue'
 import { BREAKPOINT_MOBILE_PX, BREAKPOINT_TABLET_PX } from '@/constants/breakpoints'
-import { useHomeTestimonials } from '@/composables/useContent'
+import { formatUiString, useHomeTestimonials, useSharedUi } from '@/composables/useContent'
 
 const content = useHomeTestimonials()
+const ui = useSharedUi()
 
 /**
  * Расстояние между слайдами на desktop focal (≥1024).
@@ -233,7 +234,7 @@ const navConfig = {
                   class="home-testimonials__cta"
                   target="_blank"
                   rel="noopener noreferrer"
-                  :aria-label="`Visit ${item.author}`"
+                  :aria-label="formatUiString(ui.aria.testimonialsVisit, { author: item.author })"
                 >
                   <BaseIcon name="arrow-up-right" :size="24" />
                 </a>
@@ -245,14 +246,14 @@ const navConfig = {
         <button
           type="button"
           class="home-testimonials__nav home-testimonials__nav--prev"
-          aria-label="Previous testimonial"
+          :aria-label="ui.aria.testimonialsPrev"
         >
           <BaseIcon name="chevron-left" :size="24" />
         </button>
         <button
           type="button"
           class="home-testimonials__nav home-testimonials__nav--next"
-          aria-label="Next testimonial"
+          :aria-label="ui.aria.testimonialsNext"
         >
           <BaseIcon name="chevron-right" :size="24" />
         </button>
@@ -261,7 +262,7 @@ const navConfig = {
           v-if="uniqueSnaps.length > 1"
           class="home-testimonials__pagination"
           role="tablist"
-          aria-label="Testimonials pagination"
+          :aria-label="ui.aria.testimonialsPagination"
         >
           <button
             v-for="(_, i) in uniqueSnaps"
@@ -270,7 +271,7 @@ const navConfig = {
             role="tab"
             class="home-testimonials__pagination-bullet"
             :class="{ 'is-active': i === currentSnap }"
-            :aria-label="`Go to testimonial group ${i + 1}`"
+            :aria-label="formatUiString(ui.aria.testimonialsGroup, { n: i + 1 })"
             :aria-selected="i === currentSnap ? 'true' : 'false'"
             @click="goToSnap(i)"
           />

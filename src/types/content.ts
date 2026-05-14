@@ -1,3 +1,64 @@
+/**
+ * Общие переиспользуемые UI / ARIA-строки.
+ *
+ * Источник: `src/data/en/shared/ui.json`.
+ *
+ * Сюда выносим только маленькие переиспользуемые подписи — aria-метки
+ * каруселей/меню/диалогов, accessibility-лейблы icon-кнопок и т.п.
+ * (см. аудит A-7). Большие текстовые блоки (заголовки секций, тексты
+ * CTA, описания) остаются в page-JSON.
+ *
+ * Это **не** полноценная i18n — только централизованное хранение
+ * хардкода для будущей кастомной локализации.
+ *
+ * Параметризованные строки используют простой `{key}`-плейсхолдер
+ * (например `"Go to testimonial group {n}"`), компонент сам подставляет
+ * значение через `String.prototype.replace`.
+ */
+export interface SharedUiContent {
+  /** ARIA-метки: навигация, диалоги, карусели, карта. */
+  aria: {
+    navMain: string
+    navMobile: string
+    navFooter: string
+    navSite: string
+    navArticle: string
+    socialLinks: string
+    callToAction: string
+    openMenu: string
+    closeMenu: string
+    mapSvg: string
+    mapTabs: string
+    testimonialsPrev: string
+    testimonialsNext: string
+    testimonialsPagination: string
+    /** Шаблон: `"Go to testimonial group {n}"`. */
+    testimonialsGroup: string
+    /** Шаблон: `"Visit {author}"`. */
+    testimonialsVisit: string
+    contactsPrev: string
+    contactsNext: string
+    partnersPrev: string
+    partnersNext: string
+    eventsPrev: string
+    eventsNext: string
+  }
+  /** Видимые подписи действий (например в навигации статьи). */
+  actions: {
+    back: string
+    previous: string
+    next: string
+  }
+  /** Видимые подписи в секции HomeMap (tooltip + fallback). */
+  map: {
+    /** Шаблон: `"{count} offers"`. */
+    offers: string
+    /** Шаблон: `"Top in Tier {tier}"`. */
+    tierBadge: string
+    loadError: string
+  }
+}
+
 export interface NavChildLink {
   label: string
   path: string

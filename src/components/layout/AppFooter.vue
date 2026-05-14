@@ -2,10 +2,11 @@
 import BaseIcon from '@/components/ui/BaseIcon.vue'
 import BaseLogo from '@/components/ui/BaseLogo.vue'
 import MaybeLink from '@/components/ui/MaybeLink.vue'
-import { useFooter, useNav } from '@/composables/useContent'
+import { useFooter, useNav, useSharedUi } from '@/composables/useContent'
 
 const nav = useNav()
 const footer = useFooter()
+const ui = useSharedUi()
 </script>
 
 <template>
@@ -18,7 +19,7 @@ const footer = useFooter()
             <BaseLogo variant="full" :aria-label="nav.logoAlt" :height="40" />
           </RouterLink>
 
-          <ul class="app-footer__social" aria-label="Social links">
+          <ul class="app-footer__social" :aria-label="ui.aria.socialLinks">
             <li v-for="social in footer.social" :key="social.network">
               <a
                 :href="social.href"
@@ -33,7 +34,7 @@ const footer = useFooter()
           </ul>
         </div>
 
-        <nav class="app-footer__nav" aria-label="Footer">
+        <nav class="app-footer__nav" :aria-label="ui.aria.navFooter">
           <div v-for="column in footer.columns" :key="column.title" class="app-footer__column">
             <h3 class="app-footer__column-title">{{ column.title }}</h3>
             <ul class="app-footer__column-list">

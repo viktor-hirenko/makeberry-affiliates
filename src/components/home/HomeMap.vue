@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 
-import { useHomeMap } from '@/composables/useContent'
+import { formatUiString, useHomeMap, useSharedUi } from '@/composables/useContent'
 import type { HomeMapCountry, HomeMapTab } from '@/types/content'
 
 const content = useHomeMap()
+const ui = useSharedUi()
 
 /**
  * Cache-buster: bump при каждом запуске scripts/inject-country-ids.mjs,
@@ -74,9 +75,10 @@ async function loadMap(): Promise<void> {
     }
     let raw = await response.text()
 
+    const svgAriaLabel = ui.aria.mapSvg.replace(/"/g, '&quot;')
     raw = raw.replace(
       /<svg([^>]*)>/,
-      '<svg$1 class="home-map__svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="World map highlighting countries where we operate">'
+      `<svg$1 class="home-map__svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="${svgAriaLabel}">`
     )
 
     mapSvg.value = raw
@@ -208,7 +210,7 @@ onBeforeUnmount(() => {
       <header class="home-map__header">
         <h2 class="home-map__title">{{ content.title }}</h2>
 
-        <div class="home-map__tabs" role="tablist" aria-label="Filter countries by tier">
+        <div class="home-map__tabs" role="tablist" :aria-label="ui.aria.mapTabs">
           <button
             v-for="tab in content.tabs"
             :key="tab.id"
@@ -243,14 +245,18 @@ onBeforeUnmount(() => {
         >
           <div class="home-map__tooltip-card">
             <p class="home-map__tooltip-name">{{ tooltip.country.name }}</p>
-            <p class="home-map__tooltip-offers">{{ tooltip.country.offers ?? 0 }} offers</p>
-            <span class="home-map__tooltip-badge"> Top in Tier {{ tooltip.country.tier }} </span>
+            <p class="home-map__tooltip-offers">
+              {{ formatUiString(ui.map.offers, { count: tooltip.country.offers ?? 0 }) }}
+            </p>
+            <span class="home-map__tooltip-badge">
+              {{ formatUiString(ui.map.tierBadge, { tier: tooltip.country.tier }) }}
+            </span>
           </div>
         </div>
       </div>
 
       <p v-if="hasMapError" class="home-map__fallback">
-        Could not load the world map. Please try refreshing the page.
+        {{ ui.map.loadError }}
       </p>
     </div>
 

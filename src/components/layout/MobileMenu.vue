@@ -6,6 +6,7 @@ import BaseIcon from '@/components/ui/BaseIcon.vue'
 import BaseLogo from '@/components/ui/BaseLogo.vue'
 import IconButton from '@/components/ui/IconButton.vue'
 import { useScrollLock } from '@/composables/useScrollLock'
+import { useSharedUi } from '@/composables/useContent'
 import type { NavConfig, NavLink } from '@/types/content'
 
 interface MobileMenuProps {
@@ -18,6 +19,7 @@ const emit = defineEmits<{ close: [] }>()
 
 const route = useRoute()
 const expanded = ref<string | null>(null)
+const ui = useSharedUi()
 
 useScrollLock(toRef(props, 'open'))
 
@@ -72,16 +74,22 @@ const ctaPath = computed(() => props.nav.ctaPath)
       class="mobile-menu"
       role="dialog"
       aria-modal="true"
-      aria-label="Site navigation"
+      :aria-label="ui.aria.navSite"
     >
       <div class="mobile-menu__top">
         <RouterLink to="/" class="mobile-menu__logo" :aria-label="nav.logoAlt" @click="handleClose">
           <BaseLogo variant="full" :aria-label="nav.logoAlt" :height="40" />
         </RouterLink>
-        <IconButton icon="x" label="Close menu" :size="24" variant="ghost" @click="handleClose" />
+        <IconButton
+          icon="x"
+          :label="ui.aria.closeMenu"
+          :size="24"
+          variant="ghost"
+          @click="handleClose"
+        />
       </div>
 
-      <nav class="mobile-menu__nav" aria-label="Mobile">
+      <nav class="mobile-menu__nav" :aria-label="ui.aria.navMobile">
         <ul class="mobile-menu__list">
           <li v-for="link in nav.links" :key="link.label" class="mobile-menu__item">
             <button

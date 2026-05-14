@@ -12,9 +12,10 @@ import PillHeaderCard from '@/components/shared/PillHeaderCard.vue'
 import BaseButton from '@/components/ui/BaseButton.vue'
 import BaseIcon from '@/components/ui/BaseIcon.vue'
 import { BREAKPOINT_MOBILE_PX, BREAKPOINT_TABLET_PX } from '@/constants/breakpoints'
-import { useHomeDirectAdvertiser } from '@/composables/useContent'
+import { useHomeDirectAdvertiser, useSharedUi } from '@/composables/useContent'
 
 const content = useHomeDirectAdvertiser()
+const ui = useSharedUi()
 
 /** &lt; mobile: 1; mobile–tablet: 2; ≥ tablet: 4 */
 const directSwiperBreakpoints = {
@@ -112,14 +113,14 @@ const navConfig = {
         <button
           type="button"
           class="home-direct__nav home-direct__nav--prev"
-          aria-label="Previous partners"
+          :aria-label="ui.aria.partnersPrev"
         >
           <BaseIcon name="chevron-left" :size="24" />
         </button>
         <button
           type="button"
           class="home-direct__nav home-direct__nav--next"
-          aria-label="Next partners"
+          :aria-label="ui.aria.partnersNext"
         >
           <BaseIcon name="chevron-right" :size="24" />
         </button>

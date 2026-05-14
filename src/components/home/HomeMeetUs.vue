@@ -10,9 +10,10 @@ import 'swiper/css/pagination'
 
 import BaseIcon from '@/components/ui/BaseIcon.vue'
 import { BREAKPOINT_MOBILE_PX, BREAKPOINT_TABLET_PX } from '@/constants/breakpoints'
-import { useHomeMeetUs } from '@/composables/useContent'
+import { useHomeMeetUs, useSharedUi } from '@/composables/useContent'
 
 const content = useHomeMeetUs()
+const ui = useSharedUi()
 
 /** &lt; mobile: 1; mobile–tablet: 2; ≥ tablet: 3 (числа — min-width, как в SCSS `mq`) */
 const meetUsSwiperBreakpoints = {
@@ -97,14 +98,14 @@ const navConfig = {
         <button
           type="button"
           class="home-meet-us__nav home-meet-us__nav--prev"
-          aria-label="Previous event"
+          :aria-label="ui.aria.eventsPrev"
         >
           <BaseIcon name="chevron-left" :size="24" />
         </button>
         <button
           type="button"
           class="home-meet-us__nav home-meet-us__nav--next"
-          aria-label="Next event"
+          :aria-label="ui.aria.eventsNext"
         >
           <BaseIcon name="chevron-right" :size="24" />
         </button>

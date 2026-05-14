@@ -3,7 +3,12 @@ import { computed } from 'vue'
 import { RouterLink, useRouter } from 'vue-router'
 import BaseButton from '@/components/ui/BaseButton.vue'
 import BaseIcon from '@/components/ui/BaseIcon.vue'
-import { getAdjacentArticles, getArticleBySlug, useBlogMeta } from '@/composables/useContent'
+import {
+  getAdjacentArticles,
+  getArticleBySlug,
+  useBlogMeta,
+  useSharedUi,
+} from '@/composables/useContent'
 import type { ArticleSection } from '@/types/content'
 
 const props = defineProps<{ slug: string }>()
@@ -12,6 +17,7 @@ const router = useRouter()
 const article = computed(() => getArticleBySlug(props.slug))
 const adjacent = computed(() => getAdjacentArticles(props.slug))
 const blogMeta = useBlogMeta()
+const ui = useSharedUi()
 
 if (!article.value) {
   router.replace({ name: 'not-found' })
@@ -49,7 +55,7 @@ function isTextSection(section: ArticleSection): boolean {
 
       <!-- BACK link -->
       <RouterLink to="/blog" class="article__back">
-        <span>Back</span>
+        <span>{{ ui.actions.back }}</span>
         <BaseIcon name="arrow-back" :size="24" />
       </RouterLink>
 
@@ -110,7 +116,7 @@ function isTextSection(section: ArticleSection): boolean {
       <nav
         v-if="adjacent.prev || adjacent.next"
         class="article__pagination"
-        aria-label="Article navigation"
+        :aria-label="ui.aria.navArticle"
       >
         <BaseButton
           v-if="adjacent.prev"
@@ -119,7 +125,7 @@ function isTextSection(section: ArticleSection): boolean {
           :to="`/blog/${adjacent.prev.slug}`"
           class="article__pagination-btn"
         >
-          Previous
+          {{ ui.actions.previous }}
         </BaseButton>
         <span v-else class="article__pagination-spacer" aria-hidden="true" />
 
@@ -130,7 +136,7 @@ function isTextSection(section: ArticleSection): boolean {
           :to="`/blog/${adjacent.next.slug}`"
           class="article__pagination-btn"
         >
-          Next
+          {{ ui.actions.next }}
         </BaseButton>
         <span v-else class="article__pagination-spacer" aria-hidden="true" />
       </nav>

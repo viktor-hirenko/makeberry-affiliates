@@ -4,6 +4,7 @@ import rawBlog from '../data/en/pages/blog/index.json'
 import articleOrder from '../data/en/pages/blog/articles/order.json'
 import rawFooter from '../data/en/shared/footer.json'
 import rawNav from '../data/en/shared/nav.json'
+import rawUi from '../data/en/shared/ui.json'
 import type {
   ArticleDetail,
   AudiencePageContent,
@@ -25,6 +26,7 @@ import type {
   HomeVacanciesContent,
   NavConfig,
   NotFoundPageContent,
+  SharedUiContent,
 } from '@/types/content'
 
 const home = rawHome as HomePageContent
@@ -181,6 +183,35 @@ export function useNav(): NavConfig {
 
 export function useFooter(): FooterConfig {
   return rawFooter as FooterConfig
+}
+
+/**
+ * Переиспользуемые UI / ARIA-строки (см. аудит A-7).
+ *
+ * Возвращает типизированный объект с подписями для каруселей, диалогов,
+ * навигации и др. Это **не** i18n — только централизация хардкода,
+ * чтобы упростить будущую кастомную локализацию.
+ */
+export function useSharedUi(): SharedUiContent {
+  return rawUi as SharedUiContent
+}
+
+/**
+ * Подставляет значения в шаблон вида `"Go to testimonial group {n}"`.
+ *
+ * Намеренно простой helper — без зависимости на vue-i18n / @formatjs.
+ * Поддерживает только плоские плейсхолдеры `{name}` без форматирования
+ * чисел/множественного числа. Если ключ не передан в `vars`, шаблон
+ * остаётся как есть (полезно для DEV: видно, что что-то не подставили).
+ */
+export function formatUiString(
+  template: string,
+  vars: Record<string, string | number>,
+): string {
+  return template.replace(/\{(\w+)\}/g, (match, key: string) => {
+    const value = vars[key]
+    return value === undefined ? match : String(value)
+  })
 }
 
 export function useNotFound(): NotFoundPageContent {
