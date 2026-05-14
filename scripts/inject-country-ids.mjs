@@ -12,9 +12,9 @@
  *   $ node scripts/inject-country-ids.mjs
  *
  * Перезаписывает `public/images/home/map/world-map.svg` in-place.
- * Прежняя копия сохраняется как `world-map.original.svg` (если ещё не было).
+ * Прежняя копия сохраняется как `scripts/_backup/world-map.original.svg` (если ещё не было).
  */
-import { readFileSync, writeFileSync, copyFileSync, existsSync } from 'node:fs'
+import { readFileSync, writeFileSync, copyFileSync, existsSync, mkdirSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -22,7 +22,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const ROOT = resolve(__dirname, '..')
 
 const SVG_PATH = resolve(ROOT, 'public/images/home/map/world-map.svg')
-const SVG_BACKUP = resolve(ROOT, 'public/images/home/map/world-map.original.svg')
+const BACKUP_DIR = resolve(__dirname, '_backup')
+const SVG_BACKUP = resolve(BACKUP_DIR, 'world-map.original.svg')
 const META_PATH = resolve(__dirname, 'figma-map-metadata.txt')
 
 /* ============================================================
@@ -241,6 +242,7 @@ function main() {
       console.warn('[inject] SVG already has path id-attributes и нет бэкапа — пропускаю.')
       return
     }
+    mkdirSync(BACKUP_DIR, { recursive: true })
     copyFileSync(SVG_PATH, SVG_BACKUP)
     console.log(`[inject] backup saved → ${SVG_BACKUP}`)
   } else {

@@ -191,6 +191,7 @@ function handleInput() {
               :placeholder="content.form.placeholder"
               autocomplete="off"
               spellcheck="false"
+              enterkeyhint="send"
               :aria-invalid="status === 'error'"
               @input="handleInput"
             />
