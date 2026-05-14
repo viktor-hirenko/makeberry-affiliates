@@ -140,7 +140,7 @@ const navConfig = {
 
       <div class="home-direct__cta">
         <p class="home-direct__cta-title">{{ content.cta.title }}</p>
-        <BaseButton variant="secondary" size="large" :to="content.cta.button.path">
+        <BaseButton variant="secondary" size="large" :href="content.cta.button.path">
           {{ content.cta.button.label }}
         </BaseButton>
       </div>

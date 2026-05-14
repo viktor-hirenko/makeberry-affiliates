@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import type { RouteLocationRaw } from 'vue-router'
 import { RouterLink } from 'vue-router'
 
@@ -11,12 +12,22 @@ export interface BaseButtonProps {
   type?: 'button' | 'submit' | 'reset'
 }
 
-withDefaults(defineProps<BaseButtonProps>(), {
+const props = withDefaults(defineProps<BaseButtonProps>(), {
   variant: 'primary',
   size: 'large',
   disabled: false,
   type: 'button',
 })
+
+/**
+ * mailto: / tel: открываются нативным клиентом, target=_blank и
+ * rel=noopener для них неосмысленны (а в части окружений ещё и
+ * приводят к пустой вкладке). Для остальных http(s)-ссылок —
+ * стандартный безопасный набор атрибутов.
+ */
+const isProtocolLink = computed(
+  () => !!props.href && /^(mailto:|tel:)/i.test(props.href),
+)
 </script>
 
 <template>
@@ -34,8 +45,8 @@ withDefaults(defineProps<BaseButtonProps>(), {
     class="base-button"
     :class="[`base-button--${variant}`, `base-button--${size}`]"
     :href="href"
-    rel="noopener noreferrer"
-    target="_blank"
+    :rel="isProtocolLink ? undefined : 'noopener noreferrer'"
+    :target="isProtocolLink ? undefined : '_blank'"
   >
     <slot />
   </a>
