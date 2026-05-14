@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { Navigation, Pagination } from 'swiper/modules'
+import { A11y, Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 
 import 'swiper/css'
@@ -98,7 +98,7 @@ function handleInput() {
       <div class="home-contacts__slider-wrap">
         <Swiper
           class="home-contacts__swiper"
-          :modules="[Navigation, Pagination]"
+          :modules="[Navigation, Pagination, A11y]"
           :slides-per-view="1"
           :slides-per-group="1"
           :space-between="16"

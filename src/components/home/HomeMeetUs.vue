@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { nextTick } from 'vue'
-import { Navigation, Pagination } from 'swiper/modules'
+import { A11y, Navigation, Pagination } from 'swiper/modules'
 import type { Swiper as SwiperInstance } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 
@@ -53,7 +53,7 @@ const navConfig = {
       <div class="home-meet-us__slider-wrap">
         <Swiper
           class="home-meet-us__swiper"
-          :modules="[Navigation, Pagination]"
+          :modules="[Navigation, Pagination, A11y]"
           breakpoints-base="window"
           :slides-per-view="1"
           :slides-per-group="1"

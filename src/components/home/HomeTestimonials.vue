@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { nextTick, ref, shallowRef } from 'vue'
-import { Navigation } from 'swiper/modules'
+import { A11y, Navigation } from 'swiper/modules'
 import type { Swiper as SwiperInstance } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 
@@ -180,7 +180,7 @@ const navConfig = {
       <div class="home-testimonials__slider-wrap">
         <Swiper
           class="home-testimonials__swiper"
-          :modules="[Navigation]"
+          :modules="[Navigation, A11y]"
           breakpoints-base="window"
           :slides-per-view="1"
           :slides-per-group="1"
