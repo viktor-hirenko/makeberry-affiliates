@@ -8,7 +8,8 @@ const hero = useHomeHero()
 function handleScrollClick() {
   const target = document.getElementById(hero.scroll.targetId)
   if (target) {
-    target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    target.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' })
   }
 }
 </script>

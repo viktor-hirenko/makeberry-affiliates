@@ -468,7 +468,10 @@ onBeforeUnmount(() => {
   z-index: 2;
   /* Якорь центра низа карточки над странной с зазором 8px. */
   transform: translate(-50%, calc(-100% - #{to-rem(8)}));
-  animation: home-map-tooltip-in var(--transition-fast) ease-out;
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: home-map-tooltip-in var(--transition-fast) ease-out;
+  }
 }
 
 .home-map__tooltip-card {
@@ -524,14 +527,16 @@ onBeforeUnmount(() => {
   @include font-caption-medium;
 }
 
-@keyframes home-map-tooltip-in {
-  from {
-    opacity: 0;
-    transform: translate(-50%, calc(-100% - #{to-rem(2)}));
-  }
-  to {
-    opacity: 1;
-    transform: translate(-50%, calc(-100% - #{to-rem(8)}));
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes home-map-tooltip-in {
+    from {
+      opacity: 0;
+      transform: translate(-50%, calc(-100% - #{to-rem(2)}));
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, calc(-100% - #{to-rem(8)}));
+    }
   }
 }
 
