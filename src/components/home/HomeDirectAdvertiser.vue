@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { nextTick } from 'vue'
+import { RouterLink } from 'vue-router'
 import { Navigation, Pagination } from 'swiper/modules'
 import type { Swiper as SwiperInstance } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/vue'
@@ -16,6 +17,27 @@ import { useHomeDirectAdvertiser, useSharedUi } from '@/composables/useContent'
 
 const content = useHomeDirectAdvertiser()
 const ui = useSharedUi()
+
+function isInternalRoute(href: string): boolean {
+  return href.startsWith('/')
+}
+
+const isProtocolLink = (href: string) => /^(mailto:|tel:)/i.test(href)
+
+function cardComponent(href: string | undefined, isPlaceholder: boolean | undefined) {
+  if (!href || isPlaceholder) return 'div'
+  return isInternalRoute(href) ? RouterLink : 'a'
+}
+
+function cardAttrs(href: string | undefined, isPlaceholder: boolean | undefined) {
+  if (!href || isPlaceholder) return {}
+  if (isInternalRoute(href)) return { to: href }
+  return {
+    href,
+    target: isProtocolLink(href) ? undefined : '_blank',
+    rel: isProtocolLink(href) ? undefined : 'noopener noreferrer',
+  }
+}
 
 /** &lt; mobile: 1; mobile–tablet: 2; ≥ tablet: 4 */
 const directSwiperBreakpoints = {
@@ -80,8 +102,8 @@ const navConfig = {
             class="home-direct__slide"
           >
             <component
-              :is="partner.href && !partner.isPlaceholder ? 'a' : 'div'"
-              :href="partner.href && !partner.isPlaceholder ? partner.href : undefined"
+              :is="cardComponent(partner.href, partner.isPlaceholder)"
+              v-bind="cardAttrs(partner.href, partner.isPlaceholder)"
               class="home-direct__card"
               :class="{ 'home-direct__card--empty': partner.isPlaceholder }"
             >
