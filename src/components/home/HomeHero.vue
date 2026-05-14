@@ -18,7 +18,15 @@ function handleScrollClick() {
   <section class="home-hero" data-section="hero">
     <picture class="home-hero__bg" aria-hidden="true">
       <source media="(min-width: 768px)" :srcset="hero.background.desktop" />
-      <img :src="hero.background.mobile" :alt="hero.background.alt" loading="eager" />
+      <img
+        :src="hero.background.mobile"
+        :alt="hero.background.alt"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+        width="720"
+        height="1030"
+      />
     </picture>
 
     <div class="home-hero__content">
