@@ -60,6 +60,10 @@ function isLinkActive(link: NavLink): boolean {
   return false
 }
 
+function dropdownId(label: string): string {
+  return `nav-dropdown-${label.toLowerCase().replace(/\s+/g, '-')}`
+}
+
 function toggleDropdown(label: string) {
   openDropdown.value = openDropdown.value === label ? null : label
 }
@@ -78,7 +82,7 @@ function closeMobileMenu() {
 </script>
 
 <template>
-  <header ref="headerRef" class="app-header" :class="{ 'app-header--mobile': isCompactBar }">
+  <header ref="headerRef" class="app-header" :class="{ 'app-header--mobile': isCompactBar }" @keydown.escape="closeDropdown">
     <div v-if="showDesktopNav" class="app-header__pill">
       <RouterLink to="/" class="app-header__logo" :aria-label="nav.logoAlt" @click="closeDropdown">
         <BaseLogo :variant="logoVariant" :aria-label="nav.logoAlt" :height="40" />
@@ -102,6 +106,7 @@ function closeMobileMenu() {
               }"
               :aria-expanded="openDropdown === link.label"
               :aria-haspopup="true"
+              :aria-controls="dropdownId(link.label)"
               @click="toggleDropdown(link.label)"
             >
               <span>{{ link.label }}</span>
@@ -120,6 +125,7 @@ function closeMobileMenu() {
             <Transition name="dropdown">
               <div
                 v-if="link.children?.length && openDropdown === link.label"
+                :id="dropdownId(link.label)"
                 class="app-header__dropdown"
               >
                 <RouterLink
