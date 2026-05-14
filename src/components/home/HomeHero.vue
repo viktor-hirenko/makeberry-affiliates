@@ -25,14 +25,13 @@ function handleScrollClick() {
       <h1 class="home-hero__title">
         <span class="home-hero__title-row">
           <span class="home-hero__title-text">{{ hero.titleLineLeft }}</span>
-          <button
-            type="button"
-            class="home-hero__scroll"
-            :aria-label="hero.scroll.label"
+          <span
+            class="home-hero__scroll-button"
+            aria-hidden="true"
             @click="handleScrollClick"
           >
             <BaseIcon :name="hero.scroll.icon" :size="48" class="home-hero__scroll-icon" />
-          </button>
+          </span>
         </span>
         <span class="home-hero__title-text home-hero__title-text--bottom">
           {{ hero.titleLineBottom }}
@@ -178,9 +177,9 @@ function handleScrollClick() {
 }
 
 /* ============================================================
- * Scroll button (circle with arrow)
+ * Scroll control (decorative span; click scrolls; aria-hidden in h1)
  * ============================================================ */
-.home-hero__scroll {
+.home-hero__scroll-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -193,18 +192,14 @@ function handleScrollClick() {
   border-radius: var(--radius-pill);
   color: var(--color-icon-primary);
   cursor: pointer;
+  user-select: none;
   transition:
     background-color var(--transition-base),
     color var(--transition-base);
 
   &:hover,
-  &:focus-visible {
+  &:active {
     background-color: var(--color-bg-brand-soft);
-  }
-
-  &:focus-visible {
-    outline: 2px solid var(--color-focus-ring);
-    outline-offset: 2px;
   }
 
   @include mq($from: mobile) {

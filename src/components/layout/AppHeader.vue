@@ -121,14 +121,12 @@ function closeMobileMenu() {
               <div
                 v-if="link.children?.length && openDropdown === link.label"
                 class="app-header__dropdown"
-                role="menu"
               >
                 <RouterLink
                   v-for="child in link.children"
                   :key="child.label"
                   :to="child.path"
                   class="app-header__dropdown-link"
-                  role="menuitem"
                   @click="closeDropdown"
                 >
                   {{ child.label }}
