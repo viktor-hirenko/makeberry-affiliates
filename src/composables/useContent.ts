@@ -42,6 +42,20 @@ function getDefaultExport<T>(mod: unknown): T {
   return mod as T
 }
 
+/**
+ * Сообщает о невалидном контенте.
+ *
+ * - DEV: бросает ошибку, чтобы разработчик сразу заметил проблему.
+ * - PROD: пишет в `console.error` и позволяет вызывающему коду пропустить
+ *   битую запись, не роняя весь SPA (см. аудит A-3).
+ */
+function reportContentError(message: string): void {
+  if (import.meta.env.DEV) {
+    throw new Error(message)
+  }
+  console.error(message)
+}
+
 function sortBySlugPreference<T extends { slug: string }>(
   items: T[],
   preferred: readonly string[],
@@ -81,26 +95,31 @@ function buildArticlesFromGlob(): {
     const article = getDefaultExport<ArticleDetail>(modules[filePath])
     const { slug } = article
     if (bySlug[slug]) {
-      throw new Error(`[useContent] Duplicate article slug "${slug}" in blog articles`)
+      reportContentError(`[useContent] Duplicate article slug "${slug}" in blog articles`)
+      continue
     }
     bySlug[slug] = article
   }
 
   for (const slug of orderSlugs) {
     if (!bySlug[slug]) {
-      throw new Error(`[useContent] order.json lists slug "${slug}" but no matching article JSON was found`)
+      reportContentError(
+        `[useContent] order.json lists slug "${slug}" but no matching article JSON was found`,
+      )
     }
   }
 
   for (const slug of Object.keys(bySlug)) {
     if (!orderedSet.has(slug)) {
-      throw new Error(
+      reportContentError(
         `[useContent] Article JSON with slug "${slug}" must be listed in order.json (or remove the file)`,
       )
     }
   }
 
-  const ordered = orderSlugs.map((slug) => bySlug[slug] as ArticleDetail)
+  const ordered = orderSlugs
+    .map((slug) => bySlug[slug])
+    .filter((article): article is ArticleDetail => article !== undefined)
   return { bySlug, ordered }
 }
 
@@ -118,7 +137,8 @@ const { list: CASINOS, bySlug: CASINOS_BY_SLUG } = (() => {
     const casino = getDefaultExport<CasinoPageContent>(modules[filePath])
     const { slug } = casino
     if (bySlug[slug]) {
-      throw new Error(`[useContent] Duplicate casino slug "${slug}"`)
+      reportContentError(`[useContent] Duplicate casino slug "${slug}"`)
+      continue
     }
     bySlug[slug] = casino
     items.push(casino)
@@ -142,7 +162,8 @@ const { list: AUDIENCES, bySlug: AUDIENCES_BY_SLUG } = (() => {
     const audience = getDefaultExport<AudiencePageContent>(modules[filePath])
     const { slug } = audience
     if (bySlug[slug]) {
-      throw new Error(`[useContent] Duplicate audience slug "${slug}"`)
+      reportContentError(`[useContent] Duplicate audience slug "${slug}"`)
+      continue
     }
     bySlug[slug] = audience
     items.push(audience)
