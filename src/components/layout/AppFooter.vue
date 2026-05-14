@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import BaseIcon from '@/components/ui/BaseIcon.vue'
 import BaseLogo from '@/components/ui/BaseLogo.vue'
+import MaybeLink from '@/components/ui/MaybeLink.vue'
 import { useFooter, useNav } from '@/composables/useContent'
 
 const nav = useNav()
@@ -58,18 +59,9 @@ const footer = useFooter()
               :key="partner.id"
               class="app-footer__partner"
             >
-              <component
-                :is="partner.href ? 'a' : 'div'"
-                v-bind="
-                  partner.href
-                    ? {
-                        href: partner.href,
-                        target: '_blank',
-                        rel: 'noopener noreferrer',
-                        'aria-label': partner.name,
-                      }
-                    : {}
-                "
+              <MaybeLink
+                :href="partner.href"
+                :aria-label="partner.name"
                 class="app-footer__partner-link"
               >
                 <img
@@ -88,7 +80,7 @@ const footer = useFooter()
                   loading="lazy"
                   decoding="async"
                 />
-              </component>
+              </MaybeLink>
             </li>
           </ul>
         </section>
@@ -99,18 +91,9 @@ const footer = useFooter()
           </span>
           <ul class="app-footer__award-list">
             <li v-for="award in footer.awards.items" :key="award.id" class="app-footer__award">
-              <component
-                :is="award.href ? 'a' : 'div'"
-                v-bind="
-                  award.href
-                    ? {
-                        href: award.href,
-                        target: '_blank',
-                        rel: 'noopener noreferrer',
-                        'aria-label': award.name ?? award.alt,
-                      }
-                    : {}
-                "
+              <MaybeLink
+                :href="award.href"
+                :aria-label="award.name ?? award.alt"
                 class="app-footer__award-link"
               >
                 <img
@@ -128,7 +111,7 @@ const footer = useFooter()
                   loading="lazy"
                   decoding="async"
                 />
-              </component>
+              </MaybeLink>
             </li>
           </ul>
         </section>
