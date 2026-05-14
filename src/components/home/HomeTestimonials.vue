@@ -261,18 +261,16 @@ const navConfig = {
         <div
           v-if="uniqueSnaps.length > 1"
           class="home-testimonials__pagination"
-          role="tablist"
           :aria-label="ui.aria.testimonialsPagination"
         >
           <button
             v-for="(_, i) in uniqueSnaps"
             :key="i"
             type="button"
-            role="tab"
             class="home-testimonials__pagination-bullet"
             :class="{ 'is-active': i === currentSnap }"
             :aria-label="formatUiString(ui.aria.testimonialsGroup, { n: i + 1 })"
-            :aria-selected="i === currentSnap ? 'true' : 'false'"
+            :aria-current="i === currentSnap ? 'true' : undefined"
             @click="goToSnap(i)"
           />
         </div>

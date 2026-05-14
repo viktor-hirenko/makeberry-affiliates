@@ -210,15 +210,14 @@ onBeforeUnmount(() => {
       <header class="home-map__header">
         <h2 class="home-map__title">{{ content.title }}</h2>
 
-        <div class="home-map__tabs" role="tablist" :aria-label="ui.aria.mapTabs">
+        <div class="home-map__tabs" :aria-label="ui.aria.mapTabs">
           <button
             v-for="tab in content.tabs"
             :key="tab.id"
             type="button"
-            role="tab"
             class="home-map__tab"
             :class="{ 'is-active': activeTab === tab.id }"
-            :aria-selected="activeTab === tab.id"
+            :aria-pressed="activeTab === tab.id"
             @click="selectTab(tab.id)"
           >
             {{ tab.label }}
