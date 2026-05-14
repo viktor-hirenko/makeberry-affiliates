@@ -657,16 +657,19 @@
     "title": "Testimonials",
     "items": [
       {
+        "id": "affiverse-media",
         "author": "Affiverse Media",
         "text": "Working with Makeberry this 2025 has proved satisfying for Affiverse as the brand has grown immensely. The relationship with their team has been amazing. Makeberry is leaving its mark on the iGaming industry as they have shown to be more than just an agency",
         "ctaHref": "https://affiversemedia.com"
       },
       {
+        "id": "igb-affiliate",
         "author": "iGB Affiliate",
         "text": "Working with Makeberry this 2025 has proved satisfying for Affiverse as the brand has grown immensely. The relationship with their team has been amazing. Makeberry is leaving its mark on the iGaming industry as they have shown to be more than just an agency",
         "ctaHref": "https://igbaffiliate.com"
       },
       {
+        "id": "sbc-media",
         "author": "SBC Media",
         "text": "Working with Makeberry this 2025 has proved satisfying for Affiverse as the brand has grown immensely. The relationship with their team has been amazing. Makeberry is leaving its mark on the iGaming industry as they have shown to be more than just an agency",
         "ctaHref": "https://sbcnews.co.uk"

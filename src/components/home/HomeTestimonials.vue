@@ -194,8 +194,8 @@ const navConfig = {
           @swiper="onTestimonialsSwiper"
         >
           <SwiperSlide
-            v-for="(item, index) in content.items"
-            :key="index"
+            v-for="item in content.items"
+            :key="item.id"
             class="home-testimonials__slide"
           >
             <article class="home-testimonials__card">

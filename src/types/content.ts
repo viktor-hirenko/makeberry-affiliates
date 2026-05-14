@@ -348,6 +348,8 @@ export interface HomeBenefitsContent {
  * При переключении в центр всегда становится новая карточка.
  */
 export interface HomeTestimonialItem {
+  /** Стабильный ключ для списка / v-for (не менять при правках текста). */
+  id: string
   /** Имя/название компании автора (Body 1 SemiBold). */
   author: string
   /** Полный текст отзыва (на mobile и для активной карточки). */
