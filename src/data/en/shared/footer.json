@@ -28,11 +28,11 @@
     }
   ],
   "social": [
-    { "network": "email", "href": "mailto:hello@makeberry.example", "label": "Email" },
-    { "network": "linkedin", "href": "https://linkedin.com", "label": "LinkedIn" },
-    { "network": "instagram", "href": "https://instagram.com", "label": "Instagram" },
-    { "network": "twitter", "href": "https://twitter.com", "label": "X (Twitter)" },
-    { "network": "telegram", "href": "https://t.me", "label": "Telegram" }
+    { "network": "email", "href": "mailto:info@makeberry.com", "label": "Email" },
+    { "network": "linkedin", "href": "https://www.linkedin.com/company/makeberry-affiliate/", "label": "LinkedIn" },
+    { "network": "instagram", "href": "https://www.instagram.com/makeberry_affiliates/", "label": "Instagram" },
+    { "network": "twitter", "href": "https://x.com/makeberry_aff", "label": "X (Twitter)" },
+    { "network": "telegram", "href": "https://t.me/makeberry_affiliate", "label": "Telegram" }
   ],
   "partners": {
     "label": "Partners",
