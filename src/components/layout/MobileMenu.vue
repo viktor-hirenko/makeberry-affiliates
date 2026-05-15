@@ -158,7 +158,7 @@ const ctaPath = computed(() => props.nav.ctaPath)
   background-color: var(--color-bg-overlay-menu);
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
-  padding: 16px 16px 40px;
+  padding: to-rem(16) to-rem(16) to-rem(40);
   overflow-y: auto;
   pointer-events: auto;
 }
@@ -167,8 +167,8 @@ const ctaPath = computed(() => props.nav.ctaPath)
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 40px;
-  margin-bottom: 16px;
+  height: to-rem(40);
+  margin-bottom: to-rem(16);
 }
 
 .mobile-menu__logo {
@@ -178,13 +178,13 @@ const ctaPath = computed(() => props.nav.ctaPath)
 
 .mobile-menu__nav {
   flex: 1;
-  padding: 16px;
+  padding: to-rem(16);
 }
 
 .mobile-menu__list {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: to-rem(32);
 }
 
 .mobile-menu__item {
@@ -196,7 +196,7 @@ const ctaPath = computed(() => props.nav.ctaPath)
   @include font-headline-h5;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: to-rem(8);
   width: 100%;
   padding: 0;
   background: transparent;
@@ -230,8 +230,8 @@ const ctaPath = computed(() => props.nav.ctaPath)
 
 .mobile-menu__dot {
   display: inline-block;
-  width: 6px;
-  height: 6px;
+  width: to-rem(6);
+  height: to-rem(6);
   border-radius: 50%;
   background-color: var(--color-text-accent);
   flex-shrink: 0;
@@ -240,15 +240,15 @@ const ctaPath = computed(() => props.nav.ctaPath)
 .mobile-menu__sublist {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding: 24px 16px 0;
+  gap: to-rem(16);
+  padding: to-rem(24) to-rem(16) 0;
 }
 
 .mobile-menu__sublink {
   @include font-body-s-regular;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: to-rem(8);
   color: var(--color-text-tertiary);
   text-decoration: none;
   transition: color var(--transition-base);
@@ -270,7 +270,7 @@ const ctaPath = computed(() => props.nav.ctaPath)
 
 .mobile-menu__footer {
   display: flex;
-  margin-top: 40px;
+  margin-top: to-rem(40);
   justify-content: center;
 
   .base-button {
@@ -305,6 +305,6 @@ const ctaPath = computed(() => props.nav.ctaPath)
 .accordion-enter-from,
 .accordion-leave-to {
   opacity: 0;
-  transform: translateY(-4px);
+  transform: translateY(to-rem(-4));
 }
 </style>
