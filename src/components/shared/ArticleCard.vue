@@ -38,7 +38,11 @@ withDefaults(defineProps<ArticleCardProps>(), {
       </p>
     </div>
 
-    <RouterLink :to="`/blog/${article.slug}`" class="article-card__link">
+    <RouterLink
+      :to="`/blog/${article.slug}`"
+      class="article-card__link"
+      :aria-label="`Learn more about ${article.title}`"
+    >
       <span>{{ learnMoreLabel }}</span>
       <BaseIcon name="arrow-right" :size="24" />
     </RouterLink>

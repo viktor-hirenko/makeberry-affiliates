@@ -110,7 +110,7 @@ const navConfig = {
           <BaseIcon name="chevron-right" :size="24" />
         </button>
 
-        <div class="home-meet-us__pagination" aria-hidden="true"></div>
+        <div class="home-meet-us__pagination"></div>
       </div>
     </div>
   </section>

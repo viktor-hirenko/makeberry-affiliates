@@ -39,7 +39,11 @@ const content = useHomeVacancies()
 
             <p class="home-vacancies__desc">{{ card.description }}</p>
 
-            <RouterLink :to="card.learnMoreHref" class="home-vacancies__link">
+            <RouterLink
+              :to="card.learnMoreHref"
+              class="home-vacancies__link"
+              :aria-label="`Learn more about ${card.title}`"
+            >
               <span>{{ card.learnMoreLabel }}</span>
               <BaseIcon name="arrow-right" :size="24" />
             </RouterLink>

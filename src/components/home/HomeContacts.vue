@@ -167,7 +167,7 @@ function handleInput() {
           <BaseIcon name="chevron-right" :size="24" />
         </button>
 
-        <div class="home-contacts__pagination" aria-hidden="true"></div>
+        <div class="home-contacts__pagination"></div>
       </div>
 
       <div class="home-contacts__form">
