@@ -180,7 +180,7 @@
       {
         "id": "lucky-hills",
         "name": "LuckyHills Casino",
-        "logoSrc": "/images/logos/advertisers/lucky-hills/lucky-hills-mark.webp",
+        "logoSrc": "/images/logos/advertisers/lucky-hills/rocket-play-lockup.webp",
         "logoAlt": "LuckyHills Casino logo",
         "href": "/casino/luckyhills"
       },
@@ -766,10 +766,7 @@
             "label": "Email"
           }
         ],
-        "verifyTokens": [
-          "@valentyn_halchuk",
-          "valentyn@makeberry.com"
-        ]
+        "verifyTokens": ["@valentyn_halchuk", "valentyn@makeberry.com"]
       },
       {
         "id": "roman-yakubovskyi",
@@ -790,10 +787,7 @@
             "label": "Email"
           }
         ],
-        "verifyTokens": [
-          "@roman_yakubovskyi",
-          "roman.y@makeberry.com"
-        ]
+        "verifyTokens": ["@roman_yakubovskyi", "roman.y@makeberry.com"]
       },
       {
         "id": "alona-didkivska",
@@ -814,10 +808,7 @@
             "label": "Email"
           }
         ],
-        "verifyTokens": [
-          "@alona_didkivska",
-          "alona@makeberry.com"
-        ]
+        "verifyTokens": ["@alona_didkivska", "alona@makeberry.com"]
       },
       {
         "id": "serhii-solodchuk",
@@ -838,10 +829,7 @@
             "label": "Email"
           }
         ],
-        "verifyTokens": [
-          "@serhii_solodchuk",
-          "serhii@makeberry.com"
-        ]
+        "verifyTokens": ["@serhii_solodchuk", "serhii@makeberry.com"]
       },
       {
         "id": "roman-hromov",
@@ -862,11 +850,7 @@
             "label": "Email"
           }
         ],
-        "verifyTokens": [
-          "@roman_hromov",
-          "@roman",
-          "roman.h@makeberry.com"
-        ]
+        "verifyTokens": ["@roman_hromov", "@roman", "roman.h@makeberry.com"]
       },
       {
         "id": "kateryna-rybka",
@@ -887,10 +871,7 @@
             "label": "Email"
           }
         ],
-        "verifyTokens": [
-          "@kateryna_rybka",
-          "kateryna@makeberry.com"
-        ]
+        "verifyTokens": ["@kateryna_rybka", "kateryna@makeberry.com"]
       },
       {
         "id": "anna-tian",
@@ -911,10 +892,7 @@
             "label": "Email"
           }
         ],
-        "verifyTokens": [
-          "@anna_tian",
-          "anna@makeberry.com"
-        ]
+        "verifyTokens": ["@anna_tian", "anna@makeberry.com"]
       },
       {
         "id": "oleksandr-kulyk",
@@ -935,10 +913,7 @@
             "label": "Email"
           }
         ],
-        "verifyTokens": [
-          "@oleksandr_kulyk",
-          "oleksandr@makeberry.com"
-        ]
+        "verifyTokens": ["@oleksandr_kulyk", "oleksandr@makeberry.com"]
       }
     ],
     "form": {

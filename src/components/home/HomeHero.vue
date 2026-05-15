@@ -25,7 +25,7 @@ function handleScrollClick() {
         fetchpriority="high"
         decoding="async"
         width="720"
-        height="1030"
+        height="1252"
       />
     </picture>
 
@@ -33,11 +33,7 @@ function handleScrollClick() {
       <h1 class="home-hero__title">
         <span class="home-hero__title-row">
           <span class="home-hero__title-text">{{ hero.titleLineLeft }}</span>
-          <span
-            class="home-hero__scroll-button"
-            aria-hidden="true"
-            @click="handleScrollClick"
-          >
+          <span class="home-hero__scroll-button" aria-hidden="true" @click="handleScrollClick">
             <BaseIcon :name="hero.scroll.icon" :size="48" class="home-hero__scroll-icon" />
           </span>
         </span>
@@ -161,14 +157,17 @@ function handleScrollClick() {
 .home-hero__title-text {
   font-family: var(--font-sans);
   font-weight: 600;
-  font-size: to-rem(72);
-  line-height: 1.111;
   letter-spacing: -0.01em;
   color: var(--color-text-primary);
   text-align: left;
   white-space: nowrap;
 
+  font-size: to-rem(48);
+  line-height: 1.16667;
+
   @include mq($from: mobile) {
+    font-size: to-rem(72);
+    line-height: 1.111;
     text-align: center;
   }
 }
