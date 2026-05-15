@@ -10,6 +10,9 @@ export interface BaseButtonProps {
   href?: string
   disabled?: boolean
   type?: 'button' | 'submit' | 'reset'
+  /** Override rel for the anchor. Use for affiliate/sponsored links:
+   *  rel="sponsored nofollow noopener noreferrer" */
+  rel?: string
 }
 
 const props = withDefaults(defineProps<BaseButtonProps>(), {
@@ -45,7 +48,7 @@ const isProtocolLink = computed(
     class="base-button"
     :class="[`base-button--${variant}`, `base-button--${size}`]"
     :href="href"
-    :rel="isProtocolLink ? undefined : 'noopener noreferrer'"
+    :rel="isProtocolLink ? undefined : (rel ?? 'noopener noreferrer')"
     :target="isProtocolLink ? undefined : '_blank'"
   >
     <slot />

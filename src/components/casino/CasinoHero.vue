@@ -52,7 +52,13 @@ defineProps<Props>()
           </ul>
         </div>
 
-        <BaseButton variant="primary" size="large" :href="hero.cta.href" class="casino-hero__cta">
+        <BaseButton
+          variant="primary"
+          size="large"
+          :href="hero.cta.href"
+          rel="sponsored nofollow noopener noreferrer"
+          class="casino-hero__cta"
+        >
           {{ hero.cta.label }}
         </BaseButton>
       </div>

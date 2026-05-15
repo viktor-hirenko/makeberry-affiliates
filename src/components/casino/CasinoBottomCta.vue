@@ -44,6 +44,7 @@ defineProps<Props>()
             :variant="button.variant"
             size="large"
             :href="button.href"
+            rel="sponsored nofollow noopener noreferrer"
             class="casino-cta__button"
           >
             {{ button.label }}
