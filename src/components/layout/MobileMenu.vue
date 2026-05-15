@@ -101,7 +101,7 @@ const ctaPath = computed(() => props.nav.ctaPath)
               @click="toggleSection(link.label)"
             >
               <span>{{ link.label }}</span>
-              <BaseIcon name="chevron-down" :size="24" />
+              <BaseIcon name="chevron-down-solid" :size="24" />
             </button>
             <RouterLink
               v-else-if="link.path"
@@ -115,23 +115,27 @@ const ctaPath = computed(() => props.nav.ctaPath)
             </RouterLink>
 
             <Transition name="accordion">
-              <ul v-if="isParentExpanded(link)" class="mobile-menu__sublist">
-                <li v-for="child in link.children" :key="child.label">
-                  <RouterLink
-                    :to="child.path"
-                    class="mobile-menu__sublink"
-                    :class="{ 'is-active': isChildActive(child.path) }"
-                    @click="handleClose"
-                  >
-                    <span>{{ child.label }}</span>
-                    <span
-                      v-if="isChildActive(child.path)"
-                      class="mobile-menu__dot"
-                      aria-hidden="true"
-                    />
-                  </RouterLink>
-                </li>
-              </ul>
+              <div v-if="isParentExpanded(link)" class="mobile-menu__accordion">
+                <div class="mobile-menu__accordion-inner">
+                  <ul class="mobile-menu__sublist">
+                    <li v-for="child in link.children" :key="child.label">
+                      <RouterLink
+                        :to="child.path"
+                        class="mobile-menu__sublink"
+                        :class="{ 'is-active': isChildActive(child.path) }"
+                        @click="handleClose"
+                      >
+                        <span>{{ child.label }}</span>
+                        <span
+                          v-if="isChildActive(child.path)"
+                          class="mobile-menu__dot"
+                          aria-hidden="true"
+                        />
+                      </RouterLink>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </Transition>
           </li>
         </ul>
@@ -218,14 +222,17 @@ const ctaPath = computed(() => props.nav.ctaPath)
   }
 }
 
-.mobile-menu__row--toggle .base-icon {
-  flex-shrink: 0;
-  color: var(--color-text-primary);
-  transition: transform var(--transition-base);
-}
+.mobile-menu__row--toggle {
+  /* Стрелка chevron — поворот на 180° в открытом состоянии (как в AppHeader). */
+  :deep(.base-icon) {
+    flex-shrink: 0;
+    color: var(--color-text-primary);
+    transition: transform var(--transition-base);
+  }
 
-.mobile-menu__row--toggle.is-expanded .base-icon {
-  transform: rotate(180deg);
+  &.is-expanded :deep(.base-icon) {
+    transform: rotate(180deg);
+  }
 }
 
 .mobile-menu__dot {
@@ -235,6 +242,17 @@ const ctaPath = computed(() => props.nav.ctaPath)
   border-radius: 50%;
   background-color: var(--color-text-accent);
   flex-shrink: 0;
+}
+
+/*
+ * Inner wrapper sits between the grid container (.accordion) and the
+ * actual list. It must collapse to zero — so it has no padding, only
+ * min-height: 0 and overflow: hidden. Padding lives on the <ul> below,
+ * which keeps spacing identical to before.
+ */
+.mobile-menu__accordion-inner {
+  min-height: 0;
+  overflow: hidden;
 }
 
 .mobile-menu__sublist {
@@ -295,16 +313,25 @@ const ctaPath = computed(() => props.nav.ctaPath)
   transform: translateY(-100%);
 }
 
+/*
+ * Grid-rows height animation — the only technique that collapses
+ * height smoothly without JS measuring. The wrapper <div> is the
+ * grid container; the inner <ul> needs min-height:0 to allow
+ * collapse below its natural content height.
+ */
 .accordion-enter-active,
 .accordion-leave-active {
+  display: grid;
+  grid-template-rows: 1fr;
+  overflow: hidden;
   transition:
-    opacity 0.2s ease,
-    transform 0.2s ease;
+    grid-template-rows 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .accordion-enter-from,
 .accordion-leave-to {
+  grid-template-rows: 0fr;
   opacity: 0;
-  transform: translateY(to-rem(-4));
 }
 </style>
