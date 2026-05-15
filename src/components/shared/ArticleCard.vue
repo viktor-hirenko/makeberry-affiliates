@@ -67,7 +67,7 @@ withDefaults(defineProps<ArticleCardProps>(), {
   height: to-rem(210);
   border-radius: var(--radius-xl);
   overflow: hidden;
-  background-color: #1a1a1a;
+  background-color: var(--color-bg-card);
   position: relative;
   text-decoration: none;
 
@@ -95,7 +95,7 @@ withDefaults(defineProps<ArticleCardProps>(), {
 .article-card__placeholder {
   width: 100%;
   height: 100%;
-  background-color: #1a1a1a;
+  background-color: var(--color-bg-card);
 }
 
 .article-card__body {

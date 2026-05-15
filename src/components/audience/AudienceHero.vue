@@ -194,7 +194,7 @@ defineProps<Props>()
   display: inline-flex;
   align-items: center;
   padding: to-rem(8) to-rem(12);
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: var(--color-bg-subtle);
   border-radius: var(--radius-pill);
   font-family: var(--font-sans);
   font-weight: 500;

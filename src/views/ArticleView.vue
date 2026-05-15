@@ -312,7 +312,7 @@ function isTextSection(section: ArticleSection): boolean {
   height: to-rem(210);
   border-radius: var(--radius-xl);
   overflow: hidden;
-  background-color: #1a1a1a;
+  background-color: var(--color-bg-card);
 
   @include mq($from: tablet) {
     height: to-rem(400);
@@ -329,7 +329,7 @@ function isTextSection(section: ArticleSection): boolean {
 .article__hero-placeholder {
   width: 100%;
   height: 100%;
-  background-color: #1a1a1a;
+  background-color: var(--color-bg-card);
 }
 
 /* ============================================================
@@ -495,7 +495,7 @@ function isTextSection(section: ArticleSection): boolean {
   height: to-rem(200);
   border-radius: var(--radius-xl);
   overflow: hidden;
-  background-color: #1a1a1a;
+  background-color: var(--color-bg-card);
 
   @include mq($from: tablet) {
     height: to-rem(300);
@@ -512,7 +512,7 @@ function isTextSection(section: ArticleSection): boolean {
 .article__image-placeholder {
   width: 100%;
   height: 100%;
-  background-color: #1a1a1a;
+  background-color: var(--color-bg-card);
 }
 
 /* ============================================================
