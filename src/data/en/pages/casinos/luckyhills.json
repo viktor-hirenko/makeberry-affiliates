@@ -5,7 +5,7 @@
     "title": "LuckyHills Casino",
     "intro": "LuckyHills is a unique iGaming brand built around the concept of a vibrant Casino City, operating under a Curaçao licence.",
     "logo": {
-      "src": "/images/logos/advertisers/lucky-hills/lucky-hills-lockup.webp",
+      "src": "/images/logos/advertisers/lucky-hills/lucky-hills-mark.webp",
       "alt": "LuckyHills Casino logo"
     },
     "stats": [
@@ -171,9 +171,7 @@
       {
         "id": "sub-affiliate",
         "title": "Sub-Affiliate",
-        "lines": [
-          "5% lifetime revenue"
-        ]
+        "lines": ["5% lifetime revenue"]
       }
     ]
   },

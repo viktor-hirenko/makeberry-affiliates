@@ -29,15 +29,15 @@ const casino = computed(() => getCasinoBySlug(props.slug))
 
 watch(
   casino,
-  (next) => {
+  next => {
     if (!next) router.replace({ name: 'not-found' })
   },
-  { immediate: true },
+  { immediate: true }
 )
 </script>
 
 <template>
-  <div v-if="casino" class="casino-page">
+  <div v-if="casino" :class="['casino-page', `casino-page--${slug}`]">
     <CasinoHero :hero="casino.hero" />
     <CasinoAbout :about="casino.about" />
     <CasinoKeyHighlights :content="casino.keyHighlights" />
@@ -48,8 +48,18 @@ watch(
 </template>
 
 <style scoped lang="scss">
+@use '@/assets/styles/scss/mixins' as *;
+
 .casino-page {
   display: flex;
   flex-direction: column;
+}
+
+.casino-page--rocketplay :deep(.casino-hero__logo-wrap) {
+  @include mq($from: tablet) {
+    width: calc(438 / 1040 * 100%);
+    max-width: to-rem(438);
+    transform: translateY(-10px);
+  }
 }
 </style>

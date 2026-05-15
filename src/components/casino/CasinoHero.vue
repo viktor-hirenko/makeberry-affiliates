@@ -7,10 +7,9 @@ import type { CasinoHero } from '@/types/content'
  *
  * Layout:
  * - Desktop (Figma 1440 — frame 3819:3933): row, контент слева (570px),
- *   логотип-квадрат 280×280 справа, два розовых glow-blob уходят за правую
- *   границу секции.
+ *   логотип-квадрат 280×280 справа.
  * - Mobile (Figma 360 — frame 3821:7616): column, логотип сверху по центру,
- *   stats — column, единая glow-композиция в правом верхнем углу.
+ *   stats — column.
  *
  * Hero рисуется flush до верха viewport — header floating оверлеит,
  * собственный padding-top секции (см. ниже) уже учитывает высоту хедера.
@@ -24,16 +23,6 @@ defineProps<Props>()
 
 <template>
   <section class="casino-hero" data-section="casino-hero">
-    <img
-      :src="'/images/decorations/glow-casino-hero.webp'"
-      alt=""
-      class="casino-hero__glow"
-      aria-hidden="true"
-      loading="eager"
-      decoding="async"
-      fetchpriority="high"
-    />
-
     <div class="casino-hero__inner">
       <div class="casino-hero__text">
         <h1 class="casino-hero__title">{{ hero.title }}</h1>
@@ -84,55 +73,39 @@ defineProps<Props>()
  * floating-хедера. */
 .casino-hero {
   position: relative;
-  isolation: isolate;
   overflow: hidden;
 
   @include section-padding(
-    $mobile-top: to-rem(170),
+    $mobile-top: to-rem(130),
     $mobile-bottom: to-rem(70),
     $desktop-inline: to-rem(200),
     $desktop-top: to-rem(230),
     $desktop-bottom: to-rem(100)
   );
-}
-
-/* Glow — pre-composited WebP с уже запечёнными rotate + soft-light. */
-.casino-hero__glow {
-  position: absolute;
-  top: to-rem(-376);
-  right: to-rem(-506);
-  width: to-rem(1322);
-  max-width: unset;
-  height: auto;
-  z-index: 0;
-  pointer-events: none;
-  user-select: none;
 
   @include mq($from: tablet) {
-    top: to-rem(-344);
-    right: to-rem(-352);
+    padding-top: to-rem(230);
+    padding-bottom: to-rem(50);
   }
 }
 
 /* column-reverse на mobile, чтобы лого было сверху (как в Figma 360). */
 .casino-hero__inner {
-  position: relative;
-  z-index: 1;
   display: flex;
   flex-direction: column-reverse;
-  gap: to-rem(40);
+  gap: to-rem(20);
 
   @include container(var(--container-default));
 
-  @include mq($from: mobile) {
+  @include mq($from: tablet) {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     gap: 0;
   }
 
-  @include mq($from: tablet) {
-    gap: to-rem(80);
+  @include mq($from: wide) {
+    gap: to-rem(40);
   }
 }
 
@@ -144,8 +117,8 @@ defineProps<Props>()
   gap: to-rem(32);
   width: 100%;
 
-  @include mq($from: mobile) {
-    flex: 0 1 to-rem(570);
+  @include mq($from: tablet) {
+    flex: 1 0 to-rem(570);
     width: to-rem(570);
     gap: to-rem(48);
   }
@@ -212,6 +185,11 @@ defineProps<Props>()
   width: to-rem(140);
 
   @include mq($from: mobile) {
+    width: to-rem(150);
+    flex: 0 0 to-rem(150);
+  }
+
+  @include mq($from: tablet) {
     flex: 1 0 0;
     min-width: 0;
     width: auto;
@@ -257,14 +235,20 @@ defineProps<Props>()
   position: relative;
   display: flex;
   align-items: center;
+  align-self: center;
   justify-content: center;
   flex: 0 0 auto;
-  width: to-rem(130);
-  height: to-rem(130);
+  width: calc(200 / 360 * 100%);
+  height: calc(200 / 360 * 100%);
+  min-width: to-rem(200);
+  max-width: to-rem(360);
 
-  @include mq($from: mobile) {
-    width: to-rem(280);
-    height: to-rem(280);
+  @include mq($from: tablet) {
+    align-self: unset;
+    width: calc(560 / 1040 * 100%);
+    height: calc(560 / 1040 * 100%);
+    max-width: to-rem(560);
+    transform: translateY(-36px);
   }
 }
 
