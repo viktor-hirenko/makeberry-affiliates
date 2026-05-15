@@ -440,7 +440,12 @@ onBeforeUnmount(() => {
     fill: var(--color-bg-brand);
   }
 
-  /* Украина — наша home base: чуть ярче с лёгким pink glow вокруг. */
+  /* Украина — home base: по умолчанию полупрозрачный белый; в активном табе
+     fill как у остальных (path[id].is-active), плюс pink glow только для UA. */
+  path[id='UA'] {
+    fill: rgba(255, 255, 255, 0.20);
+  }
+
   path[id='UA'].is-active {
     filter: drop-shadow(0 0 4px rgba(255, 1, 128, 0.65));
   }
