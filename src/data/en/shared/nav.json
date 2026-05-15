@@ -2,6 +2,7 @@
   "logoAlt": "Makeberry Affiliates",
   "ctaLabel": "Log In",
   "ctaPath": "/login",
+  "ctaEnabled": true,
   "links": [
     { "label": "Home", "path": "/" },
     {

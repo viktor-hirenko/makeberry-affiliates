@@ -1000,6 +1000,7 @@
     ]
   },
   "vacancies": {
+    "enabled": true,
     "title": "Open Vacancies",
     "glow": {
       "src": "/images/decorations/glow-base.webp",

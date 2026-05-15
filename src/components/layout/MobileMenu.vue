@@ -141,7 +141,7 @@ const ctaPath = computed(() => props.nav.ctaPath)
         </ul>
       </nav>
 
-      <div class="mobile-menu__footer">
+      <div v-if="nav.ctaEnabled !== false" class="mobile-menu__footer">
         <BaseButton variant="secondary" size="large" :to="ctaPath" @click="handleClose">
           {{ ctaLabel }}
         </BaseButton>

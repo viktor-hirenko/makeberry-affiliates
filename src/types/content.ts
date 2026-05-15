@@ -75,6 +75,8 @@ export interface NavConfig {
   logoAlt: string
   ctaLabel: string
   ctaPath: string
+  /** false — скрыть кнопку CTA (Log In) пока маршрут /login не готов. */
+  ctaEnabled?: boolean
   links: NavLink[]
 }
 
@@ -276,6 +278,8 @@ export interface HomeDirectCooperationItem {
 }
 
 export interface HomeDirectAdvertiserContent {
+  /** false — скрыть секцию через v-if в HomeView. Отсутствие поля = visible. */
+  enabled?: boolean
   title: string
   partners: HomeDirectPartnerCard[]
   cooperation: HomeDirectCooperationItem[]
@@ -429,6 +433,8 @@ export interface HomeFaqItem {
 }
 
 export interface HomeFaqContent {
+  /** false — скрыть секцию через v-if в HomeView. Отсутствие поля = visible. */
+  enabled?: boolean
   title: string
   glow: { src: string; alt: string }
   questionMark: { src: string; alt: string }
@@ -452,6 +458,8 @@ export interface HomeVacancyCard {
 }
 
 export interface HomeVacanciesContent {
+  /** false — скрыть секцию через v-if в HomeView. Отсутствие поля = visible. */
+  enabled?: boolean
   title: string
   glow: { src: string; alt: string }
   target: { src: string; alt: string }
@@ -468,6 +476,8 @@ export interface HomeVacanciesContent {
  * ---------------------------------------------------------------- */
 
 export interface HomeBlogContent {
+  /** false — скрыть секцию через v-if в HomeView. Отсутствие поля = visible. */
+  enabled?: boolean
   title: string
   viewAll: { label: string; href: string }
 }

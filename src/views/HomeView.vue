@@ -1,5 +1,11 @@
 <script setup lang="ts">
 import { defineAsyncComponent } from 'vue'
+import {
+  useHomeBlog,
+  useHomeDirectAdvertiser,
+  useHomeFaq,
+  useHomeVacancies,
+} from '@/composables/useContent'
 
 /* HomeHero — синхронный, это LCP-элемент; должен рендериться сразу. */
 import HomeHero from '@/components/home/HomeHero.vue'
@@ -23,6 +29,13 @@ const HomeContacts = defineAsyncComponent(() => import('@/components/home/HomeCo
 const HomeFaq = defineAsyncComponent(() => import('@/components/home/HomeFaq.vue'))
 const HomeVacancies = defineAsyncComponent(() => import('@/components/home/HomeVacancies.vue'))
 const HomeBlog = defineAsyncComponent(() => import('@/components/home/HomeBlog.vue'))
+
+/* Флаги видимости секций — читаем enabled из JSON-контента.
+ * Отсутствие поля enabled трактуется как true (enabled !== false). */
+const directAdvertiserContent = useHomeDirectAdvertiser()
+const faqContent = useHomeFaq()
+const vacanciesContent = useHomeVacancies()
+const blogContent = useHomeBlog()
 </script>
 
 <template>
@@ -30,15 +43,15 @@ const HomeBlog = defineAsyncComponent(() => import('@/components/home/HomeBlog.v
     <HomeHero />
     <HomeAbout />
     <HomeAffiliatesAdvertisers />
-    <HomeDirectAdvertiser />
+    <HomeDirectAdvertiser v-if="directAdvertiserContent.enabled !== false" />
     <HomeMap />
     <HomeBenefits />
     <HomeTestimonials />
     <HomeMeetUs />
     <HomeContacts />
-    <HomeFaq />
-    <HomeVacancies />
-    <HomeBlog />
+    <HomeFaq v-if="faqContent.enabled !== false" />
+    <HomeVacancies v-if="vacanciesContent.enabled !== false" />
+    <HomeBlog v-if="blogContent.enabled !== false" />
   </div>
 </template>
 

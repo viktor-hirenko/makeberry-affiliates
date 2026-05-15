@@ -144,7 +144,7 @@ function closeMobileMenu() {
       </nav>
 
       <div class="app-header__actions">
-        <BaseButton variant="secondary" size="small" :to="nav.ctaPath">
+        <BaseButton v-if="nav.ctaEnabled !== false" variant="secondary" size="small" :to="nav.ctaPath">
           {{ nav.ctaLabel }}
         </BaseButton>
       </div>
@@ -156,7 +156,7 @@ function closeMobileMenu() {
       </RouterLink>
 
       <div class="app-header__actions">
-        <BaseButton variant="secondary" size="small" :to="nav.ctaPath">
+        <BaseButton v-if="nav.ctaEnabled !== false" variant="secondary" size="small" :to="nav.ctaPath">
           {{ nav.ctaLabel }}
         </BaseButton>
         <IconButton
