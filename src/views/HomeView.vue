@@ -1,16 +1,28 @@
 <script setup lang="ts">
-import HomeAbout from '@/components/home/HomeAbout.vue'
-import HomeAffiliatesAdvertisers from '@/components/home/HomeAffiliatesAdvertisers.vue'
-import HomeBenefits from '@/components/home/HomeBenefits.vue'
-import HomeBlog from '@/components/home/HomeBlog.vue'
-import HomeDirectAdvertiser from '@/components/home/HomeDirectAdvertiser.vue'
+import { defineAsyncComponent } from 'vue'
+
+/* HomeHero — синхронный, это LCP-элемент; должен рендериться сразу. */
 import HomeHero from '@/components/home/HomeHero.vue'
-import HomeContacts from '@/components/home/HomeContacts.vue'
-import HomeFaq from '@/components/home/HomeFaq.vue'
-import HomeMap from '@/components/home/HomeMap.vue'
-import HomeMeetUs from '@/components/home/HomeMeetUs.vue'
-import HomeTestimonials from '@/components/home/HomeTestimonials.vue'
-import HomeVacancies from '@/components/home/HomeVacancies.vue'
+
+/* Все below-the-fold секции — async: выносятся в отдельные чанки,
+ * чтобы Swiper и другие тяжёлые зависимости не попадали в initial bundle. */
+const HomeAbout = defineAsyncComponent(() => import('@/components/home/HomeAbout.vue'))
+const HomeAffiliatesAdvertisers = defineAsyncComponent(
+  () => import('@/components/home/HomeAffiliatesAdvertisers.vue'),
+)
+const HomeDirectAdvertiser = defineAsyncComponent(
+  () => import('@/components/home/HomeDirectAdvertiser.vue'),
+)
+const HomeMap = defineAsyncComponent(() => import('@/components/home/HomeMap.vue'))
+const HomeBenefits = defineAsyncComponent(() => import('@/components/home/HomeBenefits.vue'))
+const HomeTestimonials = defineAsyncComponent(
+  () => import('@/components/home/HomeTestimonials.vue'),
+)
+const HomeMeetUs = defineAsyncComponent(() => import('@/components/home/HomeMeetUs.vue'))
+const HomeContacts = defineAsyncComponent(() => import('@/components/home/HomeContacts.vue'))
+const HomeFaq = defineAsyncComponent(() => import('@/components/home/HomeFaq.vue'))
+const HomeVacancies = defineAsyncComponent(() => import('@/components/home/HomeVacancies.vue'))
+const HomeBlog = defineAsyncComponent(() => import('@/components/home/HomeBlog.vue'))
 </script>
 
 <template>

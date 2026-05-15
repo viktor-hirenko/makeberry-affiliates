@@ -10,16 +10,16 @@ declare module 'vue-router' {
 }
 
 import HomeView from '@/views/HomeView.vue'
-import BlogView from '@/views/BlogView.vue'
-import ArticleView from '@/views/ArticleView.vue'
-import AudienceView from '@/views/AudienceView.vue'
-import CasinoView from '@/views/CasinoView.vue'
-import NotFoundView from '@/views/NotFoundView.vue'
 import { getCasinoBySlug } from '@/composables/useContent'
 
-/* Все views импортируем синхронно — лендинг небольшой, и
- * это устраняет «пустой кадр» (только хедер/футер) при навигации,
- * потому что router-view не ждёт догрузки chunk. */
+/* HomeView импортируем синхронно — это стартовый маршрут, критичен для LCP.
+ * Остальные views — lazy: они не нужны на initial load и выносятся в отдельные
+ * чанки, что сокращает initial JS-бандл и ускоряет первый рендер. */
+const BlogView = () => import('@/views/BlogView.vue')
+const ArticleView = () => import('@/views/ArticleView.vue')
+const AudienceView = () => import('@/views/AudienceView.vue')
+const CasinoView = () => import('@/views/CasinoView.vue')
+const NotFoundView = () => import('@/views/NotFoundView.vue')
 
 export const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
