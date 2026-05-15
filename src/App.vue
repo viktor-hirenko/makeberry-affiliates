@@ -25,14 +25,16 @@ const route = useRoute()
   </div>
 </template>
 
-<style>
+<style scoped>
 .app-main__view {
   flex: 1;
   width: 100%;
   display: flex;
   flex-direction: column;
 }
+</style>
 
+<style>
 /*
  * Enter совпадает с :duration enter (250). Leave мгновенный — без полупрозрачного наложения двух маршрутов.
  */
