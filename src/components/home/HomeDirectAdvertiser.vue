@@ -173,25 +173,15 @@ const navConfig = {
 <style scoped lang="scss">
 @use '@/assets/styles/scss/mixins' as *;
 
-/* ============================================================
- * Section
- * Mobile (Figma 360 — py 70 / px 16 / column / gap 48)
- * Desktop (Figma 1440 — py 100 / px 60 / column / gap 70)
- * ============================================================ */
+/* Без overflow-x: full-bleed свайпер до tablet (как Testimonials);
+ * горизонтальный скролл клипается на body (см. main.scss). */
 .home-direct {
   position: relative;
   isolation: isolate;
 
   @include section-padding;
-  /*
-   * Без overflow-x: свайпер full-bleed до tablet (как Testimonials).
-   * Горизонталь страницы — body (main.scss).
-   */
 }
 
-/* ============================================================
- * Inner stack
- * ============================================================ */
 .home-direct__inner {
   position: relative;
   z-index: 1;
@@ -220,17 +210,11 @@ const navConfig = {
   }
 }
 
-/* ============================================================
- * Title — H3 56/64 (desktop) | 36/40 medium (mobile)
- * ============================================================ */
 .home-direct__title {
   @include font-section-title;
 }
 
-/* ============================================================
- * Slider wrap (relative for arrows positioning)
- * До tablet: full-bleed + инсет на swiper (как HomeTestimonials).
- * ============================================================ */
+/* До tablet — full-bleed: инсет на самом swiper (как HomeTestimonials). */
 .home-direct__slider-wrap {
   position: relative;
   width: 100%;
@@ -238,14 +222,13 @@ const navConfig = {
   flex-direction: column;
   gap: to-rem(20);
 
-  /* Full-bleed: см. комментарий в HomeMeetUs. */
   @include mq($until: tablet) {
     margin-inline: calc(-1 * var(--container-pad-x));
     width: calc(100% + 2 * var(--container-pad-x));
   }
 
   @include mq($from: wide) {
-    padding-inline: var(--container-pad-x); /* место под стрелки на ≥1280 */
+    padding-inline: var(--container-pad-x);
     gap: to-rem(32);
   }
 }
@@ -263,12 +246,6 @@ const navConfig = {
   height: auto;
 }
 
-/* ============================================================
- * Partner card
- * Default — bg-surface gray, border-subtle.
- * Hover — pink-to-black diagonal gradient overlay (per Figma WinSpirit).
- * Empty (placeholder) — no bg, plus icon inside, без hover-градиента.
- * ============================================================ */
 .home-direct__card {
   display: flex;
   align-items: center;
@@ -286,13 +263,8 @@ const navConfig = {
     background var(--transition-base),
     border-color var(--transition-base);
 
-  /* Hover: Figma fill.
-   * Figma CSS-экспорт даёт только крайние стопы:
-   *   linear-gradient(334deg, rgba(251,0,109,0) -4.68%, #000 98.47%)
-   * — но визуально это transparent → #000 поверх surface #141414
-   *   (разница ~20 единиц на серой шкале — практически невидимо).
-   * Эффект на Figma-mockup'е содержит явный розовый блик, поэтому
-   * добавляем средний стоп с pink (Figma часто опускает middle stops в CSS-экспорте). */
+  /* Figma CSS-экспорт даёт только крайние стопы и теряет розовый
+   * блик в центре — добавляем средний стоп вручную. */
   &:hover,
   &:focus-visible {
     background-image: linear-gradient(
@@ -324,10 +296,6 @@ const navConfig = {
   }
 }
 
-/* ============================================================
- * Logo / placeholder
- * Figma: лого до 75px высоты, object-fit: contain.
- * ============================================================ */
 .home-direct__logo {
   display: block;
   max-width: 100%;
@@ -343,7 +311,6 @@ const navConfig = {
   letter-spacing: 0.04em;
 }
 
-/* Placeholder card: subtle round button (56×56, p-16) + caption ниже, gap 12 */
 .home-direct__placeholder {
   display: flex;
   flex-direction: column;
@@ -371,10 +338,7 @@ const navConfig = {
   color: var(--color-text-tertiary);
 }
 
-/* ============================================================
- * Slider arrows — появляются с ≥1280 (wide), когда у slider-wrap
- * есть место под padding-inline=60. На 1024-1279 — только swipe + dots.
- * ============================================================ */
+/* Стрелки только ≥ wide; на 1024–1279 — swipe + dots. */
 .home-direct__nav {
   display: none;
 
@@ -432,9 +396,6 @@ const navConfig = {
   }
 }
 
-/* ============================================================
- * Pagination — Swiper bullets
- * ============================================================ */
 .home-direct__pagination {
   display: flex;
   align-items: center;
@@ -442,7 +403,6 @@ const navConfig = {
   gap: to-rem(8);
   width: 100%;
 
-  /* Стили буллетов через :deep — Swiper рендерит .swiper-pagination-bullet */
   :deep(.swiper-pagination-bullet) {
     width: to-rem(8);
     height: to-rem(8);
@@ -459,12 +419,7 @@ const navConfig = {
   }
 }
 
-/* ============================================================
- * Cooperation models — как `.casino-coop__grid` (CasinoCooperation.vue):
- * mobile : 1 колонка
- * tablet : 2 колонки (2×2 для четырёх карточек)
- * desktop: 4 колонки, max-width 1200 по центру
- * ============================================================ */
+/* Сетка зеркалит `.casino-coop__grid`: 1 / 2 / 4 колонки. */
 .home-direct__cooperation {
   display: grid;
   grid-template-columns: 1fr;
@@ -487,9 +442,6 @@ const navConfig = {
   }
 }
 
-/* ============================================================
- * CTA — "Ready to start?" + button (white/secondary)
- * ============================================================ */
 .home-direct__cta {
   display: flex;
   flex-direction: column;

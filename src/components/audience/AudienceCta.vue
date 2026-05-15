@@ -14,8 +14,8 @@ import type { AudienceCtaBlock, AudiencePageContent } from '@/types/content'
  * Картинка glow и её alt приходят из `en/pages/affiliates/<slug>.json` (`cta.glow`),
  * а конкретное позиционирование/rotate задаётся в SCSS через
  * модификатор `.audience-cta--{slug}` (по аналогии с
- * `HomeDirectAdvertiser`, где glow тоже статичный PNG в обычной
- * абсолютной CSS-разметке).
+ * `HomeDirectAdvertiser`, где glow тоже статичный декоративный
+ * растровый ассет в обычной абсолютной CSS-разметке).
  */
 interface Props {
   cta: AudienceCtaBlock
@@ -56,14 +56,8 @@ const ui = useSharedUi()
 <style scoped lang="scss">
 @use '@/assets/styles/scss/mixins' as *;
 
-/* ============================================================
- * CTA (Figma 2653:1262 / 2655:1611)
- *
- * Mobile  : px 16, py 70, gap 48, text 24/32 центром.
- * Desktop : px 160, py 100, gap 70, text 40/48 центром.
- * `overflow: clip` — glow выходит за края секции, иначе появлялся
- * бы горизонтальный скролл.
- * ============================================================ */
+/* Affiliates CTA: Figma 2653:1262 (glow справа).
+ * Advertisers CTA: Figma 2655:1611 (glow слева). */
 .audience-cta {
   position: relative;
 
@@ -74,11 +68,8 @@ const ui = useSharedUi()
   );
 }
 
-/* ============================================================
- * Glow — декоративный PNG за контентом. Базовые свойства общие;
- * конкретный кадр (top/left/width/rotate) задают модификаторы
- * `.audience-cta--affiliates` / `.audience-cta--advertisers`.
- * ============================================================ */
+/* Базовая геометрия общая; позиционирование задают модификаторы
+ * `.audience-cta--{slug}` ниже. */
 .audience-cta__glow {
   position: absolute;
   width: to-rem(923);
@@ -102,7 +93,7 @@ const ui = useSharedUi()
     }
   }
 
-  /* For Affiliates CTA: текстовый блок уже́е, чем у advertisers (Figma 2653:1262). */
+  /* У affiliates текстовый блок уже, чем у advertisers (Figma 2653:1262). */
   .audience-cta__text {
     max-width: var(--container-lg);
   }
@@ -126,9 +117,6 @@ const ui = useSharedUi()
   }
 }
 
-/* ============================================================
- * Content
- * ============================================================ */
 .audience-cta__inner {
   position: relative;
   z-index: 1;

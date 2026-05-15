@@ -87,12 +87,6 @@ function loadMore() {
 <style scoped lang="scss">
 @use '@/assets/styles/scss/mixins' as *;
 
-/* ============================================================
- * Section
- * Mobile  : px 16, py 70
- * Desktop : px 60, py 100, gap 70 между header → grid → button
- * Гловы — абсолютно позиционируем относительно секции.
- * ============================================================ */
 .blog-page {
   position: relative;
   overflow: hidden;
@@ -104,12 +98,6 @@ function loadMore() {
   );
 }
 
-/* ============================================================
- * Декоративные гловы
- * Mobile  : только левая ~500×375 на (-183, -63)
- * Desktop : левая 989×742 на (-354, -269), правая 1206×840 на (1762, -43)
- * Pointer-events отключены, чтобы не мешали кликам.
- * ============================================================ */
 .blog-page__glow {
   position: absolute;
   max-width: unset;
@@ -132,7 +120,7 @@ function loadMore() {
 }
 
 .blog-page__glow--right {
-  /* На mobile правой гловы нет (Figma 3861:19714) */
+  /* На mobile отсутствует (Figma 3861:19714). */
   display: none;
 
   @include mq($from: mobile) {
@@ -158,12 +146,7 @@ function loadMore() {
   @include section-stack($align: center);
 }
 
-/* ============================================================
- * HEADER
- * Mobile  : только заголовок (Figma 3861:19719) — без бейджей
- * Desktop : 1200px ширина, бейджи абсолютно позиционируем
- *           вокруг центрального заголовка
- * ============================================================ */
+/* Бейджи только desktop (на mobile отсутствуют, Figma 3861:19719). */
 .blog-page__header {
   position: relative;
   width: 100%;
@@ -180,7 +163,6 @@ function loadMore() {
   }
 }
 
-/* H4 mobile (36/40), H1 64/72 desktop (Figma "Blog" 64/72 SemiBold) */
 .blog-page__title {
   margin: 0;
   font-family: var(--font-sans);
@@ -198,9 +180,6 @@ function loadMore() {
   }
 }
 
-/* ============================================================
- * BADGES — декоративные пилюли только на desktop
- * ============================================================ */
 .blog-page__badges {
   display: none;
 
@@ -226,7 +205,6 @@ function loadMore() {
   }
 }
 
-/* Базовый стиль для бейджей */
 .blog-page__badge {
   display: inline-flex;
   align-items: center;
@@ -244,32 +222,23 @@ function loadMore() {
   transform-origin: center;
 }
 
-/* brand-fill: розовый bg, белый текст */
 .blog-page__badge--brand-fill {
   background-color: var(--color-bg-brand);
   color: var(--color-text-primary);
 }
 
-/* outlined-white: чёрный bg, белый бордер */
 .blog-page__badge--outlined-white {
   background-color: var(--color-bg-page);
   color: var(--color-text-primary);
   border: 2px solid var(--color-text-primary);
 }
 
-/* outlined-brand: чёрный bg, розовый бордер */
 .blog-page__badge--outlined-brand {
   background-color: var(--color-bg-page);
   color: var(--color-text-primary);
   border: 2px solid var(--color-border-brand);
 }
 
-/* ============================================================
- * GRID — articles
- * Узкий телефон (меньше 768px): 1 col, gap 48
- * mobile–tablet (768–1023): 2 col, gap 20 — как сетки на главной
- * ≥ tablet: 3 col (Figma 2503:5464)
- * ============================================================ */
 .blog-page__grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -290,9 +259,6 @@ function loadMore() {
   }
 }
 
-/* ============================================================
- * View More button — secondary (white bg, black text)
- * ============================================================ */
 .blog-page__more {
   align-self: center;
 }

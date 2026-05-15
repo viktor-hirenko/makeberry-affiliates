@@ -3,15 +3,8 @@ import BaseButton from '@/components/ui/BaseButton.vue'
 import type { CasinoBottomCtaContent } from '@/types/content'
 
 /**
- * Casino → Bottom CTA (Figma 3819:4269)
- *
- * Контент:
- *   "As a direct advertiser for {Brand}, [white]
- *    we remove unnecessary layers ... [tertiary]"
- *   + 2 кнопки: Start Promoting (primary), Visit {Brand} (tetriary).
- *
- * Декорация: большой rotated pink glow в правой части секции —
- * pre-composited PNG, ничего сверху не накладываем.
+ * Casino → Bottom CTA (Figma 3819:4269).
+ * Декорация: pre-composited WebP glow справа.
  */
 interface Props {
   content: CasinoBottomCtaContent
@@ -67,12 +60,7 @@ defineProps<Props>()
 <style scoped lang="scss">
 @use '@/assets/styles/scss/mixins' as *;
 
-/* ============================================================
- * Section
- * Mobile  : px 16, py 70.
- * Desktop : px 260, py 100 (Figma).
- * Glow выходит за правую границу — overflow-x: clip.
- * ============================================================ */
+/* Glow выходит за правую границу — overflow-x: clip. */
 .casino-cta {
   position: relative;
   overflow-x: clip;
@@ -80,11 +68,6 @@ defineProps<Props>()
   @include section-padding($desktop-inline: to-rem(200));
 }
 
-/* ============================================================
- * Glow — pre-composited PNG, rotated блик в правой части.
- * Figma desktop: left 677, top -245, w 1287, h 700.
- * Mobile коэффициент ≈ 0.6× и подвинут к правому краю.
- * ============================================================ */
 .casino-cta__glow {
   position: absolute;
   top: to-rem(-150);
@@ -109,10 +92,6 @@ defineProps<Props>()
   @include container(var(--container-cta));
 }
 
-/* ============================================================
- * Text — большой 24/32 mobile, 40/48 desktop, центр.
- * Primary часть — белая, secondary — text-tertiary.
- * ============================================================ */
 .casino-cta__text {
   margin: 0;
   width: 100%;
@@ -139,10 +118,6 @@ defineProps<Props>()
   color: var(--color-text-tertiary);
 }
 
-/* ============================================================
- * Buttons — column-stack mobile (full-width),
- * row inline desktop (gap 8 — по Figma).
- * ============================================================ */
 .casino-cta__buttons {
   display: flex;
   flex-direction: column;

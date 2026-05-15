@@ -2,17 +2,10 @@
 import type { CasinoAboutContent } from '@/types/content'
 
 /**
- * Casino About — описательный блок с тремя плавающими розовыми бейджами.
- *
- * Layout:
- * - Mobile (Figma 360 — узел 3821:7879/7880, py 190): текст центром,
- *   бейджи положены абсолютом относительно __inner по координатам
- *   `mobileTop` / `mobileLeft` (Figma frame 360).
- * - Desktop (Figma 1440 — px 200 / py 150): текст слева (fix-width),
- *   бейджи абсолютом по `top` / `right` относительно __inner (frame 1440).
- *
- * Все координаты берём из data (см. `en/pages/casinos/*.json`) — это позволяет
- * точно повторить Figma для каждого казино, не плодя per-component CSS.
+ * Casino About — описательный блок с плавающими розовыми бейджами.
+ * Координаты бейджей хранятся в данных (`en/pages/casinos/*.json`):
+ * `mobileTop` / `mobileLeft` для < tablet, `top` / `right` для tablet+,
+ * чтобы можно было точно воспроизвести Figma без per-component CSS.
  */
 interface Props {
   about: CasinoAboutContent
@@ -61,16 +54,8 @@ defineProps<Props>()
 <style scoped lang="scss">
 @use '@/assets/styles/scss/mixins' as *;
 
-/* ============================================================
- * Section
- * Mobile  : px 16. Padding-block большое (top 190 / bottom 240),
- *           чтобы вместить абсолютные бейджи над текстом и
- *           Tournaments под ним. На viewport > 360px текст
- *           переносится в меньшее число строк, поэтому bottom
- *           делаем с запасом.
- * Tablet  : px 60, py 120.
- * Desktop : px 200, py 150 (Figma 3819).
- * ============================================================ */
+/* Padding-block большое, чтобы вместить абсолютные бейджи
+ * над текстом и под ним (без них секция выглядела бы пустой). */
 .casino-about {
   position: relative;
   overflow-x: clip;
@@ -84,9 +69,6 @@ defineProps<Props>()
   );
 }
 
-/* ============================================================
- * Inner — текст занимает 50% слева, бейджи правая половина (abs).
- * ============================================================ */
 .casino-about__inner {
   position: relative;
   @include section-stack($gap-mobile: to-rem(32), $gap-tablet: null);
@@ -105,11 +87,6 @@ defineProps<Props>()
   }
 }
 
-/* ============================================================
- * Paragraph — 24/32 на mobile и desktop (Figma 3821:7881 / 3819).
- * Color: text-tertiary (приглушённый параграф),
- * `<strong>` фрагмент — text-primary white.
- * ============================================================ */
 .casino-about__paragraph {
   margin: 0;
   font-family: var(--font-sans);
@@ -125,16 +102,8 @@ defineProps<Props>()
   color: var(--color-text-primary);
 }
 
-/* ============================================================
- * Badges
- *
- * Везде — abs-позиционированные.
- * Mobile (< 768): координаты `--badge-mobile-top` /
- *                 `--badge-mobile-left` (из data, Figma frame 360).
- * Tablet+ (≥ 768): `--badge-top` / `--badge-right` (frame 1440) —
- *                 текст слева в фиксированной колонке, бейджи
- *                 свободно справа.
- * ============================================================ */
+/* Координаты бейджей приходят через CSS-vars из JSON:
+ * --badge-mobile-* до tablet, --badge-top/right с tablet. */
 .casino-about__badges {
   list-style: none;
   margin: 0;

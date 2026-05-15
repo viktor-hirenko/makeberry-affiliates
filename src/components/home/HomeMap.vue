@@ -283,11 +283,6 @@ onBeforeUnmount(() => {
 <style scoped lang="scss">
 @use '@/assets/styles/scss/mixins' as *;
 
-/* ============================================================
- * Section
- * Mobile (Figma 360 — py 70 / px 16)
- * Desktop (Figma 1440 — py 100 / px 120)
- * ============================================================ */
 .home-map {
   position: relative;
   display: flex;
@@ -304,9 +299,8 @@ onBeforeUnmount(() => {
 }
 
 .home-map__inner {
-  /* Локальный паддинг наследует адаптивный --container-pad-x (16/32/60),
-     но на ≥1280 переопределяется до 120 — макет HomeMap-секции хочет
-     более широкий отступ для табов и мини-карты. */
+  /* На ≥ wide HomeMap хочет более широкий внутренний отступ (120 вместо
+   * глобальных 60), поэтому локально переопределяем --container-pad-x. */
   --container-pad-x-local: var(--container-pad-x);
 
   display: flex;
@@ -322,9 +316,6 @@ onBeforeUnmount(() => {
   }
 }
 
-/* ============================================================
- * Header (title + tabs)
- * ============================================================ */
 .home-map__header {
   display: flex;
   flex-direction: column;
@@ -342,9 +333,6 @@ onBeforeUnmount(() => {
   @include font-section-title;
 }
 
-/* ============================================================
- * Tab group — pill on bg-surface, 4px padding, 4px gap
- * ============================================================ */
 .home-map__tabs {
   display: inline-flex;
   align-items: center;
@@ -388,9 +376,6 @@ onBeforeUnmount(() => {
   }
 }
 
-/* ============================================================
- * Map host — inline SVG со всеми странами + tooltip overlay
- * ============================================================ */
 .home-map__map {
   position: relative;
   width: 100%;
@@ -456,16 +441,7 @@ onBeforeUnmount(() => {
   }
 }
 
-/* ============================================================
- * Tooltip — карточка над выбранной страной (hover на бейдже)
- * Figma node 2825:6528 (Country Info):
- *  • Card: bg-overlay (rgba(20,20,20,0.7)), backdrop-blur 12.5px,
- *    border 1px subtle, radius 24, padding 48 vert / 24 horiz
- *  • Body: name (Caption Regular, secondary) + offers (24/32 primary)
- *  • Badge "Top in Tier X" (absolute поверх card, rotate -8deg):
- *    bg-surface, border 1px brand-pink, radius pill,
- *    padding 8/12, text 14/16 medium WHITE
- * ============================================================ */
+/* Tooltip Country Info — Figma 2825:6528. */
 .home-map__tooltip {
   position: absolute;
   pointer-events: none;
@@ -551,15 +527,8 @@ onBeforeUnmount(() => {
   @include font-body-s-regular;
 }
 
-/* ============================================================
- * Badges row — горизонтальный скролл на всю ширину секции (вне .inner),
- * инсеты как у контентной колонки — см. .home-map__inner.
- * Скроллится только содержимое ряда: контейнер width:100%, без absolute
- * (absolute без width/right даёт ширину по контенту → скролла нет).
- * Figma: gap 8
- * Mobile (3861:20520): badge 48×48, pad 12, Body 2 Medium 16/24
- * Desktop: badge 72×72, pad 24, H5 20/24
- * ============================================================ */
+/* Horizontal scroll ряда: width:100% обязательно (absolute без width/right
+ * сжимал бы ряд по контенту, скролл не появлялся). */
 .home-map__badges {
   display: flex;
   align-items: center;

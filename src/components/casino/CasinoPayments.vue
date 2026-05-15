@@ -2,16 +2,8 @@
 import type { CasinoPaymentsContent } from '@/types/content'
 
 /**
- * Casino → Payments & Withdrawals (Figma 3819:4228)
- *
- * Layout:
- * - Mobile  : title центром, 2 карточки колонкой (Payment Methods, Withdrawal Methods).
- * - Desktop : 2 карточки в ряду (равные ширины).
- *
- * Каждая карточка — 24px padding header (title H4) → 1px divider → 24px padding
- * с маркированным списком (bullet, секондари-цвет).
- *
- * Декорация: pink glow в левом верхнем углу секции (overflow: clip).
+ * Casino → Payments & Withdrawals (Figma 3819:4228).
+ * Декорация — pink glow в левом верхнем углу (overflow: clip).
  */
 interface Props {
   content: CasinoPaymentsContent
@@ -54,13 +46,8 @@ defineProps<Props>()
 <style scoped lang="scss">
 @use '@/assets/styles/scss/mixins' as *;
 
-/* ============================================================
- * Section
- * Mobile  : px 16, py 70.
- * Desktop : px 200, py 100 (Figma).
- * Pink glow выходит за левую границу — overflow-x: clip,
- * чтобы не порвать sticky/horizontal-scroll контекст.
- * ============================================================ */
+/* Pink glow выходит за левую границу — overflow-x: clip
+ * (не overflow: hidden, чтобы не порвать sticky-родителей). */
 .casino-payments {
   position: relative;
   overflow-x: clip;
@@ -68,11 +55,6 @@ defineProps<Props>()
   @include section-padding($desktop-inline: to-rem(200));
 }
 
-/* ============================================================
- * Glow — pre-composited pink ellipse в left-top.
- * Figma desktop: left -421, top -160, w 956, h 625.
- * Mobile коэффициент ≈ 0.6× для аккуратной композиции.
- * ============================================================ */
 .casino-payments__glow {
   position: absolute;
   top: to-rem(-100);
@@ -97,16 +79,10 @@ defineProps<Props>()
   @include container(var(--container-default));
 }
 
-/* ============================================================
- * Title — 36/40 mobile, H3 56/64 desktop. Center.
- * ============================================================ */
 .casino-payments__title {
   @include font-section-title;
 }
 
-/* ============================================================
- * Grid: 1 col mobile, 2 col desktop, equal gap 20 (Figma 24).
- * ============================================================ */
 .casino-payments__grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -124,9 +100,6 @@ defineProps<Props>()
   }
 }
 
-/* ============================================================
- * Card — bg-surface, radius 24, border subtle, overflow-clip.
- * ============================================================ */
 .casino-payments__card {
   display: flex;
   flex-direction: column;
@@ -165,9 +138,6 @@ defineProps<Props>()
   background-color: var(--color-border-subtle);
 }
 
-/* ============================================================
- * List — нативные disc bullets, secondary text.
- * ============================================================ */
 .casino-payments__list {
   list-style: disc;
   margin: 0;

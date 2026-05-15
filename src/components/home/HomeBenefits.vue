@@ -37,11 +37,6 @@ const content = useHomeBenefits()
 <style scoped lang="scss">
 @use '@/assets/styles/scss/mixins' as *;
 
-/* ============================================================
- * Section
- * Mobile (Figma 360 — px 16, py 70)
- * Desktop (Figma 1440 — px 120, py 100, title→cards 70)
- * ============================================================ */
 .home-benefits {
   position: relative;
   display: flex;
@@ -85,9 +80,6 @@ const content = useHomeBenefits()
   }
 }
 
-/* ============================================================
- * Title — H4 на мобайле (32/40), H3 на десктопе (56/64)
- * ============================================================ */
 .home-benefits__title {
   @include font-section-title;
 
@@ -96,9 +88,6 @@ const content = useHomeBenefits()
   }
 }
 
-/* ============================================================
- * Grid — 1 col; ≥ mobile две колонки; ≥ desktop три.
- * ============================================================ */
 .home-benefits__grid {
   list-style: none;
   margin: 0;
@@ -119,9 +108,6 @@ const content = useHomeBenefits()
   }
 }
 
-/* ============================================================
- * Card
- * ============================================================ */
 .home-benefits__card {
   display: flex;
   flex-direction: column;

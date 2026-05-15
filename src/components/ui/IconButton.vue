@@ -72,9 +72,6 @@ function handleClick(event: MouseEvent) {
   }
 }
 
-/* ============================================================
- * Sizes
- * ============================================================ */
 .icon-button--24 {
   width: auto;
   height: auto;
@@ -96,9 +93,6 @@ function handleClick(event: MouseEvent) {
   height: 56px;
 }
 
-/* ============================================================
- * Variants
- * ============================================================ */
 .icon-button--subtle {
   background-color: var(--color-bg-subtle);
 
@@ -124,9 +118,6 @@ function handleClick(event: MouseEvent) {
   }
 }
 
-/* ============================================================
- * Disabled
- * ============================================================ */
 .icon-button:disabled {
   background-color: var(--color-bg-disabled);
   color: var(--color-icon-disabled);

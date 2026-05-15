@@ -57,15 +57,12 @@ function handleScrollClick() {
 <style scoped lang="scss">
 @use '@/assets/styles/scss/mixins' as *;
 
-/* ============================================================
- * Section
- * ============================================================ */
+/* Hero flush до верха viewport (под плавающим header-pill);
+ * padding-top компенсирует высоту хедера. */
 .home-hero {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  /* Hero рисуется flush до верха viewport (под плавающим хедером).
-     padding-top ниже учитывает высоту header-pill — header не наезжает. */
 
   @include section-padding(
     $desktop-inline: to-rem(160),
@@ -83,13 +80,10 @@ function handleScrollClick() {
   @include mq($from: tablet) {
     padding-top: to-rem(280);
     padding-bottom: to-rem(150);
-    /* padding-inline уже задаётся через section-padding → var(--container-pad-x) (60 на ≥1024). */
   }
 }
 
-/* ============================================================
- * Background — pink cables image, mix-blend luminosity per Figma
- * ============================================================ */
+/* mix-blend luminosity накладывает цвет hero на фон (per Figma). */
 .home-hero__bg {
   position: absolute;
   inset: 0;
@@ -109,9 +103,6 @@ function handleScrollClick() {
   }
 }
 
-/* ============================================================
- * Content stack
- * ============================================================ */
 .home-hero__content {
   position: relative;
   z-index: 1;
@@ -127,9 +118,6 @@ function handleScrollClick() {
   }
 }
 
-/* ============================================================
- * Title block
- * ============================================================ */
 .home-hero__title {
   display: flex;
   flex-direction: column;
@@ -175,7 +163,7 @@ function handleScrollClick() {
 .home-hero__title-text--bottom {
   display: block;
   width: 100%;
-  /* На мобайл/таблет позволяем переносить, чтобы длинная фраза не обрезалась. */
+  /* На mobile разрешаем перенос, чтобы фраза не обрезалась. */
   white-space: normal;
 
   @include mq($from: mobile) {
@@ -183,9 +171,7 @@ function handleScrollClick() {
   }
 }
 
-/* ============================================================
- * Scroll control (decorative span; click scrolls; aria-hidden in h1)
- * ============================================================ */
+/* Декоративный span внутри h1: aria-hidden, клик скроллит к секции. */
 .home-hero__scroll-button {
   display: inline-flex;
   align-items: center;
@@ -227,9 +213,6 @@ function handleScrollClick() {
   }
 }
 
-/* ============================================================
- * Actions
- * ============================================================ */
 .home-hero__actions {
   display: flex;
   flex-direction: column;

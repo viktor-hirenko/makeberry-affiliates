@@ -95,9 +95,6 @@ const isProtocolLink = computed(
   }
 }
 
-/* ============================================================
- * Sizes
- * ============================================================ */
 .base-button--large {
   @include font-body-l-semibold;
   min-height: 56px;
@@ -110,9 +107,6 @@ const isProtocolLink = computed(
   padding: 8px 16px;
 }
 
-/* ============================================================
- * Variants — Default state
- * ============================================================ */
 .base-button--primary {
   background-color: var(--color-bg-brand);
   color: var(--color-text-primary);
@@ -141,9 +135,7 @@ const isProtocolLink = computed(
   }
 }
 
-/* ============================================================
- * Disabled state (одинаковый для всех вариантов по Figma)
- * ============================================================ */
+/* Disabled — одинаковый стиль для всех вариантов (per Figma). */
 .base-button:disabled,
 .base-button[aria-disabled='true'] {
   background-color: var(--color-bg-disabled);

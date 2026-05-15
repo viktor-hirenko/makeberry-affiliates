@@ -141,16 +141,9 @@ const ui = useSharedUi()
 <style scoped lang="scss">
 @use '@/assets/styles/scss/mixins' as *;
 
-/* ============================================================
- * Section
- * Mobile  : px 16, pt 70, pb 16, gap 60
- * Tablet  : px 60 (= --container-pad-x на ≥1024), pt 80, pb 40, gap 80
- *           — на 1024 макетные 150px padding'ов "съедают" 300px ширины,
- *             из-за чего Partners + Awards не помещаются в одну строку.
- *             На tablet поджимаем до 60, чтобы layout соответствовал
- *             desktop-варианту "Partners | Awards".
- * Desktop : px 150, pt 80, pb 40, gap 100 (как в Figma)
- * ============================================================ */
+/* На tablet (1024px) макетные desktop-паддинги 150 «съели» бы 300px
+ * ширины, и Partners + Awards перестают помещаться в строку — поэтому
+ * на tablet паддинги поджаты до 60. */
 .app-footer {
   z-index: 1;
   background-color: var(--color-bg-surface);
@@ -169,11 +162,6 @@ const ui = useSharedUi()
   @include container(to-rem(1140));
 }
 
-/* ============================================================
- * Header (logo+social  +  nav columns)
- * Mobile : column, gap 60
- * Desktop: row, justify space-between
- * ============================================================ */
 .app-footer__header {
   display: flex;
   flex-direction: column;
@@ -206,7 +194,6 @@ const ui = useSharedUi()
   }
 }
 
-/* Social: 5 круглых иконок, gap 8, bg-subtle, p 8, icon 24 */
 .app-footer__social {
   list-style: none;
   margin: 0;
@@ -238,13 +225,7 @@ const ui = useSharedUi()
   }
 }
 
-/* ============================================================
- * Nav columns
- * Mobile : column, gap 48
- * Tablet : row, gap 24, колонки auto-width — иначе 4×200 + 3×50 = 950px
- *          плюс brand-блок не помещаются в 1024
- * Desktop: row, gap 50, каждая колонка 200 (как в Figma)
- * ============================================================ */
+/* На tablet колонки auto-width: 4×200 + 3×50 = 950px + brand не помещаются. */
 .app-footer__nav {
   display: flex;
   flex-direction: column;
@@ -316,13 +297,6 @@ const ui = useSharedUi()
   }
 }
 
-/* ============================================================
- * Partners + Awards
- * Mobile : column, gap 48
- * Tablet : row, gap 40 (Partners 4 logos ~627px + Awards 102px должны
- *          уместиться в 1024 после поджатого inner padding'а)
- * Desktop: row, gap 120 (как в Figma)
- * ============================================================ */
 .app-footer__pa {
   display: flex;
   flex-direction: column;
@@ -341,10 +315,8 @@ const ui = useSharedUi()
   }
 }
 
-/* Badge -- общий стиль для Partners/Awards.
- * bg-surface (#141414), 2px brand pink border, padding 16/8, radius pill,
- * text Body 1 SemiBold 18/24 white. На desktop badge абсолютно позиционирован
- * рядом с логотипами (см. modifier'ы ниже). */
+/* На desktop модификаторы --partners/--awards позиционируют бейдж
+ * абсолютом поверх логотипов с поворотом. */
 .app-footer__badge {
   display: inline-flex;
   align-items: center;
@@ -363,7 +335,6 @@ const ui = useSharedUi()
   white-space: nowrap;
 }
 
-/* Partners section */
 .app-footer__partners {
   position: relative;
   display: flex;
@@ -429,7 +400,6 @@ const ui = useSharedUi()
   }
 }
 
-/* Awards section */
 .app-footer__awards {
   position: relative;
   display: flex;
@@ -460,9 +430,6 @@ const ui = useSharedUi()
   }
 }
 
-/* Desktop-only: badge накладывается поверх логотипов с поворотом.
- * По Figma: Partners — left -54.63, top -40, rotate -7.6°
- *           Awards   — right -50.99, top -38, rotate 8.82°  */
 @include mq($from: tablet) {
   .app-footer__badge--partners,
   .app-footer__badge--awards {
@@ -483,11 +450,6 @@ const ui = useSharedUi()
   }
 }
 
-/* ============================================================
- * Bottom row
- * Mobile : wrap, gap 16, align-start
- * Desktop: gap 24, align center, justify center
- * ============================================================ */
 .app-footer__bottom {
   display: flex;
   flex-wrap: wrap;
@@ -522,9 +484,7 @@ const ui = useSharedUi()
   }
 }
 
-/* Вертикальный разделитель 1×16 между bottom элементами.
- * На mobile показываем только разделители между ссылками (не перед copyright),
- * чтобы повторить wrap-разметку Figma. */
+/* На mobile прячем последний разделитель — wrap-разметка Figma. */
 .app-footer__bottom-divider {
   flex: none;
   display: inline-block;

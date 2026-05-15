@@ -61,12 +61,7 @@ const content = useHomeVacancies()
 <style scoped lang="scss">
 @use '@/assets/styles/scss/mixins' as *;
 
-/* ============================================================
- * Section
- * Mobile  : px 16, py 70, gap 48
- * Desktop : px 60, py 100, gap 70
- * Glow и target декорации торчат за viewport — overflow-x: clip.
- * ============================================================ */
+/* Glow и target декорации выходят за viewport — overflow-x: clip. */
 .home-vacancies {
   position: relative;
   overflow-x: clip;
@@ -74,15 +69,6 @@ const content = useHomeVacancies()
   @include section-padding(to-rem(120));
 }
 
-/* ============================================================
- * Glow — pink radial декорация в правом верхнем углу,
- * повёрнута на 90deg (по Figma: rotate 90 у Group).
- * Mobile  : right -278.26, top -72.9, w 598.264, h 797.36
- * Desktop : left 925, top -67, w 989.282, h 742.264
- *           (на Figma viewport 1440 = right -(989.282 + 67 - 1440 + 925)? нет;
- *            проще: right = 1440 - 925 - 989.282 = -474.282)
- *           = right -474.28, top -67, w 989.28, h 742.26
- * ============================================================ */
 .home-vacancies__glow {
   position: absolute;
   top: to-rem(-172);
@@ -100,10 +86,7 @@ const content = useHomeVacancies()
   }
 }
 
-/* ============================================================
- * Target (dartboard) — 200x200, только desktop.
- * Figma: top 122, right 44 (от viewport).
- * ============================================================ */
+/* Dartboard-декорация показывается только с tablet+. */
 .home-vacancies__target {
   display: none;
 
@@ -129,17 +112,10 @@ const content = useHomeVacancies()
   @include section-stack;
 }
 
-/* ============================================================
- * Title — H4 36/40 mobile, H3 56/64 desktop, центр.
- * ============================================================ */
 .home-vacancies__title {
   @include font-section-title;
 }
 
-/* ============================================================
- * Content — ограничение 1200 (по Figma desktop), центрировано.
- * Под ним: список карточек + кнопка View All.
- * ============================================================ */
 .home-vacancies__content {
   display: flex;
   flex-direction: column;
@@ -153,11 +129,8 @@ const content = useHomeVacancies()
   }
 }
 
-/* ============================================================
- * Cards — 1 col; ≥ mobile две колонки; ≥ tablet три.
- * Третья карточка только с tablet: на мобиле в макете две карточки + View All
- * (полный список — отдельная страница / URL позже).
- * ============================================================ */
+/* Третья карточка показывается только с tablet — на mobile в макете
+ * две карточки + View All (полный список — отдельная страница). */
 .home-vacancies__cards {
   list-style: none;
   margin: 0;
@@ -211,10 +184,6 @@ const content = useHomeVacancies()
   width: 100%;
 }
 
-/* ============================================================
- * Badge "Remote" — pill, bg-subtle, padding 12/8
- * Caption Medium 14/16
- * ============================================================ */
 .home-vacancies__badge {
   display: inline-flex;
   align-items: center;
@@ -231,9 +200,6 @@ const content = useHomeVacancies()
   white-space: nowrap;
 }
 
-/* ============================================================
- * Job title — H4 24/32 mobile, H4 32/40 desktop
- * ============================================================ */
 .home-vacancies__job {
   margin: 0;
   width: 100%;
@@ -250,9 +216,6 @@ const content = useHomeVacancies()
   }
 }
 
-/* ============================================================
- * Description — Body 2 Regular 16/24
- * ============================================================ */
 .home-vacancies__desc {
   margin: 0;
   width: 100%;
@@ -265,10 +228,7 @@ const content = useHomeVacancies()
   color: var(--color-text-secondary);
 }
 
-/* ============================================================
- * Learn More link — Body 1 SemiBold 18/24
- * Default : accent (pink), Hover: white (текст + стрелка через currentColor)
- * ============================================================ */
+/* Стрелка наследует цвет через currentColor — меняется вместе с текстом. */
 .home-vacancies__link {
   display: inline-flex;
   align-items: center;
@@ -288,9 +248,6 @@ const content = useHomeVacancies()
   }
 }
 
-/* ============================================================
- * View All button — secondary (white), Large
- * ============================================================ */
 .home-vacancies__cta {
   align-self: center;
 }

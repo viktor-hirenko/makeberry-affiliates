@@ -119,11 +119,6 @@ const navConfig = {
 <style scoped lang="scss">
 @use '@/assets/styles/scss/mixins' as *;
 
-/* ============================================================
- * Section
- * Mobile  (Figma 360 — px 16, py 70, gap 48)
- * Desktop (Figma 1440 — px 60, py 100, gap 70)
- * ============================================================ */
 .home-meet-us {
   position: relative;
 
@@ -137,19 +132,12 @@ const navConfig = {
   @include section-stack($align: center);
 }
 
-/* ============================================================
- * Title — H4 36/40 (mobile) / H3 56/64 (desktop)
- * ============================================================ */
 .home-meet-us__title {
   @include font-section-title;
 }
 
-/* ============================================================
- * Slider wrapper — relative для абсолютных стрелок
- * До tablet: full-bleed + инсет на swiper (как HomeTestimonials) —
- * свайп не режется padding секции, карточки по ширине колонки.
- * Стрелки только при 3 слайдах в ряд (≥ tablet).
- * ============================================================ */
+/* До tablet — full-bleed (свайп не режется padding секции);
+ * стрелки появляются только при 3 слайдах в ряд (≥ tablet). */
 .home-meet-us__slider-wrap {
   position: relative;
   width: 100%;
@@ -159,10 +147,9 @@ const navConfig = {
   gap: to-rem(32);
 
   /* Full-bleed: компенсируем секционный padding (var(--container-pad-x))
-     отрицательным margin, инсет возвращаем на .__swiper ниже. */
+     отрицательным margin. */
   @include mq($until: tablet) {
     margin-inline: calc(-1 * var(--container-pad-x));
-    // width: calc(100% + 2 * var(--container-pad-x));
   }
 
   /* На ≥1280 возвращаем место под стрелки навигации (60px от края). */
@@ -174,32 +161,20 @@ const navConfig = {
 .home-meet-us__swiper {
   width: 100%;
   box-sizing: border-box;
-
-  @include mq($until: tablet) {
-    // padding-inline: var(--container-pad-x);
-  }
 }
 
 :deep(.swiper-wrapper) {
   display: flex;
 }
 
-/*
- * Slide
- * Ширину задаёт Swiper (1 / 2 / 3) — не задаём width вручную.
- *
- * Высота карточки 416px по Figma 2819:2055 (cover 200 + body 216).
- */
+/* Ширину задаёт Swiper (1 / 2 / 3); min-height = 416 по Figma 2819:2055. */
 .home-meet-us__slide {
   height: auto;
   min-height: to-rem(416);
   display: flex;
 }
 
-/* ============================================================
- * Card — bg-surface, border-subtle, rounded-24, overflow hidden
- * (cover image-area имеет цветной фон, край скругляется через card)
- * ============================================================ */
+/* overflow: hidden нужен, чтобы цветной фон cover'а скруглялся по карточке. */
 .home-meet-us__card {
   display: flex;
   flex-direction: column;
@@ -211,9 +186,6 @@ const navConfig = {
   overflow: hidden;
 }
 
-/* ============================================================
- * Cover (image-area) — фикс 200h, цветной фон, лого по центру
- * ============================================================ */
 .home-meet-us__cover {
   display: flex;
   align-items: center;
@@ -230,9 +202,6 @@ const navConfig = {
   object-fit: contain;
 }
 
-/* ============================================================
- * Body — padding 24, gap 16
- * ============================================================ */
 .home-meet-us__body {
   display: flex;
   flex-direction: column;
@@ -243,11 +212,6 @@ const navConfig = {
   min-height: 0;
 }
 
-/*
- * Event name
- * Mobile  : 24/32 medium (по Figma 3861:20664)
- * Desktop : 32/40 medium = font-h4 (по Figma 2819:2067)
- */
 .home-meet-us__event-name {
   margin: 0;
   width: 100%;
@@ -264,9 +228,6 @@ const navConfig = {
   }
 }
 
-/* ============================================================
- * Tags wrap — flex wrap, gap 8
- * ============================================================ */
 .home-meet-us__tags {
   margin: 0;
   padding: 0;
@@ -277,13 +238,7 @@ const navConfig = {
   width: 100%;
 }
 
-/*
- * Tag pill
- * Default : bg-subtle, без border
- * Outlined: transparent bg, border-bold (white) — для "Stand X"
- *
- * px 12 / py 8, font caption-medium 14/16
- */
+/* Outlined-вариант (для "Stand X") — прозрачный фон + жёсткая рамка. */
 .home-meet-us__tag {
   display: inline-flex;
   align-items: center;
@@ -306,11 +261,8 @@ const navConfig = {
   border-color: var(--color-border-bold);
 }
 
-/* ============================================================
- * Navigation arrows — появляются с ≥1280 (wide), когда у slider-wrap
- * есть padding-inline=60 под стрелки. На 1024-1279 их прячем — там
- * full-bleed слайдер с partial-видимостью + dots/swipe (без стрелок).
- * ============================================================ */
+/* Стрелки только ≥ wide (под них у slider-wrap есть padding-inline);
+ * на 1024–1279 их прячем — там full-bleed + dots/swipe. */
 .home-meet-us__nav {
   display: none;
   align-items: center;
@@ -369,9 +321,6 @@ const navConfig = {
   }
 }
 
-/* ============================================================
- * Pagination — Swiper bullets (всегда видны когда есть overflow)
- * ============================================================ */
 .home-meet-us__pagination {
   display: flex;
   align-items: center;

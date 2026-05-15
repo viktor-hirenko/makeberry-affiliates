@@ -282,9 +282,6 @@ const navConfig = {
 <style scoped lang="scss">
 @use '@/assets/styles/scss/mixins' as *;
 
-/* ============================================================
- * Section — те же отступы, что у Meet Us / Contacts.
- * ============================================================ */
 .home-testimonials {
   position: relative;
 
@@ -321,13 +318,7 @@ const navConfig = {
   @include font-section-title;
 }
 
-/* ============================================================
- * Slider wrapper — относительный контекст для абсолютных стрелок.
- * Полная калька с HomeMeetUs:
- *   • <  1024  → full-bleed: компенсируем секционный padding
- *                отрицательным margin (свайп-зона = ширина viewport).
- *   • ≥  1280  → padding-inline для места под стрелки навигации.
- * ============================================================ */
+/* Калька с HomeMeetUs: < tablet — full-bleed, ≥ wide — padding под стрелки. */
 .home-testimonials__slider-wrap {
   position: relative;
   width: 100%;
@@ -338,7 +329,6 @@ const navConfig = {
 
   @include mq($until: tablet) {
     margin-inline: calc(-1 * var(--container-pad-x));
-    // width: calc(100% + 2 * var(--container-pad-x));
   }
 
   @include mq($from: wide) {
@@ -351,19 +341,9 @@ const navConfig = {
   box-sizing: border-box;
 }
 
-/*
- * Wrapper выравнивания:
- *   • <  1024 → `stretch`: оба слайда (slidesPerView: 2) одной высоты
- *               по самому высокому — это норма для grid-подобной mobile-сетки.
- *   • ≥  1024 → `center`: focal-carousel. Слайды РАЗНОЙ высоты по контенту
- *               (active с line-clamp:6, side с line-clamp:3 → визуально
- *               отличаются), центрируются по вертикали друг относительно
- *               друга — как в макете Figma.
- *               Без этого `stretch` + `height: fit-content` всё равно дал бы
- *               один visual-bbox у всех слайдов (Swiper-wrapper выставляет
- *               собственную высоту = max child), и side-карточки выглядели
- *               бы прижатыми к верху с пустотой снизу.
- */
+/* На desktop wrapper центрирует слайды по вертикали: active естественно
+ * выше side'ов (6 vs 3 строки), и без `center` side-карточки прижимались
+ * бы к верху. `stretch` сохраняем для grid-сетки на mobile. */
 :deep(.swiper-wrapper) {
   display: flex;
   align-items: stretch;
@@ -373,26 +353,13 @@ const navConfig = {
   }
 }
 
-/* ============================================================
- * Slide — focal-carousel pattern (small | BIG | small)
- * ============================================================
- *   • <  1024  → ширину задаёт Swiper (slidesPerView=1/2). Высота auto.
- *   • ≥  1024  → Swiper задаёт ОДИНАКОВУЮ ширину bbox всем слайдам через
- *                `slidesPerView: 3` (= small в макете). Активный
- *                расширяется ТОЛЬКО ПО ШИРИНЕ через `transform: scaleX(1.314)`,
- *                где 1.314 ≈ 460/350 (пропорции big/small из Figma).
- *                Высота карточек — `fit-content` (по контенту):
- *                active с line-clamp:6 + footer-CTA естественно выше,
- *                side с line-clamp:3 — короче. Wrapper align-items: center
- *                выравнивает их по вертикали — как в макете.
+/* Focal-carousel pattern (small | BIG | small).
  *
- *                Чтобы текст внутри активной карточки не «растягивался»
- *                по горизонтали из-за parent scaleX, у `.card` ставится
- *                counter-scale: width = 131.4% от родителя + scaleX(0.761).
- *                Math: parent_scale (1.314) × child_scale (0.761) = 1, при
- *                этом CSS-layout текста идёт по реальной ширине 394px →
- *                строки переносятся правильно.
- * ============================================================ */
+ * На desktop все слайды имеют одинаковый bbox (slidesPerView: 3),
+ * активный увеличивается через `scaleX(1.314)`. Чтобы текст внутри
+ * не растягивался, у `.card` стоит counter-scale: ширина 131.4% +
+ * scaleX(0.761), так parent × child = 1, а CSS-layout считается
+ * по «реальной» ширине 394px — переносы строк корректные. */
 $testimonials-active-scale: 1.314; // 460 / 350 — пропорция big к small по Figma
 $testimonials-active-scale-inverse: calc(1 / 1.314); // ≈ 0.761
 
@@ -410,10 +377,6 @@ $testimonials-active-scale-inverse: calc(1 / 1.314); // ≈ 0.761
      * визуально казалось «перекосом» / растягиванием не в ту плоскость.
      * Резкая смена состояния при перелистывании выглядит спокойнее.
      */
-    // transition:
-    //   transform var(--transition-base),
-    //   opacity var(--transition-base);
-    // will-change: transform;
   }
 }
 
@@ -439,19 +402,11 @@ $testimonials-active-scale-inverse: calc(1 / 1.314); // ≈ 0.761
   }
 }
 
-/*
- * Намеренно НЕ скрываем «дальние» слайды через visibility: hidden:
- * Swiper меняет классы slide синхронно со стартом transition, и слайд,
- * который только-только перестал быть `swiper-slide-prev` (уходит за левый
- * край), мгновенно получал бы `visibility: hidden` ещё в полёте — на глаз
- * это выглядело как «он не уехал, а исчез». У `.swiper` уже стоит
- * `overflow: hidden` (из swiper.css), поэтому уехавшие слайды просто
- * скрываются за краем контейнера сами.
- */
+/* «Дальние» слайды намеренно не скрываются через `visibility: hidden`:
+ * Swiper меняет классы синхронно со стартом transition, и слайд,
+ * уходящий за левый край, исчезал бы ещё в полёте. Достаточно overflow
+ * у `.swiper`. */
 
-/* ============================================================
- * Card — оформление общее. На десктопе боковые приглушены.
- * ============================================================ */
 .home-testimonials__card {
   display: flex;
   flex-direction: column;
@@ -462,13 +417,8 @@ $testimonials-active-scale-inverse: calc(1 / 1.314); // ≈ 0.761
   border-radius: var(--radius-xl);
   overflow: hidden;
 
-  /*
-   * На десктопе высота — по контенту (`fit-content`). Без этого `display: flex`
-   * родителя (slide / wrapper align-items: stretch) растягивал бы side-карточки
-   * до высоты active (с line-clamp:6) и всё выглядело как одинаковые квадраты.
-   * Сейчас active естественно выше small'ов (3 vs 6 строк текста + footer-CTA),
-   * как и в фокальном паттерне Figma.
-   */
+  /* fit-content: иначе flex-родитель растягивал бы side-карточки до
+   * высоты active, и focal-паттерн пропадал. */
   @include mq($from: tablet) {
     height: fit-content;
   }
@@ -490,10 +440,7 @@ $testimonials-active-scale-inverse: calc(1 / 1.314); // ≈ 0.761
   flex-shrink: 0;
 }
 
-/*
- * Текст: 8 строк до tablet (Figma mobile), 3/6 строк на side/center
- * на ≥ 1024 (по Figma desktop).
- */
+/* line-clamp: 8 на mobile, 3 на side / 6 на active (focal-carousel). */
 .home-testimonials__text {
   margin: 0;
   color: var(--color-text-secondary);
@@ -555,10 +502,7 @@ $testimonials-active-scale-inverse: calc(1 / 1.314); // ≈ 0.761
   @include font-body-l-semibold;
 }
 
-/*
- * CTA: видна на всех карточках до 1024 (по Figma mobile),
- * на ≥ 1024 — только у активной (центральной) карточки.
- */
+/* На desktop CTA видна только у активной карточки. */
 .home-testimonials__cta {
   display: inline-flex;
   align-items: center;
@@ -592,10 +536,7 @@ $testimonials-active-scale-inverse: calc(1 / 1.314); // ≈ 0.761
   }
 }
 
-/* ============================================================
- * Navigation arrows — только ≥ 1280 (как в Meet Us).
- * На 1024-1279 — пагинация + свайп.
- * ============================================================ */
+/* Стрелки только ≥ wide; на 1024–1279 — пагинация + свайп. */
 .home-testimonials__nav {
   display: none;
   align-items: center;
@@ -650,11 +591,8 @@ $testimonials-active-scale-inverse: calc(1 / 1.314); // ≈ 0.761
   }
 }
 
-/* ============================================================
- * Pagination — кастомный, рендерится во Vue по `uniqueSnaps`.
- * Количество точек = реальное число snap-позиций для текущего BP,
- * автоматически масштабируется при добавлении testimonials.
- * ============================================================ */
+/* Кастомная пагинация: bullets рендерятся во Vue по `uniqueSnaps`,
+ * количество = реальное число snap-позиций (см. syncSnaps в скрипте). */
 .home-testimonials__pagination {
   display: flex;
   align-items: center;

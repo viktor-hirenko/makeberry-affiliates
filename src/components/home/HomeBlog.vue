@@ -35,12 +35,6 @@ const previewArticles = computed(() => articles.slice(0, 3))
 <style scoped lang="scss">
 @use '@/assets/styles/scss/mixins' as *;
 
-/* ============================================================
- * Section
- * Mobile  : px 16, py 70, gap 48
- * Desktop : px 60, py 100, gap 70
- * Без декораций.
- * ============================================================ */
 .home-blog {
   position: relative;
 
@@ -55,9 +49,6 @@ const previewArticles = computed(() => articles.slice(0, 3))
   @include section-stack;
 }
 
-/* ============================================================
- * Title — H4 36/40 mobile, H3 56/64 desktop, центр
- * ============================================================ */
 .home-blog__title {
   @include font-section-title;
 }
@@ -75,10 +66,7 @@ const previewArticles = computed(() => articles.slice(0, 3))
   }
 }
 
-/* ============================================================
- * List — 1 col; ≥ mobile две; ≥ tablet три (как превью на всю ширину).
- * Третья карточка только с tablet: на мобиле две + кнопка «все» → /blog.
- * ============================================================ */
+/* Третья карточка только с tablet: на mobile две + CTA → /blog. */
 .home-blog__list {
   list-style: none;
   margin: 0;

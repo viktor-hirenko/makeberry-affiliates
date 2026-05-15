@@ -17,7 +17,7 @@ const ui = useSharedUi()
 /**
  * Swiper breakpoints (числа = min-width):
  * - &lt; mobile: 1 слайд (узкий телефон)
- * - mobile–tablet: 2 слайда (раньше здесь был 1 слайд + max-width обёртки + fade)
+ * - mobile–tablet: 2 слайда
  * - ≥ tablet: 4 слайда
  */
 const contactsSwiperBreakpoints = {
@@ -224,13 +224,9 @@ function handleInput() {
 <style scoped lang="scss">
 @use '@/assets/styles/scss/mixins' as *;
 
-/* ============================================================
- * Section
- * Mobile  : px 16, py 70, gap 48
- * Desktop : px 60, py 100, gap 70
- * Без overflow-x на секции: свайпер full-bleed + инсет (как Testimonials);
- * горизонталь страницы — body (main.scss).
- * ============================================================ */
+/* Без overflow-x на секции: full-bleed свайпер компенсируется
+ * отрицательным margin (как в Testimonials); горизонтальный
+ * скролл документа клипается на body (см. main.scss). */
 .home-contacts {
   position: relative;
 
@@ -262,17 +258,11 @@ function handleInput() {
   }
 }
 
-/* ============================================================
- * Title — 36/40 mobile, H3 56/64 desktop
- * ============================================================ */
 .home-contacts__title {
   @include font-section-title;
 }
 
-/* ============================================================
- * Slider wrapper — стрелки только при 4 карточках в ряд (≥ tablet)
- * До tablet: full-bleed + инсет на swiper (как HomeTestimonials).
- * ============================================================ */
+/* Стрелки только при 4 карточках в ряд (≥ tablet); до tablet — full-bleed. */
 .home-contacts__slider-wrap {
   position: relative;
   width: 100%;
@@ -285,7 +275,6 @@ function handleInput() {
      (там же показываются и сами стрелки — см. .home-contacts__nav). */
   @include mq($until: wide) {
     margin-inline: calc(-1 * var(--container-pad-x));
-    // width: calc(100% + 2 * var(--container-pad-x));
   }
 
   @include mq($from: wide) {
@@ -296,24 +285,14 @@ function handleInput() {
 .home-contacts__swiper {
   width: 100%;
   box-sizing: border-box;
-
-  /* До wide — full-bleed: инсет совпадает с секционным padding-x. */
-  @include mq($until: wide) {
-    // padding-inline: var(--container-pad-x);
-  }
 }
 
-/*
- * Slide — ширину задаёт Swiper (1 / 2 / 4 по breakpoints).
- */
+/* Slide — ширину задаёт Swiper (1 / 2 / 4 по breakpoints). */
 .home-contacts__slide {
   height: auto;
   display: flex;
 }
 
-/* ============================================================
- * Card — column: photo (1:1) + body
- * ============================================================ */
 .contact-card {
   display: flex;
   flex-direction: column;
@@ -355,11 +334,8 @@ function handleInput() {
   text-align: center;
 }
 
-/*
- * Name
- * Mobile  : 24/32, name переносится по \n (pre-wrap) → 2 строки
- * Desktop : H4 32/40 — две строки по 40 = 80h, как в Figma
- */
+/* На desktop `pre-wrap` нужен, чтобы имя из JSON ломалось ровно по `\n`
+ * и держало две строки по высоте 40 — как в Figma. */
 .contact-card__name {
   margin: 0;
   font-family: var(--font-sans);
@@ -386,9 +362,6 @@ function handleInput() {
   color: var(--color-text-secondary);
 }
 
-/* ============================================================
- * Socials — 32×32 icon-button, 16×16 icon
- * ============================================================ */
 .contact-card__socials {
   margin: 0;
   padding: 0;
@@ -421,10 +394,8 @@ function handleInput() {
   }
 }
 
-/* ============================================================
- * Navigation arrows — появляются с ≥1280 (wide), когда у slider-wrap
- * есть padding-inline=60 под стрелки. На 1024-1279 — full-bleed + dots.
- * ============================================================ */
+/* Стрелки только ≥ wide (под них у slider-wrap есть padding-inline);
+ * на 1024–1279 их прячем — там full-bleed + dots. */
 .home-contacts__nav {
   display: none;
   align-items: center;
@@ -481,9 +452,6 @@ function handleInput() {
   }
 }
 
-/* ============================================================
- * Pagination — Swiper bullets
- * ============================================================ */
 .home-contacts__pagination {
   display: flex;
   align-items: center;
@@ -507,11 +475,7 @@ function handleInput() {
   }
 }
 
-/* ============================================================
- * Form — "Not sure it's us?"
- * Gap to slider: 70 mobile / 100 desktop (по Figma)
- * Внутри: header (gap 8) + body (gap 16)
- * ============================================================ */
+/* Form follows the slider with a Figma-prescribed 70/100 gap. */
 .home-contacts__form {
   width: 100%;
   display: flex;
@@ -536,10 +500,6 @@ function handleInput() {
   text-align: center;
 }
 
-/* Title формы: 32/40 medium на mobile, 40/40 (H?) на desktop?
- * По Figma desktop title 40h — это medium 32/40 на самом деле тот же.
- * А на mobile 32h. Используем единый: 32/40.
- */
 .home-contacts__form-title {
   margin: 0;
   font-family: var(--font-sans);
@@ -568,12 +528,6 @@ function handleInput() {
   width: 100%;
 }
 
-/* ============================================================
- * Input pill — 56h, padding-left 24, padding-right 8
- * Mobile  : full width
- * Desktop : 450px по центру
- * Border меняется по статусу: subtle → success-soft / subtle (error)
- * ============================================================ */
 .home-contacts__input {
   display: flex;
   align-items: center;
@@ -615,7 +569,6 @@ function handleInput() {
   }
 }
 
-/* Кнопка Check — small secondary (white bg, dark text) */
 .home-contacts__input-btn {
   flex-shrink: 0;
   display: inline-flex;
@@ -645,9 +598,6 @@ function handleInput() {
   }
 }
 
-/* ============================================================
- * Status row — verified (green) / error (orange)
- * ============================================================ */
 .home-contacts__status {
   display: flex;
   align-items: center;

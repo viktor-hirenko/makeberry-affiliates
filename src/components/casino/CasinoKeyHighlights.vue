@@ -3,16 +3,9 @@ import PillHeaderCard from '@/components/shared/PillHeaderCard.vue'
 import type { CasinoKeyHighlightsContent } from '@/types/content'
 
 /**
- * Casino → Key Highlights
- *
- * Layout (Figma 3819:4205 / LuckyHills 3861:23240):
- * - Mobile  : title центром, 3 карточки колонкой, gap 20.
- * - Desktop : title центром + sparkle справа — макет: контейнер 200×200,
- *   видимый PNG ~159×159, rotate 15° (node 3861:23258–3861:23259).
- *            3 карточки в ряду с pink-bordered pill-заголовком сверху и
- *            body-описанием в карточке.
- *
- * Сама карточка с pill-заголовком — переиспользуемый `PillHeaderCard`.
+ * Casino → Key Highlights — Figma 3819:4205 / LuckyHills 3861:23240.
+ * Карточка — переиспользуемый `PillHeaderCard`; sparkle справа от title
+ * (Figma 3861:23258–3861:23259), inner artwork ~159×159 в контейнере 200×200.
  */
 interface Props {
   content: CasinoKeyHighlightsContent
@@ -48,11 +41,6 @@ defineProps<Props>()
 <style scoped lang="scss">
 @use '@/assets/styles/scss/mixins' as *;
 
-/* ============================================================
- * Section
- * Mobile  : px 16, py 70.
- * Desktop : px 200, py 100 (Figma).
- * ============================================================ */
 .casino-highlights {
   position: relative;
 
@@ -65,10 +53,7 @@ defineProps<Props>()
   @include container(var(--container-default));
 }
 
-/* ============================================================
- * Heading: title центром + sparkle справа от него.
- * На mobile sparkle сразу справа от заголовка (не abs).
- * ============================================================ */
+/* Sparkle стоит inline справа от заголовка (не absolute). */
 .casino-highlights__heading {
   position: relative;
   display: flex;
@@ -88,7 +73,6 @@ defineProps<Props>()
 .casino-highlights__decoration {
   display: none;
   flex-shrink: 0;
-  /* Figma 3861:23259: inner artwork ~159×159 inside 200×200 wrapper */
   width: to-rem(48);
   height: to-rem(48);
   object-fit: contain;
@@ -109,10 +93,6 @@ defineProps<Props>()
   }
 }
 
-/* ============================================================
- * Grid: 1 col mobile, 2 col tablet, 3 col desktop.
- * Карточки по высоте равны (align-items: stretch).
- * ============================================================ */
 .casino-highlights__grid {
   list-style: none;
   margin: 0;
@@ -132,6 +112,4 @@ defineProps<Props>()
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
-
-/* Карточка целиком — `PillHeaderCard`. Внутренний layout/типографика — там же. */
 </style>

@@ -80,13 +80,8 @@ defineProps<Props>()
 <style scoped lang="scss">
 @use '@/assets/styles/scss/mixins' as *;
 
-/* ============================================================
- * Section
- * Mobile  : pt header-offset + 32, px 16, pb 70.
- * Desktop : Figma — pt 230 / px 200 / pb 100, но в проекте flush-top
- *           даёт `margin-top: -header-offset` и реальная видимая высота
- *           над контентом = 200px.
- * ============================================================ */
+/* Hero flush-top — собственный padding-top уже учитывает высоту
+ * floating-хедера. */
 .casino-hero {
   position: relative;
   isolation: isolate;
@@ -101,16 +96,13 @@ defineProps<Props>()
   );
 }
 
-/* ============================================================
- * Glow — pre-composited PNG (две розовые ellipses + ротация).
- * На картинке уже учтены rotate + soft-light, ничего сверху не
- * накладываем — только позиционируем абсолютом.
- * ============================================================ */
+/* Glow — pre-composited WebP с уже запечёнными rotate + soft-light. */
 .casino-hero__glow {
   position: absolute;
-  top: to-rem(-200);
-  right: to-rem(-220);
-  width: to-rem(800);
+  top: to-rem(-376);
+  right: to-rem(-506);
+  width: to-rem(1322);
+  max-width: unset;
   height: auto;
   z-index: 0;
   pointer-events: none;
@@ -119,20 +111,15 @@ defineProps<Props>()
   @include mq($from: tablet) {
     top: to-rem(-344);
     right: to-rem(-352);
-    width: to-rem(1322);
-    height: auto;
   }
 }
 
-/* ============================================================
- * Inner — flex column on mobile (logo first), row on desktop.
- * ============================================================ */
+/* column-reverse на mobile, чтобы лого было сверху (как в Figma 360). */
 .casino-hero__inner {
   position: relative;
   z-index: 1;
   display: flex;
   flex-direction: column-reverse;
-  // align-items: center;
   gap: to-rem(40);
 
   @include container(var(--container-default));
@@ -149,11 +136,7 @@ defineProps<Props>()
   }
 }
 
-/* ============================================================
- * Text column
- * Mobile  : full-width, items stretched (для full-width CTA).
- * Desktop : фиксированный 570px по Figma.
- * ============================================================ */
+/* items stretch на mobile нужен для full-width CTA. */
 .casino-hero__text {
   display: flex;
   flex-direction: column;
@@ -168,10 +151,7 @@ defineProps<Props>()
   }
 }
 
-/* ============================================================
- * Title — Figma mobile: 40/48 semibold (3844:13153).
- *         Desktop (tablet+): H2 64/72 semibold.
- * ============================================================ */
+/* Mobile-вариант не из стандартного font-* mixin: 40/48 (Figma 3844:13153). */
 .casino-hero__title {
   margin: 0;
   color: var(--color-text-primary);
@@ -197,9 +177,6 @@ defineProps<Props>()
   }
 }
 
-/* ============================================================
- * Intro — Body 2 mobile, Body 1 desktop, secondary color
- * ============================================================ */
 .casino-hero__intro {
   margin: 0;
   color: var(--color-text-secondary);
@@ -210,13 +187,8 @@ defineProps<Props>()
   }
 }
 
-/* ============================================================
- * Stats
- * Mobile  : Figma 3844:13155 — flex-wrap: wrap, gap 24, шаг 140px
- *           (01+02 в ряду на 360px frame, 03 переходит ниже).
- * Desktop : 3-up row, тонкие вертикальные divider'ы (border-left)
- *           между блоками.
- * ============================================================ */
+/* Mobile: 2-per-row с wrap (3-й переносится); desktop: 3-up row
+ * с border-left как divider между блоками. */
 .casino-hero__stats {
   list-style: none;
   margin: 0;
@@ -229,7 +201,6 @@ defineProps<Props>()
   @include mq($from: mobile) {
     flex-wrap: nowrap;
     align-items: stretch;
-    // height: to-rem(108);
   }
 }
 
@@ -256,11 +227,11 @@ defineProps<Props>()
   margin: 0;
   font-family: var(--font-sans);
   font-weight: 500;
-  /* Figma 4003:21934 — 40/48 medium на mobile и desktop. */
   font-size: to-rem(40);
   line-height: to-rem(48);
   letter-spacing: to-rem(-0.4);
-  /* По Figma: dim-grey "404040" — выглядит как watermark-номер. */
+  /* dim-grey #404040 — watermark-эффект из Figma, осознанный хардкод
+   * вне токенов. */
   color: #404040;
 }
 
@@ -274,9 +245,6 @@ defineProps<Props>()
   font-weight: 600;
 }
 
-/* ============================================================
- * CTA — full-width on mobile, natural width on desktop
- * ============================================================ */
 .casino-hero__cta {
   align-self: stretch;
 
@@ -285,10 +253,6 @@ defineProps<Props>()
   }
 }
 
-/* ============================================================
- * Logo — square 130 mobile (по Figma 130×130 на 360 фрейме),
- * 280×280 desktop. Изображение центрируется внутри квадрата.
- * ============================================================ */
 .casino-hero__logo-wrap {
   position: relative;
   display: flex;

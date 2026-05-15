@@ -8,12 +8,8 @@ const content = useNotFound()
 <template>
   <section class="not-found">
     <div class="not-found__inner">
-      <!-- Декоративный glow — pure CSS radial-gradient (Figma 3861:23211).
-         Один эллипс, без вложенной группы. Геометрия и цвет — из Figma. -->
       <div class="not-found__glow" aria-hidden="true"></div>
-      <!-- Visual: большая полупрозрачная "404" + truck/berry поверх.
-           На mobile (<1024) грузим уменьшенную картинку 600×400 (~110 KB),
-           на desktop полноразмерную 1200×799 для retina (~344 KB). -->
+
       <div class="not-found__visual">
         <span class="not-found__big" aria-hidden="true">404</span>
         <picture>
@@ -44,12 +40,8 @@ const content = useNotFound()
 <style scoped lang="scss">
 @use '@/assets/styles/scss/mixins' as *;
 
-/* ============================================================
- * Section root
- * Страница идёт flush до верха viewport (header floating overlay'ит
- * контент сверху). Hero занимает полный 100svh, футер скрыт через
- * router meta.hideFooter.
- * ============================================================ */
+/* Flush до верха viewport (floating header), full 100svh.
+ * Футер скрыт через router meta.hideFooter. */
 .not-found {
   position: relative;
   min-height: 100svh;
@@ -64,13 +56,7 @@ const content = useNotFound()
   }
 }
 
-/* ============================================================
- * GLOW — pure CSS radial-gradient ellipse, без PNG (Figma 3861:23211).
- * Один эллипс. Mobile : 562×190 / top -27 / left -170 / rotate 15.32deg
- *              Desktop: 1458×492 / top 155 / left -149 / rotate 15.32deg
- * Gradient: 48.94% 40.37% at 40.33% 51.95%, #ff0180
- *           stops 0/0.45 → 7.21%/0.45 → 100%/0.
- * ============================================================ */
+/* CSS radial-gradient вместо растрового glow — Figma 3861:23211. */
 .not-found__glow {
   position: absolute;
   top: to-rem(-40);
@@ -98,33 +84,19 @@ const content = useNotFound()
   }
 }
 
-/* ============================================================
- * Inner — content wrapper
- * gap между visual и content (Figma): минимальный, ~16-24px,
- * т.к. сам visual frame уже включает свободное вертикальное
- * пространство (truck height ~70% от высоты frame).
- * ============================================================ */
+/* gap не задаётся: visual frame уже содержит вертикальный воздух
+ * (truck height ~70% от frame). */
 .not-found__inner {
   position: relative;
   z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  // gap: to-rem(16);
   width: 100%;
   max-width: to-rem(792);
-
-  @include mq($from: tablet) {
-    // gap: to-rem(24);
-  }
 }
 
-/* ============================================================
- * VISUAL — composition frame: «404» текст занимает всю высоту,
- * truck/berry лежит поверх, по центру, с собственной высотой.
- * Высоту фиксируем под font-size «404» (160 mobile / 400 desktop),
- * чтобы 404 не обрезалось: Mobile 320×160, Desktop 792×400.
- * ============================================================ */
+/* Высота фиксирована под font-size «404», чтобы цифры не обрезались. */
 .not-found__visual {
   position: relative;
   display: flex;
@@ -140,16 +112,8 @@ const content = useNotFound()
   }
 }
 
-/* «404» — Inter Semi Bold (600) с gradient text по Figma 3104:1322:
- *   linear-gradient(
- *     176.23deg,
- *     rgba(192, 0, 84, 0)  18.595%,   ← верх блока ПОЛНОСТЬЮ прозрачный
- *     rgba(0, 0, 0, 0.75)  70.151%    ← низ — semi-transparent чёрный
- *   );
- * Текст: color: transparent + background-clip: text — буквы окрашены
- * градиентом. Верх 18.6% — invisible (glow свободно просвечивает),
- * с 70% и ниже — тёмная маска, дающая «контур» нижней половины 404.
- * Mobile : 160px, Desktop : 400px (по Figma). */
+/* Gradient text через background-clip: text — верхняя часть букв
+ * прозрачна, чтобы glow просвечивал; нижняя проявляется тёмной маской.*/
 .not-found__big {
   position: absolute;
   inset: 0;
@@ -176,10 +140,8 @@ const content = useNotFound()
   }
 }
 
-/* Truck/berry — поверх «404». Wrapper <picture> не должен ломать
- * центрирование (default display:inline) → display:contents.
- * Сам img абсолютно позиционируем внутри visual: высота ~70% от
- * frame, ширина auto (сохраняет пропорции PNG). */
+/* <picture> по умолчанию inline и ломает flex-центрирование — снимаем
+ * его из layout через display:contents, чтобы position'ировать img напрямую. */
 .not-found__visual :deep(picture) {
   display: contents;
 }
@@ -195,10 +157,6 @@ const content = useNotFound()
   object-fit: contain;
 }
 
-/* ============================================================
- * CONTENT — title + copy + button
- * gap внутри content: 16 (title↔copy) и 32 (text↔button) — по Figma.
- * ============================================================ */
 .not-found__content {
   display: flex;
   flex-direction: column;
@@ -208,7 +166,6 @@ const content = useNotFound()
   text-align: center;
 }
 
-/* Title: H4 32/40 mobile, H3 56/64 desktop */
 .not-found__title {
   margin: 0;
   width: 100%;
@@ -226,7 +183,6 @@ const content = useNotFound()
   }
 }
 
-/* Copy: Body 2 Regular 16/24 mobile, Body 1 Regular 18/24 desktop */
 .not-found__copy {
   margin: 0;
   width: 100%;
@@ -243,7 +199,6 @@ const content = useNotFound()
   }
 }
 
-/* Кнопка стоит на расстоянии 32 от копии (16 gap родителя + 16 margin) */
 .not-found__cta {
   margin-top: to-rem(16);
 }

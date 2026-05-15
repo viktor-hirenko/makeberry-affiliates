@@ -147,11 +147,6 @@ function isTextSection(section: ArticleSection): boolean {
 <style scoped lang="scss">
 @use '@/assets/styles/scss/mixins' as *;
 
-/* ============================================================
- * Section root
- * Mobile  : px 16, py 70
- * Desktop : px 60, py 100
- * ============================================================ */
 .article {
   position: relative;
   padding-block-start: to-rem(160);
@@ -164,9 +159,7 @@ function isTextSection(section: ArticleSection): boolean {
   );
 }
 
-/* ============================================================
- * Декоративные гловы (как на Blog page)
- * ============================================================ */
+/* Декоративные гловы — те же, что на Blog page. */
 .article__glow {
   position: absolute;
   max-width: unset;
@@ -205,9 +198,6 @@ function isTextSection(section: ArticleSection): boolean {
   }
 }
 
-/* ============================================================
- * Inner — main container
- * ============================================================ */
 .article__inner {
   position: relative;
   z-index: 1;
@@ -221,10 +211,6 @@ function isTextSection(section: ArticleSection): boolean {
   }
 }
 
-/* ============================================================
- * BACK link — text + U-turn icon
- * Body 2/Medium 16/24, color text/link (#d9d9d9)
- * ============================================================ */
 .article__back {
   display: inline-flex;
   align-items: center;
@@ -244,9 +230,6 @@ function isTextSection(section: ArticleSection): boolean {
   }
 }
 
-/* ============================================================
- * HEADER — title + tags
- * ============================================================ */
 .article__header {
   width: 100%;
   display: flex;
@@ -255,7 +238,6 @@ function isTextSection(section: ArticleSection): boolean {
   gap: to-rem(24);
 }
 
-/* H4 mobile (32/40 medium), H3 desktop (56/64 medium) */
 .article__title {
   margin: 0;
   width: 100%;
@@ -274,7 +256,6 @@ function isTextSection(section: ArticleSection): boolean {
   }
 }
 
-/* Tags row: flex wrap, центрировано */
 .article__tags {
   list-style: none;
   margin: 0;
@@ -285,7 +266,6 @@ function isTextSection(section: ArticleSection): boolean {
   gap: to-rem(8);
 }
 
-/* Tag pill: bg subtle, padding 12/8, radius pill, Caption/Medium 14/16 */
 .article__tag {
   display: inline-flex;
   align-items: center;
@@ -302,10 +282,7 @@ function isTextSection(section: ArticleSection): boolean {
   white-space: nowrap;
 }
 
-/* ============================================================
- * HERO image — full width 1200×400 (desktop), 328×210 (mobile)
- * radius 24, bg #1a1a1a placeholder если нет картинки
- * ============================================================ */
+/* Hero image: placeholder bg-card если src отсутствует. */
 .article__hero {
   margin: 0;
   width: 100%;
@@ -332,9 +309,6 @@ function isTextSection(section: ArticleSection): boolean {
   background-color: var(--color-bg-card);
 }
 
-/* ============================================================
- * BODY — text content, max-width 800 desktop / full mobile
- * ============================================================ */
 .article__body {
   width: 100%;
   display: flex;
@@ -348,7 +322,6 @@ function isTextSection(section: ArticleSection): boolean {
   }
 }
 
-/* Intro — Body 2/Regular 16/24, color text/secondary */
 .article__intro {
   font-family: var(--font-sans);
   font-weight: 400;
@@ -366,7 +339,6 @@ function isTextSection(section: ArticleSection): boolean {
   }
 }
 
-/* Divider — 1px subtle line */
 .article__divider {
   margin: 0;
   width: 100%;
@@ -375,7 +347,6 @@ function isTextSection(section: ArticleSection): boolean {
   background-color: var(--color-border-default);
 }
 
-/* Section block: title H4 + body paragraphs + subsections */
 .article__section {
   display: flex;
   flex-direction: column;
@@ -398,7 +369,6 @@ function isTextSection(section: ArticleSection): boolean {
   }
 }
 
-/* Section body — paragraphs */
 .article__section-body {
   font-family: var(--font-sans);
   font-weight: 400;
@@ -426,7 +396,6 @@ function isTextSection(section: ArticleSection): boolean {
   }
 }
 
-/* Subsection: lead paragraph + bullet list */
 .article__subsection {
   display: flex;
   flex-direction: column;
@@ -471,11 +440,6 @@ function isTextSection(section: ArticleSection): boolean {
   }
 }
 
-/* ============================================================
- * IMAGES ROW — 2 cards
- * Desktop : 2 cols, gap 20, 300 height
- * Mobile  : stack, gap 16, 200 height
- * ============================================================ */
 .article__images {
   display: flex;
   flex-direction: column;
@@ -515,11 +479,6 @@ function isTextSection(section: ArticleSection): boolean {
   background-color: var(--color-bg-card);
 }
 
-/* ============================================================
- * PAGINATION — Previous (tetriary) / Next (primary)
- * Mobile  : full-width 328 wide row, gap 8
- * Desktop : centered 286 wide
- * ============================================================ */
 .article__pagination {
   display: flex;
   align-items: center;

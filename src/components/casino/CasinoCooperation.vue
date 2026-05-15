@@ -3,16 +3,8 @@ import PillHeaderCard from '@/components/shared/PillHeaderCard.vue'
 import type { CasinoCooperationContent } from '@/types/content'
 
 /**
- * Casino → Cooperation Models (Figma 3819:4246)
- *
- * Layout:
- * - Mobile  : 4 карточки колонкой, gap 20.
- * - Desktop : 4 карточки в ряду равной ширины (max-width 1200px),
- *            каждая — pill-заголовок поверх + многострочное описание.
- *
- * Сама карточка (обвязка + pill-заголовок) — переиспользуемый
- * компонент `PillHeaderCard`. Здесь остаётся только сетка/секция и
- * содержимое body-слота (несколько строк описания).
+ * Casino → Cooperation Models (Figma 3819:4246).
+ * Карточка целиком — переиспользуемый `PillHeaderCard`; здесь только сетка.
  */
 interface Props {
   content: CasinoCooperationContent
@@ -43,11 +35,6 @@ defineProps<Props>()
 <style scoped lang="scss">
 @use '@/assets/styles/scss/mixins' as *;
 
-/* ============================================================
- * Section
- * Mobile  : px 16, py 70.
- * Desktop : px 200, py 100 (Figma).
- * ============================================================ */
 .casino-coop {
   position: relative;
 
@@ -59,18 +46,12 @@ defineProps<Props>()
   @include container(var(--container-2xl));
 }
 
-/* ============================================================
- * Title — 36/40 mobile, H3 56/64 desktop. Center.
- * ============================================================ */
 .casino-coop__title {
   @include font-section-title;
 }
 
-/* ============================================================
- * Grid: 1 col mobile, 4 col desktop (по Figma — 4 в ряд).
- * Карточки align-items: stretch чтобы pill-headers были на одной
- * горизонтали и общие высоты карточек равны.
- * ============================================================ */
+/* align-items: stretch — pill-заголовки выровнены по верху,
+ * высоты карточек равны при разной длине описаний. */
 .casino-coop__grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -92,6 +73,4 @@ defineProps<Props>()
     margin-inline: auto;
   }
 }
-
-/* Карточка целиком — `PillHeaderCard`. Внутренний layout/типографика — там же. */
 </style>

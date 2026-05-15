@@ -6,10 +6,7 @@ import { useHomeFaq } from '@/composables/useContent'
 
 const content = useHomeFaq()
 
-/* ------------------------------------------------------------------
- * Аккордеон: один активный пункт. По Figma первый вопрос открыт
- * (defaultOpenId), остальные закрыты. Клик по уже открытому — закрывает.
- * ------------------------------------------------------------------ */
+/* Аккордеон с одним активным пунктом; defaultOpenId из контента. */
 const openId = ref<string | null>(content.defaultOpenId ?? null)
 
 function toggle(id: string): void {
@@ -28,11 +25,8 @@ function buttonId(id: string): string {
   return `faq-button-${id}`
 }
 
-/* ------------------------------------------------------------------
- * Плавная анимация раскрытия через max-height (без CLS).
- * Используем фактический scrollHeight, чтобы переход работал
- * на любом объёме текста.
- * ------------------------------------------------------------------ */
+/* Анимация раскрытия через max-height = scrollHeight: устраняет CLS
+ * и работает на любом объёме текста. */
 function onEnter(el: Element): void {
   const target = el as HTMLElement
   target.style.maxHeight = '0px'
@@ -130,12 +124,7 @@ function onLeave(el: Element): void {
 <style scoped lang="scss">
 @use '@/assets/styles/scss/mixins' as *;
 
-/* ============================================================
- * Section
- * Mobile  : px 16, py 70, gap 48
- * Desktop : px 60, py 100, gap 70
- * Glow декорация торчит влево за viewport — нужен overflow-x: clip.
- * ============================================================ */
+/* Glow декорация выходит за viewport — overflow-x: clip. */
 .home-faq {
   position: relative;
   overflow-x: clip;
@@ -160,11 +149,6 @@ function onLeave(el: Element): void {
   @include section-stack;
 }
 
-/* ============================================================
- * Glow — pink radial декорация в левом верхнем углу.
- * Figma desktop : left -311, top -136, w 989.28, h 742.26
- * Figma mobile  : left -317, top -107.9, w 756.01, h 567.24
- * ============================================================ */
 .home-faq__glow {
   position: absolute;
   top: to-rem(-175);
@@ -185,19 +169,10 @@ function onLeave(el: Element): void {
   }
 }
 
-/* ============================================================
- * Title — 36/40 mobile, H3 56/64 desktop. По центру всегда (Figma).
- * ============================================================ */
 .home-faq__title {
   @include font-section-title;
 }
 
-/* ============================================================
- * Content — обёртка для list + question-mark.
- * Desktop : ширина 980, по центру; question-mark абсолютно слева
- * по координатам Figma (frame "Image" 246.722, top 135, left 97
- * относительно секции с padding-x = 230).
- * ============================================================ */
 .home-faq__content {
   position: relative;
   width: 100%;
@@ -208,7 +183,7 @@ function onLeave(el: Element): void {
   }
 }
 
-/* Question-mark — только desktop (по Figma на mobile отсутствует) */
+/* Question-mark — только desktop (на mobile отсутствует в макете). */
 .home-faq__mark {
   display: none;
 
@@ -217,12 +192,8 @@ function onLeave(el: Element): void {
     position: absolute;
     width: to-rem(200);
     height: to-rem(200);
-    /*
-     * По Figma image-frame 246.722×246.722 (rotated bbox), left 97 / top 135
-     * относительно section (padding 100/230). Section→content offset:
-     *   top  : -(padding-top 100 + title 64 + gap 70 - 135 + (246.722-200)/2) = -76
-     *   left : -((1440-980)/2 - 97 - (246.722-200)/2) = -110
-     */
+    /* Координаты подбираются от Figma image-frame 246.722²
+     * (с учётом rotation bbox) — см. Figma frame "Image". */
     top: to-rem(-76);
     left: to-rem(-110);
     transform: rotate(-15.73deg);
@@ -232,11 +203,6 @@ function onLeave(el: Element): void {
   }
 }
 
-/* ============================================================
- * List
- * Mobile  : gap 16
- * Desktop : gap 20
- * ============================================================ */
 .home-faq__list {
   position: relative;
   z-index: 0;
@@ -252,9 +218,6 @@ function onLeave(el: Element): void {
   }
 }
 
-/* ============================================================
- * Item card — Bg/Surface, border subtle, radius 24
- * ============================================================ */
 .home-faq__item {
   background-color: var(--color-bg-surface);
   border: 1px solid var(--color-border-subtle);
@@ -271,11 +234,6 @@ function onLeave(el: Element): void {
   }
 }
 
-/* ============================================================
- * Head (button)
- * Mobile  : padding 20, gap 20
- * Desktop : padding 24, gap 24
- * ============================================================ */
 .home-faq__head {
   width: 100%;
   display: flex;
@@ -302,12 +260,7 @@ function onLeave(el: Element): void {
   }
 }
 
-/* ============================================================
- * Question text
- * Mobile  : 24/32, weight 500, tracking -0.01em
- * Desktop : 32/40, weight 500, tracking -0.01em
- * Активный пункт — цвет accent (pink).
- * ============================================================ */
+/* В is-open вопрос подсвечивается accent-color (pink). */
 .home-faq__question {
   flex: 1 1 auto;
   min-width: 0;
@@ -329,11 +282,7 @@ function onLeave(el: Element): void {
   }
 }
 
-/* ============================================================
- * Toggle (round icon-button) — 32 mobile / 40 desktop
- * Одна иконка chevron-down: на is-open поворачивается на 180deg
- * с плавным transition (вместо подмены up/down).
- * ============================================================ */
+/* chevron-down поворачивается на 180° в is-open — без подмены иконки. */
 .home-faq__toggle {
   flex: 0 0 auto;
   display: inline-flex;
@@ -357,7 +306,6 @@ function onLeave(el: Element): void {
     background-color: var(--color-bg-hovered);
   }
 
-  /* Иконка внутри: chevron-down 16px на mobile, 24px на desktop. */
   :deep(.base-icon) {
     width: to-rem(16);
     height: to-rem(16);
@@ -369,15 +317,11 @@ function onLeave(el: Element): void {
     }
   }
 
-  /* Поворот стрелки в is-open состоянии */
   .is-open & :deep(.base-icon) {
     transform: rotate(180deg);
   }
 }
 
-/* ============================================================
- * Panel (answer)
- * ============================================================ */
 .home-faq__panel {
   overflow: hidden;
 }
@@ -402,9 +346,7 @@ function onLeave(el: Element): void {
   }
 }
 
-/* ============================================================
- * Collapse transition (max-height управляется через JS-хуки)
- * ============================================================ */
+/* max-height управляется JS-хуками компонента (onEnter / onLeave). */
 .home-faq-collapse-enter-active,
 .home-faq-collapse-leave-active {
   overflow: hidden;

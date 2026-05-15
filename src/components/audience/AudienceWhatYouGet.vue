@@ -5,36 +5,15 @@ import { toRem } from '@/utils/units'
 
 /**
  * Секция «What You Get» страницы-аудитории (Affiliates / Advertisers).
+ * Figma: 2653:1227 / 2655:1576.
  *
- * Layout (Figma 2653:1227 / 2655:1576):
- * - bg-page; на desktop — 2 колонки: title слева (sticky) + колонка
- *   карточек 460px справа, gap 70.
- * - Mobile (Figma 3861:19073): title центром сверху, карточки одна
- *   под другой, gap 60.
+ * Заголовок слева — sticky к --header-offset; карточки справа в потоке.
+ * `min-height` rail'а = высоте последней карточки, поэтому sticky
+ * отлипает ровно когда верх последней карточки достиг sticky-top
+ * (см. measureLastCard + --wyg-last-card-h).
  *
- * Поведение скролла (Figma 2697:2146):
- *   Заголовок слева `position: sticky` к `--header-offset`. Карточки
- *   справа — обычный column-flex с gap. При скролле карточки
- *   обычным потоком уходят вверх; когда низ `.wyg__cards` проходит
- *   точку залипания заголовка, sticky-rail отлипает и уезжает
- *   вместе с последней карточкой → CTA снизу.
- *   IntersectionObserver обновляет бейдж 1/N → N/N по пересечению
- *   центра viewport (N = `cards.length`, 5 у affiliates, 4 у advertisers).
- *
- * Карточка (Figma 2655:1593 / 2653:1233):
- * - bg-surface, border subtle 1px, radius 24.
- * - Header: padding 24, заголовок Headline/H4 (32/40 desktop, 24/32 mobile).
- * - Divider: 1px subtle.
- * - Content: padding 24, body 2 regular (16/24, secondary), включая
- *   list-disc (отступ 24, gap 4 между пунктами).
- * - Sticker: 3D-иллюстрация ~200×200 desktop / ~100×110 mobile,
- *   абсолютная, «вылетает» за правый-верхний угол карточки. Параметры
- *   приходят прямо из данных карточки (`card.sticker`) — каждая
- *   аудитория хранит свои размеры/смещения в `en/pages/affiliates/*.json`,
- *   компонент только прокидывает их в CSS-vars.
- *
- * Бейдж: pill bg-surface + 2px brand pink border, rotate 10°,
- * текст `N/M`. Счётчик обновляется при пересечении центра viewport.
+ * Бейдж N/M обновляется через IntersectionObserver по пересечению
+ * центра viewport.
  */
 interface Props {
   title: string
@@ -45,19 +24,11 @@ const props = defineProps<Props>()
 
 const activeIndex = ref(0)
 const cardEls = ref<(HTMLElement | undefined)[]>([])
-/**
- * Высота последней карточки (измеряется в реальном времени).
- *
- * Прокидывается в CSS как `--wyg-last-card-h` и идёт в `min-height`
- * sticky-заголовка. Благодаря этому собственная высота rail'а становится
- * равной высоте последней карточки → sticky отклеится ровно в момент,
- * когда верх последней карточки поравняется со sticky-top, и дальше
- * заголовок поедет наверх ВМЕСТЕ с последней карточкой.
- */
+/** Высота последней карточки, прокидывается в --wyg-last-card-h
+ * (см. min-height у .wyg__rail). */
 const lastCardHeight = ref(0)
 
-/** Узкая полоса по центру viewport — какая карточка её пересекает,
- *  ту и считаем активной. */
+/** Узкая полоса по центру viewport: пересекающая её карточка = активная. */
 const OBSERVER_MARGIN = '-42% 0px -42% 0px'
 
 let observer: IntersectionObserver | null = null
@@ -125,14 +96,8 @@ onBeforeUnmount(() => {
 
 const badgeText = computed(() => `${activeIndex.value + 1}/${Math.max(1, props.cards.length)}`)
 
-/**
- * Прокидываем размеры/смещения стикера из `card.sticker` в CSS-vars.
- * Так компонент остаётся универсальным, а уникальные значения каждой
- * карточки приходят из `en/pages/affiliates/*.json` (см. `WhatYouGetCard`).
- *
- * По умолчанию rotate — `0deg`. Если у карточки есть `stickerRotateDeg`,
- * прокидывается `--st-rotate` (см. `.wyg-card__sticker`).
- */
+/** Размеры/смещения стикера прокидываются в CSS-vars из card.sticker;
+ * компонент остаётся универсальным, уникальные значения — в JSON. */
 function cardStickerStyle(card: WhatYouGetCard): Record<string, string> {
   const sticker = card.sticker
   if (!sticker) return {}
@@ -218,14 +183,7 @@ function cardStickerStyle(card: WhatYouGetCard): Record<string, string> {
 <style scoped lang="scss">
 @use '@/assets/styles/scss/mixins' as *;
 
-/* ============================================================
- * Section
- *
- * Mobile  (Figma 3861:19073): bg-page, px 16 / py 70.
- * Desktop (Figma 2653:1227):  bg-page, px 160 / py 100.
- * `overflow-x: clip` — стикеры карточек выходят за правый край,
- * и без clip появлялся бы горизонтальный скролл.
- * ============================================================ */
+/* overflow-x: clip — стикеры выходят за правый край карточки. */
 .wyg {
   position: relative;
   overflow-x: clip;
@@ -252,23 +210,10 @@ function cardStickerStyle(card: WhatYouGetCard): Record<string, string> {
   }
 }
 
-/* ============================================================
- * Title rail
- *
- * Sticky к `--header-offset` + воздух (чтобы не наезжать на нижний
- * край floating-хедера). Значение `70` подобрано визуально под макет.
- *
- * Чтобы заголовок отлипал не в самом конце секции, а в момент,
- * когда верх ПОСЛЕДНЕЙ карточки поравнялся со sticky-top (и потом
- * ехал вверх вместе с ней) — задаём `min-height = высоте последней
- * карточки`. Высота приходит из JS через CSS-var `--wyg-last-card-h`
- * (см. `measureLastCard()` в скрипте).
- *
- * Математика sticky-удержания:
- *   scroll_отлипания = parent.height − top − ownHeight
- * При ownHeight = lastCardHeight отлипание происходит ровно когда
- * верх последней карточки достиг sticky-top.
- * ============================================================ */
+/* Sticky к --header-offset + 70px воздуха.
+ * min-height = высоте последней карточки даёт отлипание ровно когда
+ * верх последней карточки доходит до sticky-top:
+ * scroll_отлипания = parent.height − top − ownHeight. */
 .wyg__rail {
   @include mq($from: tablet) {
     position: sticky;
@@ -294,8 +239,8 @@ function cardStickerStyle(card: WhatYouGetCard): Record<string, string> {
   }
 }
 
-/* На mobile — 36/40 medium (как font-section-title, но без центрирования
- * через миксин: рядом стоит inline-бейдж). На desktop — Headline/H3. */
+/* На mobile font-size задаётся вручную (рядом с h2 inline-бейдж,
+ * font-section-title центрирует — не подходит). */
 .wyg__title {
   margin: 0;
   font-family: var(--font-sans);
@@ -310,10 +255,8 @@ function cardStickerStyle(card: WhatYouGetCard): Record<string, string> {
   }
 }
 
-/* Badge (Figma 2696:2141): bg-surface + 2px brand pink, pill,
- * padding 16/8, текст 18/24 semibold white, rotate 10°.
- * Desktop: абсолютом приклеен к правому-верхнему углу заголовка
- * (как в макете «What You Get [1/5]»). Mobile: inline после h2. */
+/* Badge N/M — Figma 2696:2141. Mobile: inline после h2;
+ * desktop: абсолютом к правому-верхнему углу заголовка. */
 .wyg__badge {
   display: none;
   align-items: center;
@@ -345,14 +288,6 @@ function cardStickerStyle(card: WhatYouGetCard): Record<string, string> {
   }
 }
 
-/* ============================================================
- * Cards stack
- *
- * Обычный column-flex с gap. Карточки идут одна за другой и
- * скроллятся в потоке. Никаких sticky/pin-эффектов на карточках.
- * Mobile gap 60 (Figma 3861:19073), desktop тот же 60 — компактно
- * и аккуратно, заголовок остаётся sticky пока скроллим список.
- * ============================================================ */
 .wyg__cards {
   display: flex;
   flex-direction: column;
@@ -376,9 +311,6 @@ function cardStickerStyle(card: WhatYouGetCard): Record<string, string> {
   }
 }
 
-/* ============================================================
- * Card
- * ============================================================ */
 .wyg-card {
   position: relative;
   margin: 0;
@@ -386,7 +318,7 @@ function cardStickerStyle(card: WhatYouGetCard): Record<string, string> {
   background-color: var(--color-bg-surface);
   border: 1px solid var(--color-border-subtle);
   border-radius: var(--radius-xl);
-  /* Стикеры выходят за пределы карточки. */
+  /* Стикеры выходят за пределы карточки → overflow: visible. */
   overflow: visible;
   display: flex;
   flex-direction: column;
@@ -403,14 +335,12 @@ function cardStickerStyle(card: WhatYouGetCard): Record<string, string> {
   margin: 0;
   font-family: var(--font-sans);
   font-weight: 500;
-  /* Mobile (Figma 3861:19079): 24/32, -0.01em */
   font-size: to-rem(24);
   line-height: to-rem(32);
   letter-spacing: -0.01em;
   color: var(--color-text-primary);
 
   @include mq($from: tablet) {
-    /* Desktop (Figma 2653:1240): Headline/H4 32/40 */
     @include font-h4;
   }
 }
@@ -449,16 +379,8 @@ function cardStickerStyle(card: WhatYouGetCard): Record<string, string> {
   }
 }
 
-/* ============================================================
- * Sticker (3D illustration)
- *
- * Координаты/размер приходят из компонента через CSS-vars
- * (`--st-*` для desktop, `--st-*-m` для mobile), поэтому верстка
- * одна на все 5 карточек, а уникальные параметры — в `STICKER_CONFIG`.
- *
- * Дополнительный поворот: `--st-rotate` задаётся с карточки через
- * опциональное поле `stickerRotateDeg` в JSON (по умолчанию `0deg`).
- * ============================================================ */
+/* Координаты/размер из --st-* (desktop) / --st-*-m (mobile);
+ * опциональный поворот через --st-rotate (см. cardStickerStyle). */
 .wyg-card__sticker {
   position: absolute;
   z-index: 1;

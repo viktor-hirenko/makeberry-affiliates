@@ -7,7 +7,7 @@ import type { PageHeroBlock } from '@/types/content'
  *
  * По Figma макет двух страниц идентичен: меняется только содержимое
  * (`badge / titleHtml / subtitleHtml / cta`), а декор справа сверху
- * один и тот же — pre-composited PNG (pink + cables, уже с поворотом
+ * один и тот же — pre-composited WebP (pink + cables, уже с поворотом
  * и mix-blend-luminosity, запечёнными в изображении).
  *
  * Figma:
@@ -65,14 +65,11 @@ defineProps<Props>()
 <style scoped lang="scss">
 @use '@/assets/styles/scss/mixins' as *;
 
-/* ============================================================
- * Section
- * ============================================================ */
+/* Hero flush до верха viewport (floating header перекрывает сверху). */
 .audience-hero {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  /* Hero рисуется flush до верха viewport (header floating оверлеит). */
 
   @include section-padding(
     $desktop-inline: to-rem(160),
@@ -85,17 +82,8 @@ defineProps<Props>()
   @include container(var(--container-xl));
 }
 
-/* ============================================================
- * Decor — pre-composited PNG (pink + cables).
- * На картинке уже учтены rotate + mix-blend, ничего сверху не
- * накладываем — только позиционируем абсолютом.
- *
- * По Figma картинка очень большая и сильно overflow за viewport
- * (на mobile ~360% ширины, на desktop ~180%).
- * Используем object-fit: cover c object-position: right top,
- * чтобы изображение тянулось вправо и сверху, а transparent
- * нижне-левый угол PNG оставался прозрачным.
- * ============================================================ */
+/* Декорация существенно overflow'ит viewport (rotate + mix-blend уже
+ * запечены в WebP) — позиционируем абсолютом с привязкой к right top. */
 .audience-hero__decor {
   position: absolute;
   inset: 0;
@@ -106,14 +94,10 @@ defineProps<Props>()
   overflow: hidden;
 
   img {
+    /* Ширина 200%/160%/130%/110% подобрана так, чтобы pink-каскад
+     * каждый раз приходился на правую треть viewport. */
     position: absolute;
     display: block;
-    // max-width: none;
-
-    /* Mobile: PNG (720×1328) — pink-каскад в top-center-right.
-       На 360 viewport нативная ширина PNG = 200% контейнера, и пинк
-       занимает примерно правую треть viewport — как в Figma макете
-       (frame 1297×1303 c overflow вправо). */
     top: 0;
     right: 0;
     width: 200%;
@@ -122,16 +106,12 @@ defineProps<Props>()
 
   @include mq($from: mobile) {
     img {
-      /* Tablet portrait — слегка ужимаем, но pink каскад остаётся
-         доминирующим в правой части. */
       width: 160%;
     }
   }
 
   @include mq($from: tablet) {
     img {
-      /* Tablet+: используется desktop PNG (2610×1576).
-         Image overflow справа на ~30%, pink-каскад занимает right-third. */
       top: 0;
       right: 0;
       width: 130%;
@@ -140,8 +120,6 @@ defineProps<Props>()
 
   @include mq($from: desktop) {
     img {
-      /* Desktop 1440 (Figma): image сильно overflow справа,
-         pink-каскад занимает правую треть hero. */
       top: 0;
       right: 0;
       width: 110%;
@@ -149,9 +127,6 @@ defineProps<Props>()
   }
 }
 
-/* ============================================================
- * Content stack
- * ============================================================ */
 .audience-hero__content {
   position: relative;
   z-index: 1;
@@ -186,9 +161,6 @@ defineProps<Props>()
   width: 100%;
 }
 
-/* ============================================================
- * Badge
- * ============================================================ */
 .audience-hero__badge {
   align-self: flex-start;
   display: inline-flex;
@@ -205,9 +177,6 @@ defineProps<Props>()
   white-space: nowrap;
 }
 
-/* ============================================================
- * Title — Headline H2 (40/48 mobile, 64/72 desktop)
- * ============================================================ */
 .audience-hero__title {
   margin: 0;
   font-family: var(--font-sans);
@@ -224,9 +193,6 @@ defineProps<Props>()
   }
 }
 
-/* ============================================================
- * Copy — Body 2 mobile, Body 1 desktop
- * ============================================================ */
 .audience-hero__copy {
   margin: 0;
   font-family: var(--font-sans);
@@ -242,9 +208,6 @@ defineProps<Props>()
   }
 }
 
-/* ============================================================
- * CTA button — full width on mobile, natural width on desktop
- * ============================================================ */
 .audience-hero__cta {
   align-self: stretch;
 

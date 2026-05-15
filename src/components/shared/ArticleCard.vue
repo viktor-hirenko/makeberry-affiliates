@@ -52,12 +52,7 @@ withDefaults(defineProps<ArticleCardProps>(), {
 <style scoped lang="scss">
 @use '@/assets/styles/scss/mixins' as *;
 
-/* Layout (Figma 2556:1182):
- * Карточка = column, gap 24:
- *   media (250 desktop / 210 mobile, radius 24)
- *   body (title 2-line clamp + excerpt 2-line clamp), gap 16
- *   link "Learn More →" pink
- */
+/* Карточка статьи — Figma 2556:1182. */
 .article-card {
   display: flex;
   flex-direction: column;
@@ -110,7 +105,6 @@ withDefaults(defineProps<ArticleCardProps>(), {
   width: 100%;
 }
 
-/* Title: H3 24/32 mobile, H4 32/40 desktop. Truncate 2 lines. */
 .article-card__title {
   margin: 0;
   width: 100%;
@@ -133,7 +127,6 @@ withDefaults(defineProps<ArticleCardProps>(), {
   }
 }
 
-/* Excerpt: Body 2 Regular 16/24, truncate 2 lines */
 .article-card__excerpt {
   margin: 0;
   width: 100%;
@@ -151,9 +144,7 @@ withDefaults(defineProps<ArticleCardProps>(), {
   text-overflow: ellipsis;
 }
 
-/* Learn More — Body 1 SemiBold 18/24
- * Default : accent (pink), Hover: white (текст + стрелка через currentColor)
- */
+/* Стрелка наследует цвет через currentColor — меняется вместе с текстом. */
 .article-card__link {
   display: inline-flex;
   align-items: center;

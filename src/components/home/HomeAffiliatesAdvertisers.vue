@@ -56,12 +56,6 @@ const content = useHomeAffiliatesAdvertisers()
 <style scoped lang="scss">
 @use '@/assets/styles/scss/mixins' as *;
 
-/* ============================================================
- * Section
- * До mobile: одна колонка, gap 60
- * От mobile: две карточки в ряд, gap 40
- * От tablet: увеличенные отступы секции
- * ============================================================ */
 .home-aff-adv {
   position: relative;
   display: grid;
@@ -69,15 +63,6 @@ const content = useHomeAffiliatesAdvertisers()
   justify-items: stretch;
   gap: to-rem(60);
   margin-inline: auto;
-  /*
-   * Декорации (sparkle / cursor) намеренно вылезают за карточки
-   * через position: absolute + отрицательные top/right/bottom.
-   * Карточка их НЕ клипает (overflow visible — by design),
-   * поэтому ответственность клипа возложена на саму секцию.
-   * Используем overflow-x: clip — он не ломает sticky-родителей
-   * и точечно режет только горизонтальный «вылет».
-   */
-  // overflow-x: clip;
 
   @include section-padding(to-rem(160));
 
@@ -91,10 +76,7 @@ const content = useHomeAffiliatesAdvertisers()
   }
 }
 
-/* ============================================================
- * Card — bg-surface, border-subtle, rounded-24, overflow visible
- * (декорация выходит за границы)
- * ============================================================ */
+/* overflow visible — декорация выходит за границы карточки. */
 .home-aff-adv__card {
   position: relative;
   display: flex;
@@ -112,9 +94,6 @@ const content = useHomeAffiliatesAdvertisers()
   }
 }
 
-/* ============================================================
- * Header — H4 32/40 (desktop) | H5 24/32 (mobile)
- * ============================================================ */
 .home-aff-adv__header {
   display: flex;
   flex-direction: column;
@@ -139,18 +118,12 @@ const content = useHomeAffiliatesAdvertisers()
   }
 }
 
-/* ============================================================
- * Divider — 1px line border-subtle, full width
- * ============================================================ */
 .home-aff-adv__divider {
   width: 100%;
   height: 1px;
   background-color: var(--color-border-subtle);
 }
 
-/* ============================================================
- * Body — description + buttons
- * ============================================================ */
 .home-aff-adv__body {
   display: flex;
   flex-direction: column;
@@ -168,9 +141,6 @@ const content = useHomeAffiliatesAdvertisers()
   color: var(--color-text-secondary);
 }
 
-/* ============================================================
- * Buttons — full-width column on mobile, inline row on desktop
- * ============================================================ */
 .home-aff-adv__buttons {
   display: flex;
   flex-direction: column;
@@ -194,13 +164,7 @@ const content = useHomeAffiliatesAdvertisers()
   }
 }
 
-/* ============================================================
- * Decorations
- * Mobile  : 100×100, peek above each card top-right
- * Desktop : 200×200,
- *   — sparkle (affiliates) → above card top-right (peek up)
- *   — cursor  (advertisers) → below card bottom-right (peek down)
- * ============================================================ */
+/* Декорации: sparkle peek-up над affiliates, cursor peek-down под advertisers. */
 .home-aff-adv__decoration {
   position: absolute;
   width: to-rem(100);
@@ -211,7 +175,6 @@ const content = useHomeAffiliatesAdvertisers()
   z-index: 1;
 }
 
-/* — Affiliates → sparkle */
 .home-aff-adv__card[data-card='affiliates'] .home-aff-adv__decoration {
   top: to-rem(-45);
   right: to-rem(-10);
@@ -225,13 +188,11 @@ const content = useHomeAffiliatesAdvertisers()
   }
 }
 
-/* — Advertisers → cursor */
 .home-aff-adv__card[data-card='advertisers'] .home-aff-adv__decoration {
   top: to-rem(-45);
   right: to-rem(-20);
 
   @include mq($from: tablet) {
-    /* Десктоп: курсор уходит вниз-вправо за карточку */
     width: to-rem(200);
     height: to-rem(200);
     top: auto;
