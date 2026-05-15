@@ -81,7 +81,7 @@
   "keyHighlights": {
     "title": "Key Highlights",
     "decoration": {
-      "src": "/images/decorative-icons/sparkles.png",
+      "src": "/images/decorative-icons/sparkles.webp",
       "alt": ""
     },
     "cards": [
@@ -105,7 +105,7 @@
   "payments": {
     "title": "Payments & Withdrawals",
     "glow": {
-      "src": "/images/decorations/glow-casino-payments.png",
+      "src": "/images/decorations/glow-casino-payments.webp",
       "alt": ""
     },
     "lists": [
@@ -175,7 +175,7 @@
     "textPrimary": "As a direct advertiser for RocketPlay Casino,",
     "textSecondary": " we remove unnecessary layers between you and the brand, ensuring faster communication and better conditions for scaling.",
     "glow": {
-      "src": "/images/decorations/glow-casino-cta.png",
+      "src": "/images/decorations/glow-casino-cta.webp",
       "alt": ""
     },
     "buttons": [

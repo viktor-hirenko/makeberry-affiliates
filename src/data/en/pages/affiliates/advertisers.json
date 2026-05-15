@@ -16,7 +16,7 @@
         "id": "management",
         "title": "Full control over affiliate management",
         "sticker": {
-          "src": "/images/decorative-icons/branch-arrows.png",
+          "src": "/images/decorative-icons/branch-arrows.webp",
           "alt": "Affiliate management",
           "desktop": {
             "size": 200,
@@ -53,7 +53,7 @@
         "id": "brand-protection",
         "title": "Brand protection",
         "sticker": {
-          "src": "/images/decorative-icons/stop.png",
+          "src": "/images/decorative-icons/stop.webp",
           "alt": "Brand protection",
           "desktop": {
             "size": 200,
@@ -81,7 +81,7 @@
         "id": "media-buying",
         "title": "Media buying",
         "sticker": {
-          "src": "/images/decorative-icons/cursor.png",
+          "src": "/images/decorative-icons/cursor.webp",
           "alt": "Media buying",
           "desktop": {
             "size": 200,
@@ -117,7 +117,7 @@
         "id": "influencer",
         "title": "Performance-driven influencer marketing",
         "sticker": {
-          "src": "/images/decorative-icons/target.png",
+          "src": "/images/decorative-icons/target.webp",
           "alt": "Performance-driven influencer marketing",
           "desktop": {
             "size": 200,
@@ -159,7 +159,7 @@
       "path": "/#contacts"
     },
     "glow": {
-      "src": "/images/decorations/glow-audience-advertisers.png",
+      "src": "/images/decorations/glow-audience-advertisers.webp",
       "alt": ""
     }
   }

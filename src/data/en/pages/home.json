@@ -16,8 +16,8 @@
       "path": "/advertisers"
     },
     "background": {
-      "desktop": "/images/hero/home-bg-desktop.png",
-      "mobile": "/images/hero/home-bg-mobile.png",
+      "desktop": "/images/hero/home-bg-desktop.webp",
+      "mobile": "/images/hero/home-bg-mobile.webp",
       "alt": ""
     }
   },
@@ -118,7 +118,7 @@
       }
     ],
     "image": {
-      "src": "/images/decorative-icons/badge.png",
+      "src": "/images/decorative-icons/badge.webp",
       "alt": "Makeberry badge"
     }
   },
@@ -137,7 +137,7 @@
           "path": "/sign-up"
         },
         "decoration": {
-          "src": "/images/decorative-icons/sparkles.png",
+          "src": "/images/decorative-icons/sparkles.webp",
           "alt": "Sparkle decoration"
         }
       },
@@ -154,7 +154,7 @@
           "path": "/sign-up"
         },
         "decoration": {
-          "src": "/images/decorative-icons/cursor.png",
+          "src": "/images/decorative-icons/cursor.webp",
           "alt": "Cursor click decoration"
         }
       }
@@ -166,21 +166,21 @@
       {
         "id": "rocket-play",
         "name": "RocketPlay Casino",
-        "logoSrc": "/images/logos/advertisers/rocket-play/rocket-play-lockup.png",
+        "logoSrc": "/images/logos/advertisers/rocket-play/rocket-play-lockup.webp",
         "logoAlt": "RocketPlay Casino logo",
         "href": "/casino/rocketplay"
       },
       {
         "id": "win-spirit",
         "name": "WinSpirit Casino",
-        "logoSrc": "/images/logos/advertisers/win-spirit/win-spirit-lockup.png",
+        "logoSrc": "/images/logos/advertisers/win-spirit/win-spirit-lockup.webp",
         "logoAlt": "WinSpirit Casino logo",
         "href": "/casino/winspirit"
       },
       {
         "id": "lucky-hills",
         "name": "LuckyHills Casino",
-        "logoSrc": "/images/logos/advertisers/lucky-hills/lucky-hills-mark.png",
+        "logoSrc": "/images/logos/advertisers/lucky-hills/lucky-hills-mark.webp",
         "logoAlt": "LuckyHills Casino logo",
         "href": "/casino/luckyhills"
       },
@@ -221,7 +221,7 @@
       }
     },
     "glow": {
-      "src": "/images/decorations/glow-casino-payments.png",
+      "src": "/images/decorations/glow-casino-payments.webp",
       "alt": ""
     }
   },
@@ -743,7 +743,7 @@
   "contacts": {
     "title": "Contacts",
     "glow": {
-      "src": "/images/decorations/glow-base.png",
+      "src": "/images/decorations/glow-base.webp",
       "alt": ""
     },
     "items": [
@@ -953,11 +953,11 @@
   "faq": {
     "title": "FAQ",
     "glow": {
-      "src": "/images/decorations/glow-base.png",
+      "src": "/images/decorations/glow-base.webp",
       "alt": ""
     },
     "questionMark": {
-      "src": "/images/decorative-icons/question.png",
+      "src": "/images/decorative-icons/question.webp",
       "alt": ""
     },
     "defaultOpenId": "payouts-on-hold",
@@ -1002,11 +1002,11 @@
   "vacancies": {
     "title": "Open Vacancies",
     "glow": {
-      "src": "/images/decorations/glow-base.png",
+      "src": "/images/decorations/glow-base.webp",
       "alt": ""
     },
     "target": {
-      "src": "/images/decorative-icons/target.png",
+      "src": "/images/decorative-icons/target.webp",
       "alt": ""
     },
     "cards": [

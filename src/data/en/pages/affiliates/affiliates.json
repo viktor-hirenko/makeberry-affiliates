@@ -16,7 +16,7 @@
         "id": "hub",
         "title": "Makeberry Hub",
         "sticker": {
-          "src": "/images/decorative-icons/sparkles.png",
+          "src": "/images/decorative-icons/sparkles.webp",
           "alt": "Makeberry Hub",
           "desktop": {
             "size": 200,
@@ -53,7 +53,7 @@
         "id": "analytics",
         "title": "Transparent analytics with product-level data",
         "sticker": {
-          "src": "/images/decorative-icons/pie-chart.png",
+          "src": "/images/decorative-icons/pie-chart.webp",
           "alt": "Analytics",
           "desktop": {
             "size": 150,
@@ -82,7 +82,7 @@
         "title": "Exclusive offers from a direct advertiser",
         "stickerRotateDeg": -13.942,
         "sticker": {
-          "src": "/images/decorative-icons/badge.png",
+          "src": "/images/decorative-icons/badge.webp",
           "alt": "Exclusive offers",
           "desktop": {
             "size": 200,
@@ -116,7 +116,7 @@
         "id": "infrastructure",
         "title": "Infrastructure built for scale",
         "sticker": {
-          "src": "/images/decorative-icons/docs-gears.png",
+          "src": "/images/decorative-icons/docs-gears.webp",
           "alt": "Infrastructure",
           "desktop": {
             "size": 150,
@@ -140,7 +140,7 @@
         "id": "manager",
         "title": "Dedicated manager",
         "sticker": {
-          "src": "/images/decorative-icons/megaphone.png",
+          "src": "/images/decorative-icons/megaphone.webp",
           "alt": "Dedicated manager",
           "desktop": {
             "size": 150,
@@ -169,7 +169,7 @@
       "path": "/#contacts"
     },
     "glow": {
-      "src": "/images/decorations/glow-audience-affiliates.png",
+      "src": "/images/decorations/glow-audience-affiliates.webp",
       "alt": ""
     }
   }

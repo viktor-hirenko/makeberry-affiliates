@@ -2,8 +2,8 @@
   "title": "Blog",
   "loadMoreLabel": "View More",
   "glow": {
-    "leftSrc": "/images/decorations/glow-blog-left.png",
-    "rightSrc": "/images/decorations/glow-blog-right.png",
+    "leftSrc": "/images/decorations/glow-blog-left.webp",
+    "rightSrc": "/images/decorations/glow-blog-right.webp",
     "alt": ""
   },
   "badges": [

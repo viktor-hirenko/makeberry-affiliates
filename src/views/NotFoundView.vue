@@ -17,9 +17,9 @@ const content = useNotFound()
       <div class="not-found__visual">
         <span class="not-found__big" aria-hidden="true">404</span>
         <picture>
-          <source media="(min-width: 1024px)" srcset="/images/404/truck.png" />
+          <source media="(min-width: 1024px)" srcset="/images/404/truck.webp" />
           <img
-            src="/images/404/truck-mobile.png"
+            src="/images/404/truck-mobile.webp"
             alt=""
             class="not-found__truck"
             decoding="async"
