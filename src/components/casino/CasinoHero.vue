@@ -3,16 +3,14 @@ import BaseButton from '@/components/ui/BaseButton.vue'
 import type { CasinoHero } from '@/types/content'
 
 /**
- * Casino Hero — flush-top секция, под floating header.
+ * Casino Hero — flush-top секция под floating header.
  *
  * Layout:
- * - Desktop (Figma 1440 — frame 3819:3933): row, контент слева (570px),
- *   логотип-квадрат 280×280 справа.
- * - Mobile (Figma 360 — frame 3821:7616): column, логотип сверху по центру,
- *   stats — column.
+ * - < 768px: column-reverse (лого сверху по центру), stats — flex 2-up + wrap.
+ * - ≥ 768px: row, текст слева; stats всё ещё 2-up + wrap, лого в потоке.
+ * - ≥ 1024px: текст ~570/1040, stats — 3-up row, лого absolute справа (fluid).
  *
- * Hero рисуется flush до верха viewport — header floating оверлеит,
- * собственный padding-top секции (см. ниже) уже учитывает высоту хедера.
+ * Per-page правки лого — в CasinoView (`.casino-page--rocketplay`).
  */
 interface Props {
   hero: CasinoHero
@@ -92,7 +90,7 @@ defineProps<Props>()
   }
 }
 
-/* column-reverse на mobile, чтобы лого было сверху (как в Figma 360). */
+/* < 768px: column-reverse, чтобы лого было сверху. */
 .casino-hero__inner {
   display: flex;
   flex-direction: column-reverse;
@@ -112,7 +110,7 @@ defineProps<Props>()
   }
 }
 
-/* items stretch на mobile нужен для full-width CTA. */
+/* < 768px: stretch нужен для full-width CTA (с ≥768px — fit-content). */
 .casino-hero__text {
   display: flex;
   flex-direction: column;
@@ -121,22 +119,18 @@ defineProps<Props>()
   width: 100%;
 
   @include mq($from: mobile) {
-    flex: 0 1 to-rem(500);
-    // width: to-rem(570);
-    // width: calc(570 / 360 * 100%);
-    width: to-rem(500);
-    // gap: to-rem(48);
+    flex: 0 1 to-rem(400);
+    width: to-rem(400);
   }
 
   @include mq($from: tablet) {
     flex: 0 0 calc(570 / 1040 * 100%);
-    // width: to-rem(570);
     width: calc(570 / 1040 * 100%);
     gap: to-rem(48);
   }
 }
 
-/* Mobile-вариант не из стандартного font-* mixin: 40/48 (Figma 3844:13153). */
+/* < 1024px: кастомный 40/48, не font-h2. */
 .casino-hero__title {
   margin: 0;
   color: var(--color-text-primary);
@@ -173,7 +167,7 @@ defineProps<Props>()
   }
 }
 
-/* Mobile: 2-per-row с wrap (3-й переносится); desktop: 3-up row
+/* < 1024px: 2-per-row + wrap (3-й переносится); ≥1024px: 3-up row
  * с border-left как divider между блоками. */
 .casino-hero__stats {
   list-style: none;
@@ -184,7 +178,7 @@ defineProps<Props>()
   gap: to-rem(24);
   width: 100%;
 
-  @include mq($from: mobile) {
+  @include mq($from: tablet) {
     flex-wrap: nowrap;
     align-items: stretch;
   }
@@ -239,6 +233,10 @@ defineProps<Props>()
 .casino-hero__cta {
   align-self: stretch;
 
+  @media (min-width: 600px) {
+    width: fit-content;
+  }
+
   @include mq($from: mobile) {
     align-self: flex-start;
   }
@@ -269,8 +267,6 @@ defineProps<Props>()
     z-index: -1;
     flex: 0 0 auto;
     align-self: unset;
-    // width: calc(560 / 1040 * 100%);
-    // height: calc(560 / 1040 * 100%);
     max-width: to-rem(560);
     height: auto;
     transform: translateY(to-rem(-36px));

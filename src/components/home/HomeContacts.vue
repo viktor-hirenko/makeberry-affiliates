@@ -262,7 +262,7 @@ function handleInput() {
   @include font-section-title;
 }
 
-/* Стрелки только при 4 карточках в ряд (≥ tablet); до tablet — full-bleed. */
+/* 4 карточки с ≥1024px; full-bleed и без стрелок до wide (1280) — см. __nav. */
 .home-contacts__slider-wrap {
   position: relative;
   width: 100%;
@@ -334,8 +334,8 @@ function handleInput() {
   text-align: center;
 }
 
-/* На desktop `pre-wrap` нужен, чтобы имя из JSON ломалось ровно по `\n`
- * и держало две строки по высоте 40 — как в Figma. */
+/* ≥1024px: `pre-wrap` + font-h4 (32/40), чтобы имя из JSON ломалось по `\n`
+ * на две строки — как в Figma. */
 .contact-card__name {
   margin: 0;
   font-family: var(--font-sans);

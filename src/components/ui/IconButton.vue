@@ -5,7 +5,6 @@ import BaseIcon from '@/components/ui/BaseIcon.vue'
 export interface IconButtonProps {
   icon: string
   label: string
-  /** 24 — иконка 24px без фиксированного квадрата (хедер/меню по макету). */
   size?: 24 | 32 | 40 | 56
   disabled?: boolean
   variant?: 'subtle' | 'ghost' | 'outline'

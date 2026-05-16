@@ -40,8 +40,6 @@ const content = useNotFound()
 <style scoped lang="scss">
 @use '@/assets/styles/scss/mixins' as *;
 
-/* Flush до верха viewport (floating header), full 100svh.
- * Футер скрыт через router meta.hideFooter. */
 .not-found {
   position: relative;
   min-height: 100svh;

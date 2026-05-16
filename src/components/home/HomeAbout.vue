@@ -59,10 +59,6 @@ const about = useHomeAbout()
   @include font-section-title;
 }
 
-/* Сетка использует grid-template-areas с «дырами» (`.`), чтобы
- * воспроизвести шахматный паттерн карточек из Figma. Каждое имя
- * (b1…b8) — только один прямоугольник; дублировать имена в разных
- * рядах нельзя. */
 .home-about__grid {
   display: flex;
   flex-direction: column;
@@ -136,8 +132,6 @@ const about = useHomeAbout()
   color: var(--color-text-primary);
 }
 
-/* Карточка с бейджем: object-fit: contain + прозрачные поля внутри
- * ассета дают визуальный отступ. */
 .home-about__card--image {
   display: none;
 

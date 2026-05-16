@@ -61,7 +61,6 @@ const content = useHomeVacancies()
 <style scoped lang="scss">
 @use '@/assets/styles/scss/mixins' as *;
 
-/* Glow и target декорации выходят за viewport — overflow-x: clip. */
 .home-vacancies {
   position: relative;
   overflow-x: clip;
@@ -86,7 +85,7 @@ const content = useHomeVacancies()
   }
 }
 
-/* Dartboard-декорация показывается только с tablet+. */
+/* Dartboard-декор: скрыт <1024px, виден с ≥1024px (tablet+). */
 .home-vacancies__target {
   display: none;
 
@@ -129,8 +128,8 @@ const content = useHomeVacancies()
   }
 }
 
-/* Третья карточка показывается только с tablet — на mobile в макете
- * две карточки + View All (полный список — отдельная страница). */
+/* Сетка: <768 — 1 кол.; 768–1023 — 2 кол.; ≥1024 — 3 кол.
+ * 3-я карточка (`:nth-child(3)`) скрыта <1024px — в макете две + View All. */
 .home-vacancies__cards {
   list-style: none;
   margin: 0;

@@ -3,7 +3,7 @@ import BaseButton from '@/components/ui/BaseButton.vue'
 import type { CasinoBottomCtaContent } from '@/types/content'
 
 /**
- * Casino → Bottom CTA (Figma 3819:4269).
+ * Casino → Bottom CTA.
  * Декорация: pre-composited WebP glow справа.
  */
 interface Props {

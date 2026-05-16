@@ -36,7 +36,8 @@ const TESTIMONIALS_DESKTOP_SPACE_BETWEEN = '6.482%'
  *                      при смене активного и активный встаёт не по центру.
  *
  * Важно: `centeredSlidesBounds: true` нужен по двум причинам:
- *   1. Соответствие Figma — 4 testimonials → 2 snap-state → 2 точки pagination.
+ *   1. Snap-grid не дублирует позиции → кастомная пагинация = `uniqueSnaps`
+ *      (напр. 4 отзыва в макете Figma → 2 точки; фактическое N — из JSON).
  *   2. Без bounds первый/последний слайды могут стать активными, и тогда
  *      по краям видны пустые offset-зоны (та самая «дыра в начале/конце»).
  *      С bounds первый/последний прижимаются к краю swiper-контейнера и
@@ -74,7 +75,7 @@ const swiperBreakpoints = {
  * Кастомный paginator (вместо Swiper Pagination module).
  *
  * Зачем не `Pagination` из коробки:
- *   • Swiper рисует bullets по `slides.length` (= 4 для нас).
+ *   • Swiper рисует bullets по `slides.length` (= число отзывов в JSON).
  *   • При `centeredSlidesBounds: true` `snapGrid` Swiper'а имеет
  *     дубли (`[0, 0, X, X]`), реальных snap-позиций — 2.
  *     Native bullets оказываются 4, а active подсвечивается по
@@ -318,7 +319,7 @@ const navConfig = {
   @include font-section-title;
 }
 
-/* Калька с HomeMeetUs: < tablet — full-bleed, ≥ wide — padding под стрелки. */
+/* <1024px: full-bleed (как HomeMeetUs); ≥1280px: padding-inline под стрелки. */
 .home-testimonials__slider-wrap {
   position: relative;
   width: 100%;
@@ -341,9 +342,8 @@ const navConfig = {
   box-sizing: border-box;
 }
 
-/* На desktop wrapper центрирует слайды по вертикали: active естественно
- * выше side'ов (6 vs 3 строки), и без `center` side-карточки прижимались
- * бы к верху. `stretch` сохраняем для grid-сетки на mobile. */
+/* ≥1024px: wrapper выравнивает слайды по центру по вертикали — active выше
+ * side (6 vs 3 строк текста). <1024px: stretch на всю высоту слайда. */
 :deep(.swiper-wrapper) {
   display: flex;
   align-items: stretch;
@@ -353,9 +353,9 @@ const navConfig = {
   }
 }
 
-/* Focal-carousel pattern (small | BIG | small).
+/* Focal-carousel (≥1024px): small | BIG | small.
  *
- * На desktop все слайды имеют одинаковый bbox (slidesPerView: 3),
+ * Все слайды имеют одинаковый bbox (slidesPerView: 3),
  * активный увеличивается через `scaleX(1.314)`. Чтобы текст внутри
  * не растягивался, у `.card` стоит counter-scale: ширина 131.4% +
  * scaleX(0.761), так parent × child = 1, а CSS-layout считается
@@ -440,7 +440,7 @@ $testimonials-active-scale-inverse: calc(1 / 1.314); // ≈ 0.761
   flex-shrink: 0;
 }
 
-/* line-clamp: 8 на mobile, 3 на side / 6 на active (focal-carousel). */
+/* line-clamp: <1024px — 8; ≥1024px — 3 (side) / 6 (active, focal-carousel). */
 .home-testimonials__text {
   margin: 0;
   color: var(--color-text-secondary);
@@ -502,7 +502,7 @@ $testimonials-active-scale-inverse: calc(1 / 1.314); // ≈ 0.761
   @include font-body-l-semibold;
 }
 
-/* На desktop CTA видна только у активной карточки. */
+/* ≥1024px: CTA видна только у активной карточки. */
 .home-testimonials__cta {
   display: inline-flex;
   align-items: center;

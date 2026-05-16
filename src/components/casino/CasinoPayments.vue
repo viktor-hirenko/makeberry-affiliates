@@ -2,7 +2,7 @@
 import type { CasinoPaymentsContent } from '@/types/content'
 
 /**
- * Casino → Payments & Withdrawals (Figma 3819:4228).
+ * Casino → Payments & Withdrawals.
  * Декорация — pink glow в левом верхнем углу (overflow: clip).
  */
 interface Props {
@@ -46,8 +46,7 @@ defineProps<Props>()
 <style scoped lang="scss">
 @use '@/assets/styles/scss/mixins' as *;
 
-/* Pink glow выходит за левую границу — overflow-x: clip
- * (не overflow: hidden, чтобы не порвать sticky-родителей). */
+/* Pink glow выходит за левую границу — overflow-x: clip */
 .casino-payments {
   position: relative;
   overflow-x: clip;

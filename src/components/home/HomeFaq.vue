@@ -124,7 +124,6 @@ function onLeave(el: Element): void {
 <style scoped lang="scss">
 @use '@/assets/styles/scss/mixins' as *;
 
-/* Glow декорация выходит за viewport — overflow-x: clip. */
 .home-faq {
   position: relative;
   overflow-x: clip;
@@ -183,19 +182,16 @@ function onLeave(el: Element): void {
   }
 }
 
-/* Question-mark — только desktop (на mobile отсутствует в макете). */
 .home-faq__mark {
   display: none;
 
   @include mq($from: tablet) {
+    top: to-rem(-76);
+    left: to-rem(-110);
     display: block;
     position: absolute;
     width: to-rem(200);
     height: to-rem(200);
-    /* Координаты подбираются от Figma image-frame 246.722²
-     * (с учётом rotation bbox) — см. Figma frame "Image". */
-    top: to-rem(-76);
-    left: to-rem(-110);
     transform: rotate(-15.73deg);
     pointer-events: none;
     user-select: none;
@@ -260,7 +256,6 @@ function onLeave(el: Element): void {
   }
 }
 
-/* В is-open вопрос подсвечивается accent-color (pink). */
 .home-faq__question {
   flex: 1 1 auto;
   min-width: 0;

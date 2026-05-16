@@ -5,7 +5,6 @@ import { toRem } from '@/utils/units'
 
 /**
  * Секция «What You Get» страницы-аудитории (Affiliates / Advertisers).
- * Figma: 2653:1227 / 2655:1576.
  *
  * Заголовок слева — sticky к --header-offset; карточки справа в потоке.
  * `min-height` rail'а = высоте последней карточки, поэтому sticky
@@ -183,7 +182,6 @@ function cardStickerStyle(card: WhatYouGetCard): Record<string, string> {
 <style scoped lang="scss">
 @use '@/assets/styles/scss/mixins' as *;
 
-/* overflow-x: clip — стикеры выходят за правый край карточки. */
 .wyg {
   position: relative;
   overflow-x: clip;
@@ -255,7 +253,7 @@ function cardStickerStyle(card: WhatYouGetCard): Record<string, string> {
   }
 }
 
-/* Badge N/M — Figma 2696:2141. Mobile: inline после h2;
+/* Badge N/M. Mobile: inline после h2;
  * desktop: абсолютом к правому-верхнему углу заголовка. */
 .wyg__badge {
   display: none;
@@ -279,7 +277,6 @@ function cardStickerStyle(card: WhatYouGetCard): Record<string, string> {
   @include mq($from: tablet) {
     position: absolute;
     top: to-rem(-25);
-    /* Положение из Figma (badge x=357 при title 590px шириной). */
     left: to-rem(357);
     display: inline-flex;
     margin-left: 0;

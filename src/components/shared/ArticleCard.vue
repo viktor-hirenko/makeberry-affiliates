@@ -52,7 +52,6 @@ withDefaults(defineProps<ArticleCardProps>(), {
 <style scoped lang="scss">
 @use '@/assets/styles/scss/mixins' as *;
 
-/* Карточка статьи — Figma 2556:1182. */
 .article-card {
   display: flex;
   flex-direction: column;
@@ -144,7 +143,6 @@ withDefaults(defineProps<ArticleCardProps>(), {
   text-overflow: ellipsis;
 }
 
-/* Стрелка наследует цвет через currentColor — меняется вместе с текстом. */
 .article-card__link {
   display: inline-flex;
   align-items: center;

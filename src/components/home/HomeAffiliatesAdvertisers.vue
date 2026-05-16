@@ -76,7 +76,6 @@ const content = useHomeAffiliatesAdvertisers()
   }
 }
 
-/* overflow visible — декорация выходит за границы карточки. */
 .home-aff-adv__card {
   position: relative;
   display: flex;
@@ -164,7 +163,6 @@ const content = useHomeAffiliatesAdvertisers()
   }
 }
 
-/* Декорации: sparkle peek-up над affiliates, cursor peek-down под advertisers. */
 .home-aff-adv__decoration {
   position: absolute;
   width: to-rem(100);

@@ -141,9 +141,8 @@ const ui = useSharedUi()
 <style scoped lang="scss">
 @use '@/assets/styles/scss/mixins' as *;
 
-/* На tablet (1024px) макетные desktop-паддинги 150 «съели» бы 300px
- * ширины, и Partners + Awards перестают помещаться в строку — поэтому
- * на tablet паддинги поджаты до 60. */
+/* padding-inline 150 — только с wide (1280+) через section-padding;
+ * контейнер 1140px, чтобы Partners + Awards влезали в строку на 1024–1279. */
 .app-footer {
   z-index: 1;
   background-color: var(--color-bg-surface);
@@ -225,7 +224,7 @@ const ui = useSharedUi()
   }
 }
 
-/* На tablet колонки auto-width: 4×200 + 3×50 = 950px + brand не помещаются. */
+/* ≥1440px: колонки фикс. 200px (4×200 + gaps + brand); ниже — auto-width. */
 .app-footer__nav {
   display: flex;
   flex-direction: column;
@@ -315,8 +314,7 @@ const ui = useSharedUi()
   }
 }
 
-/* На desktop модификаторы --partners/--awards позиционируют бейдж
- * абсолютом поверх логотипов с поворотом. */
+/* ≥1024px: бейджи --partners / --awards — absolute поверх логотипов + rotate. */
 .app-footer__badge {
   display: inline-flex;
   align-items: center;
@@ -484,7 +482,7 @@ const ui = useSharedUi()
   }
 }
 
-/* На mobile прячем последний разделитель — wrap-разметка Figma. */
+/* <1024px: прячем последний разделитель перед copyright. */
 .app-footer__bottom-divider {
   flex: none;
   display: inline-block;

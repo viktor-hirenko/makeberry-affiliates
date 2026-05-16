@@ -146,7 +146,7 @@ function loadMore() {
   @include section-stack($align: center);
 }
 
-/* Бейджи только desktop (на mobile отсутствуют, Figma 3861:19719). */
+/* Бейджи только desktop (на mobile отсутствуют). */
 .blog-page__header {
   position: relative;
   width: 100%;

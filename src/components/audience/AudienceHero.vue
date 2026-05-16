@@ -4,19 +4,6 @@ import type { PageHeroBlock } from '@/types/content'
 
 /**
  * Hero страницы-аудитории (`/affiliates`, `/advertisers`).
- *
- * По Figma макет двух страниц идентичен: меняется только содержимое
- * (`badge / titleHtml / subtitleHtml / cta`), а декор справа сверху
- * один и тот же — pre-composited WebP (pink + cables, уже с поворотом
- * и mix-blend-luminosity, запечёнными в изображении).
- *
- * Figma:
- * - For Affiliates  desktop: 3861:13319 / mobile: 3861:19275
- * - For Advertisers desktop: 3861:13309 (тот же `cables` ассет, тот же
- *   rotation -42.08deg, mix-blend luminosity — изображение общее).
- *
- * Hero рисуется flush до верха viewport — header floating оверлеит
- * контент, собственный padding-top секции уже учитывает высоту хедера.
  */
 interface Props {
   hero: PageHeroBlock
@@ -65,7 +52,6 @@ defineProps<Props>()
 <style scoped lang="scss">
 @use '@/assets/styles/scss/mixins' as *;
 
-/* Hero flush до верха viewport (floating header перекрывает сверху). */
 .audience-hero {
   position: relative;
   isolation: isolate;
@@ -82,8 +68,6 @@ defineProps<Props>()
   @include container(var(--container-xl));
 }
 
-/* Декорация существенно overflow'ит viewport (rotate + mix-blend уже
- * запечены в WebP) — позиционируем абсолютом с привязкой к right top. */
 .audience-hero__decor {
   position: absolute;
   inset: 0;
@@ -94,9 +78,6 @@ defineProps<Props>()
   overflow: hidden;
 
   img {
-    /* Ширина 200%/160%/130%/110% подобрана так, чтобы pink-каскад
-     * каждый раз приходился на правую треть viewport. */
-    position: absolute;
     display: block;
     top: 0;
     right: 0;

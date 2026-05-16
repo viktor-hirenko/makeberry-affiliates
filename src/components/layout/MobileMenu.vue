@@ -244,12 +244,8 @@ const ctaPath = computed(() => props.nav.ctaPath)
   flex-shrink: 0;
 }
 
-/*
- * Inner wrapper sits between the grid container (.accordion) and the
- * actual list. It must collapse to zero — so it has no padding, only
- * min-height: 0 and overflow: hidden. Padding lives on the <ul> below,
- * which keeps spacing identical to before.
- */
+/* Между grid-контейнером (`.mobile-menu__accordion`) и sublist:
+ * без padding, только min-height: 0 + overflow: hidden. Отступы — на `.mobile-menu__sublist`. */
 .mobile-menu__accordion-inner {
   min-height: 0;
   overflow: hidden;
@@ -313,12 +309,8 @@ const ctaPath = computed(() => props.nav.ctaPath)
   transform: translateY(-100%);
 }
 
-/*
- * Grid-rows height animation — the only technique that collapses
- * height smoothly without JS measuring. The wrapper <div> is the
- * grid container; the inner <ul> needs min-height:0 to allow
- * collapse below its natural content height.
- */
+/* Accordion: grid-template-rows 0fr ↔ 1fr без JS-замеров высоты.
+ * Grid на `.mobile-menu__accordion` (Transition); схлопывание — через inner. */
 .accordion-enter-active,
 .accordion-leave-active {
   display: grid;

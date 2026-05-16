@@ -4,14 +4,6 @@ import type { CasinoAboutContent } from '@/types/content'
 /**
  * Casino About — описательный блок с плавающими розовыми бейджами.
  *
- * JSON хранит ТОЛЬКО content (id / label / variant). Позиционирование
- * и rotate бейджей — это layout-данные, которые живут в SCSS:
- *   - базовые стили бейджей здесь (`<style scoped>`),
- *   - per-page координаты — в `CasinoView.vue` через `:deep()`
- *     (`.casino-page--<slug> :deep(.casino-about__badge--<variant>)`).
- *
- * Это даёт один источник правды для позиций и убирает fragile
- * Figma-координаты из data-слоя.
  */
 interface Props {
   about: CasinoAboutContent
@@ -53,15 +45,13 @@ defineProps<Props>()
 <style scoped lang="scss">
 @use '@/assets/styles/scss/mixins' as *;
 
-/* Padding-block большое, чтобы вместить абсолютные бейджи
- * над текстом и под ним (без них секция выглядела бы пустой). */
 .casino-about {
   position: relative;
   overflow-x: clip;
 
   @include section-padding(
     $mobile-top: to-rem(190),
-    $mobile-bottom: to-rem(190) // $desktop-inline: to-rem(200)
+    $mobile-bottom: to-rem(190) 
   );
 
   @include mq($from: tablet) {

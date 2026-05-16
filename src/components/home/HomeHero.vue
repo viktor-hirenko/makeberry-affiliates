@@ -57,8 +57,8 @@ function handleScrollClick() {
 <style scoped lang="scss">
 @use '@/assets/styles/scss/mixins' as *;
 
-/* Hero flush до верха viewport (под плавающим header-pill);
- * padding-top компенсирует высоту хедера. */
+/* Flush-top под fixed header; padding-top (220 → 240 с ≥768 → 280 с ≥1024)
+ * компенсирует высоту шапки. */
 .home-hero {
   position: relative;
   isolation: isolate;
@@ -98,8 +98,6 @@ function handleScrollClick() {
     height: 100%;
     object-fit: cover;
     object-position: right center;
-    mix-blend-mode: luminosity;
-    opacity: 1;
   }
 }
 
@@ -163,7 +161,7 @@ function handleScrollClick() {
 .home-hero__title-text--bottom {
   display: block;
   width: 100%;
-  /* На mobile разрешаем перенос, чтобы фраза не обрезалась. */
+  /* <768px: перенос строки, чтобы длинная фраза не обрезалась. */
   white-space: normal;
 
   @include mq($from: mobile) {

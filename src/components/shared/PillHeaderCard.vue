@@ -1,8 +1,7 @@
 <script setup lang="ts">
 /**
  * Карточка с pill-заголовком и slot-контентом. Используется
- * в HomeDirectAdvertiser, CasinoKeyHighlights, CasinoCooperation —
- * визуально идентичные карточки в Figma 3838-10833 / 3861-21411 / 3861-21370.
+ * в HomeDirectAdvertiser, CasinoKeyHighlights, CasinoCooperation.
  *
  * Кастомизация через CSS-переменные:
  *   --phc-body-gap — gap между элементами в slot (default 0).
@@ -10,7 +9,7 @@
 interface Props {
   /** Текст pill-заголовка. */
   title: string
-  /** Расстояние между элементами slot в rem. */
+  /** Gap между элементами slot: число в px, в CSS → `N / 16` rem (`body-gap="16"` = 1rem). */
   bodyGap?: number
   /** HTML-тег корневого элемента. По умолчанию `<li>` — компонент рассчитан на использование внутри `<ul>`. */
   as?: 'li' | 'div' | 'article'
@@ -66,9 +65,7 @@ const rootStyle = props.bodyGap
   }
 }
 
-/* На планшете (1024–1439) карточка ~230px, поэтому используем 24/32;
- * с ≥ desktop переключаемся на H4 32/40 — длинные заголовки умещаются
- * с воздухом, как в Figma. */
+/* <1440px: 24/32 + nowrap (узкие колонки сетки); ≥1440px: font-h4 (32/40). */
 .phc__pill-text {
   font-family: var(--font-sans);
   font-weight: 500;

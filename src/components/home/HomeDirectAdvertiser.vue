@@ -39,7 +39,12 @@ function cardAttrs(href: string | undefined, isPlaceholder: boolean | undefined)
   }
 }
 
-/** &lt; mobile: 1; mobile–tablet: 2; ≥ tablet: 4 */
+/**
+ * Swiper breakpoints (min-width):
+ * - &lt;768px: 1 слайд
+ * - 768–1023px: 2 слайда
+ * - ≥1024px: 4 слайда
+ */
 const directSwiperBreakpoints = {
   [BREAKPOINT_MOBILE_PX]: {
     slidesPerView: 2,
@@ -173,8 +178,6 @@ const navConfig = {
 <style scoped lang="scss">
 @use '@/assets/styles/scss/mixins' as *;
 
-/* Без overflow-x: full-bleed свайпер до tablet (как Testimonials);
- * горизонтальный скролл клипается на body (см. main.scss). */
 .home-direct {
   position: relative;
   isolation: isolate;
@@ -214,7 +217,8 @@ const navConfig = {
   @include font-section-title;
 }
 
-/* До tablet — full-bleed: инсет на самом swiper (как HomeTestimonials). */
+/* <1024px: full-bleed (negative margin на wrap + padding-inline на swiper);
+ * ≥1280px: padding-inline под стрелки (см. __nav). */
 .home-direct__slider-wrap {
   position: relative;
   width: 100%;
