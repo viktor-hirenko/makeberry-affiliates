@@ -35,6 +35,17 @@
       fetchpriority="high"
     />
     <title>Makeberry Affiliates</title>
+    <!--
+      Inline background ставится до парсинга основного CSS, чтобы убрать
+      белый flash между загрузкой HTML и mount Vue (на мобильном LTE это
+      заметные 50–300 мс). Значение #000 совпадает с --color-bg-page.
+    -->
+    <style>
+      html,
+      body {
+        background-color: #000;
+      }
+    </style>
   </head>
   <body>
     <div id="app"></div>

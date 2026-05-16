@@ -12,9 +12,10 @@ declare module 'vue-router' {
 import HomeView from '@/views/HomeView.vue'
 import { getCasinoBySlug } from '@/composables/useContent'
 
-/* HomeView импортируем синхронно — это стартовый маршрут, критичен для LCP.
- * Остальные views — lazy: они не нужны на initial load и выносятся в отдельные
- * чанки, что сокращает initial JS-бандл и ускоряет первый рендер. */
+/* HomeView импортируется синхронно — это стартовый маршрут, критичен для LCP.
+ * Остальные views — lazy, чтобы initial JS bundle оставался компактным;
+ * chunks дополнительно prefetch'атся по hover/touch на RouterLink
+ * (см. useRoutePrefetch), поэтому к моменту клика обычно уже в кэше. */
 const BlogView = () => import('@/views/BlogView.vue')
 const ArticleView = () => import('@/views/ArticleView.vue')
 const AudienceView = () => import('@/views/AudienceView.vue')
@@ -81,56 +82,39 @@ export const router = createRouter({
     },
   ],
   scrollBehavior(to, from, saved) {
-    /* Back/forward — восстанавливаем сохранённую позицию. */
+    /* Back / forward — возвращаем браузерную сохранённую позицию. */
     if (saved) return saved
 
-    /* Якорь (#section) — секции на главной рендерятся через defineAsyncComponent,
-     * поэтому элемент с нужным id появляется в DOM с задержкой после перехода.
-     * Возвращаем Promise и поллим DOM до ~1.5 с.
+    /* Hash-навигация (#section).
      *
-     * Переход с другой страницы (напр. /affiliates → /#contacts):
-     * — держим viewport сверху, пока якорь не готов;
-     * — скролл `auto` (мгновенно), иначе `smooth` прокатывает через Map и др. */
+     * Внутри одной страницы (/ → /#contacts) — мгновенный smooth scroll.
+     * При переходе с другого маршрута (/affiliates → /#contacts) сначала
+     * прижимаем viewport к верху, затем скроллим к якорю с поведением
+     * `auto`, чтобы не было видимой «прокатки» через промежуточные секции. */
     if (to.hash) {
       const isCrossRoute = to.path !== from.path
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
       const behavior: 'auto' | 'smooth' =
         isCrossRoute || prefersReducedMotion ? 'auto' : 'smooth'
 
-      return new Promise((resolve) => {
-        const MAX_ATTEMPTS = 20
-        const INTERVAL_MS = 50
+      if (isCrossRoute) {
+        window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+      }
 
-        if (isCrossRoute) {
-          window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
-        }
-
-        function tryScroll(attempt: number) {
-          const el = document.querySelector<HTMLElement>(to.hash)
-          if (el) {
-            resolve({ el: to.hash, behavior })
-          } else if (attempt < MAX_ATTEMPTS) {
-            setTimeout(() => tryScroll(attempt + 1), INTERVAL_MS)
-          } else {
-            resolve({ top: 0, left: 0 })
-          }
-        }
-
-        /* На главной между якорями — небольшая пауза под page-fade (250 ms).
-         * С другой страницы — сразу, чтобы не показывать промежуточные секции. */
-        const startDelayMs = isCrossRoute ? 0 : 280
-        if (startDelayMs === 0) {
-          tryScroll(0)
-        } else {
-          setTimeout(() => tryScroll(0), startDelayMs)
-        }
-      })
+      return { el: to.hash, behavior }
     }
 
-    /* Переход на другой маршрут — мгновенно сверху,
-     * чтобы пользователь сразу видел начало новой страницы,
-     * а не «прокатку» от прежней позиции. */
-    return { top: 0, left: 0 }
+    /* Cross-route переход без хэша.
+     *
+     * Двойной requestAnimationFrame — паттерн «wait for next paint»:
+     * scrollTo({top:0}) применяется в кадре, следующем за тем, в котором
+     * браузер отрисовал новый view. Это исключает гонку между mount
+     * нового view и сбросом scroll-позиции. */
+    return new Promise((resolve) => {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => resolve({ top: 0, left: 0 }))
+      })
+    })
   },
 })
 

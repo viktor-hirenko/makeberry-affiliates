@@ -20,4 +20,23 @@ export default defineConfig({
       },
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        /*
+         * Тяжёлые vendor-библиотеки выносятся в отдельные chunks. На
+         * HTTP/2 браузер качает их параллельно с main bundle, что даёт
+         * лучшее распределение parsing/execution и долгоживущее кеширование
+         * (vendor-чанк не инвалидируется при изменениях прикладного кода).
+         *
+         * Swiper используется в нескольких home-секциях; выделение в
+         * общий chunk избегает дублирования.
+         */
+        manualChunks(id) {
+          if (id.includes('/node_modules/swiper/')) return 'swiper'
+          return undefined
+        },
+      },
+    },
+  },
 })

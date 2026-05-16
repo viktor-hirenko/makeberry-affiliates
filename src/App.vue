@@ -10,16 +10,11 @@ const route = useRoute()
   <div class="app-root">
     <AppHeader />
     <main class="app-main">
-      <!-- Обёртка flex:1 — при mode=out-in между leave и enter слот кратко пустой; без flex:1 main мог бы схлопнуться -->
       <div class="app-main__view">
-        <RouterView v-slot="{ Component, route }">
-          <!-- out-in: нет одновременно двух full-page в DOM → не «просвечивает» список блога под статьёй -->
-          <!-- leave: 0 — старый view не «полупрозрачно висит»; enter — мягко появляется новый -->
-          <Transition name="page-fade" mode="out-in" :duration="{ enter: 250, leave: 0 }">
-            <!-- Ключ только по path (без hash): переход / → /#contacts не перемонтирует
-                 HomeView — иначе хэш-навигация внутри главной вызывала бы полный remount. -->
-            <component :is="Component" :key="route.path" />
-          </Transition>
+        <RouterView v-slot="{ Component, route: r }">
+          <!-- :key только по path: хэш-навигация внутри страницы (например, / → /#contacts)
+               не должна ремонтировать текущий view. -->
+          <component :is="Component" :key="r.path" />
         </RouterView>
       </div>
     </main>
@@ -27,32 +22,24 @@ const route = useRoute()
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+/*
+ * min-height: 100dvh гарантирует, что слот RouterView занимает минимум
+ * один экран. Это резервирует место под целевую страницу на время
+ * загрузки lazy route chunk: без резерва AppFooter моментально
+ * прижимался бы к AppHeader, пока chunk качается (видно на reload
+ * /blog, /article, /casino, /affiliates).
+ *
+ * dvh (dynamic viewport height) корректно учитывает изменения адресной
+ * строки на iOS Safari и Chrome Android; на старых браузерах безопасно
+ * деградирует к 100vh через @supports.
+ */
 .app-main__view {
   flex: 1;
   width: 100%;
   display: flex;
   flex-direction: column;
-}
-</style>
-
-<style>
-/*
- * Enter совпадает с :duration enter (250). Leave мгновенный — без полупрозрачного наложения двух маршрутов.
- */
-.page-fade-enter-active {
-  transition: opacity 250ms ease;
-}
-
-.page-fade-enter-from {
-  opacity: 0;
-}
-
-.page-fade-leave-active {
-  transition: none;
-}
-
-.page-fade-leave-to {
-  opacity: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
 }
 </style>

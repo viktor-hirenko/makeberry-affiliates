@@ -1,5 +1,26 @@
 <script setup lang="ts">
-import { defineAsyncComponent } from 'vue'
+/*
+ * Все секции главной импортируются синхронно. Это обеспечивает:
+ *   — фиксированную page height с первого кадра (CLS = 0),
+ *   — стабильную работу scroll-restoration и hash-навигации,
+ *   — отсутствие layout-сдвигов при reload в любой точке страницы.
+ *
+ * Тяжёлые vendor-зависимости секций (Swiper) вынесены в отдельный
+ * chunk через `manualChunks` в vite.config.ts и загружаются параллельно
+ * с main bundle — initial JS остаётся компактным.
+ */
+import HomeHero from '@/components/home/HomeHero.vue'
+import HomeAbout from '@/components/home/HomeAbout.vue'
+import HomeAffiliatesAdvertisers from '@/components/home/HomeAffiliatesAdvertisers.vue'
+import HomeDirectAdvertiser from '@/components/home/HomeDirectAdvertiser.vue'
+import HomeMap from '@/components/home/HomeMap.vue'
+import HomeBenefits from '@/components/home/HomeBenefits.vue'
+import HomeTestimonials from '@/components/home/HomeTestimonials.vue'
+import HomeMeetUs from '@/components/home/HomeMeetUs.vue'
+import HomeContacts from '@/components/home/HomeContacts.vue'
+import HomeFaq from '@/components/home/HomeFaq.vue'
+import HomeVacancies from '@/components/home/HomeVacancies.vue'
+import HomeBlog from '@/components/home/HomeBlog.vue'
 import {
   useHomeBlog,
   useHomeDirectAdvertiser,
@@ -7,31 +28,8 @@ import {
   useHomeVacancies,
 } from '@/composables/useContent'
 
-/* HomeHero — синхронный, это LCP-элемент; должен рендериться сразу. */
-import HomeHero from '@/components/home/HomeHero.vue'
-
-/* Все below-the-fold секции — async: выносятся в отдельные чанки,
- * чтобы Swiper и другие тяжёлые зависимости не попадали в initial bundle. */
-const HomeAbout = defineAsyncComponent(() => import('@/components/home/HomeAbout.vue'))
-const HomeAffiliatesAdvertisers = defineAsyncComponent(
-  () => import('@/components/home/HomeAffiliatesAdvertisers.vue'),
-)
-const HomeDirectAdvertiser = defineAsyncComponent(
-  () => import('@/components/home/HomeDirectAdvertiser.vue'),
-)
-const HomeMap = defineAsyncComponent(() => import('@/components/home/HomeMap.vue'))
-const HomeBenefits = defineAsyncComponent(() => import('@/components/home/HomeBenefits.vue'))
-const HomeTestimonials = defineAsyncComponent(
-  () => import('@/components/home/HomeTestimonials.vue'),
-)
-const HomeMeetUs = defineAsyncComponent(() => import('@/components/home/HomeMeetUs.vue'))
-const HomeContacts = defineAsyncComponent(() => import('@/components/home/HomeContacts.vue'))
-const HomeFaq = defineAsyncComponent(() => import('@/components/home/HomeFaq.vue'))
-const HomeVacancies = defineAsyncComponent(() => import('@/components/home/HomeVacancies.vue'))
-const HomeBlog = defineAsyncComponent(() => import('@/components/home/HomeBlog.vue'))
-
-/* Флаги видимости секций — читаем enabled из JSON-контента.
- * Отсутствие поля enabled трактуется как true (enabled !== false). */
+/* Флаги видимости секций — читаем `enabled` из JSON-контента.
+ * Отсутствие поля трактуется как true (enabled !== false). */
 const directAdvertiserContent = useHomeDirectAdvertiser()
 const faqContent = useHomeFaq()
 const vacanciesContent = useHomeVacancies()

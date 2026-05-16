@@ -26,6 +26,13 @@ html {
    * когда только body недостаточно (fixed header / mix overflow-y).
    */
   overflow-x: clip;
+
+  /*
+   * Тёмный фон до загрузки контента — страховка к inline-стилю в
+   * index.html. Если внешний CSS придёт раньше, чем браузер успеет
+   * применить inline (на медленном CPU), всё равно не будет белого flash.
+   */
+  background-color: var(--color-bg-page);
 }
 
 body {
@@ -36,6 +43,8 @@ body {
    * режет только горизонтально и не ломает sticky/position:sticky.
    */
   overflow-x: clip;
+  background-color: var(--color-bg-page);
+  color: var(--color-text-primary);
 }
 
 .app-root {
@@ -73,4 +82,33 @@ body {
 section[id],
 div[id] {
   scroll-margin-top: var(--header-offset);
+}
+
+/*
+ * Smooth entrance корневого элемента каждого маршрутного view.
+ * Применяется CSS-animation (а не Vue <Transition>): анимация
+ * запускается атомарно с mount нового view, что даёт стабильную
+ * визуальную смену маршрута без промежуточных кадров.
+ *
+ * Селектор `.app-main__view > *` бьёт по корню любого view
+ * (.home, .blog-page, .article, .audience-page, .casino-page, .not-found),
+ * без необходимости трогать каждый компонент отдельно.
+ */
+.app-main__view > * {
+  animation: app-view-enter 180ms ease-out both;
+}
+
+@keyframes app-view-enter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-main__view > * {
+    animation: none;
+  }
 }
