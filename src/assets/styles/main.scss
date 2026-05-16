@@ -6,13 +6,12 @@
 
 html {
   /*
-   * Fluid root font-size: 14px на 768, 16px на 1440, плавный рост между.
-   * Используется как «бесплатный» tablet-адаптив всему, что в `to-rem()`,
-   * без необходимости переписывать каждый брейкпоинт руками.
+   * Fluid root font-size: с tablet плавно растёт от 14px до 16px (clamp).
+   * Все размеры в rem масштабируются вместе с html — не нужно дублировать
+   * брейкпоинты в каждом компоненте.
    *
-   * Базовое значение 16px нужно держать для пользователей, которые
-   * вручную увеличивают шрифт в браузере: clamp() формально это уважает,
-   * т.к. верхняя граница совпадает с user-default.
+   * Верхняя граница clamp = 16px (--font-size-base), чтобы не перебить
+   * увеличенный шрифт в настройках браузера.
    */
 
   font-size: var(--font-size-base);
@@ -21,44 +20,30 @@ html {
     font-size: clamp(14px, 0.4vw + 11px, var(--font-size-base));
   }
 
-  /*
-   * Вместе с body — закрывает горизонтальный scrollbar у документа,
-   * когда только body недостаточно (fixed header / mix overflow-y).
-   */
+  /* С body — убирает горизонтальный скролл у документа (fixed header). */
   overflow-x: clip;
 
-  /*
-   * Тёмный фон до загрузки контента — страховка к inline-стилю в
-   * index.html. Если внешний CSS придёт раньше, чем браузер успеет
-   * применить inline (на медленном CPU), всё равно не будет белого flash.
-   */
+  /* Дублирует inline-фон из index.html — без белой вспышки до загрузки CSS. */
   background-color: var(--color-bg-page);
 }
 
 body {
   font-family: var(--font-sans);
-  /*
-   * Страховка от случайных «вылетов» декораций за пределы viewport
-   * (отрицательные left/right в position:absolute). overflow-x: clip
-   * режет только горизонтально и не ломает sticky/position:sticky.
-   */
+  /* Обрезает декорации с отрицательным position, вылезающие за край экрана. */
   overflow-x: clip;
   background-color: var(--color-bg-page);
   color: var(--color-text-primary);
 }
 
 .app-root {
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
 }
 
 /*
- * Header у нас плавающий (position: fixed/absolute поверх контента),
- * поэтому <main> идёт flush до верха viewport. Каждая первая
- * (hero) секция страницы сама задаёт собственный `padding-top`,
- * который заведомо больше высоты хедера — контент не заезжает.
- * Отдельный `padding-top: var(--header-offset)` у main больше не нужен.
+ * Header fixed — не занимает место в потоке. У main нет padding-top:
+ * отступ под хедер задаёт первая секция страницы (hero) в своих стилях.
  */
 .app-main {
   flex: 1;
@@ -67,37 +52,23 @@ body {
   min-height: 0;
 }
 
-.section {
-  padding-block: to-rem(100);
-
-  @media (max-width: 768px) {
-    padding-block: to-rem(64);
-  }
-}
-
-/* Все секции с id-якорями (home, audience) не должны прятаться под
- * плавающий header при hash-навигации. scroll-margin-top компенсирует
- * высоту header-а — браузер учитывает его при scrollIntoView и
- * Vue Router scrollBehavior { el: hash }. */
+/* Якоря (#about, #contacts): при переходе по hash секция не прячется
+ * под fixed header — учитывается в scrollIntoView и router scrollBehavior. */
 section[id],
 div[id] {
   scroll-margin-top: var(--header-offset);
 }
 
 /*
- * Smooth entrance корневого элемента каждого маршрутного view.
- * Применяется CSS-animation (а не Vue <Transition>): анимация
- * запускается атомарно с mount нового view, что даёт стабильную
- * визуальную смену маршрута без промежуточных кадров.
- *
- * Селектор `.app-main__view > *` бьёт по корню любого view
- * (.home, .blog-page, .article, .audience-page, .casino-page, .not-found),
- * без необходимости трогать каждый компонент отдельно.
+ * Fade-in при смене маршрута (home → blog → casino). CSS-animation
+ * на корне view — без Vue <Transition>, стабильно при mount.
+ * Селектор `.app-main__view > *` покрывает все страницы разом.
  */
 .app-main__view > * {
   animation: app-view-enter 180ms ease-out both;
 }
 
+/* opacity 0 → 1, используется в animation выше. */
 @keyframes app-view-enter {
   from {
     opacity: 0;
@@ -107,6 +78,8 @@ div[id] {
   }
 }
 
+/* prefers-reduced-motion: отключаем fade-in для пользователей
+ * с системной настройкой «Уменьшение движения». */
 @media (prefers-reduced-motion: reduce) {
   .app-main__view > * {
     animation: none;

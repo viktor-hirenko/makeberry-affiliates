@@ -56,7 +56,7 @@ const content = useNotFound()
   }
 }
 
-/* CSS radial-gradient вместо растрового glow — Figma 3861:23211. */
+/* CSS radial-gradient вместо растрового glow */
 .not-found__glow {
   position: absolute;
   top: to-rem(-40);
@@ -84,8 +84,6 @@ const content = useNotFound()
   }
 }
 
-/* gap не задаётся: visual frame уже содержит вертикальный воздух
- * (truck height ~70% от frame). */
 .not-found__inner {
   position: relative;
   z-index: 1;
