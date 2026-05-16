@@ -1,22 +1,21 @@
 import { onUnmounted, watch, type Ref } from 'vue'
 
 /**
- * Блокирует прокрутку `document.body`, пока `isLocked === true`.
- *
- * Нужен для fullscreen-overlay (сейчас — `MobileMenu`): без lock фон
- * продолжает скроллиться под открытым drawer. При закрытии или unmount
- * overflow сбрасывается.
+ * Блокирует прокрутку страницы, пока `isLocked === true`.
+ * Используется в MobileMenu — добавляет/убирает класс `no-scroll` на body.
  */
 export function useScrollLock(isLocked: Ref<boolean>): void {
   watch(
     isLocked,
     (locked) => {
-      document.body.style.overflow = locked ? 'hidden' : ''
+      document.documentElement.classList.toggle('no-scroll', locked)
+      document.body.classList.toggle('no-scroll', locked)
     },
     { immediate: true },
   )
 
   onUnmounted(() => {
-    document.body.style.overflow = ''
+    document.documentElement.classList.remove('no-scroll')
+    document.body.classList.remove('no-scroll')
   })
 }

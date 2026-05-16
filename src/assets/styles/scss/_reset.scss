@@ -6,6 +6,10 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+
+  &.no-scroll {
+    overflow: hidden;
+  }
 }
 
 body {
@@ -14,6 +18,10 @@ body {
   background-color: var(--color-bg-page);
   color: var(--color-text-primary);
   -webkit-font-smoothing: antialiased;
+
+  &.no-scroll {
+    overflow: hidden;
+  }
 }
 
 img,

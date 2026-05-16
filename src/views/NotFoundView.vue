@@ -43,9 +43,7 @@ const content = useNotFound()
 .not-found {
   position: relative;
   /* flex: 1 заполняет всё доступное пространство в .app-main__view, не
-   * прибегая к фиксированным viewport-единицам (100svh vs 100vh
-   * конфликтовали с .app-root { min-height: 100vh } на iOS Safari и
-   * давали видимый scroll внизу страницы). */
+   * прибегая к фиксированным viewport-единицам. */
   flex: 1;
   padding: to-rem(24) var(--container-pad-x);
   display: flex;
