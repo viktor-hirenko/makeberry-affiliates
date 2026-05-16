@@ -78,7 +78,6 @@ defineProps<Props>()
   @include section-padding(
     $mobile-top: to-rem(130),
     $mobile-bottom: to-rem(70),
-    $desktop-inline: to-rem(200),
     $desktop-top: to-rem(230),
     $desktop-bottom: to-rem(100)
   );
@@ -86,6 +85,10 @@ defineProps<Props>()
   @include mq($from: tablet) {
     padding-top: to-rem(230);
     padding-bottom: to-rem(50);
+  }
+
+  @include mq($from: wide) {
+    padding-bottom: to-rem(100);
   }
 }
 
@@ -97,15 +100,15 @@ defineProps<Props>()
 
   @include container(var(--container-default));
 
-  @include mq($from: tablet) {
+  @include mq($from: mobile) {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     gap: 0;
   }
 
-  @include mq($from: wide) {
-    gap: to-rem(40);
+  @include mq($from: tablet) {
+    position: relative;
   }
 }
 
@@ -117,9 +120,18 @@ defineProps<Props>()
   gap: to-rem(32);
   width: 100%;
 
+  @include mq($from: mobile) {
+    flex: 0 1 to-rem(500);
+    // width: to-rem(570);
+    // width: calc(570 / 360 * 100%);
+    width: to-rem(500);
+    // gap: to-rem(48);
+  }
+
   @include mq($from: tablet) {
-    flex: 1 0 to-rem(570);
-    width: to-rem(570);
+    flex: 0 0 calc(570 / 1040 * 100%);
+    // width: to-rem(570);
+    width: calc(570 / 1040 * 100%);
     gap: to-rem(48);
   }
 }
@@ -134,8 +146,9 @@ defineProps<Props>()
   line-height: to-rem(48);
   letter-spacing: -0.01em;
 
-  @include mq($from: mobile) {
+  @include mq($from: tablet) {
     @include font-h2;
+    white-space: nowrap;
   }
 }
 
@@ -145,7 +158,7 @@ defineProps<Props>()
   gap: to-rem(32);
   width: 100%;
 
-  @include mq($from: mobile) {
+  @include mq($from: tablet) {
     gap: to-rem(40);
   }
 }
@@ -241,14 +254,26 @@ defineProps<Props>()
   width: calc(200 / 360 * 100%);
   height: calc(200 / 360 * 100%);
   min-width: to-rem(200);
-  max-width: to-rem(360);
+  max-width: to-rem(280);
+
+  @include mq($from: mobile) {
+    z-index: -1;
+    max-width: 100%;
+    align-self: start;
+    flex: unset;
+  }
 
   @include mq($from: tablet) {
+    position: absolute;
+    right: to-rem(-80);
+    z-index: -1;
+    flex: 0 0 auto;
     align-self: unset;
-    width: calc(560 / 1040 * 100%);
-    height: calc(560 / 1040 * 100%);
+    // width: calc(560 / 1040 * 100%);
+    // height: calc(560 / 1040 * 100%);
     max-width: to-rem(560);
-    transform: translateY(-36px);
+    height: auto;
+    transform: translateY(to-rem(-36px));
   }
 }
 

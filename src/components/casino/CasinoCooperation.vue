@@ -38,7 +38,7 @@ defineProps<Props>()
 .casino-coop {
   position: relative;
 
-  @include section-padding($desktop-inline: to-rem(120));
+  @include section-padding();
 }
 
 .casino-coop__inner {

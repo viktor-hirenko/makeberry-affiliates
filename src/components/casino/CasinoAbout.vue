@@ -62,11 +62,16 @@ defineProps<Props>()
 
   @include section-padding(
     $mobile-top: to-rem(190),
-    $mobile-bottom: to-rem(190),
-    $desktop-inline: to-rem(200),
-    $desktop-top: to-rem(150),
-    $desktop-bottom: to-rem(150)
+    $mobile-bottom: to-rem(190) // $desktop-inline: to-rem(200)
   );
+
+  @include mq($from: tablet) {
+    padding-block: to-rem(100);
+  }
+
+  @include mq($from: wide) {
+    padding-block: to-rem(150);
+  }
 }
 
 .casino-about__inner {

@@ -65,7 +65,7 @@ defineProps<Props>()
   position: relative;
   overflow-x: clip;
 
-  @include section-padding($desktop-inline: to-rem(200));
+  @include section-padding();
 }
 
 .casino-cta__glow {

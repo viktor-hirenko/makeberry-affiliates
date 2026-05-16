@@ -44,7 +44,7 @@ defineProps<Props>()
 .casino-highlights {
   position: relative;
 
-  @include section-padding($desktop-inline: to-rem(200));
+  @include section-padding();
 }
 
 .casino-highlights__inner {
