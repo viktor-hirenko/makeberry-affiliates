@@ -55,15 +55,12 @@ watch(
   flex-direction: column;
 }
 
-// .casino-page--rocketplay :deep(.casino-hero__logo-wrap) {
-//   @include mq($from: tablet) {
-//     width: calc(438 / 1040 * 100%);
-//     max-width: to-rem(438);
-//     transform: translateY(-10px);
-//   }
-// }
+/* Per-page layout overrides (не в JSON): позиции бейджей, ширина about-текста,
+ * hero logo — зависят от viewport и объёма контента на конкретной странице. */
 
+// RocketPlay — hero logo, about text width, about badge positions
 .casino-page--rocketplay {
+  // Hero
   :deep(.casino-hero__logo-wrap) {
     @include mq($from: tablet) {
       right: 0;
@@ -73,6 +70,7 @@ watch(
     }
   }
 
+  // About
   :deep(.casino-about__text) {
     @include mq($from: tablet) {
       max-width: to-rem(592);
@@ -81,19 +79,20 @@ watch(
 
   :deep(.casino-about__badge--outlined-brand) {
     top: to-rem(-169);
-    left: unset;
     right: to-rem(25);
+    transform: rotate(-6.06deg);
     z-index: 1;
 
     @include mq($from: tablet) {
       top: to-rem(-63);
-      right: to-rem(60px);
+      right: to-rem(60);
     }
   }
 
   :deep(.casino-about__badge--brand-fill) {
+    top: to-rem(-106);
     right: to-rem(47);
-    left: unset;
+    transform: rotate(5.62deg);
 
     @include mq($from: tablet) {
       top: to-rem(-9);
@@ -102,10 +101,9 @@ watch(
   }
 
   :deep(.casino-about__badge--outlined-bold) {
-    top: unset;
-    left: unset;
     right: 0;
-    bottom: to-rem(-110px);
+    bottom: to-rem(-110);
+    transform: rotate(6.78deg);
 
     @include mq($from: tablet) {
       right: to-rem(65);
@@ -114,23 +112,24 @@ watch(
   }
 }
 
+// WinSpirit — about badge positions
 .casino-page--winspirit {
   :deep(.casino-about__badge--outlined-brand) {
     top: to-rem(-156);
-    left: unset;
     right: to-rem(59);
+    transform: rotate(-6.06deg);
     z-index: 1;
 
     @include mq($from: tablet) {
       top: to-rem(-30);
-      right: to-rem(60px);
+      right: to-rem(60);
     }
   }
 
   :deep(.casino-about__badge--brand-fill) {
     top: to-rem(-104);
     right: to-rem(-11);
-    left: unset;
+    transform: rotate(5.62deg);
 
     @include mq($from: tablet) {
       top: to-rem(30);
@@ -139,10 +138,9 @@ watch(
   }
 
   :deep(.casino-about__badge--outlined-bold) {
-    top: unset;
-    left: unset;
     right: 0;
-    bottom: to-rem(-110px);
+    bottom: to-rem(-110);
+    transform: rotate(8.02deg);
 
     @include mq($from: tablet) {
       right: to-rem(50);
@@ -151,7 +149,9 @@ watch(
   }
 }
 
+// LuckyHills — about text width, about badge positions
 .casino-page--luckyhills {
+  // About
   :deep(.casino-about__text) {
     @include mq($from: tablet) {
       max-width: to-rem(733);
@@ -160,8 +160,8 @@ watch(
 
   :deep(.casino-about__badge--outlined-brand) {
     top: to-rem(-161);
-    left: unset;
     right: to-rem(16);
+    transform: rotate(-6.06deg);
     z-index: 1;
 
     @include mq($from: tablet) {
@@ -173,7 +173,7 @@ watch(
   :deep(.casino-about__badge--brand-fill) {
     top: to-rem(-99);
     right: 0;
-    left: unset;
+    transform: rotate(5.62deg);
 
     @include mq($from: tablet) {
       top: to-rem(22);
@@ -182,10 +182,9 @@ watch(
   }
 
   :deep(.casino-about__badge--outlined-bold) {
-    top: unset;
-    left: unset;
     right: to-rem(-17);
     bottom: to-rem(-120);
+    transform: rotate(8.44deg);
 
     @include mq($from: tablet) {
       right: to-rem(-66);
@@ -193,35 +192,4 @@ watch(
     }
   }
 }
-
-// .casino-page :deep(.casino-about__badge--outlined-brand) {
-//   left: unset;
-//   right: to-rem(75.13px);
-//   z-index: 1;
-
-//   @include mq($from: tablet) {
-//     right: to-rem(90px);
-//   }
-// }
-
-// .casino-page :deep(.casino-about__badge--brand-fill) {
-//   right: 0;
-//   left: unset;
-
-//   @include mq($from: tablet) {
-//     right: to-rem(50px);
-//   }
-// }
-
-// .casino-page :deep(.casino-about__badge--outlined-bold) {
-//   top: unset;
-//   left: unset;
-//   right: 0;
-//   bottom: to-rem(-90px);
-
-//   @include mq($from: tablet) {
-//     right: to-rem(90px);
-//     bottom: to-rem(-56px);
-//   }
-// }
 </style>

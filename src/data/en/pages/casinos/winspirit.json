@@ -57,32 +57,17 @@
       {
         "id": "free-spins",
         "label": "Free spins",
-        "variant": "outlined-brand",
-        "rotate": -6.06,
-        "top": -3.5,
-        "right": 3.81,
-        "mobileTop": -9.75,
-        "mobileLeft": 6.19
+        "variant": "outlined-brand"
       },
       {
         "id": "cashback",
         "label": "Cashback",
-        "variant": "brand-fill",
-        "rotate": 5.62,
-        "top": 0.44,
-        "right": 0.22,
-        "mobileTop": -6.5,
-        "mobileLeft": 10.81
+        "variant": "brand-fill"
       },
       {
         "id": "tournaments",
         "label": "Tournaments",
-        "variant": "outlined-bold",
-        "rotate": 8.02,
-        "top": 8.19,
-        "right": 2.88,
-        "mobileTop": 27.44,
-        "mobileLeft": 8.06
+        "variant": "outlined-bold"
       }
     ]
   },

@@ -3,9 +3,15 @@ import type { CasinoAboutContent } from '@/types/content'
 
 /**
  * Casino About — описательный блок с плавающими розовыми бейджами.
- * Координаты бейджей хранятся в данных (`en/pages/casinos/*.json`):
- * `mobileTop` / `mobileLeft` для < tablet, `top` / `right` для tablet+,
- * чтобы можно было точно воспроизвести Figma без per-component CSS.
+ *
+ * JSON хранит ТОЛЬКО content (id / label / variant). Позиционирование
+ * и rotate бейджей — это layout-данные, которые живут в SCSS:
+ *   - базовые стили бейджей здесь (`<style scoped>`),
+ *   - per-page координаты — в `CasinoView.vue` через `:deep()`
+ *     (`.casino-page--<slug> :deep(.casino-about__badge--<variant>)`).
+ *
+ * Это даёт один источник правды для позиций и убирает fragile
+ * Figma-координаты из data-слоя.
  */
 interface Props {
   about: CasinoAboutContent
@@ -36,13 +42,6 @@ defineProps<Props>()
           :key="badge.id"
           class="casino-about__badge"
           :class="`casino-about__badge--${badge.variant}`"
-          :style="{
-            '--badge-top': `${badge.top}rem`,
-            '--badge-right': `${badge.right}rem`,
-            '--badge-mobile-top': `${badge.mobileTop}rem`,
-            '--badge-mobile-left': `${badge.mobileLeft}rem`,
-            '--badge-rotate': `${badge.rotate}deg`,
-          }"
         >
           {{ badge.label }}
         </li>
@@ -107,8 +106,9 @@ defineProps<Props>()
   color: var(--color-text-primary);
 }
 
-/* Координаты бейджей приходят через CSS-vars из JSON:
- * --badge-mobile-* до tablet, --badge-top/right с tablet. */
+/* Контейнер для абсолютно-позиционированных бейджей.
+ * Сами координаты + rotate задаются per-page в `CasinoView.vue`
+ * (`.casino-page--<slug> :deep(.casino-about__badge--<variant>)`). */
 .casino-about__badges {
   list-style: none;
   margin: 0;
@@ -121,9 +121,6 @@ defineProps<Props>()
 .casino-about__badge {
   position: absolute;
   pointer-events: auto;
-  top: var(--badge-mobile-top, 0);
-  left: var(--badge-mobile-left, 0);
-  transform: rotate(var(--badge-rotate, 0deg));
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -138,12 +135,6 @@ defineProps<Props>()
   color: var(--color-text-primary);
   text-align: center;
   white-space: nowrap;
-
-  @include mq($from: tablet) {
-    top: var(--badge-top, 0);
-    left: auto;
-    right: var(--badge-right, 0);
-  }
 }
 
 .casino-about__badge--brand-fill {

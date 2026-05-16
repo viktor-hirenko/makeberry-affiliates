@@ -723,25 +723,16 @@ export type CasinoAboutBadgeVariant = 'brand-fill' | 'outlined-brand' | 'outline
 
 /**
  * Плавающий бейдж в about-секции.
- * Desktop: `top` / `right` в rem, позиционируются относительно `__inner` (1440 frame).
- * Mobile:  `mobileTop` / `mobileLeft` в rem, позиционируются относительно `__inner`
- *           (Figma 360 frame — узел 3821:7879, координаты badges относительно Text-div
- *           + смещение на `py-190` секции).
- * `rotate` — угол наклона в градусах (одинаков для обоих брейкпоинтов).
+ *
+ * Хранит только content (`label` + `variant`). Позиционирование и rotate —
+ * это per-page layout-данные, они живут в SCSS (`CasinoView.vue` →
+ * `.casino-page--<slug> :deep(.casino-about__badge--<variant>)`), а не в
+ * JSON: координаты Figma слишком хрупкие, чтобы быть source of truth.
  */
 export interface CasinoAboutBadge {
   id: string
   label: string
   variant: CasinoAboutBadgeVariant
-  rotate: number
-  /** Desktop: rem от верхнего края __inner */
-  top: number
-  /** Desktop: rem от правого края __inner */
-  right: number
-  /** Mobile: rem от верхнего края __inner */
-  mobileTop: number
-  /** Mobile: rem от левого края __inner */
-  mobileLeft: number
 }
 
 /** Часть параграфа: Regular по умолчанию, `strong: true` — белый/полужирный акцент. */

@@ -57,32 +57,17 @@
       {
         "id": "vip-programme",
         "label": "VIP programme",
-        "variant": "outlined-brand",
-        "rotate": -6.06,
-        "top": -3.06,
-        "right": -0.91,
-        "mobileTop": -9.75,
-        "mobileLeft": 5.06
+        "variant": "outlined-brand"
       },
       {
         "id": "gamification",
         "label": "Gamification",
-        "variant": "brand-fill",
-        "rotate": 5.62,
-        "top": 0.44,
-        "right": -1.46,
-        "mobileTop": -6.5,
-        "mobileLeft": 10.81
+        "variant": "brand-fill"
       },
       {
         "id": "collectible-rewards",
         "label": "Collectible rewards",
-        "variant": "outlined-bold",
-        "rotate": 8.44,
-        "top": 9.17,
-        "right": -4.23,
-        "mobileTop": 27.44,
-        "mobileLeft": 5.06
+        "variant": "outlined-bold"
       }
     ]
   },
