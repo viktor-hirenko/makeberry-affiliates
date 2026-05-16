@@ -80,11 +80,53 @@ export const router = createRouter({
       meta: { title: 'Page not found', hideFooter: true },
     },
   ],
-  scrollBehavior(to, _from, saved) {
+  scrollBehavior(to, from, saved) {
     /* Back/forward — восстанавливаем сохранённую позицию. */
     if (saved) return saved
-    /* Якорь внутри страницы (#section) — плавно скроллим к нему. */
-    if (to.hash) return { el: to.hash, behavior: 'smooth' }
+
+    /* Якорь (#section) — секции на главной рендерятся через defineAsyncComponent,
+     * поэтому элемент с нужным id появляется в DOM с задержкой после перехода.
+     * Возвращаем Promise и поллим DOM до ~1.5 с.
+     *
+     * Переход с другой страницы (напр. /affiliates → /#contacts):
+     * — держим viewport сверху, пока якорь не готов;
+     * — скролл `auto` (мгновенно), иначе `smooth` прокатывает через Map и др. */
+    if (to.hash) {
+      const isCrossRoute = to.path !== from.path
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      const behavior: 'auto' | 'smooth' =
+        isCrossRoute || prefersReducedMotion ? 'auto' : 'smooth'
+
+      return new Promise((resolve) => {
+        const MAX_ATTEMPTS = 20
+        const INTERVAL_MS = 50
+
+        if (isCrossRoute) {
+          window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+        }
+
+        function tryScroll(attempt: number) {
+          const el = document.querySelector<HTMLElement>(to.hash)
+          if (el) {
+            resolve({ el: to.hash, behavior })
+          } else if (attempt < MAX_ATTEMPTS) {
+            setTimeout(() => tryScroll(attempt + 1), INTERVAL_MS)
+          } else {
+            resolve({ top: 0, left: 0 })
+          }
+        }
+
+        /* На главной между якорями — небольшая пауза под page-fade (250 ms).
+         * С другой страницы — сразу, чтобы не показывать промежуточные секции. */
+        const startDelayMs = isCrossRoute ? 0 : 280
+        if (startDelayMs === 0) {
+          tryScroll(0)
+        } else {
+          setTimeout(() => tryScroll(0), startDelayMs)
+        }
+      })
+    }
+
     /* Переход на другой маршрут — мгновенно сверху,
      * чтобы пользователь сразу видел начало новой страницы,
      * а не «прокатку» от прежней позиции. */

@@ -39,7 +39,8 @@ defineProps<Props>()
           v-if="hero.cta"
           variant="primary"
           size="large"
-          :to="hero.cta.path"
+          :to="hero.cta.href ? undefined : hero.cta.path"
+          :href="hero.cta.href"
           class="audience-hero__cta"
         >
           {{ hero.cta.label }}

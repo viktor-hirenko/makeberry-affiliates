@@ -65,3 +65,12 @@ body {
     padding-block: to-rem(64);
   }
 }
+
+/* Все секции с id-якорями (home, audience) не должны прятаться под
+ * плавающий header при hash-навигации. scroll-margin-top компенсирует
+ * высоту header-а — браузер учитывает его при scrollIntoView и
+ * Vue Router scrollBehavior { el: hash }. */
+section[id],
+div[id] {
+  scroll-margin-top: var(--header-offset);
+}

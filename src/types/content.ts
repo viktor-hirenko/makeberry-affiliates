@@ -593,7 +593,12 @@ export interface PageHeroBlock {
   badge?: string
   titleHtml: string
   subtitleHtml: string
-  cta?: { label: string; path: string }
+  /**
+   * path  — внутренний маршрут/якорь (RouterLink :to).
+   * href  — внешний URL или mailto: (anchor :href, открывается нативно).
+   * Одно из двух должно присутствовать.
+   */
+  cta?: { label: string; path?: string; href?: string }
 }
 
 /**
@@ -665,7 +670,11 @@ export interface WhatYouGetCard {
  */
 export interface AudienceCtaBlock {
   titleHtml: string
-  button: { label: string; path: string }
+  /**
+   * path  — внутренний маршрут/якорь (RouterLink :to).
+   * href  — внешний URL или mailto: (anchor :href).
+   */
+  button: { label: string; path?: string; href?: string }
   glow: { src: string; alt: string }
 }
 

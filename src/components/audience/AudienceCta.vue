@@ -35,7 +35,13 @@ const ui = useSharedUi()
       />
 
       <p class="audience-cta__text" v-html="cta.titleHtml" />
-      <BaseButton variant="primary" size="large" :to="cta.button.path" class="audience-cta__btn">
+      <BaseButton
+        variant="primary"
+        size="large"
+        :to="cta.button.href ? undefined : cta.button.path"
+        :href="cta.button.href"
+        class="audience-cta__btn"
+      >
         {{ cta.button.label }}
       </BaseButton>
     </div>

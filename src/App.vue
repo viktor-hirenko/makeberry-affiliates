@@ -16,7 +16,9 @@ const route = useRoute()
           <!-- out-in: нет одновременно двух full-page в DOM → не «просвечивает» список блога под статьёй -->
           <!-- leave: 0 — старый view не «полупрозрачно висит»; enter — мягко появляется новый -->
           <Transition name="page-fade" mode="out-in" :duration="{ enter: 250, leave: 0 }">
-            <component :is="Component" :key="route.fullPath" />
+            <!-- Ключ только по path (без hash): переход / → /#contacts не перемонтирует
+                 HomeView — иначе хэш-навигация внутри главной вызывала бы полный remount. -->
+            <component :is="Component" :key="route.path" />
           </Transition>
         </RouterView>
       </div>
