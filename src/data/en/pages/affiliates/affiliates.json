@@ -166,7 +166,7 @@
     "titleHtml": "<span class=\"primary\">Makeberry Affiliates is built for affiliates who expect more than a standard offer.</span> <span class=\"muted\">If you’re focused on long-term, controlled scaling, we should talk.</span>",
     "button": {
       "label": "Register",
-      "href": "mailto:info@makeberry.com?subject=Affiliate%20registration%20%E2%80%94%20Makeberry"
+      "path": "/sign-up"
     },
     "glow": {
       "src": "/images/decorations/glow-audience-affiliates.webp",

@@ -124,7 +124,8 @@ export interface FooterAward {
 
 export interface FooterBottomLink {
   label: string
-  path: string
+  path?: string
+  href?: string
 }
 
 export interface FooterConfig {

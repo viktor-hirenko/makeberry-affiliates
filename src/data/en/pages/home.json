@@ -217,7 +217,7 @@
       "title": "Ready to start?",
       "button": {
         "label": "Become a partner",
-        "path": "mailto:info@makeberry.com"
+        "path": "/#contacts"
       }
     },
     "glow": {
