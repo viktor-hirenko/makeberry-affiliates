@@ -80,7 +80,9 @@ function handleScrollClick() {
   }
 
   @include landscape-phone {
-    padding-top: to-rem(230);
+    height: auto;
+    min-height: auto;
+    padding-top: to-rem(100);
   }
 }
 

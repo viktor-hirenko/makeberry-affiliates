@@ -81,7 +81,9 @@ defineProps<Props>()
   }
 
   @include landscape-phone {
-    padding-top: to-rem(200);
+    height: auto;
+    min-height: auto;
+    padding-top: to-rem(100);
   }
 }
 

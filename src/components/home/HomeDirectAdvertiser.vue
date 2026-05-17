@@ -274,7 +274,16 @@ const navConfig = {
 
   /* Figma CSS-экспорт даёт только крайние стопы и теряет розовый
    * блик в центре — добавляем средний стоп вручную. */
-  &:hover,
+  &:hover {
+    @media (hover: hover) and (pointer: fine) {
+      background-image: linear-gradient(
+        334deg,
+        rgba(251, 0, 109, 0) -4.68%,
+        rgba(251, 0, 109, 0.55) 45%,
+        #000 98.47%
+      );
+    }
+  }
   &:focus-visible {
     background-image: linear-gradient(
       334deg,
