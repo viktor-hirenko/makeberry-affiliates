@@ -55,14 +55,30 @@ defineProps<Props>()
 
 .audience-hero {
   position: relative;
-  isolation: isolate;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100dvh;
+  min-height: fit-content;
 
   @include section-padding(
     $desktop-inline: to-rem(160),
-    $mobile-top: to-rem(200),
-    $desktop-top: to-rem(200)
+    $mobile-top: to-rem(70),
+    $mobile-bottom: to-rem(70),
+    $desktop-top: to-rem(200),
+    $desktop-bottom: to-rem(100)
   );
+
+  @include mq($from: mobile) {
+    padding-top: to-rem(100);
+    padding-bottom: to-rem(100);
+  }
+
+  @include mq($from: tablet) {
+    padding-top: to-rem(150);
+  }
 }
 
 .audience-hero__inner {

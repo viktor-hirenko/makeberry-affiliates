@@ -3,7 +3,6 @@ import BaseButton from '@/components/ui/BaseButton.vue'
 import type { CasinoHero } from '@/types/content'
 
 /**
- * Casino Hero — flush-top секция под floating header.
  *
  * Layout:
  * - < 768px: column-reverse (лого сверху по центру), stats — flex 2-up + wrap.
@@ -67,22 +66,23 @@ defineProps<Props>()
 <style scoped lang="scss">
 @use '@/assets/styles/scss/mixins' as *;
 
-/* Hero flush-top — собственный padding-top уже учитывает высоту
- * floating-хедера. */
 .casino-hero {
   position: relative;
   overflow: hidden;
+  height: 100dvh;
+  min-height: fit-content;
 
   @include section-padding(
-    $mobile-top: to-rem(130),
+    $mobile-top: to-rem(70),
     $mobile-bottom: to-rem(70),
     $desktop-top: to-rem(230),
     $desktop-bottom: to-rem(100)
   );
 
   @include mq($from: tablet) {
+    height: 100dvh;
     padding-top: to-rem(230);
-    padding-bottom: to-rem(50);
+    padding-bottom: to-rem(100);
   }
 
   @include mq($from: wide) {
@@ -93,12 +93,14 @@ defineProps<Props>()
 /* < 768px: column-reverse, чтобы лого было сверху. */
 .casino-hero__inner {
   display: flex;
+  height: 100%;
+  justify-content: start;
   flex-direction: column-reverse;
   gap: to-rem(20);
 
   @include container(var(--container-default));
 
-  @include mq($from: mobile) {
+  @include mq($from: tablet) {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
@@ -115,10 +117,11 @@ defineProps<Props>()
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  flex-grow: 1;
   gap: to-rem(32);
   width: 100%;
 
-  @include mq($from: mobile) {
+  @include mq($from: tablet) {
     flex: 0 1 to-rem(400);
     width: to-rem(400);
   }
@@ -140,7 +143,7 @@ defineProps<Props>()
   line-height: to-rem(48);
   letter-spacing: -0.01em;
 
-  @include mq($from: tablet) {
+  @include mq($from: mobile) {
     @include font-h2;
     white-space: nowrap;
   }
@@ -215,8 +218,6 @@ defineProps<Props>()
   font-size: to-rem(40);
   line-height: to-rem(48);
   letter-spacing: to-rem(-0.4);
-  /* dim-grey #404040 — watermark-эффект из Figma, осознанный хардкод
-   * вне токенов. */
   color: #404040;
 }
 
@@ -232,6 +233,7 @@ defineProps<Props>()
 
 .casino-hero__cta {
   align-self: stretch;
+  margin-top: auto;
 
   @media (min-width: 600px) {
     width: fit-content;
@@ -250,11 +252,15 @@ defineProps<Props>()
   justify-content: center;
   flex: 0 0 auto;
   width: calc(200 / 360 * 100%);
-  height: calc(200 / 360 * 100%);
+  height: auto;
   min-width: to-rem(200);
   max-width: to-rem(280);
 
   @include mq($from: mobile) {
+    max-width: 100%;
+  }
+
+  @include mq($from: tablet) {
     z-index: -1;
     max-width: 100%;
     align-self: start;

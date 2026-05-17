@@ -57,33 +57,29 @@ function handleScrollClick() {
 <style scoped lang="scss">
 @use '@/assets/styles/scss/mixins' as *;
 
-/* Flush-top под fixed header; padding-top (220 → 240 с ≥768 → 280 с ≥1024)
- * компенсирует высоту шапки. */
 .home-hero {
   position: relative;
-  isolation: isolate;
   overflow: hidden;
+  display: flex;
+  height: 100dvh;
+  min-height: fit-content;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   @include section-padding(
     $desktop-inline: to-rem(160),
-    $mobile-top: to-rem(220),
+    $mobile-top: to-rem(70),
     $mobile-bottom: to-rem(70),
-    $desktop-top: to-rem(280),
+    $desktop-top: to-rem(150),
     $desktop-bottom: to-rem(150)
   );
 
   @include mq($from: mobile) {
-    padding-top: to-rem(240);
-    padding-bottom: to-rem(100);
-  }
-
-  @include mq($from: tablet) {
-    padding-top: to-rem(280);
-    padding-bottom: to-rem(150);
+    padding-top: to-rem(100);
   }
 }
 
-/* mix-blend luminosity накладывает цвет hero на фон (per Figma). */
 .home-hero__bg {
   position: absolute;
   inset: 0;
