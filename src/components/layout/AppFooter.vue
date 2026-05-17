@@ -121,10 +121,7 @@ const ui = useSharedUi()
       <!-- Bottom: legal + copyright -->
       <div class="app-footer__bottom">
         <template v-for="(link, index) in footer.bottomLinks" :key="link.label">
-          <a v-if="link.href" :href="link.href" class="app-footer__bottom-link">
-            {{ link.label }}
-          </a>
-          <RouterLink v-else :to="link.path ?? '/'" class="app-footer__bottom-link">
+          <RouterLink :to="link.path" class="app-footer__bottom-link">
             {{ link.label }}
           </RouterLink>
           <span
@@ -144,7 +141,7 @@ const ui = useSharedUi()
 <style scoped lang="scss">
 @use '@/assets/styles/scss/mixins' as *;
 
-/* padding-inline 150 — только с wide (1280+) через section-padding;
+/* padding-inline 150 — только с laptop (1280+) через section-padding;
  * контейнер 1140px, чтобы Partners + Awards влезали в строку на 1024–1279. */
 .app-footer {
   z-index: 1;
@@ -233,6 +230,11 @@ const ui = useSharedUi()
   flex-direction: column;
   align-items: flex-start;
   gap: to-rem(48);
+
+  @include mq($from: compact) {
+    flex-direction: row;
+    gap: to-rem(24);
+  }
 
   @include mq($from: mobile) {
     flex-direction: row;

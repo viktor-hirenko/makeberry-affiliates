@@ -65,6 +65,21 @@ const about = useHomeAbout()
   gap: to-rem(16);
   width: 100%;
 
+  @include mq($from: compact) {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: auto;
+    grid-auto-rows: minmax(to-rem(220), auto);
+    grid-template-areas:
+      'b1 b2'
+      'b3 b4'
+      'b5 b6'
+      'b7 b8';
+    gap: to-rem(16);
+    max-width: to-rem(980);
+    margin-inline: auto;
+  }
+
   @include mq($from: mobile) {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));

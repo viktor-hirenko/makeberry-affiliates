@@ -8,7 +8,8 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 
 import BaseIcon from '@/components/ui/BaseIcon.vue'
-import { BREAKPOINT_MOBILE_PX, BREAKPOINT_TABLET_PX } from '@/constants/breakpoints'
+import { BREAKPOINT_TABLET_PX } from '@/constants/breakpoints'
+import { SWIPER_SPACE_COMFORT_PX, swiperTwoColumnBreakpoints } from '@/constants/swiper'
 import { useHomeContacts, useSharedUi } from '@/composables/useContent'
 
 const content = useHomeContacts()
@@ -16,20 +17,17 @@ const ui = useSharedUi()
 
 /**
  * Swiper breakpoints (числа = min-width):
- * - &lt; mobile: 1 слайд (узкий телефон)
- * - mobile–tablet: 2 слайда
- * - ≥ tablet: 4 слайда
+ * - &lt;600: 1 слайд
+ * - 600–767: 2 слайда, gap 16
+ * - 768–1023: 2 слайда, gap 20
+ * - ≥1024: 4 слайда
  */
 const contactsSwiperBreakpoints = {
-  [BREAKPOINT_MOBILE_PX]: {
-    slidesPerView: 2,
-    slidesPerGroup: 2,
-    spaceBetween: 16,
-  },
+  ...swiperTwoColumnBreakpoints,
   [BREAKPOINT_TABLET_PX]: {
     slidesPerView: 4,
     slidesPerGroup: 4,
-    spaceBetween: 20,
+    spaceBetween: SWIPER_SPACE_COMFORT_PX,
   },
 }
 
@@ -388,7 +386,7 @@ function handleInput() {
   }
 }
 
-/* Стрелки только ≥ wide (под них у slider-wrap есть padding-inline);
+/* Стрелки только ≥ laptop (под них у slider-wrap есть padding-inline);
  * на 1024–1279 их прячем — там full-bleed + dots. */
 .home-contacts__nav {
   display: none;
@@ -406,7 +404,7 @@ function handleInput() {
     background-color var(--transition-base),
     color var(--transition-base);
 
-  @include mq($from: wide) {
+  @include mq($from: laptop) {
     display: inline-flex;
     position: absolute;
     top: to-rem(142.5);
@@ -435,13 +433,13 @@ function handleInput() {
 }
 
 .home-contacts__nav--prev {
-  @include mq($from: wide) {
+  @include mq($from: laptop) {
     left: 0;
   }
 }
 
 .home-contacts__nav--next {
-  @include mq($from: wide) {
+  @include mq($from: laptop) {
     right: 0;
   }
 }
@@ -534,7 +532,7 @@ function handleInput() {
   width: 100%;
   transition: border-color var(--transition-base);
 
-  @include mq($from: mobile) {
+  @include mq($from: compact) {
     width: to-rem(450);
   }
 

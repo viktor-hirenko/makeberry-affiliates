@@ -53,7 +53,7 @@ $section-stack-gap: to-rem(48);
   padding-bottom: $mobile-bottom;
   padding-inline: var(--container-pad-x);
 
-  @include mq($from: wide) {
+  @include mq($from: laptop) {
     padding-top: $desktop-top;
     padding-bottom: $desktop-bottom;
     padding-inline: $desktop-inline;
@@ -69,7 +69,7 @@ $section-stack-gap: to-rem(48);
 /// Обёртка Swiper: гибридный full-bleed.
 /// • &lt;768: Direct (margin + width) — обрезка viewport, pad-x = spaceBetween (16px).
 /// • 768–1023: контейнер секции, без bleed.
-/// • ≥1280: padding-inline под стрелки.
+/// • ≥1280 (laptop): padding-inline под стрелки.
 /// • $tablet-bleed: true — Contacts: margin-bleed на 1024–1279 (4 колонки), без swiper-padding.
 @mixin slider-wrap-bleed($tablet-bleed: false) {
   @include slider-phone-only {
@@ -78,12 +78,12 @@ $section-stack-gap: to-rem(48);
   }
 
   @if $tablet-bleed {
-    @include mq($from: tablet, $until: wide) {
+    @include mq($from: tablet, $until: laptop) {
       margin-inline: calc(-1 * var(--container-pad-x));
     }
   }
 
-  @include mq($from: wide) {
+  @include mq($from: laptop) {
     padding-inline: var(--container-pad-x);
   }
 }

@@ -12,7 +12,8 @@ import 'swiper/css/pagination'
 import PillHeaderCard from '@/components/shared/PillHeaderCard.vue'
 import BaseButton from '@/components/ui/BaseButton.vue'
 import BaseIcon from '@/components/ui/BaseIcon.vue'
-import { BREAKPOINT_MOBILE_PX, BREAKPOINT_TABLET_PX } from '@/constants/breakpoints'
+import { BREAKPOINT_TABLET_PX } from '@/constants/breakpoints'
+import { SWIPER_SPACE_COMFORT_PX, swiperTwoColumnBreakpoints } from '@/constants/swiper'
 import { useHomeDirectAdvertiser, useSharedUi } from '@/composables/useContent'
 
 const content = useHomeDirectAdvertiser()
@@ -41,20 +42,17 @@ function cardAttrs(href: string | undefined, isPlaceholder: boolean | undefined)
 
 /**
  * Swiper breakpoints (min-width):
- * - &lt;768px: 1 слайд
- * - 768–1023px: 2 слайда
+ * - &lt;600px: 1 слайд
+ * - 600–767px: 2 слайда, gap 16
+ * - 768–1023px: 2 слайда, gap 20
  * - ≥1024px: 4 слайда
  */
 const directSwiperBreakpoints = {
-  [BREAKPOINT_MOBILE_PX]: {
-    slidesPerView: 2,
-    slidesPerGroup: 2,
-    spaceBetween: 16,
-  },
+  ...swiperTwoColumnBreakpoints,
   [BREAKPOINT_TABLET_PX]: {
     slidesPerView: 4,
     slidesPerGroup: 4,
-    spaceBetween: 20,
+    spaceBetween: SWIPER_SPACE_COMFORT_PX,
   },
 }
 
@@ -156,11 +154,7 @@ const navConfig = {
       </div>
 
       <ul class="home-direct__cooperation">
-        <PillHeaderCard
-          v-for="model in content.cooperation"
-          :key="model.id"
-          :title="model.title"
-        >
+        <PillHeaderCard v-for="model in content.cooperation" :key="model.id" :title="model.title">
           <p>{{ model.description }}</p>
         </PillHeaderCard>
       </ul>
@@ -232,7 +226,7 @@ const navConfig = {
 
   @include slider-wrap-bleed();
 
-  @include mq($from: wide) {
+  @include mq($from: laptop) {
     gap: to-rem(32);
   }
 }
@@ -349,11 +343,11 @@ const navConfig = {
   color: var(--color-text-tertiary);
 }
 
-/* Стрелки только ≥ wide; на 1024–1279 — swipe + dots. */
+/* Стрелки только ≥ laptop; на 1024–1279 — swipe + dots. */
 .home-direct__nav {
   display: none;
 
-  @include mq($from: wide) {
+  @include mq($from: laptop) {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -396,13 +390,13 @@ const navConfig = {
 }
 
 .home-direct__nav--prev {
-  @include mq($from: wide) {
+  @include mq($from: laptop) {
     left: 0;
   }
 }
 
 .home-direct__nav--next {
-  @include mq($from: wide) {
+  @include mq($from: laptop) {
     right: 0;
   }
 }
@@ -441,9 +435,13 @@ const navConfig = {
   list-style: none;
   width: 100%;
 
+  @include mq($from: compact) {
+    gap: to-rem(16);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   @include mq($from: mobile) {
     gap: to-rem(20);
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   @include mq($from: tablet) {

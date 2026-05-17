@@ -292,14 +292,14 @@ onBeforeUnmount(() => {
   padding-block: to-rem(70);
   overflow-x: clip;
 
-  @include mq($from: wide) {
+  @include mq($from: laptop) {
     gap: to-rem(70);
     padding-block: to-rem(100);
   }
 }
 
 .home-map__inner {
-  /* На ≥ wide HomeMap хочет более широкий внутренний отступ (120 вместо
+  /* На ≥ laptop HomeMap хочет более широкий внутренний отступ (120 вместо
    * глобальных 60), поэтому локально переопределяем --container-pad-x. */
   --container-pad-x-local: var(--container-pad-x);
 
@@ -311,7 +311,7 @@ onBeforeUnmount(() => {
   margin-inline: auto;
   padding-inline: var(--container-pad-x-local);
 
-  @include mq($from: wide) {
+  @include mq($from: laptop) {
     --container-pad-x-local: #{to-rem(120)};
   }
 }

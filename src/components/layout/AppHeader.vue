@@ -8,7 +8,7 @@ import BaseLogo from '@/components/ui/BaseLogo.vue'
 import IconButton from '@/components/ui/IconButton.vue'
 import MobileMenu from '@/components/layout/MobileMenu.vue'
 import { useNav, useSharedUi } from '@/composables/useContent'
-import { BREAKPOINT_TABLET_PX, BREAKPOINT_WIDE_PX } from '@/constants/breakpoints'
+import { BREAKPOINT_LAPTOP_PX, BREAKPOINT_TABLET_PX } from '@/constants/breakpoints'
 import type { NavLink } from '@/types/content'
 
 const nav = useNav()
@@ -19,13 +19,13 @@ const route = useRoute()
 const isTabletOrWider = useMediaQuery(`(min-width: ${BREAKPOINT_TABLET_PX}px)`)
 
 /** Полный вордмарк «Makeberry» в SVG; до этого порога — только mark (шире места под ссылки 1024–1279). */
-const isWideOrWider = useMediaQuery(`(min-width: ${BREAKPOINT_WIDE_PX}px)`)
+const isLaptopOrWider = useMediaQuery(`(min-width: ${BREAKPOINT_LAPTOP_PX}px)`)
 
 /** Компактный бар + drawer при ширине < 1024; pill с навигацией от 1024. */
 const isCompactBar = computed(() => !isTabletOrWider.value)
 const showDesktopNav = computed(() => isTabletOrWider.value)
 const logoVariant = computed<'full' | 'mark'>(() =>
-  isWideOrWider.value ? 'full' : 'mark'
+  isLaptopOrWider.value ? 'full' : 'mark'
 )
 
 const openDropdown = ref<string | null>(null)

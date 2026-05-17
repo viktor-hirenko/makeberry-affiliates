@@ -2,15 +2,7 @@
 import BaseButton from '@/components/ui/BaseButton.vue'
 import type { CasinoHero } from '@/types/content'
 
-/**
- *
- * Layout:
- * - < 768px: column-reverse (лого сверху по центру), stats — flex 2-up + wrap.
- * - ≥ 768px: row, текст слева; stats всё ещё 2-up + wrap, лого в потоке.
- * - ≥ 1024px: текст ~570/1040, stats — 3-up row, лого absolute справа (fluid).
- *
- * Per-page правки лого — в CasinoView (`.casino-page--rocketplay`).
- */
+/** Per-page правки лого — в CasinoView (`.casino-page--rocketplay`). */
 interface Props {
   hero: CasinoHero
 }
@@ -77,22 +69,21 @@ defineProps<Props>()
     $desktop-bottom: to-rem(100)
   );
 
-  @include mq($from: mobile) {
+  @include mq($from: compact) {
     height: 100vh;
     min-height: fit-content;
   }
 
-  @include mq($from: tablet) {
+  @include mq($from: narrow-tablet) {
     padding-top: to-rem(230);
     padding-bottom: to-rem(100);
   }
 
-  @include mq($from: wide) {
+  @include mq($from: laptop) {
     padding-bottom: to-rem(100);
   }
 }
 
-/* < 768px: column-reverse, чтобы лого было сверху. */
 .casino-hero__inner {
   display: flex;
   height: 100%;
@@ -102,15 +93,12 @@ defineProps<Props>()
 
   @include container(var(--container-default));
 
-  @include mq($from: tablet) {
+  @include mq($from: narrow-tablet) {
+    position: relative;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     gap: 0;
-  }
-
-  @include mq($from: tablet) {
-    position: relative;
   }
 }
 
@@ -122,13 +110,10 @@ defineProps<Props>()
   flex-grow: 1;
   gap: to-rem(32);
   width: 100%;
+  max-width: to-rem(570);
 
-  @include mq($from: tablet) {
+  @include mq($from: narrow-tablet) {
     flex: 0 1 to-rem(400);
-    width: to-rem(400);
-  }
-
-  @include mq($from: tablet) {
     flex: 0 0 calc(570 / 1040 * 100%);
     width: calc(570 / 1040 * 100%);
     gap: to-rem(48);
@@ -145,7 +130,7 @@ defineProps<Props>()
   line-height: to-rem(48);
   letter-spacing: -0.01em;
 
-  @include mq($from: mobile) {
+  @include mq($from: compact) {
     @include font-h2;
     white-space: nowrap;
   }
@@ -157,7 +142,7 @@ defineProps<Props>()
   gap: to-rem(32);
   width: 100%;
 
-  @include mq($from: tablet) {
+  @include mq($from: narrow-tablet) {
     gap: to-rem(40);
   }
 }
@@ -167,13 +152,11 @@ defineProps<Props>()
   color: var(--color-text-secondary);
   @include font-body-s-regular;
 
-  @include mq($from: mobile) {
+  @include mq($from: compact) {
     @include font-body-l-regular;
   }
 }
 
-/* < 1024px: 2-per-row + wrap (3-й переносится); ≥1024px: 3-up row
- * с border-left как divider между блоками. */
 .casino-hero__stats {
   list-style: none;
   margin: 0;
@@ -183,7 +166,7 @@ defineProps<Props>()
   gap: to-rem(24);
   width: 100%;
 
-  @include mq($from: tablet) {
+  @include mq($from: narrow-tablet) {
     flex-wrap: nowrap;
     align-items: stretch;
   }
@@ -196,12 +179,12 @@ defineProps<Props>()
   flex: 0 0 to-rem(140);
   width: to-rem(140);
 
-  @include mq($from: mobile) {
+  @include mq($from: compact) {
     width: to-rem(150);
     flex: 0 0 to-rem(150);
   }
 
-  @include mq($from: tablet) {
+  @include mq($from: narrow-tablet) {
     flex: 1 0 0;
     min-width: 0;
     width: auto;
@@ -237,7 +220,7 @@ defineProps<Props>()
   align-self: stretch;
   margin-top: auto;
 
-  @media (min-width: 600px) {
+  @include mq($from: compact) {
     width: fit-content;
   }
 
@@ -258,21 +241,17 @@ defineProps<Props>()
   min-width: to-rem(200);
   max-width: to-rem(280);
 
-  @include mq($from: mobile) {
-    max-width: 100%;
-  }
-
-  @include mq($from: tablet) {
-    z-index: -1;
-    max-width: 100%;
+  @include mq($from: compact) {
+    max-width: to-rem(360);
     align-self: start;
-    flex: unset;
   }
 
-  @include mq($from: tablet) {
+  @include mq($from: narrow-tablet) {
     position: absolute;
     right: to-rem(-80);
     z-index: -1;
+    max-width: 100%;
+    align-self: start;
     flex: 0 0 auto;
     align-self: unset;
     max-width: to-rem(560);

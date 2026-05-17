@@ -6,7 +6,6 @@
 /// Makeberry Affiliates — design tokens
 /// Источник: Figma `Components` (Bg / Text / Icon / Border) + `Header / 1440 / 360`.
 :root {
-
   /* ============================================================
    * Typography
    * ============================================================ */
@@ -168,7 +167,7 @@
   --transition-base: 0.25s ease;
 }
 
-/* Согласовано с AppHeader: компактный бар при ширине < 1024 → один `--header-offset`; от 1024 — отступ под pill. */
+
 
 @include mq($from: mobile) {
   :root {
@@ -182,6 +181,7 @@
   }
 }
 
+/* Согласовано с AppHeader: компактный бар при ширине < 1024 → один `--header-offset`; от 1024 — отступ под pill. */
 @media (max-width: 1023px) {
   :root {
     --header-offset: var(--header-mobile-height);

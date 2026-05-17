@@ -80,7 +80,7 @@ const ui = useSharedUi()
     bottom: to-rem(-238);
     right: to-rem(-447);
 
-    @include mq($from: wide) {
+    @include mq($from: laptop) {
       right: to-rem(-736);
       bottom: to-rem(-206);
       width: to-rem(1222);
@@ -102,7 +102,7 @@ const ui = useSharedUi()
     width: to-rem(923);
     height: to-rem(714);
 
-    @include mq($from: wide) {
+    @include mq($from: laptop) {
       right: unset;
       left: to-rem(-792);
       bottom: to-rem(-393);

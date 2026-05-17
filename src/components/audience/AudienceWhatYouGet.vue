@@ -397,7 +397,7 @@ function cardStickerStyle(card: WhatYouGetCard): Record<string, string> {
     object-position: center;
   }
 
-  @include mq($from: wide) {
+  @include mq($from: laptop) {
     width: var(--st-w);
     height: var(--st-h);
     top: var(--st-top);

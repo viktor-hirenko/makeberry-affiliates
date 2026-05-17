@@ -290,7 +290,7 @@ const ctaPath = computed(() => props.nav.ctaPath)
   .base-button {
     width: 100%;
 
-    @include mq($from: mobile) {
+    @include mq($from: compact) {
       width: auto;
     }
   }

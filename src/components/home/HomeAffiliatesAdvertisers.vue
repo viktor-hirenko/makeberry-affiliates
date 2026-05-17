@@ -66,8 +66,12 @@ const content = useHomeAffiliatesAdvertisers()
 
   @include section-padding(to-rem(160));
 
-  @include mq($from: mobile) {
+  @include mq($from: compact) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: to-rem(16);
+  }
+
+  @include mq($from: mobile) {
     gap: to-rem(20);
   }
 

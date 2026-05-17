@@ -58,7 +58,7 @@ defineProps<Props>()
     padding-block: to-rem(100);
   }
 
-  @include mq($from: wide) {
+  @include mq($from: laptop) {
     padding-block: to-rem(150);
   }
 }

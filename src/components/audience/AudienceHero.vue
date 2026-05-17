@@ -71,7 +71,7 @@ defineProps<Props>()
     $desktop-bottom: to-rem(100)
   );
 
-  @include mq($from: mobile) {
+  @include mq($from: compact) {
     padding-top: to-rem(100);
     padding-bottom: to-rem(100);
   }
@@ -108,7 +108,7 @@ defineProps<Props>()
     height: auto;
   }
 
-  @include mq($from: mobile) {
+  @include mq($from: compact) {
     img {
       width: 160%;
     }
@@ -140,7 +140,7 @@ defineProps<Props>()
   width: 100%;
   align-items: stretch;
 
-  @include mq($from: mobile) {
+  @include mq($from: compact) {
     gap: to-rem(48);
     max-width: to-rem(518);
     align-items: flex-start;
@@ -153,7 +153,7 @@ defineProps<Props>()
   gap: to-rem(32);
   width: 100%;
 
-  @include mq($from: mobile) {
+  @include mq($from: compact) {
     gap: to-rem(40);
   }
 }
@@ -190,7 +190,7 @@ defineProps<Props>()
   letter-spacing: to-rem(-0.4);
   color: var(--color-text-primary);
 
-  @include mq($from: mobile) {
+  @include mq($from: compact) {
     font-size: to-rem(64);
     line-height: to-rem(72);
     letter-spacing: to-rem(-0.64);
@@ -206,7 +206,7 @@ defineProps<Props>()
   letter-spacing: to-rem(-0.16);
   color: var(--color-text-secondary);
 
-  @include mq($from: mobile) {
+  @include mq($from: compact) {
     font-size: to-rem(18);
     letter-spacing: to-rem(-0.18);
   }
@@ -215,8 +215,8 @@ defineProps<Props>()
 .audience-hero__cta {
   align-self: stretch;
 
-  @include mq($from: mobile) {
-    align-self: flex-start;
+  @include mq($from: compact) {
+    align-self: start;
   }
 
   @include landscape-phone {

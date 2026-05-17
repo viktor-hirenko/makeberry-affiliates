@@ -134,7 +134,7 @@ function onLeave(el: Element): void {
     padding-inline: to-rem(150);
   }
 
-  @include mq($from: wide) {
+  @include mq($from: laptop) {
     padding-inline: to-rem(230);
   }
 }
@@ -146,6 +146,14 @@ function onLeave(el: Element): void {
   max-width: to-rem(1320);
   margin-inline: auto;
   @include section-stack;
+
+  @include mq($from: compact) {
+    max-width: to-rem(700);
+  }
+
+  @include mq($from: tablet) {
+    max-width: to-rem(1320);
+  }
 }
 
 .home-faq__glow {
@@ -185,7 +193,7 @@ function onLeave(el: Element): void {
 .home-faq__mark {
   display: none;
 
-  @include mq($from: tablet) {
+  @include mq($from: narrow-tablet) {
     top: to-rem(-76);
     left: to-rem(-110);
     display: block;

@@ -8,7 +8,8 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 
 import BaseIcon from '@/components/ui/BaseIcon.vue'
-import { BREAKPOINT_MOBILE_PX, BREAKPOINT_TABLET_PX } from '@/constants/breakpoints'
+import { BREAKPOINT_MOBILE_PX, BREAKPOINT_COMPACT_PX, BREAKPOINT_TABLET_PX } from '@/constants/breakpoints'
+import { SWIPER_SPACE_COMPACT_PX, SWIPER_SPACE_COMFORT_PX } from '@/constants/swiper'
 import { formatUiString, useHomeTestimonials, useSharedUi } from '@/composables/useContent'
 
 const content = useHomeTestimonials()
@@ -25,8 +26,9 @@ const TESTIMONIALS_DESKTOP_SPACE_BETWEEN = '6.482%'
 
 /**
  * Конфиг по брейкпоинтам:
- *  • < 768          → 1 слайд (база `slides-per-view="1"` на компоненте).
- *  • 768 – 1023     → 2 слайда равной ширины (как Meet Us).
+ *  • < 600          → 1 слайд (база `slides-per-view="1"` на компоненте).
+ *  • 600 – 767      → 2 слайда, gap 16.
+ *  • 768 – 1023     → 2 слайда, gap 20.
  *  • ≥ 1024         → focal-карусель: `slidesPerView: 3` + `centeredSlides` +
  *                      `centeredSlidesBounds`. Видны три слайда: small | BIG | small.
  *                      Активный = визуально центральный, увеличен через
@@ -48,10 +50,18 @@ const TESTIMONIALS_DESKTOP_SPACE_BETWEEN = '6.482%'
  * центрирование «протекает» вниз и ломает 2-колоночный mobile-layout.
  */
 const swiperBreakpoints = {
+  [BREAKPOINT_COMPACT_PX]: {
+    slidesPerView: 2,
+    slidesPerGroup: 1,
+    spaceBetween: SWIPER_SPACE_COMPACT_PX,
+    allowTouchMove: true,
+    centeredSlides: false,
+    centeredSlidesBounds: false,
+  },
   [BREAKPOINT_MOBILE_PX]: {
     slidesPerView: 2,
     slidesPerGroup: 1,
-    spaceBetween: 16,
+    spaceBetween: SWIPER_SPACE_COMFORT_PX,
     allowTouchMove: true,
     centeredSlides: false,
     centeredSlidesBounds: false,
@@ -532,7 +542,7 @@ $testimonials-active-scale-inverse: calc(1 / 1.314); // ≈ 0.761
   }
 }
 
-/* Стрелки только ≥ wide; на 1024–1279 — пагинация + свайп. */
+/* Стрелки только ≥ laptop; на 1024–1279 — пагинация + свайп. */
 .home-testimonials__nav {
   display: none;
   align-items: center;
@@ -547,7 +557,7 @@ $testimonials-active-scale-inverse: calc(1 / 1.314); // ≈ 0.761
   cursor: pointer;
   transition: background-color var(--transition-base);
 
-  @include mq($from: wide) {
+  @include mq($from: laptop) {
     display: inline-flex;
     position: absolute;
     top: 50%;
@@ -576,13 +586,13 @@ $testimonials-active-scale-inverse: calc(1 / 1.314); // ≈ 0.761
 }
 
 .home-testimonials__nav--prev {
-  @include mq($from: wide) {
+  @include mq($from: laptop) {
     left: 0;
   }
 }
 
 .home-testimonials__nav--next {
-  @include mq($from: wide) {
+  @include mq($from: laptop) {
     right: 0;
   }
 }

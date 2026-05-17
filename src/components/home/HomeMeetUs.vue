@@ -9,23 +9,20 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 
 import BaseIcon from '@/components/ui/BaseIcon.vue'
-import { BREAKPOINT_MOBILE_PX, BREAKPOINT_TABLET_PX } from '@/constants/breakpoints'
+import { BREAKPOINT_TABLET_PX } from '@/constants/breakpoints'
+import { SWIPER_SPACE_COMFORT_PX, swiperTwoColumnBreakpoints } from '@/constants/swiper'
 import { useHomeMeetUs, useSharedUi } from '@/composables/useContent'
 
 const content = useHomeMeetUs()
 const ui = useSharedUi()
 
-/** &lt; mobile: 1; mobile–tablet: 2; ≥ tablet: 3 (числа — min-width, как в SCSS `mq`) */
+/** &lt;600: 1; 600–767: 2×gap16; 768+: 2×gap20; ≥1024: 3 (min-width, как SCSS `mq`) */
 const meetUsSwiperBreakpoints = {
-  [BREAKPOINT_MOBILE_PX]: {
-    slidesPerView: 2,
-    slidesPerGroup: 2,
-    spaceBetween: 16,
-  },
+  ...swiperTwoColumnBreakpoints,
   [BREAKPOINT_TABLET_PX]: {
     slidesPerView: 3,
     slidesPerGroup: 1,
-    spaceBetween: 20,
+    spaceBetween: SWIPER_SPACE_COMFORT_PX,
   },
 }
 
@@ -253,7 +250,7 @@ const navConfig = {
   border-color: var(--color-border-bold);
 }
 
-/* Стрелки только ≥ wide (под них у slider-wrap есть padding-inline);
+/* Стрелки только ≥ laptop (под них у slider-wrap есть padding-inline);
  * на 1024–1279 их прячем — там full-bleed + dots/swipe. */
 .home-meet-us__nav {
   display: none;
@@ -271,7 +268,7 @@ const navConfig = {
     background-color var(--transition-base),
     color var(--transition-base);
 
-  @include mq($from: wide) {
+  @include mq($from: laptop) {
     display: inline-flex;
     position: absolute;
     /* Центрируем по cover (image-area 200h) — стрелки на уровне лого. */
@@ -302,13 +299,13 @@ const navConfig = {
 }
 
 .home-meet-us__nav--prev {
-  @include mq($from: wide) {
+  @include mq($from: laptop) {
     left: 0;
   }
 }
 
 .home-meet-us__nav--next {
-  @include mq($from: wide) {
+  @include mq($from: laptop) {
     right: 0;
   }
 }
