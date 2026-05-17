@@ -121,7 +121,10 @@ const ui = useSharedUi()
       <!-- Bottom: legal + copyright -->
       <div class="app-footer__bottom">
         <template v-for="(link, index) in footer.bottomLinks" :key="link.label">
-          <RouterLink :to="link.path" class="app-footer__bottom-link">
+          <a v-if="link.href" :href="link.href" class="app-footer__bottom-link">
+            {{ link.label }}
+          </a>
+          <RouterLink v-else :to="link.path ?? '/'" class="app-footer__bottom-link">
             {{ link.label }}
           </RouterLink>
           <span
