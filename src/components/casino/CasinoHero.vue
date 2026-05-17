@@ -69,8 +69,6 @@ defineProps<Props>()
 .casino-hero {
   position: relative;
   overflow: hidden;
-  height: 100dvh;
-  min-height: fit-content;
 
   @include section-padding(
     $mobile-top: to-rem(70),
@@ -79,8 +77,12 @@ defineProps<Props>()
     $desktop-bottom: to-rem(100)
   );
 
+  @include mq($from: mobile) {
+    height: 100vh;
+    min-height: fit-content;
+  }
+
   @include mq($from: tablet) {
-    height: 100dvh;
     padding-top: to-rem(230);
     padding-bottom: to-rem(100);
   }

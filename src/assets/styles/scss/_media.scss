@@ -34,3 +34,11 @@
     @content;
   }
 }
+
+// Landscape phone: max-height 430px, max-width 932px
+@mixin landscape-phone {
+  @media (orientation: landscape) and (max-height: 430px) and (max-width: 932px) {
+    @content;
+  }
+
+}

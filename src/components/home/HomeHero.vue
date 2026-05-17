@@ -78,6 +78,10 @@ function handleScrollClick() {
   @include mq($from: mobile) {
     padding-top: to-rem(100);
   }
+
+  @include landscape-phone {
+    padding-top: to-rem(230);
+  }
 }
 
 .home-hero__bg {

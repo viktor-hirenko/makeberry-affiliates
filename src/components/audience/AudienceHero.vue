@@ -79,6 +79,10 @@ defineProps<Props>()
   @include mq($from: tablet) {
     padding-top: to-rem(150);
   }
+
+  @include landscape-phone {
+    padding-top: to-rem(200);
+  }
 }
 
 .audience-hero__inner {
@@ -211,6 +215,10 @@ defineProps<Props>()
 
   @include mq($from: mobile) {
     align-self: flex-start;
+  }
+
+  @include landscape-phone {
+    align-self: start;
   }
 }
 </style>

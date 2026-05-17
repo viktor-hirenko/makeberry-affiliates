@@ -54,6 +54,11 @@ const content = useNotFound()
   @include mq($from: tablet) {
     padding-block: to-rem(40);
   }
+
+  @include landscape-phone {
+    padding-top: to-rem(100);
+    padding-bottom: to-rem(60);
+  }
 }
 
 /* CSS radial-gradient вместо растрового glow */
