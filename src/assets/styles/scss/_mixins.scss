@@ -8,7 +8,7 @@
 ///   • `to-rem()` (units)
 ///   • `mq()` (media)
 ///   • `font-h2/h3/h4/h5`, `font-section-title`, `font-body-*`, `font-caption-*` (typography)
-///   • `section-padding()`, `slider-container()`, `container()`, `$section-stack-gap` (section-patterns)
+///   • `section-padding()`, `slider-wrap-bleed()`, `slider-swiper-bleed-phone()`, `slider-container()`, `container()`, `$section-stack-gap` (section-patterns)
 ///
 /// Имена не пересекаются между файлами — конфликтов при `as *` нет.
 ///

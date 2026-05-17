@@ -262,7 +262,7 @@ function handleInput() {
   @include font-section-title;
 }
 
-/* 4 карточки с ≥1024px; full-bleed и без стрелок до wide (1280) — см. __nav. */
+/* <768: viewport bleed; 768–1023: контейнер; 1024–1279: margin-bleed (4 колонки). */
 .home-contacts__slider-wrap {
   position: relative;
   width: 100%;
@@ -271,20 +271,14 @@ function handleInput() {
   align-items: center;
   gap: to-rem(32);
 
-  /* Full-bleed до wide, возврат места под стрелки только на ≥1280
-     (там же показываются и сами стрелки — см. .home-contacts__nav). */
-  @include mq($until: wide) {
-    margin-inline: calc(-1 * var(--container-pad-x));
-  }
-
-  @include mq($from: wide) {
-    padding-inline: var(--container-pad-x);
-  }
+  @include slider-wrap-bleed($tablet-bleed: true);
 }
 
 .home-contacts__swiper {
   width: 100%;
   box-sizing: border-box;
+
+  @include slider-swiper-bleed-phone();
 }
 
 /* Slide — ширину задаёт Swiper (1 / 2 / 4 по breakpoints). */

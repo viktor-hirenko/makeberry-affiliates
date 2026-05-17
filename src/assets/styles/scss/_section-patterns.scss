@@ -1,5 +1,13 @@
 @use 'media' as *;
 @use 'units' as *;
+@use 'breakpoints' as *;
+
+/// Строго &lt;768px (`until: mobile` в mq = max-width 768px и захватывает iPad).
+@mixin slider-phone-only {
+  @media (max-width: #{breakpoint(mobile) - 1px}) {
+    @content;
+  }
+}
 
 /// Частый вертикальный шаг между блоками внутри секции (не конвертируем автоматически — только там, где уже 48px).
 $section-stack-gap: to-rem(48);
@@ -56,6 +64,35 @@ $section-stack-gap: to-rem(48);
   width: 100%;
   max-width: $max-width;
   margin-inline: auto;
+}
+
+/// Обёртка Swiper: гибридный full-bleed.
+/// • &lt;768: Direct (margin + width) — обрезка viewport, pad-x = spaceBetween (16px).
+/// • 768–1023: контейнер секции, без bleed.
+/// • ≥1280: padding-inline под стрелки.
+/// • $tablet-bleed: true — Contacts: margin-bleed на 1024–1279 (4 колонки), без swiper-padding.
+@mixin slider-wrap-bleed($tablet-bleed: false) {
+  @include slider-phone-only {
+    margin-inline: calc(-1 * var(--container-pad-x));
+    width: calc(100% + 2 * var(--container-pad-x));
+  }
+
+  @if $tablet-bleed {
+    @include mq($from: tablet, $until: wide) {
+      margin-inline: calc(-1 * var(--container-pad-x));
+    }
+  }
+
+  @include mq($from: wide) {
+    padding-inline: var(--container-pad-x);
+  }
+}
+
+/// Inset слайдов только на узком телефоне (&lt;768), в паре с `slider-wrap-bleed`.
+@mixin slider-swiper-bleed-phone {
+  @include slider-phone-only {
+    padding-inline: var(--container-pad-x);
+  }
 }
 
 /// Контейнер для слайдер-секций: full-bleed inside, padding-inline берётся

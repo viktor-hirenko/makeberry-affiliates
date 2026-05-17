@@ -222,8 +222,7 @@ const navConfig = {
   @include font-section-title;
 }
 
-/* <1024px: full-bleed (negative margin на wrap + padding-inline на swiper);
- * ≥1280px: padding-inline под стрелки (см. __nav). */
+/* <768: viewport bleed; 768+: контейнер; ≥1280: padding под стрелки. */
 .home-direct__slider-wrap {
   position: relative;
   width: 100%;
@@ -231,13 +230,9 @@ const navConfig = {
   flex-direction: column;
   gap: to-rem(20);
 
-  @include mq($until: tablet) {
-    margin-inline: calc(-1 * var(--container-pad-x));
-    width: calc(100% + 2 * var(--container-pad-x));
-  }
+  @include slider-wrap-bleed();
 
   @include mq($from: wide) {
-    padding-inline: var(--container-pad-x);
     gap: to-rem(32);
   }
 }
@@ -246,9 +241,7 @@ const navConfig = {
   width: 100%;
   box-sizing: border-box;
 
-  @include mq($until: tablet) {
-    padding-inline: var(--container-pad-x);
-  }
+  @include slider-swiper-bleed-phone();
 }
 
 .home-direct__slide {

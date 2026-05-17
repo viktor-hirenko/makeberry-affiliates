@@ -136,8 +136,7 @@ const navConfig = {
   @include font-section-title;
 }
 
-/* До tablet — full-bleed (свайп не режется padding секции);
- * стрелки появляются только при 3 слайдах в ряд (≥ tablet). */
+/* <768: viewport bleed; 768+: контейнер; ≥1280: padding под стрелки. */
 .home-meet-us__slider-wrap {
   position: relative;
   width: 100%;
@@ -146,21 +145,14 @@ const navConfig = {
   align-items: center;
   gap: to-rem(32);
 
-  /* Full-bleed: компенсируем секционный padding (var(--container-pad-x))
-     отрицательным margin. */
-  @include mq($until: tablet) {
-    margin-inline: calc(-1 * var(--container-pad-x));
-  }
-
-  /* На ≥1280 возвращаем место под стрелки навигации (60px от края). */
-  @include mq($from: wide) {
-    padding-inline: var(--container-pad-x);
-  }
+  @include slider-wrap-bleed();
 }
 
 .home-meet-us__swiper {
   width: 100%;
   box-sizing: border-box;
+
+  @include slider-swiper-bleed-phone();
 }
 
 :deep(.swiper-wrapper) {

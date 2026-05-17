@@ -319,7 +319,7 @@ const navConfig = {
   @include font-section-title;
 }
 
-/* <1024px: full-bleed (как HomeMeetUs); ≥1280px: padding-inline под стрелки. */
+/* <768: viewport bleed; focal ≥1024 — в Swiper; ≥1280: padding под стрелки. */
 .home-testimonials__slider-wrap {
   position: relative;
   width: 100%;
@@ -328,18 +328,14 @@ const navConfig = {
   align-items: center;
   gap: to-rem(32);
 
-  @include mq($until: tablet) {
-    margin-inline: calc(-1 * var(--container-pad-x));
-  }
-
-  @include mq($from: wide) {
-    padding-inline: var(--container-pad-x);
-  }
+  @include slider-wrap-bleed();
 }
 
 .home-testimonials__swiper {
   width: 100%;
   box-sizing: border-box;
+
+  @include slider-swiper-bleed-phone();
 }
 
 /* ≥1024px: wrapper выравнивает слайды по центру по вертикали — active выше
