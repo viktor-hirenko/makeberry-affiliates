@@ -138,6 +138,8 @@ export interface FooterBottomLink {
   label: string
   path?: string
   href?: string
+  /** false — скрыть ссылку в нижней строке футера. Отсутствие поля = visible. */
+  enabled?: boolean
 }
 
 export interface FooterConfig {

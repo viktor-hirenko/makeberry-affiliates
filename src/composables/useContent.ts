@@ -198,6 +198,7 @@ export function useFooter(): FooterConfig {
       ...column,
       links: column.links.filter(isNavItemEnabled),
     })),
+    bottomLinks: config.bottomLinks.filter(isNavItemEnabled),
   }
 }
 

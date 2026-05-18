@@ -102,8 +102,8 @@
     ]
   },
   "bottomLinks": [
-    { "label": "Terms of Service", "path": "/terms" },
-    { "label": "Privacy Policy", "path": "/privacy" }
+    { "label": "Terms of Service", "path": "/terms", "enabled": false },
+    { "label": "Privacy Policy", "path": "/privacy", "enabled": false }
   ],
   "copyright": "©2026 Makeberry. All rights reserved."
 }
