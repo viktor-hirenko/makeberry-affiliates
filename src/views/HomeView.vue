@@ -23,14 +23,20 @@ import HomeVacancies from '@/components/home/HomeVacancies.vue'
 import HomeBlog from '@/components/home/HomeBlog.vue'
 import {
   useHomeBlog,
+  useHomeContacts,
   useHomeDirectAdvertiser,
   useHomeFaq,
+  useHomeMap,
+  useHomeTestimonials,
   useHomeVacancies,
 } from '@/composables/useContent'
 
 /* Флаги видимости секций — читаем `enabled` из JSON-контента.
  * Отсутствие поля трактуется как true (enabled !== false). */
 const directAdvertiserContent = useHomeDirectAdvertiser()
+const mapContent = useHomeMap()
+const testimonialsContent = useHomeTestimonials()
+const contactsContent = useHomeContacts()
 const faqContent = useHomeFaq()
 const vacanciesContent = useHomeVacancies()
 const blogContent = useHomeBlog()
@@ -42,11 +48,11 @@ const blogContent = useHomeBlog()
     <HomeAbout />
     <HomeAffiliatesAdvertisers />
     <HomeDirectAdvertiser v-if="directAdvertiserContent.enabled !== false" />
-    <HomeMap />
+    <HomeMap v-if="mapContent.enabled !== false" />
     <HomeBenefits />
-    <HomeTestimonials />
+    <HomeTestimonials v-if="testimonialsContent.enabled !== false" />
     <HomeMeetUs />
-    <HomeContacts />
+    <HomeContacts v-if="contactsContent.enabled !== false" />
     <HomeFaq v-if="faqContent.enabled !== false" />
     <HomeVacancies v-if="vacanciesContent.enabled !== false" />
     <HomeBlog v-if="blogContent.enabled !== false" />

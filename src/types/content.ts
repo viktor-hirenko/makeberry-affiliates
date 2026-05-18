@@ -227,7 +227,7 @@ export interface HomeAffAdvCard {
   title: string
   description: string
   primaryCta: { label: string; path: string }
-  secondaryCta: { label: string; path: string }
+  secondaryCta: { label: string; path?: string; href?: string }
   decoration: HomeAffAdvDecoration
 }
 
@@ -289,7 +289,7 @@ export interface HomeDirectAdvertiserContent {
   cooperation: HomeDirectCooperationItem[]
   cta: {
     title: string
-    button: { label: string; path: string }
+    button: { label: string; path?: string; href?: string }
   }
   glow: {
     src: string
@@ -328,6 +328,8 @@ export interface HomeMapCountry {
 }
 
 export interface HomeMapContent {
+  /** false — скрыть секцию через v-if в HomeView. Отсутствие поля = visible. */
+  enabled?: boolean
   title: string
   tabs: HomeMapTab[]
   countries: HomeMapCountry[]
@@ -369,6 +371,8 @@ export interface HomeTestimonialItem {
 }
 
 export interface HomeTestimonialsContent {
+  /** false — скрыть секцию через v-if в HomeView. Отсутствие поля = visible. */
+  enabled?: boolean
   title: string
   items: HomeTestimonialItem[]
 }
@@ -424,6 +428,8 @@ export interface HomeContactsForm {
 }
 
 export interface HomeContactsContent {
+  /** false — скрыть секцию через v-if в HomeView. Отсутствие поля = visible. */
+  enabled?: boolean
   title: string
   glow: { src: string; alt: string }
   items: HomeContactItem[]

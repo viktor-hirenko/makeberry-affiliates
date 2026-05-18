@@ -34,7 +34,8 @@ const content = useHomeAffiliatesAdvertisers()
           <BaseButton
             variant="tetriary"
             size="large"
-            :to="card.secondaryCta.path"
+            :to="card.secondaryCta.href ? undefined : card.secondaryCta.path"
+            :href="card.secondaryCta.href"
             class="home-aff-adv__cta"
           >
             {{ card.secondaryCta.label }}

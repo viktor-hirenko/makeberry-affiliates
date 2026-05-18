@@ -164,7 +164,8 @@ const navConfig = {
         <BaseButton
           variant="secondary"
           size="large"
-          :to="content.cta.button.path"
+          :to="content.cta.button.href ? undefined : content.cta.button.path"
+          :href="content.cta.button.href"
           class="home-direct__cta-btn"
         >
           {{ content.cta.button.label }}

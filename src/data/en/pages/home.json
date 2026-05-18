@@ -134,7 +134,7 @@
         },
         "secondaryCta": {
           "label": "Sign Up",
-          "path": "/sign-up"
+          "href": "https://dashboard.makeberry.com/signup/affiliate"
         },
         "decoration": {
           "src": "/images/decorative-icons/sparkles.webp",
@@ -151,7 +151,7 @@
         },
         "secondaryCta": {
           "label": "Sign Up",
-          "path": "/sign-up"
+          "href": "https://dashboard.makeberry.com/signup/brand"
         },
         "decoration": {
           "src": "/images/decorative-icons/cursor.webp",
@@ -217,7 +217,7 @@
       "title": "Ready to start?",
       "button": {
         "label": "Become a partner",
-        "path": "/#contacts"
+        "href": "https://dashboard.makeberry.com/signup/affiliate"
       }
     },
     "glow": {
@@ -226,6 +226,7 @@
     }
   },
   "map": {
+    "enabled": false,
     "title": "Our Map",
     "tabs": [
       {
@@ -654,6 +655,7 @@
     ]
   },
   "testimonials": {
+    "enabled": false,
     "title": "Testimonials",
     "items": [
       {
@@ -741,6 +743,7 @@
     ]
   },
   "contacts": {
+    "enabled": false,
     "title": "Contacts",
     "glow": {
       "src": "/images/decorations/glow-base.webp",
@@ -975,7 +978,7 @@
     ]
   },
   "vacancies": {
-    "enabled": true,
+    "enabled": false,
     "title": "Open Vacancies",
     "glow": {
       "src": "/images/decorations/glow-base.webp",
