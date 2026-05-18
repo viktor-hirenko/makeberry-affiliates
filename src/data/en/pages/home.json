@@ -1017,6 +1017,7 @@
     }
   },
   "blog": {
+    "enabled": false,
     "title": "Blog",
     "viewAll": {
       "label": "View All",
