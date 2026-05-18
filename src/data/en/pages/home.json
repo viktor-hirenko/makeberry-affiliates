@@ -942,7 +942,6 @@
       "src": "/images/decorative-icons/question.webp",
       "alt": ""
     },
-    "defaultOpenId": "countries",
     "items": [
       {
         "id": "payouts-on-hold",
