@@ -101,6 +101,8 @@ export interface FooterSocial {
   network: 'twitter' | 'telegram' | 'linkedin' | 'instagram' | 'email'
   href: string
   label: string
+  /** false — скрыть иконку в футере. Отсутствие поля = visible. */
+  enabled?: boolean
 }
 
 /** Логотип партнёра/награды.

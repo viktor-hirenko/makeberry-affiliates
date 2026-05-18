@@ -199,6 +199,7 @@ export function useFooter(): FooterConfig {
       links: column.links.filter(isNavItemEnabled),
     })),
     bottomLinks: config.bottomLinks.filter(isNavItemEnabled),
+    social: config.social.filter(isNavItemEnabled),
   }
 }
 

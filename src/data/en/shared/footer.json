@@ -31,7 +31,7 @@
     { "network": "email", "href": "mailto:info@makeberry.com", "label": "Email" },
     { "network": "linkedin", "href": "https://www.linkedin.com/company/makeberry-affiliate/", "label": "LinkedIn" },
     { "network": "instagram", "href": "https://www.instagram.com/makeberry.official/", "label": "Instagram" },
-    { "network": "twitter", "href": "https://x.com/makeberry_aff", "label": "X (Twitter)" },
+    { "network": "twitter", "href": "https://x.com/makeberry_aff", "label": "X (Twitter)", "enabled": true },
     { "network": "telegram", "href": "https://t.me/makeberryaffiliate", "label": "Telegram" }
   ],
   "partners": {
