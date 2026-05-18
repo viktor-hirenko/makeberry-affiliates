@@ -5,10 +5,10 @@
       "links": [
         { "label": "About Us", "path": "/#about" },
         { "label": "Direct Advertiser", "path": "/#direct-advertiser" },
-        { "label": "Map", "path": "/#map" },
-        { "label": "Testimonials", "path": "/#testimonials" },
+        { "label": "Map", "path": "/#map", "enabled": false },
+        { "label": "Testimonials", "path": "/#testimonials", "enabled": false },
         { "label": "FAQ", "path": "/#faq" },
-        { "label": "Contacts", "path": "/#contacts" }
+        { "label": "Contacts", "path": "/#contacts", "enabled": false }
       ]
     },
     {

@@ -177,12 +177,28 @@ const { list: AUDIENCES, bySlug: AUDIENCES_BY_SLUG } = (() => {
   }
 })()
 
+/** Отсутствие поля enabled трактуется как visible (как у секций home.json). */
+function isNavItemEnabled(item: { enabled?: boolean }): boolean {
+  return item.enabled !== false
+}
+
 export function useNav(): NavConfig {
-  return rawNav as NavConfig
+  const config = rawNav as NavConfig
+  return {
+    ...config,
+    links: config.links.filter(isNavItemEnabled),
+  }
 }
 
 export function useFooter(): FooterConfig {
-  return rawFooter as FooterConfig
+  const config = rawFooter as FooterConfig
+  return {
+    ...config,
+    columns: config.columns.map((column) => ({
+      ...column,
+      links: column.links.filter(isNavItemEnabled),
+    })),
+  }
 }
 
 /**

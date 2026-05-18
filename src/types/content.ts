@@ -69,6 +69,8 @@ export interface NavLink {
   label: string
   path?: string
   children?: NavChildLink[]
+  /** false — скрыть пункт навигации. Отсутствие поля = visible. */
+  enabled?: boolean
 }
 
 export interface NavConfig {
@@ -83,9 +85,16 @@ export interface NavConfig {
   links: NavLink[]
 }
 
+export interface FooterLink {
+  label: string
+  path: string
+  /** false — скрыть ссылку в футере. Отсутствие поля = visible. */
+  enabled?: boolean
+}
+
 export interface FooterColumn {
   title: string
-  links: Array<{ label: string; path: string }>
+  links: FooterLink[]
 }
 
 export interface FooterSocial {
