@@ -41,10 +41,6 @@ body {
   flex-direction: column;
 }
 
-/*
- * Header fixed — не занимает место в потоке. У main нет padding-top:
- * отступ под хедер задаёт первая секция страницы (hero) в своих стилях.
- */
 .app-main {
   flex: 1;
   display: flex;

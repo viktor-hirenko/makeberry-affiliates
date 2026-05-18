@@ -104,12 +104,15 @@ export const router = createRouter({
       return { el: to.hash, behavior }
     }
 
-    /* Cross-route переход без хэша.
-     *
-     * Двойной requestAnimationFrame — паттерн «wait for next paint»:
-     * scrollTo({top:0}) применяется в кадре, следующем за тем, в котором
-     * браузер отрисовал новый view. Это исключает гонку между mount
-     * нового view и сбросом scroll-позиции. */
+    /* Cross-route без хэша: сразу сбрасываем scroll (иначе с длинной главной
+     * короткая /blog/:slug на один кадр рисуется «снизу» — футер у hero).
+     * Двойной rAF — дублируем top:0 после mount нового view. */
+    const isCrossRoute = to.path !== from.path
+
+    if (isCrossRoute) {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+    }
+
     return new Promise((resolve) => {
       requestAnimationFrame(() => {
         requestAnimationFrame(() => resolve({ top: 0, left: 0 }))

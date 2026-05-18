@@ -61,7 +61,6 @@ defineProps<Props>()
   justify-content: center;
   align-items: center;
   height: 100dvh;
-  min-height: fit-content;
 
   @include section-padding(
     $desktop-inline: to-rem(160),
@@ -72,6 +71,7 @@ defineProps<Props>()
   );
 
   @include mq($from: compact) {
+    height: auto;
     padding-top: to-rem(100);
     padding-bottom: to-rem(100);
   }

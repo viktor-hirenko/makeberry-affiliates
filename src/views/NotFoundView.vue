@@ -42,8 +42,6 @@ const content = useNotFound()
 
 .not-found {
   position: relative;
-  /* flex: 1 заполняет всё доступное пространство в .app-main__view, не
-   * прибегая к фиксированным viewport-единицам. */
   flex: 1;
   padding: to-rem(24) var(--container-pad-x);
   display: flex;

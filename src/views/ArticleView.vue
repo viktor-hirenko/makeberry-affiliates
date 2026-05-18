@@ -149,6 +149,8 @@ function isTextSection(section: ArticleSection): boolean {
 
 .article {
   position: relative;
+  flex: 1;
+  width: 100%;
   padding-block-start: to-rem(160);
   overflow: hidden;
 
