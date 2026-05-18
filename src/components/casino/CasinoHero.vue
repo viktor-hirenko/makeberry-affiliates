@@ -61,7 +61,7 @@ defineProps<Props>()
 .casino-hero {
   position: relative;
   overflow: hidden;
-  height: 100dvh;
+  min-height: 100dvh;
 
   @include section-padding(
     $mobile-top: to-rem(70),
