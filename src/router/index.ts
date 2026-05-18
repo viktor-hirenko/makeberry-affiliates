@@ -25,6 +25,9 @@ const NotFoundView = () => import('@/views/NotFoundView.vue')
 export const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    /* R2 r2.dev отдаёт index.html только по /index.html; без редиректа Vue видит
+     * чужой path и не находит home (чёрный экран / 404). */
+    { path: '/index.html', redirect: '/' },
     { path: '/', name: 'home', component: HomeView, meta: { title: 'Makeberry Affiliates' } },
     {
       path: '/blog',
