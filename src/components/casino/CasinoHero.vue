@@ -75,6 +75,8 @@ defineProps<Props>()
   }
 
   @include mq($from: narrow-tablet) {
+    display: flex;
+    align-items: center;
     padding-top: to-rem(230);
     padding-bottom: to-rem(100);
   }

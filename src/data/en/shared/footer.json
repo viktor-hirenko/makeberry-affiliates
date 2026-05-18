@@ -29,9 +29,22 @@
   ],
   "social": [
     { "network": "email", "href": "mailto:info@makeberry.com", "label": "Email" },
-    { "network": "linkedin", "href": "https://www.linkedin.com/company/makeberry-affiliate/", "label": "LinkedIn" },
-    { "network": "instagram", "href": "https://www.instagram.com/makeberry.official/", "label": "Instagram" },
-    { "network": "twitter", "href": "https://x.com/makeberry_aff", "label": "X (Twitter)", "enabled": true },
+    {
+      "network": "linkedin",
+      "href": "https://www.linkedin.com/company/makeberry-affiliate/",
+      "label": "LinkedIn"
+    },
+    {
+      "network": "instagram",
+      "href": "https://www.instagram.com/makeberry.official/",
+      "label": "Instagram"
+    },
+    {
+      "network": "twitter",
+      "href": "https://x.com/makeberry_aff",
+      "label": "X (Twitter)",
+      "enabled": true
+    },
     { "network": "telegram", "href": "https://t.me/makeberryaffiliate", "label": "Telegram" }
   ],
   "partners": {
@@ -102,8 +115,8 @@
     ]
   },
   "bottomLinks": [
-    { "label": "Terms of Service", "path": "/terms", "enabled": false },
-    { "label": "Privacy Policy", "path": "/privacy", "enabled": false }
+    { "label": "Terms of Service", "path": "/terms" },
+    { "label": "Privacy Policy", "path": "/privacy" }
   ],
   "copyright": "©2026 Makeberry. All rights reserved."
 }

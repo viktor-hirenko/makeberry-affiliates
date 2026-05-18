@@ -60,7 +60,7 @@ defineProps<Props>()
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100dvh;
+  min-height: 100dvh;
 
   @include section-padding(
     $desktop-inline: to-rem(160),
@@ -77,6 +77,7 @@ defineProps<Props>()
   }
 
   @include mq($from: tablet) {
+    min-height: 100vh;
     padding-top: to-rem(150);
   }
 

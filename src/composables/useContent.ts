@@ -5,6 +5,8 @@ import articleOrder from '../data/en/pages/blog/articles/order.json'
 import rawFooter from '../data/en/shared/footer.json'
 import rawNav from '../data/en/shared/nav.json'
 import rawUi from '../data/en/shared/ui.json'
+import rawTerms from '../data/en/pages/legal/terms.json'
+import rawPrivacy from '../data/en/pages/legal/privacy.json'
 import type {
   ArticleDetail,
   AudiencePageContent,
@@ -24,6 +26,7 @@ import type {
   HomePageContent,
   HomeTestimonialsContent,
   HomeVacanciesContent,
+  LegalPageContent,
   NavConfig,
   NotFoundPageContent,
   SharedUiContent,
@@ -234,6 +237,14 @@ export function formatUiString(
 
 export function useNotFound(): NotFoundPageContent {
   return rawNotFound as NotFoundPageContent
+}
+
+export function useTerms(): LegalPageContent {
+  return rawTerms as LegalPageContent
+}
+
+export function usePrivacy(): LegalPageContent {
+  return rawPrivacy as LegalPageContent
 }
 
 export function useHomeHero(): HomeHeroContent {

@@ -1,0 +1,96 @@
+{
+  "title": "Privacy Policy",
+  "introHtml": "<p>This privacy policy has been created to inform you about how Makeberry handles your 'Personally identifiable information' (PII) online. PII is information that can identify or locate an individual, either on its own or combined with other data. Please read our privacy policy carefully to understand how we manage, protect, and use your Personally Identifiable Information in line with our website.</p><p>This Privacy Policy outlines how we collect, store, use, and manage the information you provide to us or we collect in connection with the Makeberry website accessible at https://makeberry.com/ and our other websites where this Policy is posted (the 'Website'), and when you apply for or participate in the Makeberry advertising program for publishers (the 'Program').</p><p>References to 'you' (or 'your') mean visitors to our website, program, subscribers to any service we offer through our website, and clients corresponding with us via phone, emails, or other means.</p><p>When we mention 'Personal Data', we refer to identifiable information about you, such as your email address, username, messenger IDs, payment details, and more. This Policy doesn't apply to aggregated and anonymized data where you can't be identified.</p><p>If you don't understand or agree with this Privacy Policy, please exit this website or service.</p><p>We comply with the Children's Online Privacy Protection Act and do not intentionally collect information from anyone under 16 years old. Our website and programs are designed for individuals aged 16 or older.</p><p>BY SUBMITTING YOUR INFORMATION TO US AND USING THIS WEBSITE AND/OR PROGRAM, YOU AGREE TO THIS PRIVACY POLICY AND THE PROCESSING OF YOUR PERSONAL DATA AS OUTLINED HEREIN.</p>",
+  "sections": [
+    {
+      "id": "data-collection",
+      "title": "What Data We Collect and How We Do That",
+      "introHtml": "<p>When you use our Website or participate in our Program, we collect and process your Personal Data. We categorize the collection methods as follows:</p>",
+      "subsections": [
+        {
+          "id": "data-direct",
+          "title": "INFORMATION YOU PROVIDE TO US DIRECTLY",
+          "bodyHtml": "<p>We may ask you for Personal Data when you register on our Website or contact us for support. This could include contact information or documents for verification.</p>"
+        },
+        {
+          "id": "data-automatic",
+          "title": "INFORMATION WE COLLECT AUTOMATICALLY",
+          "bodyHtml": "<p>We automatically collect information when you visit our Website or use our Program, like your IP address, device type, browser details, and more. This helps us understand how you use our services to enhance your experience.</p><p>We use tools like Google Analytics, Facebook, and VK.com pixels to gather this data. These tools may store cookies on your device to track your actions for advertising and analytics purposes. For more details on our cookie usage, please refer to our cookies policy.</p>"
+        },
+        {
+          "id": "data-third-party",
+          "title": "INFORMATION WE GET FROM THIRD PARTIES",
+          "bodyHtml": "<p>We may collect Personal Data about you from third-party sources to enhance our understanding of your preferences and to validate the information you provide.</p>"
+        }
+      ]
+    },
+    {
+      "id": "legal-grounds",
+      "title": "Legal Grounds to Process Personal Data",
+      "introHtml": "<p>We process Personal Data based on legal grounds such as:</p><ul><li><strong>The Performance of a Contract:</strong> When you enroll in the Program or use our services, we process your data to facilitate our contract with you.</li><li><strong>A Legal Obligation:</strong> We process data to comply with applicable laws, like advertising regulations and responsible gaming laws.</li></ul>"
+    },
+    {
+      "id": "data-processing",
+      "title": "Data Processing",
+      "subsections": [
+        {
+          "id": "legitimate-interests",
+          "title": "LEGITIMATE INTERESTS",
+          "bodyHtml": "<p>We, along with other companies in our group or third parties, may process your Personal Data when there's a legitimate business or commercial reason to do so.</p>"
+        },
+        {
+          "id": "your-consent",
+          "title": "YOUR CONSENT",
+          "bodyHtml": "<p>In specific instances, we process your Personal Data based on your consent, such as when required for direct marketing.</p>"
+        },
+        {
+          "id": "how-we-use",
+          "title": "HOW WE USE PERSONAL DATA",
+          "bodyHtml": "<p>Processing your Personal Data is essential for us to offer you the Program you've signed up for. Without processing this data, some Program features and certain Website functions may be unavailable to you.</p><p>We use your Personal Data for various purposes, as outlined below:</p><div class=\"legal-page__table-wrap\"><table class=\"legal-page__table\"><thead><tr><th>Use of your Personal Data</th><th>Legal basis</th></tr></thead><tbody><tr><td>Operating our Website and ensuring it works as intended, delivering services you've requested</td><td>Performance of a contract, Legitimate interest</td></tr><tr><td>Setting up and managing your account</td><td>Performance of a contract, Legitimate interest</td></tr><tr><td>Determining your eligibility for the Program, including identity checks</td><td>Performance of a contract, Legitimate interest</td></tr><tr><td>Meeting legal duties and obligations, and complying with laws and regulations</td><td>Legal obligation</td></tr><tr><td>Supporting you, including resolving technical or payment issues</td><td>Performance of a contract</td></tr><tr><td>Enhancing our Website and Program, testing new features, and conducting technical analysis</td><td>Legitimate interest</td></tr><tr><td>Preventing and detecting crime, protecting users and ensuring fair use of our services</td><td>Legal obligation, Legitimate interest, Performance of a contract</td></tr><tr><td>Analyzing and aggregating data for statistics and reporting</td><td>Legitimate interest</td></tr><tr><td>Managing and confirming financial transactions</td><td>Performance of a contract, Legitimate interest</td></tr><tr><td>Assessing fraud risk and verifying credentials using third parties</td><td>Legal obligation, Performance of a contract, Legitimate interest</td></tr><tr><td>Monitoring advertising activity and managing associated risks</td><td>Legitimate interest, Performance of a contract</td></tr><tr><td>Exercising rights set out in our Terms and Conditions or other agreements</td><td>Performance of a contract</td></tr><tr><td>Sharing data with our group companies for restructuring or administrative purposes</td><td>Legitimate interest</td></tr><tr><td>Disclosing information to advertisers regarding suspicious, fraudulent, or allegedly illegal activities</td><td>Legitimate interest</td></tr><tr><td>Managing our relationship with you and communication, including operational, requested, and marketing communications</td><td>Performance of a contract, Legitimate interest, Your consent</td></tr></tbody></table></div>"
+        }
+      ]
+    },
+    {
+      "id": "sharing",
+      "title": "How We Share Your Personal Data",
+      "introHtml": "<p>There are instances where we may need to share your Personal Data with third parties. We will share your Personal Data with:</p><ul><li>Other companies within the Makeberry group;</li><li>Third-party service providers and partners who assist us in delivering the Website and Services you've requested;</li><li>Regulators, law enforcement agencies, government bodies, courts, and other third parties when required by applicable laws or regulations;</li><li>Advertisers whose offers you've accepted;</li><li>Affiliates and individuals who introduce you to us;</li><li>Identity verification agencies;</li><li>Potential buyers in connection with business acquisitions;</li><li>Others with your consent.</li></ul>"
+    },
+    {
+      "id": "international-transfers",
+      "title": "International Data Transfers",
+      "introHtml": "<p>When we process and share data, it may be transferred to countries outside of your own. We take steps to ensure your Personal Data remains protected. For those in the European Economic Area (EEA), we use European Commission's Standard Contractual Clauses for compliant transfers.</p>"
+    },
+    {
+      "id": "security",
+      "title": "Security",
+      "introHtml": "<p>We prioritize the protection of your Personal Data and have several measures in place:</p><ul><li><strong>Data encryption:</strong> Using industry-standard TLS for data between you and us;</li><li><strong>Limited access:</strong> Only authorized personnel have access to your personal information;</li><li><strong>Network protection:</strong> Firewalls, intrusion protection systems, and network segregation;</li><li><strong>Secure data centres:</strong> Our servers are housed in high-security facilities with 24/7 monitoring;</li><li><strong>Security monitoring:</strong> Continuous monitoring of our systems for threats;</li><li><strong>Confidentiality:</strong> All personnel are bound by confidentiality agreements;</li><li>In case of data breach, you and relevant authorities will be notified within 72 hours.</li></ul>"
+    },
+    {
+      "id": "data-retention",
+      "title": "Data Retention",
+      "introHtml": "<p>We retain your data as long as necessary for the purposes outlined below:</p>",
+      "subsections": [
+        {
+          "id": "retain-until-removed",
+          "title": "Information retained until you remove it",
+          "bodyHtml": "<p>You can edit or delete data associated with your account. We'll keep this data until you close your account and for the period specified by applicable laws.</p>"
+        },
+        {
+          "id": "retain-extended",
+          "title": "Information retained for extended periods",
+          "bodyHtml": "<p>We might keep some data longer due to legal or business requirements:</p><ul><li>To protect against fraud, abuse, and unauthorized access;</li><li>To comply with financial regulations and carry out accounting;</li><li>To meet legal obligations and enforce our Terms and Conditions;</li><li>To ensure the availability of our Website and/or Program;</li><li>If you've communicated with us directly.</li></ul>"
+        }
+      ]
+    },
+    {
+      "id": "your-rights",
+      "title": "Your Rights",
+      "introHtml": "<p>You have the following rights concerning your Personal Data processed by Makeberry:</p><ul><li><strong>Right to access:</strong> You can access and obtain a copy of your Personal Data.</li><li><strong>Right to rectification:</strong> You can update or correct any inaccuracies in your Personal Data.</li><li><strong>Right to erasure:</strong> You can request the deletion of your Personal Data in certain circumstances.</li><li><strong>Right to restriction of processing:</strong> You can request restrictions on the use of your Personal Data under certain circumstances.</li><li><strong>Right to data portability:</strong> You can transfer your Personal Data to a third party in a structured, commonly used, and machine-readable format.</li><li><strong>Right to object:</strong> You can object to the use of your Personal Data for certain purposes, like direct marketing.</li><li><strong>Right to complain:</strong> If you're not satisfied with how we handle your Personal Data, please contact us at <a href=\"mailto:info@makeberry.com\">info@makeberry.com</a>. You also have the right to lodge a complaint with your local data protection authority. You can exercise these rights by adjusting your account settings or by emailing us at <a href=\"mailto:info@makeberry.com\">info@makeberry.com</a>.</li></ul><p>We may require evidence of your identity before processing your request.</p>"
+    },
+    {
+      "id": "privacy-modifications",
+      "title": "Modifications",
+      "introHtml": "<p>We may update this Privacy Policy from time to time to reflect changes in our practices or services. When we make changes, we will update the 'Last Updated' date at the top of this Privacy Policy. We encourage you to check this page periodically to stay informed about any updates.</p><p>For information on how we use your data in connection with the Advertising Program, please also review our <a href=\"/terms\">Terms and Conditions</a>.</p>"
+    }
+  ]
+}

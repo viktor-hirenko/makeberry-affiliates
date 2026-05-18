@@ -190,6 +190,10 @@ export interface HomeHeroContent {
     label: string
     targetId: string
   }
+  scrollToTop: {
+    icon: string
+    label: string
+  }
   primaryCta: { label: string; path: string }
   secondaryCta: { label: string; path: string }
   background: {
@@ -863,4 +867,23 @@ export interface CasinoPageContent {
   payments: CasinoPaymentsContent
   cooperation: CasinoCooperationContent
   bottomCta: CasinoBottomCtaContent
+}
+
+export interface LegalSubsection {
+  id: string
+  title?: string
+  bodyHtml: string
+}
+
+export interface LegalSection {
+  id: string
+  title: string
+  introHtml?: string
+  subsections?: LegalSubsection[]
+}
+
+export interface LegalPageContent {
+  title: string
+  introHtml: string
+  sections: LegalSection[]
 }

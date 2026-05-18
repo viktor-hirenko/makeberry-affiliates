@@ -17,6 +17,8 @@ import { getCasinoBySlug } from '@/composables/useContent'
  * chunks дополнительно prefetch'атся по hover/touch на RouterLink
  * (см. useRoutePrefetch), поэтому к моменту клика обычно уже в кэше. */
 const BlogView = () => import('@/views/BlogView.vue')
+const TermsView = () => import('@/views/TermsView.vue')
+const PrivacyView = () => import('@/views/PrivacyView.vue')
 const ArticleView = () => import('@/views/ArticleView.vue')
 const AudienceView = () => import('@/views/AudienceView.vue')
 const CasinoView = () => import('@/views/CasinoView.vue')
@@ -76,6 +78,18 @@ export const router = createRouter({
         to.meta.title = casino.name
         return next()
       },
+    },
+    {
+      path: '/terms',
+      name: 'terms',
+      component: TermsView,
+      meta: { title: 'Terms and Conditions' },
+    },
+    {
+      path: '/privacy',
+      name: 'privacy',
+      component: PrivacyView,
+      meta: { title: 'Privacy Policy' },
     },
     {
       path: '/:pathMatch(.*)*',

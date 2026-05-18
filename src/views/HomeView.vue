@@ -10,6 +10,7 @@
  * с main bundle — initial JS остаётся компактным.
  */
 import HomeHero from '@/components/home/HomeHero.vue'
+import HomeScrollToTop from '@/components/home/HomeScrollToTop.vue'
 import HomeAbout from '@/components/home/HomeAbout.vue'
 import HomeAffiliatesAdvertisers from '@/components/home/HomeAffiliatesAdvertisers.vue'
 import HomeDirectAdvertiser from '@/components/home/HomeDirectAdvertiser.vue'
@@ -56,6 +57,7 @@ const blogContent = useHomeBlog()
     <HomeFaq v-if="faqContent.enabled !== false" />
     <HomeVacancies v-if="vacanciesContent.enabled !== false" />
     <HomeBlog v-if="blogContent.enabled !== false" />
+    <!-- <HomeScrollToTop /> -->
   </div>
 </template>
 

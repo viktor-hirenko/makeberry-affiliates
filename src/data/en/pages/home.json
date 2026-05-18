@@ -7,6 +7,10 @@
       "label": "Scroll to next section",
       "targetId": "about"
     },
+    "scrollToTop": {
+      "icon": "arrow-down-left",
+      "label": "Scroll to top"
+    },
     "primaryCta": {
       "label": "Affiliates",
       "path": "/affiliates"
@@ -938,7 +942,7 @@
       "src": "/images/decorative-icons/question.webp",
       "alt": ""
     },
-    "defaultOpenId": "payouts-on-hold",
+    "defaultOpenId": "countries",
     "items": [
       {
         "id": "payouts-on-hold",
@@ -948,37 +952,37 @@
       {
         "id": "register",
         "question": "How do I register with Makeberry?",
-        "answer": "Visit the registration page, fill in your contact details and traffic sources, and our manager will get back to you within one business day to finalize the onboarding."
+        "answer": "Click the \"Login\" button in the header of this page to begin the sign-up process for your affiliate account. Once you have reached the new page, click «Affiliate Sign Up» and fill in all the information required for registration. After submitting, you’ll receive a verification code to complete your registration. Once registered, your account status will be marked as \"pending.\" A manager will review your information and reach out to you soon for confirmation."
       },
       {
         "id": "min-payout",
         "question": "What is the minimum payout amount?",
-        "answer": "The default minimum payout is $100, but it can be adjusted individually depending on your traffic volume and the offers you work with."
+        "answer": "The minimum payout is 100$"
       },
       {
         "id": "countries",
         "question": "What countries does Makeberry work with?",
-        "answer": "We run offers across Tier 1, Tier 2 and Tier 3 — including LATAM, Europe, Africa, MENA and Asia. The full live list and per-country payouts are available in your dashboard after registration."
+        "answer": "Our primary focus is on Tier-1 and Tier-2 countries, yet we provide offers for a wide range of countries worldwide."
       },
       {
         "id": "prohibited-traffic",
         "question": "What types of traffic are prohibited by Makeberry?",
-        "answer": "We do not accept incentivized traffic, brand bidding, fraudulent installs/leads, malware/popunder, misleading creatives, and any traffic that violates the brand’s terms or local regulations."
+        "answer": "Spam, fraudulent traffic, deceptive or misleading advertisement (false promises or clickbait), using someone else's content. Some types of traffic may be prohibited within the framework of a particular deal."
       },
       {
         "id": "fraud-grounds",
         "question": "On what grounds can traffic be considered fraudulent?",
-        "answer": "Indicators include abnormal conversion-to-deposit ratio, suspicious geo / device patterns, repeat fingerprints, bot signatures, and any data inconsistencies flagged by our anti-fraud system or by the brand."
+        "answer": "Traffic can be considered fraudulent based on different indicators, such as fake accounts, inconsistent user behavior (rapid clicks, extremely high CTRs, and short session durations can suggest automated activity), suspicious patterns, like multiple conversions from the same IP or device. Using deceptive ads, hidden content, or unapproved traffic sources can lead to fraudulent traffic labels."
       },
       {
         "id": "earnings",
         "question": "How much can affiliates earn with Makeberry?",
-        "answer": "Earnings depend on the model (CPA, RevShare or Hybrid), GEO and traffic quality. Our top affiliates earn well into six figures per month — your dedicated manager will help build the optimal plan for your sources."
+        "answer": "It depends on the specific deal. Within the revshare model, your profit is absolutely unlimited, since you receive a commission from the revenue. Accordingly, the more interested players you bring to the brand, the higher your profit will be. As for the CPA, we offer a wide range of offers and the rate may vary depending on geo, brand, traffic source, and so on. For example, within one of the offers our partners receive €400/ftd in Canada for WinSpirit Casino. Check the list of the offers in our dashboard or contact your manager to find the most suitable deal for you."
       }
     ]
   },
   "vacancies": {
-    "enabled": false,
+    "enabled": true,
     "title": "Open Vacancies",
     "glow": {
       "src": "/images/decorations/glow-base.webp",
@@ -990,33 +994,33 @@
     },
     "cards": [
       {
-        "id": "creative-designer",
+        "id": "junior-middle-graphic-designer",
         "type": "Remote",
-        "title": "Creative designer",
-        "description": "We're looking for a talented Creative Designer to join our team — someone who can turn ideas into powerful visual stories and help shape the brand's identity.",
+        "title": "Junior/Middle Graphic Designer",
+        "description": "Join our Arbitrage Design team to create static creatives, PWA visuals, and adapt designs across formats and GEO — turning ideas into high-performing marketing assets.",
         "learnMoreLabel": "Learn More",
-        "learnMoreHref": "/vacancies/creative-designer"
+        "learnMoreHref": "https://career.makeberry.com/jobs/7722357-junior-middle-graphic-designer"
       },
       {
-        "id": "hr",
+        "id": "middle-people-partner",
         "type": "Remote",
-        "title": "H/R",
-        "description": "We're looking for an HR Specialist who's passionate about people and culture. Join our team to help build a strong, motivated, and happy workplace.",
+        "title": "Middle People Partner",
+        "description": "Support employee lifecycle from onboarding to performance reviews, partner with teams across the business, and help build a strong, motivated workplace.",
         "learnMoreLabel": "Learn More",
-        "learnMoreHref": "/vacancies/hr"
+        "learnMoreHref": "https://career.makeberry.com/jobs/7548225-middle-people-partner"
       },
       {
-        "id": "motion-designer",
+        "id": "junior-middle-motion-designer",
         "type": "Remote",
-        "title": "Motion Designer",
-        "description": "We're looking for a Motion Designer to bring ideas to life with animation, storytelling, and creative visuals. Join us and make our projects move!",
+        "title": "Junior/Middle Motion Designer",
+        "description": "Join our Arbitrage Design team to create video creatives, bring campaigns to life with animation, and adapt motion assets across formats and GEO.",
         "learnMoreLabel": "Learn More",
-        "learnMoreHref": "/vacancies/motion-designer"
+        "learnMoreHref": "https://career.makeberry.com/jobs/7721739-junior-middle-motion-designer"
       }
     ],
     "viewAll": {
       "label": "View All Vacancies",
-      "href": "/vacancies"
+      "href": "https://career.makeberry.com/"
     }
   },
   "blog": {

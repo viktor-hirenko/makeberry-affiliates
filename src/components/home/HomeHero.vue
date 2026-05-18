@@ -15,7 +15,7 @@ function handleScrollClick() {
 </script>
 
 <template>
-  <section class="home-hero" data-section="hero">
+  <section id="hero" class="home-hero" data-section="hero">
     <picture class="home-hero__bg" aria-hidden="true">
       <source media="(min-width: 768px)" :srcset="hero.background.desktop" />
       <img
