@@ -74,8 +74,11 @@ export interface NavLink {
 export interface NavConfig {
   logoAlt: string
   ctaLabel: string
-  ctaPath: string
-  /** false — скрыть кнопку CTA (Log In) пока маршрут /login не готов. */
+  /** Внутренний маршрут (RouterLink). Не задавать вместе с ctaHref. */
+  ctaPath?: string
+  /** Внешняя ссылка (например, dashboard login). */
+  ctaHref?: string
+  /** false — скрыть кнопку CTA (Log In). */
   ctaEnabled?: boolean
   links: NavLink[]
 }

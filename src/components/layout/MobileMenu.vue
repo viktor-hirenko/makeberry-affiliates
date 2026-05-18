@@ -64,6 +64,7 @@ function handleClose() {
 }
 
 const ctaLabel = computed(() => props.nav.ctaLabel)
+const ctaHref = computed(() => props.nav.ctaHref)
 const ctaPath = computed(() => props.nav.ctaPath)
 </script>
 
@@ -142,7 +143,13 @@ const ctaPath = computed(() => props.nav.ctaPath)
       </nav>
 
       <div v-if="nav.ctaEnabled !== false" class="mobile-menu__footer">
-        <BaseButton variant="secondary" size="large" :to="ctaPath" @click="handleClose">
+        <BaseButton
+          variant="secondary"
+          size="large"
+          :to="ctaHref ? undefined : ctaPath"
+          :href="ctaHref"
+          @click="handleClose"
+        >
           {{ ctaLabel }}
         </BaseButton>
       </div>

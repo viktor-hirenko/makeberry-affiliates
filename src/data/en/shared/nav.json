@@ -1,7 +1,7 @@
 {
   "logoAlt": "Makeberry Affiliates",
   "ctaLabel": "Log In",
-  "ctaPath": "/login",
+  "ctaHref": "https://dashboard.makeberry.com/login",
   "ctaEnabled": true,
   "links": [
     { "label": "Home", "path": "/" },

@@ -6,7 +6,7 @@
     "subtitleHtml": "We make sure it scales in the right markets, through the right channels, with full control over performance and brand positioning.",
     "cta": {
       "label": "Register",
-      "path": "/sign-up"
+      "href": "https://dashboard.makeberry.com/signup/brand"
     }
   },
   "whatYouGet": {
@@ -156,7 +156,7 @@
     "titleHtml": "<span class=\"primary\">Makeberry Affiliates is built for advertisers who want more than just traffic.</span> <span class=\"muted\">We help you grow in a structured, brand-safe and measurable way.</span>",
     "button": {
       "label": "Get in Touch",
-      "path": "/#contacts"
+      "href": "mailto:info@makeberry.com"
     },
     "glow": {
       "src": "/images/decorations/glow-audience-advertisers.webp",
