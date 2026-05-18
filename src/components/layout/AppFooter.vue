@@ -48,6 +48,7 @@ const ui = useSharedUi()
         </nav>
       </div>
 
+      <div class="app-footer__lower">
       <!-- Partners and Awards -->
       <div class="app-footer__pa">
         <section class="app-footer__partners" :aria-label="footer.partners.label">
@@ -137,6 +138,7 @@ const ui = useSharedUi()
           {{ footer.copyright }}
         </p>
       </div>
+      </div>
     </div>
   </footer>
 </template>
@@ -159,9 +161,27 @@ const ui = useSharedUi()
   );
 }
 
+/* Figma: mobile 60px header→lower; desktop 100px. Внутри lower: 60 / 80. */
 .app-footer__inner {
-  @include section-stack($gap-mobile: to-rem(60), $gap-tablet: null);
+  display: flex;
+  flex-direction: column;
+  gap: to-rem(60);
   @include container(to-rem(1140));
+
+  @include mq($from: tablet) {
+    gap: to-rem(100);
+  }
+}
+
+.app-footer__lower {
+  display: flex;
+  flex-direction: column;
+  gap: to-rem(60);
+  width: 100%;
+
+  @include mq($from: tablet) {
+    gap: to-rem(80);
+  }
 }
 
 .app-footer__header {
