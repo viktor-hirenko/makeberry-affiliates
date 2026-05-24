@@ -228,8 +228,8 @@ function closeMobileMenu() {
   background-color: var(--color-bg-overlay-header);
   border: 1px solid var(--color-border-subtle);
   border-radius: var(--radius-pill);
-  backdrop-filter: blur(12.5px);
-  -webkit-backdrop-filter: blur(12.5px);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
 }
 
 .app-header__bar {
@@ -330,8 +330,8 @@ function closeMobileMenu() {
   background-color: var(--color-bg-overlay-header);
   border: 1px solid var(--color-border-subtle);
   border-radius: to-rem(20);
-  backdrop-filter: blur(12.5px);
-  -webkit-backdrop-filter: blur(12.5px);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
 }
 
 .app-header__dropdown-link {

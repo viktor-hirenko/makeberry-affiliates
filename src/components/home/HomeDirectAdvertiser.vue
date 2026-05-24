@@ -121,14 +121,15 @@ const navConfig = {
                 </div>
               </template>
               <template v-else>
-                <img
-                  v-if="partner.logoSrc"
-                  :src="partner.logoSrc"
-                  :alt="partner.logoAlt ?? partner.name"
-                  class="home-direct__logo"
-                  loading="lazy"
-                  decoding="async"
-                />
+                <div v-if="partner.logoSrc" class="home-direct__logo-frame">
+                  <img
+                    :src="partner.logoSrc"
+                    :alt="partner.logoAlt ?? partner.name"
+                    class="home-direct__logo"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
                 <span v-else class="home-direct__logo-fallback">{{ partner.name }}</span>
               </template>
             </component>
@@ -302,10 +303,20 @@ const navConfig = {
   }
 }
 
+.home-direct__logo-frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(100%, #{to-rem(202)});
+  height: to-rem(90);
+  margin-inline: auto;
+  flex-shrink: 0;
+}
+
 .home-direct__logo {
   display: block;
-  max-width: 100%;
-  max-height: to-rem(75);
+  width: 100%;
+  height: 100%;
   object-fit: contain;
 }
 
