@@ -185,10 +185,8 @@ export interface NotFoundPageContent {
 export interface HomeHeroContent {
   titleLineLeft: string
   titleLineBottom: string
-  scroll: {
+  titleDecor: {
     icon: string
-    label: string
-    targetId: string
   }
   scrollToTop: {
     icon: string

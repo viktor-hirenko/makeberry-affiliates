@@ -59,7 +59,7 @@ onUnmounted(() => {
 <style scoped lang="scss">
 @use '@/assets/styles/scss/mixins' as *;
 
-/* Размеры и стили — как у .home-hero__scroll-button в HomeHero.vue */
+/* Размеры и стили — как у .home-hero__title-decor в HomeHero.vue */
 .home-scroll-to-top {
   position: fixed;
   right: var(--container-pad-x);

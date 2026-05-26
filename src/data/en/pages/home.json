@@ -2,10 +2,8 @@
   "hero": {
     "titleLineLeft": "We Make",
     "titleLineBottom": "You Get a Berry!",
-    "scroll": {
-      "icon": "arrow-down-left",
-      "label": "Scroll to next section",
-      "targetId": "about"
+    "titleDecor": {
+      "icon": "arrow-down-left"
     },
     "scrollToTop": {
       "icon": "arrow-down-left",

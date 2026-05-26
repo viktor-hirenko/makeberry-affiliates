@@ -4,14 +4,6 @@ import BaseIcon from '@/components/ui/BaseIcon.vue'
 import { useHomeHero } from '@/composables/useContent'
 
 const hero = useHomeHero()
-
-function handleScrollClick() {
-  const target = document.getElementById(hero.scroll.targetId)
-  if (target) {
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    target.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' })
-  }
-}
 </script>
 
 <template>
@@ -33,8 +25,8 @@ function handleScrollClick() {
       <h1 class="home-hero__title">
         <span class="home-hero__title-row">
           <span class="home-hero__title-text">{{ hero.titleLineLeft }}</span>
-          <span class="home-hero__scroll-button" aria-hidden="true" @click="handleScrollClick">
-            <BaseIcon :name="hero.scroll.icon" :size="48" class="home-hero__scroll-icon" />
+          <span class="home-hero__title-decor" aria-hidden="true">
+            <BaseIcon :name="hero.titleDecor.icon" :size="48" class="home-hero__title-decor-icon" />
           </span>
         </span>
         <span class="home-hero__title-text home-hero__title-text--bottom">
@@ -171,8 +163,7 @@ function handleScrollClick() {
   }
 }
 
-/* Декоративный span внутри h1: aria-hidden, клик скроллит к секции. */
-.home-hero__scroll-button {
+.home-hero__title-decor {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -180,30 +171,20 @@ function handleScrollClick() {
   padding: to-rem(16);
   width: to-rem(56);
   height: to-rem(56);
-  background: transparent;
   border: 2px solid var(--color-border-brand);
   border-radius: var(--radius-pill);
   color: var(--color-icon-primary);
-  cursor: pointer;
+  pointer-events: none;
   user-select: none;
-  transition:
-    background-color var(--transition-base),
-    color var(--transition-base);
-
-  &:hover,
-  &:active {
-    background-color: var(--color-bg-brand-soft);
-  }
 
   @include mq($from: mobile) {
-    padding: to-rem(16);
     width: to-rem(80);
     height: to-rem(80);
     border-width: 3px;
   }
 }
 
-.home-hero__scroll-icon {
+.home-hero__title-decor-icon {
   width: to-rem(24);
   height: to-rem(24);
 
