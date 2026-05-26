@@ -222,9 +222,12 @@ function closeMobileMenu() {
 
 .app-header__pill {
   position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: to-rem(16);
   max-width: calc(var(--container-max) - var(--header-pill-inset) * 2);
   padding: to-rem(16);
-  gap: to-rem(16);
   background-color: var(--color-bg-overlay-header);
   border: 1px solid var(--color-border-subtle);
   border-radius: var(--radius-pill);
@@ -245,14 +248,15 @@ function closeMobileMenu() {
 
 .app-header__logo {
   display: inline-flex;
-  flex-shrink: 0;
   align-items: center;
+  justify-self: start;
+  min-width: 0;
 }
 
 .app-header__nav {
-  flex: 1 1 auto;
   display: flex;
   justify-content: center;
+  justify-self: center;
   min-width: 0;
 }
 
@@ -351,8 +355,10 @@ function closeMobileMenu() {
 .app-header__actions {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
+  justify-self: end;
   gap: to-rem(16);
-  flex-shrink: 0;
+  min-width: 0;
 }
 
 .app-header--mobile .app-header__actions {
