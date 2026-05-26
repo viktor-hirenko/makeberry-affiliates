@@ -24,9 +24,7 @@ const isLaptopOrWider = useMediaQuery(`(min-width: ${BREAKPOINT_LAPTOP_PX}px)`)
 /** Компактный бар + drawer при ширине < 1024; pill с навигацией от 1024. */
 const isCompactBar = computed(() => !isTabletOrWider.value)
 const showDesktopNav = computed(() => isTabletOrWider.value)
-const logoVariant = computed<'full' | 'mark'>(() =>
-  isLaptopOrWider.value ? 'full' : 'mark'
-)
+const logoVariant = computed<'full' | 'mark'>(() => (isLaptopOrWider.value ? 'full' : 'mark'))
 
 const openDropdown = ref<string | null>(null)
 const mobileMenuOpen = ref(false)
@@ -82,7 +80,12 @@ function closeMobileMenu() {
 </script>
 
 <template>
-  <header ref="headerRef" class="app-header" :class="{ 'app-header--mobile': isCompactBar }" @keydown.escape="closeDropdown">
+  <header
+    ref="headerRef"
+    class="app-header"
+    :class="{ 'app-header--mobile': isCompactBar }"
+    @keydown.escape="closeDropdown"
+  >
     <div v-if="showDesktopNav" class="app-header__pill">
       <RouterLink to="/" class="app-header__logo" :aria-label="nav.logoAlt" @click="closeDropdown">
         <BaseLogo :variant="logoVariant" :aria-label="nav.logoAlt" :height="40" />
@@ -228,7 +231,8 @@ function closeMobileMenu() {
   gap: to-rem(16);
   max-width: calc(var(--container-max) - var(--header-pill-inset) * 2);
   padding: to-rem(16);
-  background-color: var(--color-bg-overlay-header);
+  // background-color: var(--color-bg-overlay-header);
+  background-color: rgba(0, 0, 0, 0.7);
   border: 1px solid var(--color-border-subtle);
   border-radius: var(--radius-pill);
   backdrop-filter: blur(7px);
