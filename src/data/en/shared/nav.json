@@ -23,6 +23,6 @@
     { "label": "Map", "path": "/#map", "enabled": false },
     { "label": "Testimonials", "path": "/#testimonials", "enabled": false },
     { "label": "FAQ", "path": "/#faq" },
-    { "label": "Contacts", "path": "/#contacts", "enabled": false }
+    { "label": "Contacts", "path": "/#contacts", "enabled": true }
   ]
 }

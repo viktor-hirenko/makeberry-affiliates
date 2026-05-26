@@ -156,7 +156,7 @@
     "titleHtml": "<span class=\"primary\">Makeberry Affiliates is built for advertisers who want more than just traffic.</span> <span class=\"muted\">We help you grow in a structured, brand-safe and measurable way.</span>",
     "button": {
       "label": "Get in Touch",
-      "href": "mailto:info@makeberry.com"
+      "path": "/#contacts"
     },
     "glow": {
       "src": "/images/decorations/glow-audience-advertisers.webp",

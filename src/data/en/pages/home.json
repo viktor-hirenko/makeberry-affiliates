@@ -747,7 +747,7 @@
     ]
   },
   "contacts": {
-    "enabled": false,
+    "enabled": true,
     "title": "Contacts",
     "glow": {
       "src": "/images/decorations/glow-base.webp",
@@ -764,16 +764,16 @@
         "socials": [
           {
             "type": "telegram",
-            "href": "https://t.me/valentyn_halchuk",
+            "href": "https://t.me/valentin_makeberry",
             "label": "Telegram"
           },
           {
             "type": "email",
-            "href": "mailto:valentyn@makeberry.com",
+            "href": "mailto:Valentyn.H@makeberry.com",
             "label": "Email"
           }
         ],
-        "verifyTokens": ["@valentyn_halchuk", "valentyn@makeberry.com"]
+        "verifyTokens": ["@valentin_makeberry", "valentyn.h@makeberry.com"]
       },
       {
         "id": "roman-yakubovskyi",
@@ -785,7 +785,7 @@
         "socials": [
           {
             "type": "telegram",
-            "href": "https://t.me/roman_yakubovskyi",
+            "href": "https://t.me/roman_makeberry",
             "label": "Telegram"
           },
           {
@@ -794,7 +794,7 @@
             "label": "Email"
           }
         ],
-        "verifyTokens": ["@roman_yakubovskyi", "roman.y@makeberry.com"]
+        "verifyTokens": ["@roman_makeberry", "roman.y@makeberry.com"]
       },
       {
         "id": "alona-didkivska",
@@ -806,16 +806,16 @@
         "socials": [
           {
             "type": "telegram",
-            "href": "https://t.me/alona_didkivska",
+            "href": "https://t.me/alona_makeberry",
             "label": "Telegram"
           },
           {
             "type": "email",
-            "href": "mailto:alona@makeberry.com",
+            "href": "mailto:alona.d@makeberry.com",
             "label": "Email"
           }
         ],
-        "verifyTokens": ["@alona_didkivska", "alona@makeberry.com"]
+        "verifyTokens": ["@alona_makeberry", "alona.d@makeberry.com"]
       },
       {
         "id": "serhii-solodchuk",
@@ -827,16 +827,16 @@
         "socials": [
           {
             "type": "telegram",
-            "href": "https://t.me/serhii_solodchuk",
+            "href": "https://t.me/serhii_makeberry",
             "label": "Telegram"
           },
           {
             "type": "email",
-            "href": "mailto:serhii@makeberry.com",
+            "href": "mailto:serhii.s@makeberry.com",
             "label": "Email"
           }
         ],
-        "verifyTokens": ["@serhii_solodchuk", "serhii@makeberry.com"]
+        "verifyTokens": ["@serhii_makeberry", "serhii.s@makeberry.com"]
       },
       {
         "id": "roman-hromov",
@@ -848,16 +848,16 @@
         "socials": [
           {
             "type": "telegram",
-            "href": "https://t.me/roman_hromov",
+            "href": "https://t.me/Rom_Makeberry",
             "label": "Telegram"
           },
           {
             "type": "email",
-            "href": "mailto:roman.h@makeberry.com",
+            "href": "mailto:r.hromov@makeberry.com",
             "label": "Email"
           }
         ],
-        "verifyTokens": ["@roman_hromov", "@roman", "roman.h@makeberry.com"]
+        "verifyTokens": ["@rom_makeberry", "@roman", "r.hromov@makeberry.com"]
       },
       {
         "id": "kateryna-rybka",
@@ -869,37 +869,37 @@
         "socials": [
           {
             "type": "telegram",
-            "href": "https://t.me/kateryna_rybka",
+            "href": "https://t.me/Kate_Makeberry",
             "label": "Telegram"
           },
           {
             "type": "email",
-            "href": "mailto:kateryna@makeberry.com",
+            "href": "mailto:kate.r@makeberry.com",
             "label": "Email"
           }
         ],
-        "verifyTokens": ["@kateryna_rybka", "kateryna@makeberry.com"]
+        "verifyTokens": ["@kate_makeberry", "kate.r@makeberry.com"]
       },
       {
-        "id": "anna-tian",
-        "name": "Anna\nTian",
+        "id": "ganna-tian",
+        "name": "Ganna\nTian",
         "position": "PR Makeberry Affiliate Team Lead",
         "photoSrc": "/images/contacts/anna-tian.webp",
-        "photoAlt": "Anna Tian",
+        "photoAlt": "Ganna Tian",
         "photoObjectPosition": "center top",
         "socials": [
           {
             "type": "telegram",
-            "href": "https://t.me/anna_tian",
+            "href": "https://t.me/aniatian",
             "label": "Telegram"
           },
           {
             "type": "email",
-            "href": "mailto:anna@makeberry.com",
+            "href": "mailto:g.tian@upstars.com",
             "label": "Email"
           }
         ],
-        "verifyTokens": ["@anna_tian", "anna@makeberry.com"]
+        "verifyTokens": ["@aniatian", "g.tian@upstars.com"]
       },
       {
         "id": "oleksandr-kulyk",
@@ -911,16 +911,16 @@
         "socials": [
           {
             "type": "telegram",
-            "href": "https://t.me/oleksandr_kulyk",
+            "href": "https://t.me/sasha_makeberry",
             "label": "Telegram"
           },
           {
             "type": "email",
-            "href": "mailto:oleksandr@makeberry.com",
+            "href": "mailto:sasha.k@makeberry.com",
             "label": "Email"
           }
         ],
-        "verifyTokens": ["@oleksandr_kulyk", "oleksandr@makeberry.com"]
+        "verifyTokens": ["@sasha_makeberry", "sasha.k@makeberry.com"]
       }
     ],
     "form": {
