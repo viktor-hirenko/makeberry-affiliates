@@ -24,16 +24,18 @@ const ui = useSharedUi()
     data-section="audience-cta"
     :aria-label="ui.aria.callToAction"
   >
-    <div class="audience-cta__inner">
-      <img
-        :src="cta.glow.src"
-        :alt="cta.glow.alt"
-        class="audience-cta__glow"
-        aria-hidden="true"
-        loading="lazy"
-        decoding="async"
-      />
+    <img
+      :src="cta.glow.mobileSrc ?? cta.glow.src"
+      :srcset="cta.glow.mobileSrc ? `${cta.glow.mobileSrc} 720w, ${cta.glow.src} 2880w` : undefined"
+      sizes="100vw"
+      :alt="cta.glow.alt"
+      class="audience-cta__glow"
+      aria-hidden="true"
+      loading="lazy"
+      decoding="async"
+    />
 
+    <div class="audience-cta__inner">
       <p class="audience-cta__text" v-html="cta.titleHtml" />
       <BaseButton
         variant="primary"
@@ -77,18 +79,19 @@ const ui = useSharedUi()
 
 .audience-cta--affiliates {
   .audience-cta__glow {
-    bottom: to-rem(-238);
-    right: to-rem(-447);
+    top: unset;
+    left: unset;
+    right: 0;
+    bottom: to-rem(-196);
+    width: 100%;
+    height: to-rem(434);
 
     @include mq($from: laptop) {
-      right: to-rem(-736);
-      bottom: to-rem(-206);
-      width: to-rem(1222);
-      height: to-rem(521);
+      bottom: to-rem(-350);
+      height: to-rem(679);
     }
   }
 
-  /* У affiliates текстовый блок уже, чем у advertisers. */
   .audience-cta__text {
     max-width: var(--container-lg);
   }
@@ -96,18 +99,20 @@ const ui = useSharedUi()
 
 .audience-cta--advertisers {
   .audience-cta__glow {
+    top: unset;
     right: unset;
-    left: to-rem(-400);
-    bottom: to-rem(-320);
-    width: to-rem(923);
-    height: to-rem(714);
+    left: 0;
+    bottom: to-rem(-196);
+    width: 939%;
+    height: to-rem(434);
+
+    @include mq($from: mobile) {
+      width: 100%;
+    }
 
     @include mq($from: laptop) {
-      right: unset;
-      left: to-rem(-792);
-      bottom: to-rem(-393);
-      width: to-rem(1222);
-      height: to-rem(946);
+      bottom: to-rem(-350);
+      height: to-rem(679);
     }
   }
 }

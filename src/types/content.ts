@@ -247,6 +247,7 @@ export interface HomeAffAdvCard {
 }
 
 export interface HomeAffiliatesAdvertisersContent {
+  glow: { src: string; alt: string }
   cards: HomeAffAdvCard[]
 }
 
@@ -308,6 +309,7 @@ export interface HomeDirectAdvertiserContent {
   }
   glow: {
     src: string
+    mobileSrc: string
     alt: string
   }
 }
@@ -363,6 +365,7 @@ export interface HomeBenefitCard {
 }
 
 export interface HomeBenefitsContent {
+  glow: { src: string; alt: string }
   title: string
   cards: HomeBenefitCard[]
 }
@@ -446,7 +449,11 @@ export interface HomeContactsContent {
   /** false — скрыть секцию через v-if в HomeView. Отсутствие поля = visible. */
   enabled?: boolean
   title: string
-  glow: { src: string; alt: string }
+  glow: {
+    src: string
+    mobileSrc: string
+    alt: string
+  }
   items: HomeContactItem[]
   form: HomeContactsForm
 }
@@ -461,7 +468,6 @@ export interface HomeFaqContent {
   /** false — скрыть секцию через v-if в HomeView. Отсутствие поля = visible. */
   enabled?: boolean
   title: string
-  glow: { src: string; alt: string }
   questionMark: { src: string; alt: string }
   items: HomeFaqItem[]
   /** id первого вопроса, открытого по умолчанию */
@@ -486,7 +492,6 @@ export interface HomeVacanciesContent {
   /** false — скрыть секцию через v-if в HomeView. Отсутствие поля = visible. */
   enabled?: boolean
   title: string
-  glow: { src: string; alt: string }
   target: { src: string; alt: string }
   cards: HomeVacancyCard[]
   viewAll: { label: string; href: string }
@@ -504,6 +509,7 @@ export interface HomeBlogContent {
   /** false — скрыть секцию через v-if в HomeView. Отсутствие поля = visible. */
   enabled?: boolean
   title: string
+  glow: { src: string; mobileSrc: string; alt: string }
   viewAll: { label: string; href: string }
 }
 
@@ -567,8 +573,8 @@ export interface BlogContent {
   badges: BlogHeaderBadge[]
   loadMoreLabel: string
   glow: {
-    leftSrc: string
-    rightSrc: string
+    src: string
+    mobileSrc: string
     alt: string
   }
 }
@@ -700,7 +706,7 @@ export interface AudienceCtaBlock {
    * href  — внешний URL или mailto: (anchor :href).
    */
   button: { label: string; path?: string; href?: string }
-  glow: { src: string; alt: string }
+  glow: { src: string; mobileSrc?: string; alt: string }
 }
 
 /**

@@ -159,7 +159,8 @@
       "path": "/#contacts"
     },
     "glow": {
-      "src": "/images/decorations/glow-audience-advertisers.webp",
+      "src": "/images/decorations/glow-audience-advertisers-desktop.webp",
+      "mobileSrc": "/images/decorations/glow-audience-advertisers-mobile.webp",
       "alt": ""
     }
   }
