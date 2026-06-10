@@ -74,15 +74,6 @@ const navConfig = {
 <template>
   <section id="direct-advertiser" class="home-direct" data-section="direct-advertiser">
     <div class="home-direct__inner">
-      <img
-        :src="content.glow.src"
-        :alt="content.glow.alt"
-        class="home-direct__glow"
-        aria-hidden="true"
-        loading="lazy"
-        decoding="async"
-      />
-
       <h2 class="home-direct__title">{{ content.title }}</h2>
 
       <div class="home-direct__slider-wrap">
@@ -160,17 +151,38 @@ const navConfig = {
         </PillHeaderCard>
       </ul>
 
-      <div class="home-direct__cta">
-        <p class="home-direct__cta-title">{{ content.cta.title }}</p>
-        <BaseButton
-          variant="secondary"
-          size="large"
-          :to="content.cta.button.href ? undefined : content.cta.button.path"
-          :href="content.cta.button.href"
-          class="home-direct__cta-btn"
-        >
-          {{ content.cta.button.label }}
-        </BaseButton>
+      <div class="home-direct__cta-wrap">
+        <picture class="home-direct__glow home-direct__glow--left" aria-hidden="true">
+          <source media="(min-width: 1024px)" :srcset="content.glow.src" />
+          <img
+            :src="content.glow.mobileSrc"
+            :alt="content.glow.alt"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
+        <picture class="home-direct__glow home-direct__glow--right" aria-hidden="true">
+          <source media="(min-width: 1024px)" :srcset="content.glow.src" />
+          <img
+            :src="content.glow.mobileSrc"
+            :alt="content.glow.alt"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
+
+        <div class="home-direct__cta">
+          <p class="home-direct__cta-title">{{ content.cta.title }}</p>
+          <BaseButton
+            variant="secondary"
+            size="large"
+            :to="content.cta.button.href ? undefined : content.cta.button.path"
+            :href="content.cta.button.href"
+            class="home-direct__cta-btn"
+          >
+            {{ content.cta.button.label }}
+          </BaseButton>
+        </div>
       </div>
     </div>
   </section>
@@ -182,6 +194,7 @@ const navConfig = {
 .home-direct {
   position: relative;
   isolation: isolate;
+  overflow-x: clip;
 
   @include section-padding;
 }
@@ -200,17 +213,44 @@ const navConfig = {
 
 .home-direct__glow {
   position: absolute;
-  top: to-rem(-180);
-  left: to-rem(-410);
-  width: to-rem(956);
+  top: 61%;
   max-width: unset;
   height: auto;
-  z-index: 0;
   pointer-events: none;
   user-select: none;
+  z-index: -1;
 
   @include mq($from: tablet) {
-    left: to-rem(-521);
+    top: 39%;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}
+
+.home-direct__glow--left {
+  width: to-rem(356);
+  left: calc(50% - #{to-rem(367)});
+  transform: translateY(-50%);
+
+  @include mq($from: tablet) {
+    width: to-rem(1096);
+    left: calc(50% - #{to-rem(1232)});
+  }
+}
+
+.home-direct__glow--right {
+  width: to-rem(361);
+  left: calc(50% + #{to-rem(8)});
+  right: auto;
+  transform: translateY(-50%) scaleX(-1);
+
+  @include mq($from: tablet) {
+    width: to-rem(1096);
+    left: calc(50% + #{to-rem(134)});
   }
 }
 
@@ -463,7 +503,18 @@ const navConfig = {
   }
 }
 
+.home-direct__cta-wrap {
+  position: relative;
+  width: 100%;
+  max-width: to-rem(1200);
+  margin-inline: auto;
+  // padding-block: to-rem(56);
+  overflow: visible;
+}
+
 .home-direct__cta {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;

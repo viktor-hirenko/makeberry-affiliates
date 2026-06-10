@@ -9,27 +9,18 @@ const content = useHomeVacancies()
 <template>
   <section id="vacancies" class="home-vacancies" data-section="vacancies">
     <div class="home-vacancies__inner">
-      <img
-        :src="content.glow.src"
-        :alt="content.glow.alt"
-        class="home-vacancies__glow"
-        aria-hidden="true"
-        loading="lazy"
-        decoding="async"
-      />
-
-      <img
-        :src="content.target.src"
-        :alt="content.target.alt"
-        class="home-vacancies__target"
-        aria-hidden="true"
-        loading="lazy"
-        decoding="async"
-      />
-
       <h2 class="home-vacancies__title">{{ content.title }}</h2>
 
       <div class="home-vacancies__content">
+        <img
+          :src="content.target.src"
+          :alt="content.target.alt"
+          class="home-vacancies__target"
+          aria-hidden="true"
+          loading="lazy"
+          decoding="async"
+        />
+
         <ul class="home-vacancies__cards">
           <li v-for="card in content.cards" :key="card.id" class="home-vacancies__card">
             <header class="home-vacancies__head">
@@ -70,23 +61,6 @@ const content = useHomeVacancies()
   @include section-padding(to-rem(120));
 }
 
-.home-vacancies__glow {
-  position: absolute;
-  top: to-rem(-172);
-  right: to-rem(-278);
-  width: to-rem(598.264);
-  max-width: unset;
-  height: to-rem(797.36);
-  pointer-events: none;
-  user-select: none;
-  z-index: 0;
-
-  @include mq($from: tablet) {
-    top: to-rem(-167);
-    right: to-rem(-290);
-  }
-}
-
 /* Dartboard-декор: скрыт <1024px, виден с ≥1024px (tablet+). */
 .home-vacancies__target {
   display: none;
@@ -94,7 +68,7 @@ const content = useHomeVacancies()
   @include mq($from: tablet) {
     display: block;
     position: absolute;
-    top: to-rem(22);
+    top: to-rem(-112);
     right: to-rem(-20);
     width: to-rem(200);
     height: to-rem(200);
@@ -125,6 +99,7 @@ const content = useHomeVacancies()
   width: 100%;
 
   @include mq($from: tablet) {
+    position: relative;
     max-width: to-rem(1200);
     margin-inline: auto;
   }

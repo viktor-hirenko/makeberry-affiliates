@@ -125,6 +125,10 @@
     }
   },
   "affiliatesAdvertisers": {
+    "glow": {
+      "src": "/images/decorations/glow-home-affiliates-advertisers.webp",
+      "alt": ""
+    },
     "cards": [
       {
         "id": "affiliates",
@@ -223,7 +227,8 @@
       }
     },
     "glow": {
-      "src": "/images/decorations/glow-casino-payments.webp",
+      "src": "/images/decorations/glow-edge-home-direct.webp",
+      "mobileSrc": "/images/decorations/glow-edge-home-direct-mobile.webp",
       "alt": ""
     }
   },
@@ -612,6 +617,10 @@
     ]
   },
   "benefits": {
+    "glow": {
+      "src": "/images/decorations/glow-radial.webp",
+      "alt": ""
+    },
     "title": "Our Benefits",
     "cards": [
       {
@@ -748,7 +757,8 @@
     "enabled": true,
     "title": "Contacts",
     "glow": {
-      "src": "/images/decorations/glow-base.webp",
+      "src": "/images/decorations/glow-edge-home-contacts.webp",
+      "mobileSrc": "/images/decorations/glow-edge-home-contacts-mobile.webp",
       "alt": ""
     },
     "items": [
@@ -932,10 +942,6 @@
   },
   "faq": {
     "title": "FAQ",
-    "glow": {
-      "src": "/images/decorations/glow-base.webp",
-      "alt": ""
-    },
     "questionMark": {
       "src": "/images/decorative-icons/question.webp",
       "alt": ""
@@ -981,10 +987,6 @@
   "vacancies": {
     "enabled": true,
     "title": "Open Vacancies",
-    "glow": {
-      "src": "/images/decorations/glow-base.webp",
-      "alt": ""
-    },
     "target": {
       "src": "/images/decorative-icons/target.webp",
       "alt": ""
@@ -1021,8 +1023,13 @@
     }
   },
   "blog": {
-    "enabled": false,
+    "enabled": true,
     "title": "Blog",
+    "glow": {
+      "src": "/images/decorations/glow-home-blog.webp",
+      "mobileSrc": "/images/decorations/glow-home-blog-mobile.webp",
+      "alt": ""
+    },
     "viewAll": {
       "label": "View All",
       "href": "/blog"

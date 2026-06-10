@@ -55,15 +55,6 @@ function onLeave(el: Element): void {
 <template>
   <section id="faq" class="home-faq" data-section="faq">
     <div class="home-faq__inner">
-      <img
-        :src="content.glow.src"
-        :alt="content.glow.alt"
-        class="home-faq__glow"
-        aria-hidden="true"
-        loading="lazy"
-        decoding="async"
-      />
-
       <h2 class="home-faq__title">{{ content.title }}</h2>
 
       <div class="home-faq__content">
@@ -156,26 +147,6 @@ function onLeave(el: Element): void {
   }
 }
 
-.home-faq__glow {
-  position: absolute;
-  top: to-rem(-175);
-  left: to-rem(-390);
-  width: to-rem(756);
-  max-width: unset;
-  height: auto;
-  pointer-events: none;
-  user-select: none;
-  z-index: 0;
-
-  @include mq($from: tablet) {
-    top: to-rem(-236);
-    left: to-rem(-311);
-    width: to-rem(742);
-    height: to-rem(989);
-    transform: scaleX(-1);
-  }
-}
-
 .home-faq__title {
   @include font-section-title;
 }
@@ -194,8 +165,8 @@ function onLeave(el: Element): void {
   display: none;
 
   @include mq($from: narrow-tablet) {
-    top: to-rem(-76);
-    left: to-rem(-110);
+    top: to-rem(-117);
+    left: to-rem(-117);
     display: block;
     position: absolute;
     width: to-rem(200);

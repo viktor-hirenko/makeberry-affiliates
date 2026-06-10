@@ -18,11 +18,23 @@ const previewArticles = computed(() => articles.slice(0, 3))
       <h2 class="home-blog__title">{{ content.title }}</h2>
 
       <div class="home-blog__content">
-        <ul class="home-blog__list">
-          <li v-for="article in previewArticles" :key="article.slug" class="home-blog__item">
-            <ArticleCard :article="article" />
-          </li>
-        </ul>
+        <div class="home-blog__cards">
+          <picture class="home-blog__glow" aria-hidden="true">
+            <source media="(min-width: 1024px)" :srcset="content.glow.src" />
+            <img
+              :src="content.glow.mobileSrc"
+              :alt="content.glow.alt"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
+
+          <ul class="home-blog__list">
+            <li v-for="article in previewArticles" :key="article.slug" class="home-blog__item">
+              <ArticleCard :article="article" />
+            </li>
+          </ul>
+        </div>
 
         <BaseButton variant="secondary" :to="content.viewAll.href" class="home-blog__cta">
           {{ content.viewAll.label }}
@@ -37,12 +49,14 @@ const previewArticles = computed(() => articles.slice(0, 3))
 
 .home-blog {
   position: relative;
+  overflow-x: clip;
 
   @include section-padding(to-rem(120));
 }
 
 .home-blog__inner {
   position: relative;
+  z-index: 1;
   width: 100%;
   max-width: to-rem(1320);
   margin-inline: auto;
@@ -54,6 +68,8 @@ const previewArticles = computed(() => articles.slice(0, 3))
 }
 
 .home-blog__content {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -66,8 +82,51 @@ const previewArticles = computed(() => articles.slice(0, 3))
   }
 }
 
+.home-blog__cards {
+  position: relative;
+  width: 100%;
+}
+
+.home-blog__glow {
+  position: absolute;
+  z-index: 0;
+  top: to-rem(-348);
+  right: to-rem(-408);
+  width: to-rem(457.74);
+  height: to-rem(836.66);
+  max-width: unset;
+  transform: rotate(-57.51deg);
+  transform-origin: 50% 50%;
+  pointer-events: none;
+  user-select: none;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  @include mq($from: tablet) {
+    top: to-rem(-415);
+    right: to-rem(-810);
+    width: to-rem(502);
+    height: to-rem(1120);
+
+    img {
+      height: 100%;
+    }
+  }
+
+  @include mq($from: laptop) {
+    right: to-rem(-511);
+  }
+}
+
 /* Третья карточка только с tablet: на mobile две + CTA → /blog. */
 .home-blog__list {
+  position: relative;
+  z-index: 1;
   list-style: none;
   margin: 0;
   padding: 0;

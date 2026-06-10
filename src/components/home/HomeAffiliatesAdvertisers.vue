@@ -7,50 +7,61 @@ const content = useHomeAffiliatesAdvertisers()
 
 <template>
   <section id="affiliates-advertisers" class="home-aff-adv" data-section="affiliates-advertisers">
-    <article
-      v-for="card in content.cards"
-      :key="card.id"
-      class="home-aff-adv__card"
-      :data-card="card.id"
-    >
-      <header class="home-aff-adv__header">
-        <h3 class="home-aff-adv__title">{{ card.title }}</h3>
-      </header>
-
-      <div class="home-aff-adv__divider" aria-hidden="true"></div>
-
-      <div class="home-aff-adv__body">
-        <p class="home-aff-adv__description">{{ card.description }}</p>
-
-        <div class="home-aff-adv__buttons">
-          <BaseButton
-            variant="primary"
-            size="large"
-            :to="card.primaryCta.path"
-            class="home-aff-adv__cta"
-          >
-            {{ card.primaryCta.label }}
-          </BaseButton>
-          <BaseButton
-            variant="tetriary"
-            size="large"
-            :to="card.secondaryCta.href ? undefined : card.secondaryCta.path"
-            :href="card.secondaryCta.href"
-            class="home-aff-adv__cta"
-          >
-            {{ card.secondaryCta.label }}
-          </BaseButton>
-        </div>
-      </div>
-
+    <div class="home-aff-adv__inner">
       <img
-        :src="card.decoration.src"
-        :alt="card.decoration.alt"
-        class="home-aff-adv__decoration"
+        :src="content.glow.src"
+        :alt="content.glow.alt"
+        class="home-aff-adv__glow"
+        aria-hidden="true"
         loading="lazy"
         decoding="async"
       />
-    </article>
+
+      <article
+        v-for="card in content.cards"
+        :key="card.id"
+        class="home-aff-adv__card"
+        :data-card="card.id"
+      >
+        <header class="home-aff-adv__header">
+          <h3 class="home-aff-adv__title">{{ card.title }}</h3>
+        </header>
+
+        <div class="home-aff-adv__divider" aria-hidden="true"></div>
+
+        <div class="home-aff-adv__body">
+          <p class="home-aff-adv__description">{{ card.description }}</p>
+
+          <div class="home-aff-adv__buttons">
+            <BaseButton
+              variant="primary"
+              size="large"
+              :to="card.primaryCta.path"
+              class="home-aff-adv__cta"
+            >
+              {{ card.primaryCta.label }}
+            </BaseButton>
+            <BaseButton
+              variant="tetriary"
+              size="large"
+              :to="card.secondaryCta.href ? undefined : card.secondaryCta.path"
+              :href="card.secondaryCta.href"
+              class="home-aff-adv__cta"
+            >
+              {{ card.secondaryCta.label }}
+            </BaseButton>
+          </div>
+        </div>
+
+        <img
+          :src="card.decoration.src"
+          :alt="card.decoration.alt"
+          class="home-aff-adv__decoration"
+          loading="lazy"
+          decoding="async"
+        />
+      </article>
+    </div>
   </section>
 </template>
 
@@ -59,13 +70,25 @@ const content = useHomeAffiliatesAdvertisers()
 
 .home-aff-adv {
   position: relative;
+  overflow-x: clip;
+
+  @include section-padding(
+    $desktop-inline: to-rem(160),
+    $desktop-top: to-rem(170),
+    $desktop-bottom: to-rem(170)
+  );
+}
+
+.home-aff-adv__inner {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: 1fr;
   justify-items: stretch;
   gap: to-rem(60);
+  width: 100%;
+  max-width: to-rem(1320);
   margin-inline: auto;
-
-  @include section-padding(to-rem(160));
 
   @include mq($from: compact) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -81,8 +104,27 @@ const content = useHomeAffiliatesAdvertisers()
   }
 }
 
+.home-aff-adv__glow {
+  display: none;
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  width: to-rem(1397);
+  max-width: unset;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+  transform: translate(-50%, -50%);
+
+  @include mq($from: mobile) {
+    display: block;
+  }
+}
+
 .home-aff-adv__card {
   position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: stretch;

@@ -8,9 +8,10 @@ const content = useHomeBenefits()
   <section id="our-benefits" class="home-benefits" data-section="our-benefits">
     <div class="home-benefits__inner">
       <img
-        src="/images/decorations/glow-home-benefits.webp"
-        alt=""
+        :src="content.glow.src"
+        :alt="content.glow.alt"
         class="home-benefits__glow"
+        aria-hidden="true"
         loading="lazy"
         decoding="async"
       />
@@ -63,20 +64,19 @@ const content = useHomeBenefits()
 }
 
 .home-benefits__glow {
-  position: absolute;
-  z-index: -1;
-  top: to-rem(-364);
-  right: to-rem(-333);
-  width: to-rem(625);
-  max-width: unset;
-  height: auto;
-  pointer-events: none;
-  user-select: none;
+  display: none;
 
   @include mq($from: tablet) {
-    top: to-rem(-400);
-    right: to-rem(-480);
-    width: to-rem(625);
+    position: absolute;
+    display: block;
+    z-index: -1;
+    width: to-rem(1276);
+    max-width: unset;
+    height: auto;
+    pointer-events: none;
+    user-select: none;
+    bottom: to-rem(-304);
+    right: to-rem(-736);
   }
 }
 

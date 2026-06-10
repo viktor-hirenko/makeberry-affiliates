@@ -177,15 +177,6 @@ const navConfig = {
 <template>
   <section id="testimonials" class="home-testimonials" data-section="testimonials">
     <div class="home-testimonials__inner">
-      <img
-        src="/images/decorations/glow-home-testimonials.webp"
-        alt=""
-        class="home-testimonials__glow"
-        aria-hidden="true"
-        loading="lazy"
-        decoding="async"
-      />
-
       <h2 class="home-testimonials__title">{{ content.title }}</h2>
 
       <div class="home-testimonials__slider-wrap">
@@ -297,23 +288,6 @@ const navConfig = {
   position: relative;
 
   @include section-padding(to-rem(60));
-}
-
-.home-testimonials__glow {
-  position: absolute;
-  top: to-rem(-250);
-  left: to-rem(-420);
-  width: to-rem(956);
-  height: auto;
-  max-width: unset;
-  pointer-events: none;
-  user-select: none;
-  z-index: 0;
-
-  @include mq($from: tablet) {
-    top: to-rem(-360);
-    left: to-rem(-600);
-  }
 }
 
 .home-testimonials__inner {

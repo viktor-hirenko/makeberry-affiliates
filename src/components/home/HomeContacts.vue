@@ -82,15 +82,6 @@ function handleInput() {
 <template>
   <section id="contacts" class="home-contacts" data-section="contacts">
     <div class="home-contacts__inner">
-      <img
-        :src="content.glow.src"
-        :alt="content.glow.alt"
-        class="home-contacts__glow"
-        aria-hidden="true"
-        loading="lazy"
-        decoding="async"
-      />
-
       <h2 class="home-contacts__title">{{ content.title }}</h2>
 
       <div class="home-contacts__slider-wrap">
@@ -168,52 +159,73 @@ function handleInput() {
         <div class="home-contacts__pagination"></div>
       </div>
 
-      <div class="home-contacts__form">
-        <header class="home-contacts__form-header">
-          <h3 class="home-contacts__form-title">{{ content.form.title }}</h3>
-          <p class="home-contacts__form-subtitle">{{ content.form.subtitle }}</p>
-        </header>
+      <div class="home-contacts__form-wrap">
+        <picture class="home-contacts__glow home-contacts__glow--left" aria-hidden="true">
+          <source media="(min-width: 1024px)" :srcset="content.glow.src" />
+          <img
+            :src="content.glow.mobileSrc"
+            :alt="content.glow.alt"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
+        <picture class="home-contacts__glow home-contacts__glow--right" aria-hidden="true">
+          <source media="(min-width: 1024px)" :srcset="content.glow.src" />
+          <img
+            :src="content.glow.mobileSrc"
+            :alt="content.glow.alt"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
 
-        <form class="home-contacts__form-body" @submit.prevent="handleVerify">
-          <div
-            class="home-contacts__input"
-            :class="{
-              'is-verified': status === 'verified',
-              'is-error': status === 'error',
-            }"
-          >
-            <input
-              v-model="query"
-              type="text"
-              class="home-contacts__input-field"
-              :placeholder="content.form.placeholder"
-              autocomplete="off"
-              spellcheck="false"
-              enterkeyhint="send"
-              :aria-invalid="status === 'error'"
-              @input="handleInput"
-            />
-            <button type="submit" class="home-contacts__input-btn">
-              {{ content.form.buttonLabel }}
-            </button>
-          </div>
+        <div class="home-contacts__form">
+          <header class="home-contacts__form-header">
+            <h3 class="home-contacts__form-title">{{ content.form.title }}</h3>
+            <p class="home-contacts__form-subtitle">{{ content.form.subtitle }}</p>
+          </header>
 
-          <div
-            v-if="status !== 'idle'"
-            class="home-contacts__status"
-            :class="{
-              'home-contacts__status--verified': status === 'verified',
-              'home-contacts__status--error': status === 'error',
-            }"
-            role="status"
-            aria-live="polite"
-          >
-            <BaseIcon :name="status === 'verified' ? 'verified' : 'alert-circle'" :size="24" />
-            <span>{{
-              status === 'verified' ? content.form.verifiedLabel : content.form.errorLabel
-            }}</span>
-          </div>
-        </form>
+          <form class="home-contacts__form-body" @submit.prevent="handleVerify">
+            <div
+              class="home-contacts__input"
+              :class="{
+                'is-verified': status === 'verified',
+                'is-error': status === 'error',
+              }"
+            >
+              <input
+                v-model="query"
+                type="text"
+                class="home-contacts__input-field"
+                :placeholder="content.form.placeholder"
+                autocomplete="off"
+                spellcheck="false"
+                enterkeyhint="send"
+                :aria-invalid="status === 'error'"
+                @input="handleInput"
+              />
+              <button type="submit" class="home-contacts__input-btn">
+                {{ content.form.buttonLabel }}
+              </button>
+            </div>
+
+            <div
+              v-if="status !== 'idle'"
+              class="home-contacts__status"
+              :class="{
+                'home-contacts__status--verified': status === 'verified',
+                'home-contacts__status--error': status === 'error',
+              }"
+              role="status"
+              aria-live="polite"
+            >
+              <BaseIcon :name="status === 'verified' ? 'verified' : 'alert-circle'" :size="24" />
+              <span>{{
+                status === 'verified' ? content.form.verifiedLabel : content.form.errorLabel
+              }}</span>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </section>
@@ -236,23 +248,62 @@ function handleInput() {
   z-index: 1;
   @include section-stack($align: center);
   @include container(var(--container-content));
+
+  column-gap: to-rem(70);
+}
+
+.home-contacts__form-wrap {
+  position: relative;
+  width: 100%;
+  max-width: to-rem(1200);
+  margin-inline: auto;
+  overflow: visible;
+
+  @include mq($from: tablet) {
+    padding-block: to-rem(56);
+  }
 }
 
 .home-contacts__glow {
   position: absolute;
-  top: to-rem(-106);
-  right: to-rem(-280);
-  width: to-rem(540);
-  height: to-rem(720);
+  top: 7%;
+  max-width: unset;
+  height: auto;
   pointer-events: none;
   user-select: none;
   z-index: 0;
 
   @include mq($from: tablet) {
-    top: to-rem(-186);
-    right: to-rem(-390);
-    width: to-rem(742);
+    top: 33%;
+  }
+
+  img {
+    display: block;
+    width: 100%;
     height: auto;
+  }
+}
+
+.home-contacts__glow--left {
+  width: to-rem(315);
+  left: calc(50% - #{to-rem(405)});
+  transform: translateY(-50%);
+
+  @include mq($from: tablet) {
+    width: to-rem(920);
+    left: calc(50% - #{to-rem(1136)});
+  }
+}
+
+.home-contacts__glow--right {
+  width: to-rem(315);
+  left: calc(50% + #{to-rem(90)});
+  right: auto;
+  transform: translateY(-50%) scaleX(-1);
+
+  @include mq($from: tablet) {
+    width: to-rem(920);
+    left: calc(50% + #{to-rem(216)});
   }
 }
 
@@ -469,18 +520,13 @@ function handleInput() {
 
 /* Form follows the slider with a Figma-prescribed 70/100 gap. */
 .home-contacts__form {
+  position: relative;
+  z-index: 1;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: to-rem(24);
-  margin-top: to-rem(
-    22
-  ); /* 70 - 48 (gap inner) = 22 → даём docs gap, но реально margin даёт +22 поверх gap */
-
-  @include mq($from: tablet) {
-    margin-top: to-rem(30); /* 100 - 70 = 30 */
-  }
 }
 
 .home-contacts__form-header {
@@ -494,12 +540,17 @@ function handleInput() {
 
 .home-contacts__form-title {
   margin: 0;
+  width: 100%;
   font-family: var(--font-sans);
   font-weight: 500;
-  font-size: to-rem(32);
-  line-height: to-rem(40);
+  font-size: to-rem(24);
+  line-height: to-rem(32);
   letter-spacing: -0.01em;
   color: var(--color-text-primary);
+
+  @include mq($from: tablet) {
+    @include font-h4;
+  }
 }
 
 .home-contacts__form-subtitle {
@@ -529,10 +580,10 @@ function handleInput() {
   background-color: var(--color-bg-subtle);
   border: 1px solid var(--color-border-subtle);
   border-radius: var(--radius-pill);
-  width: 100%;
+  width: to-rem(328);
   transition: border-color var(--transition-base);
 
-  @include mq($from: compact) {
+  @include mq($from: tablet) {
     width: to-rem(450);
   }
 
