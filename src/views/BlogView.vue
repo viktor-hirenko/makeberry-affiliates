@@ -23,12 +23,7 @@ function loadMore() {
   <div class="blog-page">
     <picture class="blog-page__glow" aria-hidden="true">
       <source media="(min-width: 1024px)" :srcset="meta.glow.src" />
-      <img
-        :src="meta.glow.mobileSrc"
-        :alt="meta.glow.alt"
-        loading="eager"
-        decoding="async"
-      />
+      <img :src="meta.glow.mobileSrc" :alt="meta.glow.alt" loading="eager" decoding="async" />
     </picture>
 
     <div class="blog-page__inner">
