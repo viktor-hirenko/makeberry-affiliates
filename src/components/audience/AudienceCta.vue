@@ -24,16 +24,16 @@ const ui = useSharedUi()
     data-section="audience-cta"
     :aria-label="ui.aria.callToAction"
   >
-    <img
-      :src="cta.glow.mobileSrc ?? cta.glow.src"
-      :srcset="cta.glow.mobileSrc ? `${cta.glow.mobileSrc} 720w, ${cta.glow.src} 2880w` : undefined"
-      sizes="100vw"
-      :alt="cta.glow.alt"
-      class="audience-cta__glow"
-      aria-hidden="true"
-      loading="lazy"
-      decoding="async"
-    />
+    <picture aria-hidden="true">
+      <source v-if="cta.glow.mobileSrc" media="(min-width: 1024px)" :srcset="cta.glow.src" />
+      <img
+        :src="cta.glow.mobileSrc ?? cta.glow.src"
+        :alt="cta.glow.alt"
+        class="audience-cta__glow"
+        loading="lazy"
+        decoding="async"
+      />
+    </picture>
 
     <div class="audience-cta__inner">
       <p class="audience-cta__text" v-html="cta.titleHtml" />
