@@ -16,13 +16,15 @@ defineProps<Props>()
   <section class="audience-hero" data-section="hero">
     <div class="audience-hero__inner">
       <picture class="audience-hero__decor" aria-hidden="true">
-        <source media="(min-width: 1024px)" srcset="/images/hero/audience-bg-desktop.webp" />
+        <source media="(min-width: 1024px)" srcset="/images/hero/audience-cables-desktop.webp" />
         <img
-          src="/images/hero/audience-bg-mobile.webp"
+          src="/images/hero/audience-cables-mobile.webp"
           alt=""
           loading="eager"
           decoding="async"
           fetchpriority="high"
+          width="630"
+          height="634"
         />
       </picture>
 
@@ -102,32 +104,28 @@ defineProps<Props>()
   overflow: hidden;
 
   img {
-    display: block;
-    top: 0;
-    right: 0;
-    width: 200%;
-    height: auto;
+    position: absolute;
+    max-width: none;
+    top: calc(-24 / 360 * 100vw);
+    right: calc(-10.5 / 360 * 100vw);
+    width: calc(315 / 360 * 100vw);
+    height: calc(317 / 360 * 100vw);
   }
 
-  @include mq($from: compact) {
+  @include mq($from: mobile) {
     img {
-      width: 160%;
+      top: calc(-24 / 600 * 100vw);
+      right: calc(-10.5 / 600 * 100vw);
+      width: calc(315 / 600 * 100vw);
+      height: calc(317 / 600 * 100vw);
     }
   }
 
-  @include mq($from: tablet) {
+  @include mq($from: laptop) {
     img {
-      top: 0;
-      right: 0;
-      width: 130%;
-    }
-  }
-
-  @include mq($from: desktop) {
-    img {
-      top: 0;
-      right: 0;
-      width: 110%;
+      right: calc(-42 / 1440 * 100vw);
+      width: calc(887 / 1440 * 100vw);
+      height: calc(971 / 1440 * 100vw);
     }
   }
 }
