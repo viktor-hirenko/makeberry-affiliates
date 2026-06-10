@@ -3,7 +3,13 @@ import { join, resolve } from 'path'
 
 const DIST = resolve('dist')
 
-const STATIC_ROUTES = ['affiliates', 'advertisers', 'blog', 'terms', 'privacy']
+const STATIC_ROUTES = [
+  'affiliates',
+  'advertisers',
+  'blog',
+  'terms-and-conditions',
+  'privacy-policy',
+]
 
 const CASINO_SLUGS = ['winspirit', 'rocketplay', 'luckyhills']
 

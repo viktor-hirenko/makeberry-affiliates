@@ -80,13 +80,13 @@ export const router = createRouter({
       },
     },
     {
-      path: '/terms',
+      path: '/terms-and-conditions',
       name: 'terms',
       component: TermsView,
       meta: { title: 'Terms and Conditions' },
     },
     {
-      path: '/privacy',
+      path: '/privacy-policy',
       name: 'privacy',
       component: PrivacyView,
       meta: { title: 'Privacy Policy' },
