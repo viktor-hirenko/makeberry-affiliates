@@ -21,26 +21,17 @@ function loadMore() {
 
 <template>
   <div class="blog-page">
-    <div class="blog-page__inner">
-      <!-- Декоративные гловы (только desktop) -->
+    <picture class="blog-page__glow" aria-hidden="true">
+      <source media="(min-width: 1024px)" :srcset="meta.glow.src" />
       <img
-        :src="meta.glow.leftSrc"
+        :src="meta.glow.mobileSrc"
         :alt="meta.glow.alt"
-        class="blog-page__glow blog-page__glow--left"
-        aria-hidden="true"
         loading="eager"
         decoding="async"
       />
-      <img
-        :src="meta.glow.rightSrc"
-        :alt="meta.glow.alt"
-        class="blog-page__glow blog-page__glow--right"
-        aria-hidden="true"
-        loading="eager"
-        decoding="async"
-      />
+    </picture>
 
-      <!-- HEADER: title + декоративные badges -->
+    <div class="blog-page__inner">
       <header class="blog-page__header">
         <h1 class="blog-page__title">{{ meta.title }}</h1>
 
@@ -89,7 +80,6 @@ function loadMore() {
 
 .blog-page {
   position: relative;
-  overflow: hidden;
 
   @include section-padding(
     $desktop-inline: to-rem(120),
@@ -100,40 +90,18 @@ function loadMore() {
 
 .blog-page__glow {
   position: absolute;
-  max-width: unset;
-  height: auto;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
   pointer-events: none;
   user-select: none;
-  z-index: 0;
-}
 
-.blog-page__glow--left {
-  width: to-rem(500);
-  top: to-rem(-207);
-  left: to-rem(-183);
-
-  @include mq($from: tablet) {
-    width: to-rem(989);
-    top: to-rem(-429);
-    left: to-rem(-454);
-  }
-}
-
-.blog-page__glow--right {
-  /* На mobile отсутствует (Figma 3861:19714). */
-  display: none;
-
-  @include mq($from: mobile) {
+  img {
     display: block;
-    width: to-rem(1094);
-    top: to-rem(-456);
-    right: to-rem(-513);
-  }
-
-  @include mq($from: tablet) {
-    display: block;
-    top: to-rem(-392);
-    right: to-rem(-322);
+    width: 100%;
+    height: auto;
   }
 }
 

@@ -34,26 +34,17 @@ function isTextSection(section: ArticleSection): boolean {
 
 <template>
   <article v-if="article" class="article">
-    <div class="article__inner">
-      <!-- Декоративные гловы -->
+    <picture class="article__glow" aria-hidden="true">
+      <source media="(min-width: 1024px)" :srcset="blogMeta.glow.src" />
       <img
-        :src="blogMeta.glow.leftSrc"
+        :src="blogMeta.glow.mobileSrc"
         :alt="blogMeta.glow.alt"
-        class="article__glow article__glow--left"
-        aria-hidden="true"
         loading="eager"
         decoding="async"
       />
-      <img
-        :src="blogMeta.glow.rightSrc"
-        :alt="blogMeta.glow.alt"
-        class="article__glow article__glow--right"
-        aria-hidden="true"
-        loading="eager"
-        decoding="async"
-      />
+    </picture>
 
-      <!-- BACK link -->
+    <div class="article__inner">
       <RouterLink to="/blog" class="article__back">
         <span>{{ ui.actions.back }}</span>
         <BaseIcon name="arrow-back" :size="24" />
@@ -152,7 +143,6 @@ function isTextSection(section: ArticleSection): boolean {
   flex: 1;
   width: 100%;
   padding-block-start: to-rem(160);
-  overflow: hidden;
 
   @include section-padding(
     $desktop-inline: to-rem(120),
@@ -161,42 +151,21 @@ function isTextSection(section: ArticleSection): boolean {
   );
 }
 
-/* Декоративные гловы — те же, что на Blog page. */
+/* Декоративный ellipse-glow — те же ассеты, что на Blog page. */
 .article__glow {
   position: absolute;
-  max-width: unset;
-  height: auto;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
   pointer-events: none;
   user-select: none;
-  z-index: -1;
-}
 
-.article__glow--left {
-  width: to-rem(500);
-  top: to-rem(-207);
-  left: to-rem(-183);
-
-  @include mq($from: tablet) {
-    width: to-rem(989);
-    top: to-rem(-429);
-    left: to-rem(-454);
-  }
-}
-
-.article__glow--right {
-  display: none;
-
-  @include mq($from: mobile) {
+  img {
     display: block;
-    width: to-rem(1094);
-    top: to-rem(-456);
-    right: to-rem(-513);
-  }
-
-  @include mq($from: tablet) {
-    display: block;
-    top: to-rem(-392);
-    right: to-rem(-322);
+    width: 100%;
+    height: auto;
   }
 }
 
