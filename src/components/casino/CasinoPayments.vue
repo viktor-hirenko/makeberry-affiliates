@@ -2,8 +2,8 @@
 import type { CasinoPaymentsContent } from '@/types/content'
 
 /**
- * Casino → Payments & Withdrawals.
- * Декорация — pink glow в левом верхнем углу (overflow: clip).
+ * Casino → Payments & Withdrawals — Figma mobile 12365:9127 / desktop 12269:10399.
+ * Glow: Ellipse 5825 (12365:9622 / 12269:11362) — CSS radial-gradient, без растра.
  */
 interface Props {
   content: CasinoPaymentsContent
@@ -14,19 +14,11 @@ defineProps<Props>()
 
 <template>
   <section class="casino-payments" data-section="casino-payments">
-    <img
-      :src="content.glow.src"
-      :alt="content.glow.alt"
-      class="casino-payments__glow"
-      aria-hidden="true"
-      loading="lazy"
-      decoding="async"
-    />
-
     <div class="casino-payments__inner">
       <h2 class="casino-payments__title">{{ content.title }}</h2>
 
       <div class="casino-payments__grid">
+        <div class="casino-payments__glow" aria-hidden="true"></div>
         <article v-for="list in content.lists" :key="list.id" class="casino-payments__card">
           <header class="casino-payments__card-header">
             <h3 class="casino-payments__card-title">{{ list.title }}</h3>
@@ -46,7 +38,6 @@ defineProps<Props>()
 <style scoped lang="scss">
 @use '@/assets/styles/scss/mixins' as *;
 
-/* Pink glow выходит за левую границу — overflow-x: clip */
 .casino-payments {
   position: relative;
   overflow-x: clip;
@@ -56,18 +47,25 @@ defineProps<Props>()
 
 .casino-payments__glow {
   position: absolute;
-  top: to-rem(-100);
-  left: to-rem(-260);
-  width: to-rem(580);
-  height: auto;
   z-index: 0;
+  top: to-rem(-43);
+  left: to-rem(126);
+  width: to-rem(48);
+  height: to-rem(1017);
   pointer-events: none;
   user-select: none;
+  border-radius: 1017px;
+  background: #ff0180;
+  filter: blur(150px);
 
   @include mq($from: tablet) {
-    top: to-rem(-160);
-    left: to-rem(-421);
-    width: to-rem(956);
+    top: 50%;
+    left: to-rem(-80);
+    transform: translateY(-50%);
+    width: to-rem(1170);
+    height: to-rem(48);
+    border-radius: 1170px;
+    background: #ff0180;
   }
 }
 
@@ -83,6 +81,7 @@ defineProps<Props>()
 }
 
 .casino-payments__grid {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr;
   align-items: stretch;
@@ -100,6 +99,8 @@ defineProps<Props>()
 }
 
 .casino-payments__card {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: stretch;

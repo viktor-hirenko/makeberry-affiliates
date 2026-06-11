@@ -3,9 +3,9 @@ import PillHeaderCard from '@/components/shared/PillHeaderCard.vue'
 import type { CasinoKeyHighlightsContent } from '@/types/content'
 
 /**
- * Casino → Key Highlights — Figma 3819:4205 / LuckyHills 3861:23240.
- * Карточка — переиспользуемый `PillHeaderCard`; sparkle справа от title
- * (Figma 3861:23258–3861:23259), inner artwork ~159×159 в контейнере 200×200.
+ * Casino → Key Highlights — Figma mobile 12365:9109 / desktop 12269:10376.
+ * Glow: mobile 12365:9610, desktop 12269:11353 (Frame 204).
+ * Sparkle справа от title — tablet+, Figma 12269:10394.
  */
 interface Props {
   content: CasinoKeyHighlightsContent
@@ -16,6 +16,22 @@ defineProps<Props>()
 
 <template>
   <section class="casino-highlights" data-section="casino-highlights">
+    <picture aria-hidden="true">
+      <source
+        media="(min-width: 1024px)"
+        srcset="/images/decorations/glow-casino-highlights-desktop.webp"
+      />
+      <img
+        src="/images/decorations/glow-casino-highlights-mobile.webp"
+        alt=""
+        class="casino-highlights__glow"
+        loading="lazy"
+        decoding="async"
+        width="193"
+        height="292"
+      />
+    </picture>
+
     <div class="casino-highlights__inner">
       <div class="casino-highlights__heading">
         <h2 class="casino-highlights__title">{{ content.title }}</h2>
@@ -41,14 +57,50 @@ defineProps<Props>()
 <style scoped lang="scss">
 @use '@/assets/styles/scss/mixins' as *;
 
+// Desktop glow tuned @1440: left -423px → calc(50% - 1143px).
+$glow-desktop-left-calc-offset: to-rem(1143);
+
 .casino-highlights {
   position: relative;
+  overflow-x: clip;
 
   @include section-padding();
 }
 
+.casino-highlights__glow {
+  display: block;
+  position: absolute;
+  z-index: 0;
+  max-width: unset;
+  pointer-events: none;
+  user-select: none;
+
+  top: to-rem(-246);
+  left: to-rem(-95);
+  width: to-rem(192.73);
+  height: to-rem(292.117);
+  transform: rotate(101.697deg);
+
+  @include mq($from: tablet) {
+    top: to-rem(-157);
+    left: calc(50% - #{$glow-desktop-left-calc-offset});
+    width: to-rem(659.008);
+    height: to-rem(998.846);
+    transform: rotate(118.17deg);
+  }
+
+  @include mq($from: laptop) {
+    left: calc(50% - #{$glow-desktop-left-calc-offset});
+  }
+
+  @include mq($from: desktop) {
+    top: to-rem(-87);
+  }
+}
+
 .casino-highlights__inner {
   position: relative;
+  z-index: 1;
   @include section-stack;
   @include container(var(--container-default));
 }

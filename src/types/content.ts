@@ -820,8 +820,6 @@ export interface CasinoPaymentList {
 
 export interface CasinoPaymentsContent {
   title: string
-  /** Розовый glow слева вверху секции. */
-  glow: { src: string; alt: string }
   lists: CasinoPaymentList[]
 }
 
@@ -843,7 +841,6 @@ export interface CasinoCooperationContent {
 
 /**
  * Финальная CTA-секция: "As a direct advertiser..." + 2 кнопки.
- * Большой rotated glow в правой части.
  */
 export interface CasinoBottomCtaButton {
   label: string
@@ -858,7 +855,6 @@ export interface CasinoBottomCtaContent {
   textPrimary: string
   /** Вторая часть текста (text-tertiary, основное продолжение фразы). */
   textSecondary: string
-  glow: { src: string; alt: string }
   buttons: CasinoBottomCtaButton[]
 }
 

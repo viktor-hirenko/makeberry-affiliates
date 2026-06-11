@@ -89,10 +89,6 @@
   },
   "payments": {
     "title": "Payments & Withdrawals",
-    "glow": {
-      "src": "/images/decorations/glow-casino-payments.webp",
-      "alt": ""
-    },
     "lists": [
       {
         "id": "deposits",
@@ -159,10 +155,6 @@
   "bottomCta": {
     "textPrimary": "As a direct advertiser for RocketPlay Casino,",
     "textSecondary": " we remove unnecessary layers between you and the brand, ensuring faster communication and better conditions for scaling.",
-    "glow": {
-      "src": "/images/decorations/glow-casino-cta.webp",
-      "alt": ""
-    },
     "buttons": [
       {
         "label": "Start Promoting",

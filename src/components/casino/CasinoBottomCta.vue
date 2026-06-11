@@ -4,7 +4,6 @@ import type { CasinoBottomCtaContent } from '@/types/content'
 
 /**
  * Casino → Bottom CTA.
- * Декорация: pre-composited WebP glow справа.
  */
 interface Props {
   content: CasinoBottomCtaContent
@@ -15,15 +14,6 @@ defineProps<Props>()
 
 <template>
   <section class="casino-cta" data-section="casino-bottom-cta">
-    <img
-      :src="content.glow.src"
-      :alt="content.glow.alt"
-      class="casino-cta__glow"
-      aria-hidden="true"
-      loading="lazy"
-      decoding="async"
-    />
-
     <div class="casino-cta__inner">
       <p class="casino-cta__text">
         <span class="casino-cta__text-primary">{{ content.textPrimary }}</span>
@@ -60,34 +50,11 @@ defineProps<Props>()
 <style scoped lang="scss">
 @use '@/assets/styles/scss/mixins' as *;
 
-/* Glow выходит за правую границу — overflow-x: clip. */
 .casino-cta {
-  position: relative;
-  overflow-x: clip;
-
   @include section-padding();
 }
 
-.casino-cta__glow {
-  position: absolute;
-  top: to-rem(-150);
-  right: to-rem(-280);
-  width: to-rem(700);
-  height: auto;
-  z-index: 0;
-  pointer-events: none;
-  user-select: none;
-
-  @include mq($from: tablet) {
-    top: to-rem(-245);
-    right: to-rem(-460);
-    width: to-rem(1287);
-  }
-}
-
 .casino-cta__inner {
-  position: relative;
-  z-index: 1;
   @include section-stack($align: center, $gap-mobile: to-rem(40));
   @include container(var(--container-cta));
 }
