@@ -61,7 +61,7 @@ const hero = useHomeHero()
 
   @include section-padding(
     $desktop-inline: to-rem(160),
-    $mobile-top: to-rem(70),
+    $mobile-top: to-dvh(200, 740),
     $mobile-bottom: to-rem(70),
     $desktop-top: to-rem(150),
     $desktop-bottom: to-rem(150)
@@ -69,6 +69,14 @@ const hero = useHomeHero()
 
   @include mq($from: mobile) {
     padding-top: to-rem(100);
+  }
+
+  @include mq($from: tablet) {
+    padding-top: to-rem(150);
+  }
+
+  @include mq($from: desktop) {
+    padding-top: to-dvh(200, 900);
   }
 
   @include landscape-phone {

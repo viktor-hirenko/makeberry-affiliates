@@ -66,21 +66,19 @@ defineProps<Props>()
 
   @include section-padding(
     $desktop-inline: to-rem(160),
-    $mobile-top: to-rem(70),
+    $mobile-top: to-dvh(200, 740),
     $mobile-bottom: to-rem(70),
     $desktop-top: to-rem(200),
     $desktop-bottom: to-rem(100)
   );
 
-  @include mq($from: compact) {
-    height: auto;
-    padding-top: to-rem(100);
-    padding-bottom: to-rem(100);
-  }
-
   @include mq($from: tablet) {
     min-height: 100vh;
     padding-top: to-rem(150);
+  }
+
+  @include mq($from: desktop) {
+    padding-top: to-dvh(200, 900);
   }
 
   @include landscape-phone {
@@ -92,6 +90,8 @@ defineProps<Props>()
 
 .audience-hero__inner {
   @include container(var(--container-xl));
+  display: flex;
+  flex-grow: 1;
 }
 
 .audience-hero__decor {
@@ -106,26 +106,22 @@ defineProps<Props>()
   img {
     position: absolute;
     max-width: none;
-    top: calc(-24 / 360 * 100vw);
-    right: calc(-10.5 / 360 * 100vw);
-    width: calc(315 / 360 * 100vw);
-    height: calc(317 / 360 * 100vw);
-  }
+    top: to-dvh(-24, 740);
+    right: to-vw(-10.5, 360);
+    width: to-vw(315, 360);
+    height: to-dvh(317, 740);
 
-  @include mq($from: mobile) {
-    img {
-      top: calc(-24 / 600 * 100vw);
-      right: calc(-10.5 / 600 * 100vw);
-      width: calc(315 / 600 * 100vw);
-      height: calc(317 / 600 * 100vw);
+    @include mq($from: mobile) {
+      top: to-vw(-24, 600);
+      right: to-vw(-10.5, 600);
+      width: to-vw(315, 600);
+      height: to-vw(317, 600);
     }
-  }
 
-  @include mq($from: laptop) {
-    img {
-      right: calc(-42 / 1440 * 100vw);
-      width: calc(887 / 1440 * 100vw);
-      height: calc(971 / 1440 * 100vw);
+    @include mq($from: laptop) {
+      right: to-vw(-42, 1440);
+      width: to-vw(887, 1440);
+      height: to-vw(971, 1440);
     }
   }
 }
@@ -138,18 +134,20 @@ defineProps<Props>()
   gap: to-rem(40);
   width: 100%;
   align-items: stretch;
+  justify-content: space-between;
 
   @include mq($from: compact) {
     gap: to-rem(48);
     max-width: to-rem(518);
     align-items: flex-start;
+    justify-content: start;
   }
 }
 
 .audience-hero__text {
   display: flex;
   flex-direction: column;
-  gap: to-rem(32);
+  gap: to-dvh(32, 740);
   width: 100%;
 
   @include mq($from: compact) {
@@ -160,7 +158,7 @@ defineProps<Props>()
 .audience-hero__title-block {
   display: flex;
   flex-direction: column;
-  gap: to-rem(24);
+  gap: to-dvh(24, 740);
   width: 100%;
 }
 

@@ -87,7 +87,7 @@ const content = useHomeAffiliatesAdvertisers()
   justify-items: stretch;
   gap: to-rem(60);
   width: 100%;
-  max-width: to-rem(1320);
+  max-width: to-rem(var(--container-lg));
   margin-inline: auto;
 
   @include mq($from: compact) {

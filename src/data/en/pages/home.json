@@ -1023,7 +1023,7 @@
     }
   },
   "blog": {
-    "enabled": true,
+    "enabled": false,
     "title": "Blog",
     "glow": {
       "src": "/images/decorations/glow-home-blog.webp",

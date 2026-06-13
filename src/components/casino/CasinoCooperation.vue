@@ -81,7 +81,7 @@ $coop-glow-desktop-left-calc-offset: to-rem(490.91);
     top: to-rem(-224.49);
     right: auto;
     left: calc(50% + #{$coop-glow-desktop-left-calc-offset});
-    width: to-rem(659.008); 
+    width: to-rem(659.008);
     height: to-rem(998.846);
     transform: scaleY(-1) rotate(-57deg);
   }

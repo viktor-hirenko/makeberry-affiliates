@@ -72,6 +72,7 @@ defineProps<Props>()
 
   @include mq($from: compact) {
     height: auto;
+    padding-top: to-rem(100);
   }
 
   @include mq($from: narrow-tablet) {

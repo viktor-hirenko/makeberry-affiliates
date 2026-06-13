@@ -5,7 +5,7 @@
 ///   @use '@/assets/styles/scss/mixins' as *;
 ///
 /// Тогда сразу доступны:
-///   • `to-rem()` (units)
+///   • `to-rem()`, `to-dvh()`, `to-vw()` — px → rem / dvh / dvw (units)
 ///   • `mq()` (media)
 ///   • `font-h2/h3/h4/h5`, `font-section-title`, `font-body-*`, `font-caption-*` (typography)
 ///   • `section-padding()`, `slider-wrap-bleed()`, `slider-swiper-bleed-phone()`, `slider-container()`, `container()`, `$section-stack-gap` (section-patterns)

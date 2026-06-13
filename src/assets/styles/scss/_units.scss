@@ -27,3 +27,59 @@ $base-font: 16px !default;
 
   @return $px;
 }
+
+/// px → dvh относительно эталонной высоты viewport (макет / artboard).
+///
+/// @param $px              — значение в px (или unitless, трактуется как px).
+/// @param $viewport-height — эталонная высота viewport в px (например 740).
+@function to-dvh($px, $viewport-height) {
+  @if meta.type-of($px) == 'string' or meta.type-of($px) != 'number' {
+    @return $px;
+  }
+
+  @if math.unit($px) == 'vh' or math.unit($px) == 'dvh' {
+    @return $px;
+  }
+
+  @if math.is-unitless($px) {
+    $px: $px * 1px;
+  }
+
+  @if math.is-unitless($viewport-height) {
+    $viewport-height: $viewport-height * 1px;
+  }
+
+  @if math.unit($px) == 'px' and math.unit($viewport-height) == 'px' {
+    @return math.div($px, $viewport-height) * 100dvh;
+  }
+
+  @return $px;
+}
+
+/// px → dvw относительно эталонной ширины viewport (макет / artboard).
+///
+/// @param $px             — значение в px (или unitless, трактуется как px).
+/// @param $viewport-width — эталонная ширина viewport в px (например 360).
+@function to-vw($px, $viewport-width) {
+  @if meta.type-of($px) == 'string' or meta.type-of($px) != 'number' {
+    @return $px;
+  }
+
+  @if math.unit($px) == 'vw' or math.unit($px) == 'dvw' {
+    @return $px;
+  }
+
+  @if math.is-unitless($px) {
+    $px: $px * 1px;
+  }
+
+  @if math.is-unitless($viewport-width) {
+    $viewport-width: $viewport-width * 1px;
+  }
+
+  @if math.unit($px) == 'px' and math.unit($viewport-width) == 'px' {
+    @return math.div($px, $viewport-width) * 100dvw;
+  }
+
+  @return $px;
+}
