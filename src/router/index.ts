@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { useAnalytics } from '@/composables/useAnalytics'
 
 declare module 'vue-router' {
   interface RouteMeta {
@@ -147,6 +148,7 @@ router.afterEach((to) => {
         : `${raw} — Makeberry Affiliates`
       : 'Makeberry Affiliates'
   document.title = title
+  useAnalytics().trackPageView(to.path, title)
 })
 
 export default router

@@ -148,6 +148,8 @@ const ctaPath = computed(() => props.nav.ctaPath)
           size="large"
           :to="ctaHref ? undefined : ctaPath"
           :href="ctaHref"
+          analytics-location="mobile_menu"
+          :analytics-label="ctaLabel"
           @click="handleClose"
         >
           {{ ctaLabel }}

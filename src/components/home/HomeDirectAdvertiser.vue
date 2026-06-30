@@ -179,6 +179,8 @@ const navConfig = {
             :to="content.cta.button.href ? undefined : content.cta.button.path"
             :href="content.cta.button.href"
             class="home-direct__cta-btn"
+            analytics-location="home_direct_advertiser"
+            :analytics-label="content.cta.button.label"
           >
             {{ content.cta.button.label }}
           </BaseButton>

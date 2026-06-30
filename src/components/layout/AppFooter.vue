@@ -2,11 +2,33 @@
 import BaseIcon from '@/components/ui/BaseIcon.vue'
 import BaseLogo from '@/components/ui/BaseLogo.vue'
 import MaybeLink from '@/components/ui/MaybeLink.vue'
+import { classifyLinkType, useAnalytics } from '@/composables/useAnalytics'
 import { useFooter, useNav, useSharedUi } from '@/composables/useContent'
 
 const nav = useNav()
 const footer = useFooter()
 const ui = useSharedUi()
+
+const { trackCtaClick } = useAnalytics()
+
+function trackFooterLink(label: string, href: string | undefined, location: string): void {
+  if (!href) return
+  trackCtaClick({
+    cta_location: location,
+    cta_label: label,
+    link_url: href,
+    link_type: classifyLinkType(href),
+    target_domain: href.startsWith('http') ? tryGetHostname(href) : undefined,
+  })
+}
+
+function tryGetHostname(url: string): string | undefined {
+  try {
+    return new URL(url).hostname
+  } catch {
+    return undefined
+  }
+}
 </script>
 
 <template>
@@ -27,6 +49,7 @@ const ui = useSharedUi()
                 target="_blank"
                 rel="noopener noreferrer"
                 :aria-label="social.label"
+                @click="trackFooterLink(social.label, social.href, 'footer_social')"
               >
                 <BaseIcon :name="social.network" :size="24" />
               </a>
@@ -65,6 +88,7 @@ const ui = useSharedUi()
                 :href="partner.href"
                 :aria-label="partner.name"
                 class="app-footer__partner-link"
+                @click="trackFooterLink(partner.name, partner.href, 'footer_partners')"
               >
                 <img
                   :src="partner.src"
@@ -97,6 +121,7 @@ const ui = useSharedUi()
                 :href="award.href"
                 :aria-label="award.name ?? award.alt"
                 class="app-footer__award-link"
+                @click="trackFooterLink(award.name ?? award.alt, award.href, 'footer_awards')"
               >
                 <img
                   :src="award.src"

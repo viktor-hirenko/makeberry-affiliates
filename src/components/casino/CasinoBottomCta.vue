@@ -29,6 +29,8 @@ defineProps<Props>()
             :href="button.href"
             rel="sponsored nofollow noopener noreferrer"
             class="casino-cta__button"
+            analytics-location="casino_bottom_cta"
+            :analytics-label="button.label"
           >
             {{ button.label }}
           </BaseButton>
@@ -38,6 +40,8 @@ defineProps<Props>()
             size="large"
             :to="button.href"
             class="casino-cta__button"
+            analytics-location="casino_bottom_cta"
+            :analytics-label="button.label"
           >
             {{ button.label }}
           </BaseButton>

@@ -38,7 +38,7 @@ watch(
 
 <template>
   <div v-if="audience" class="audience-page">
-    <AudienceHero :hero="audience.hero" />
+    <AudienceHero :hero="audience.hero" :slug="audience.slug" />
     <AudienceWhatYouGet
       :title="audience.whatYouGet.title"
       :cards="audience.whatYouGet.cards"

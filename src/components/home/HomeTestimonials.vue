@@ -11,9 +11,21 @@ import BaseIcon from '@/components/ui/BaseIcon.vue'
 import { BREAKPOINT_MOBILE_PX, BREAKPOINT_COMPACT_PX, BREAKPOINT_TABLET_PX } from '@/constants/breakpoints'
 import { SWIPER_SPACE_COMPACT_PX, SWIPER_SPACE_COMFORT_PX } from '@/constants/swiper'
 import { formatUiString, useHomeTestimonials, useSharedUi } from '@/composables/useContent'
+import { classifyLinkType, useAnalytics } from '@/composables/useAnalytics'
 
 const content = useHomeTestimonials()
 const ui = useSharedUi()
+
+const { trackCtaClick } = useAnalytics()
+
+function trackTestimonialCta(href: string, author: string): void {
+  trackCtaClick({
+    cta_location: 'testimonials',
+    cta_label: author,
+    link_url: href,
+    link_type: classifyLinkType(href),
+  })
+}
 
 /**
  * Расстояние между слайдами на desktop focal (≥1024).
@@ -237,6 +249,7 @@ const navConfig = {
                   target="_blank"
                   rel="noopener noreferrer"
                   :aria-label="formatUiString(ui.aria.testimonialsVisit, { author: item.author })"
+                  @click="trackTestimonialCta(item.ctaHref, item.author)"
                 >
                   <BaseIcon name="arrow-up-right" :size="24" />
                 </a>

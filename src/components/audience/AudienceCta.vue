@@ -43,6 +43,8 @@ const ui = useSharedUi()
         :to="cta.button.href ? undefined : cta.button.path"
         :href="cta.button.href"
         class="audience-cta__btn"
+        :analytics-location="`audience_${slug}_cta`"
+        :analytics-label="cta.button.label"
       >
         {{ cta.button.label }}
       </BaseButton>

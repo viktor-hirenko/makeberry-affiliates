@@ -35,10 +35,22 @@ const hero = useHomeHero()
       </h1>
 
       <div class="home-hero__actions">
-        <BaseButton variant="primary" size="large" :to="hero.primaryCta.path">
+        <BaseButton
+          variant="primary"
+          size="large"
+          :to="hero.primaryCta.path"
+          analytics-location="home_hero"
+          :analytics-label="hero.primaryCta.label"
+        >
           {{ hero.primaryCta.label }}
         </BaseButton>
-        <BaseButton variant="secondary" size="large" :to="hero.secondaryCta.path">
+        <BaseButton
+          variant="secondary"
+          size="large"
+          :to="hero.secondaryCta.path"
+          analytics-location="home_hero"
+          :analytics-label="hero.secondaryCta.label"
+        >
           {{ hero.secondaryCta.label }}
         </BaseButton>
       </div>

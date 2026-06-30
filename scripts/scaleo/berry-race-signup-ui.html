@@ -1,0 +1,645 @@
+<!--
+  MAKEBERRY AFFILIATES — Scaleo White Label (Berry Race signup)
+  Settings → UI Customization → Code → вставити весь вміст
+
+  Fixes:
+  1. Vertical stripes in form (double border on app-select + wrapper border-left)
+  2. Promo background image quality (full-res Google Drive + cover)
+  3. Terms / Privacy links → affiliate.makeberry.com/terms-and-conditions & /privacy-policy
+  4. Traffic Sources dropdown hover contrast
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style type="text/css">
+
+:root {
+  --mb:     #FF0180;
+  --mb-dim: rgba(255,1,128,0.12);
+  --mb-mid: rgba(255,1,128,0.25);
+  --dark:   #0D0D0D;
+  --muted:  rgba(255,255,255,0.52);
+  --border: rgba(255,255,255,0.09);
+  --font:   'Inter', sans-serif;
+}
+
+/* ============================================================
+   ФОН — тільки auth сторінка
+   ============================================================ */
+div.main.main-login {
+  background: #000 !important;
+  font-family: var(--font) !important;
+}
+
+div.main.main-login div.page {
+  background: #000 !important;
+}
+
+div.main.main-login .page-header {
+  background: #000 !important;
+  border-bottom: 1px solid rgba(255,1,128,0.15) !important;
+}
+
+div.main.main-login .page-header * {
+  color: #fff !important;
+}
+
+/* ============================================================
+   ДВОКОЛОНКОВИЙ LAYOUT
+   ============================================================ */
+div.page-content-signup {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: stretch !important;
+  min-height: 100vh !important;
+  width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  max-width: none !important;
+}
+
+div.page-content-wrapper {
+  flex: 0 0 440px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: var(--dark) !important;
+  border: none !important;
+  border-left: none !important;
+  padding: 56px 40px 40px !important;
+  position: relative !important;
+  min-height: 100vh !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* Тонкий роздільник між колонками — тільки на promo, не на формі */
+.mb-promo::after {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  right: 0 !important;
+  width: 1px !important;
+  height: 100% !important;
+  background: rgba(255,1,128,0.15) !important;
+  pointer-events: none !important;
+  z-index: 3 !important;
+}
+
+/* ============================================================
+   ФОРМА
+   ============================================================ */
+div.page-content-wrapper app-input.custom-input {
+  display: block !important;
+  margin-top: 17px !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+div.page-content-wrapper div.registration {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  width: 100% !important;
+}
+
+div.registration__block-title {
+  font-family: var(--font) !important;
+  font-size: 20px !important;
+  font-weight: 800 !important;
+  color: #fff !important;
+  letter-spacing: -0.02em !important;
+  margin-bottom: 24px !important;
+  border-left: none !important;
+}
+
+div.page-content-wrapper label.field-label,
+div.page-content-wrapper label {
+  font-family: var(--font) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: rgba(255,255,255,0.60) !important;
+}
+
+div.page-content-wrapper .form-group,
+div.page-content-wrapper app-input,
+div.page-content-wrapper app-select {
+  border-left: none !important;
+  box-shadow: none !important;
+}
+
+div.page-content-wrapper input.form-control,
+div.page-content-wrapper input[type=text],
+div.page-content-wrapper input[type=email],
+div.page-content-wrapper input[type=password] {
+  font-family: var(--font) !important;
+  background: rgba(255,255,255,0.06) !important;
+  border: 1px solid rgba(255,255,255,0.12) !important;
+  border-radius: 9px !important;
+  color: #fff !important;
+  font-size: 14px !important;
+  padding: 10px 14px !important;
+  width: 100% !important;
+}
+
+div.page-content-wrapper input.form-control:focus,
+div.page-content-wrapper input[type=text]:focus,
+div.page-content-wrapper input[type=email]:focus,
+div.page-content-wrapper input[type=password]:focus {
+  border-color: var(--mb) !important;
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(255,1,128,0.12) !important;
+}
+
+div.page-content-wrapper input::placeholder {
+  color: rgba(255,255,255,0.25) !important;
+}
+
+div.page-content-wrapper .form-divider {
+  border-color: rgba(255,255,255,0.08) !important;
+  border-left: none !important;
+}
+
+div.page-content-wrapper .form-checkbox,
+div.page-content-wrapper label.form-checkbox {
+  color: rgba(255,255,255,0.60) !important;
+  font-family: var(--font) !important;
+  font-size: 13px !important;
+}
+
+div.page-content-wrapper a[href*="terms"],
+div.page-content-wrapper a[href*="Terms"],
+div.page-content-wrapper a[href*="privacy"],
+div.page-content-wrapper a[href*="Privacy"],
+div.page-footer-auth a[href*="terms"],
+div.page-footer-auth a[href*="privacy"] {
+  color: var(--mb) !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+}
+
+div.page-content-wrapper button[type=submit],
+div.page-content-wrapper button.btn-primary,
+auth-signup-affiliate button[type=submit] {
+  background: #FF0180 !important;
+  background-color: #FF0180 !important;
+  background-image: none !important;
+  border-color: #FF0180 !important;
+  border-radius: 100px !important;
+  font-family: var(--font) !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: #fff !important;
+  width: 100% !important;
+  padding: 14px !important;
+  cursor: pointer !important;
+  box-shadow: 0 6px 20px rgba(255,1,128,0.32) !important;
+}
+
+/* ============================================================
+   DROPDOWN (Traffic Sources)
+   ============================================================ */
+.cdk-overlay-container .ng-dropdown-panel,
+.ng-dropdown-panel {
+  background: #1A1A1A !important;
+  border: 1px solid rgba(255,1,128,0.35) !important;
+  border-radius: 9px !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.6) !important;
+  overflow: hidden !important;
+}
+
+.cdk-overlay-container .ng-dropdown-panel-items,
+.ng-dropdown-panel-items {
+  background: #1A1A1A !important;
+}
+
+.cdk-overlay-container .ng-dropdown-panel .ng-option,
+.ng-dropdown-panel .ng-option {
+  background: #1A1A1A !important;
+  background-color: #1A1A1A !important;
+  color: rgba(255,255,255,0.90) !important;
+  font-family: var(--font) !important;
+  font-size: 13px !important;
+  padding: 10px 14px !important;
+}
+
+.cdk-overlay-container .ng-dropdown-panel .ng-option:hover,
+.cdk-overlay-container .ng-dropdown-panel .ng-option.ng-option-marked,
+.cdk-overlay-container .ng-dropdown-panel .ng-option.ng-option-marked:hover,
+.ng-dropdown-panel .ng-option:hover,
+.ng-dropdown-panel .ng-option.ng-option-marked {
+  background: rgba(255,1,128,0.22) !important;
+  background-color: rgba(255,1,128,0.22) !important;
+  color: #ffffff !important;
+}
+
+.cdk-overlay-container .ng-dropdown-panel .ng-option.ng-option-selected,
+.cdk-overlay-container .ng-dropdown-panel .ng-option.ng-option-selected.ng-option-marked,
+.ng-dropdown-panel .ng-option.ng-option-selected {
+  background: rgba(255,1,128,0.15) !important;
+  background-color: rgba(255,1,128,0.15) !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+
+.page-content-wrapper .ng-value-label {
+  color: #fff !important;
+  font-family: var(--font) !important;
+}
+
+.page-content-wrapper .ng-placeholder {
+  color: rgba(255,255,255,0.35) !important;
+}
+
+/* Закритий select — border тільки на контейнері, не на app-select */
+div.page-content-wrapper app-select {
+  display: block !important;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+div.page-content-wrapper app-select .ng-select-container,
+div.page-content-wrapper .ng-select-container {
+  background: rgba(255,255,255,0.06) !important;
+  background-color: rgba(255,255,255,0.06) !important;
+  border: 1px solid rgba(255,255,255,0.12) !important;
+  border-radius: 9px !important;
+  color: rgba(255,255,255,0.85) !important;
+  box-shadow: none !important;
+}
+
+div.page-content-wrapper .ng-select.ng-select-focused .ng-select-container,
+div.page-content-wrapper .ng-select-container.ng-select-focused {
+  border-color: var(--mb) !important;
+  box-shadow: 0 0 0 3px rgba(255,1,128,0.12) !important;
+}
+
+div.page-content-wrapper .ng-arrow-wrapper,
+div.page-content-wrapper .ng-arrow {
+  color: rgba(255,255,255,0.40) !important;
+  border-color: rgba(255,255,255,0.40) transparent transparent !important;
+}
+
+/* ============================================================
+   ЛІВИЙ ПРОМО-БЛОК
+   ============================================================ */
+.mb-promo {
+  flex: 1 1 auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  padding: 56px 60px 40px !important;
+  position: relative !important;
+  overflow: hidden !important;
+  min-height: 100vh !important;
+}
+
+.mb-bg {
+  position: absolute !important;
+  inset: 0 !important;
+  background-image: url('https://lh3.googleusercontent.com/d/1wbb-vcXgsvAAYQ5QzSoGC8d61nTryF45=s0') !important;
+  background-size: cover !important;
+  background-position: 72% center !important;
+  background-repeat: no-repeat !important;
+  background-color: #100008 !important;
+  image-rendering: -webkit-optimize-contrast !important;
+  z-index: 0 !important;
+}
+
+.mb-ov {
+  position: absolute !important;
+  inset: 0 !important;
+  background:
+    linear-gradient(to right, #000 0%, rgba(0,0,0,0.92) 20%, rgba(0,0,0,0.40) 38%, transparent 58%),
+    linear-gradient(to top, #000 0%, rgba(0,0,0,0.96) 30%, rgba(0,0,0,0.10) 58%, transparent 100%) !important;
+  z-index: 1 !important;
+}
+
+.mb-cnt { position: relative !important; z-index: 2 !important; }
+
+.mb-badges { display: flex !important; gap: 10px !important; margin-bottom: 12px !important; }
+
+.mb-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 7px 18px !important;
+  background: rgba(0,0,0,0.6) !important;
+  border: 2.5px solid var(--mb) !important;
+  border-radius: 100px !important;
+  font-family: var(--font) !important;
+  font-size: 17px !important;
+  font-weight: 800 !important;
+  color: var(--mb) !important;
+  line-height: 1 !important;
+  position: relative !important;
+}
+
+.mb-badge::before {
+  content: '' !important;
+  position: absolute !important; inset: -5px !important;
+  border: 1.5px solid rgba(255,1,128,0.22) !important;
+  border-radius: 108px !important;
+}
+
+.mb-badge::after {
+  content: '' !important;
+  position: absolute !important; inset: -10px !important;
+  border: 1px solid rgba(255,1,128,0.10) !important;
+  border-radius: 118px !important;
+}
+
+.mb-dates {
+  font-family: var(--font) !important; font-size: 13px !important;
+  font-weight: 700 !important; color: var(--muted) !important;
+  margin-bottom: 10px !important; letter-spacing: 0.06em !important;
+}
+
+.mb-h1 {
+  font-family: var(--font) !important;
+  font-size: clamp(26px, 2.8vw, 42px) !important;
+  font-weight: 900 !important; line-height: 1.06 !important;
+  letter-spacing: -0.03em !important; color: #fff !important;
+  margin: 0 0 6px !important;
+}
+
+.mb-h1 em { font-style: normal !important; color: var(--mb) !important; }
+
+.mb-sub {
+  font-family: var(--font) !important; font-size: 14px !important;
+  font-weight: 500 !important; color: var(--muted) !important;
+  margin-bottom: 18px !important; line-height: 1.6 !important;
+}
+
+.mb-cards {
+  display: grid !important; grid-template-columns: 1fr 1fr !important;
+  gap: 8px !important; margin-bottom: 10px !important; max-width: 460px !important;
+}
+
+.mb-card {
+  background: rgba(0,0,0,0.72) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 12px !important; padding: 12px 16px !important;
+  position: relative !important; overflow: hidden !important;
+}
+
+.mb-card::before {
+  content: '' !important; position: absolute !important;
+  top: 0 !important; left: 0 !important; right: 0 !important;
+  height: 2px !important; background: var(--mb) !important;
+}
+
+.mb-tier {
+  font-family: var(--font) !important; font-size: 9px !important;
+  font-weight: 700 !important; text-transform: uppercase !important;
+  letter-spacing: 0.12em !important; color: var(--mb) !important; margin-bottom: 4px !important;
+}
+
+.mb-amount {
+  font-family: var(--font) !important; font-size: 26px !important;
+  font-weight: 900 !important; color: #fff !important;
+  letter-spacing: -0.03em !important; line-height: 1 !important; margin-bottom: 2px !important;
+}
+
+.mb-desc { font-family: var(--font) !important; font-size: 10px !important; color: rgba(255,255,255,0.38) !important; }
+
+.mb-unlim {
+  display: flex !important; align-items: flex-start !important;
+  gap: 9px !important; padding: 10px 14px !important;
+  background: var(--mb-dim) !important; border: 1px solid var(--mb-mid) !important;
+  border-radius: 10px !important; margin-bottom: 14px !important; max-width: 460px !important;
+}
+
+.mb-unlim-t { font-family: var(--font) !important; font-size: 12px !important; font-weight: 500 !important; color: #fff !important; line-height: 1.5 !important; }
+.mb-unlim-t strong { color: var(--mb) !important; }
+
+.mb-src-lbl {
+  font-family: var(--font) !important; font-size: 9px !important;
+  font-weight: 700 !important; text-transform: uppercase !important;
+  letter-spacing: 0.12em !important; color: rgba(255,255,255,0.32) !important; margin-bottom: 7px !important;
+}
+
+.mb-tags { display: flex !important; flex-wrap: wrap !important; gap: 5px !important; margin-bottom: 20px !important; }
+
+.mb-tag {
+  padding: 4px 12px !important; background: rgba(0,0,0,0.55) !important;
+  border: 1px solid rgba(255,255,255,0.14) !important; border-radius: 100px !important;
+  font-family: var(--font) !important; font-size: 10px !important;
+  font-weight: 600 !important; color: rgba(255,255,255,0.80) !important;
+}
+
+.mb-cta {
+  font-family: var(--font) !important;
+  font-size: clamp(15px, 1.4vw, 20px) !important;
+  font-weight: 800 !important; color: #FF0180 !important;
+  letter-spacing: -0.01em !important; margin: 0 !important;
+}
+
+@media (max-width: 900px) {
+  div.page-content-signup { flex-direction: column !important; }
+  div.page-content-wrapper { flex: 1 !important; }
+  .mb-promo::after { display: none !important; }
+}
+
+div.main.main-login button[type=submit],
+div.main.main-login .btn-primary,
+div.page-content-signup button[type=submit],
+div.registration-form button[type=submit],
+auth-signup-affiliate button[type=submit],
+.page-content-wrapper button {
+  background: #FF0180 !important;
+  background-color: #FF0180 !important;
+  background-image: none !important;
+  border-color: #FF0180 !important;
+  border-radius: 100px !important;
+  color: #fff !important;
+}
+
+div.page-content-wrapper .form-group {
+  margin-bottom: 10px !important;
+}
+
+div.page-content-wrapper .registration {
+  width: 100% !important;
+}
+
+div.page-content-wrapper .registration-form__agree,
+div.page-content-wrapper .flex.registration-form__agree {
+  margin-bottom: 8px !important;
+}
+
+div.page-content-wrapper .form-group:has(app-custom-checkbox) {
+  margin-bottom: 8px !important;
+}
+
+div.page-content-wrapper,
+div.page.h-full,
+div.main.main-login div.page {
+  border-bottom: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+div.page-footer,
+div.page-footer-auth {
+  background: #000 !important;
+  border-top: none !important;
+}
+
+div.registration,
+div.registration-form,
+div.page-content-wrapper > div {
+  border: none !important;
+  border-left: none !important;
+}
+
+div.page-content-wrapper .mdc-checkbox__ripple,
+div.page-content-wrapper .mat-ripple,
+div.page-content-wrapper .mat-mdc-checkbox .mdc-checkbox__ripple {
+  display: none !important;
+}
+
+div.page-content-wrapper app-custom-checkbox .mat-ripple-element,
+div.page-content-wrapper .mat-checkbox-ripple,
+div.page-content-wrapper .mdc-checkbox__background::before {
+  display: none !important;
+  background: transparent !important;
+  opacity: 0 !important;
+}
+
+div.page-content-wrapper .ng-value-icon,
+div.page-content-wrapper .ng-value-icon.left {
+  background: transparent !important;
+  color: rgba(255,255,255,0.5) !important;
+}
+
+div.page-content-wrapper input[type=checkbox]:focus {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+</style>
+
+<script>
+(function() {
+
+  var TERMS_URL = 'https://affiliate.makeberry.com/terms-and-conditions';
+  var PRIVACY_URL = 'https://affiliate.makeberry.com/privacy-policy';
+
+  var PROMO =
+    '<div class="mb-promo">' +
+      '<div class="mb-bg"></div>' +
+      '<div class="mb-ov"></div>' +
+      '<div class="mb-cnt">' +
+        '<div class="mb-badges">' +
+          '<span class="mb-badge">Berry</span>' +
+          '<span class="mb-badge">Race</span>' +
+        '</div>' +
+        '<div class="mb-dates">23.04 &mdash; 23.07.2026</div>' +
+        '<h2 class="mb-h1">You drive &mdash;<br><em>we pay</em></h2>' +
+        '<p class="mb-sub">Earn up to $2,000 extra for every 100 FTDs<br>on top of your standard earnings.</p>' +
+        '<div class="mb-cards">' +
+          '<div class="mb-card"><div class="mb-tier">Tier 1 GEOs</div><div class="mb-amount">$2,000</div><div class="mb-desc">per every 100 FTDs</div></div>' +
+          '<div class="mb-card"><div class="mb-tier">Tier 2 GEOs</div><div class="mb-amount">$1,000</div><div class="mb-desc">per every 100 FTDs</div></div>' +
+        '</div>' +
+        '<div class="mb-unlim">' +
+          '<span style="color:#FF0180;font-size:12px;margin-top:2px;flex-shrink:0">&#9654;</span>' +
+          '<span class="mb-unlim-t"><strong>No cap on total FTDs</strong> &mdash; the more you drive, the more you earn.</span>' +
+        '</div>' +
+        '<div class="mb-src-lbl">Traffic sources we accept</div>' +
+        '<div class="mb-tags">' +
+          '<span class="mb-tag">ASO</span><span class="mb-tag">ASA</span>' +
+          '<span class="mb-tag">PPC</span><span class="mb-tag">SEO</span>' +
+          '<span class="mb-tag">Email</span><span class="mb-tag">SMS</span>' +
+          '<span class="mb-tag">Reddit</span>' +
+        '</div>' +
+        '<p class="mb-cta">Sign Up to Join The Race &#8594;</p>' +
+      '</div>' +
+    '</div>';
+
+  function injectPromo() {
+    if (document.querySelector('.mb-promo')) return true;
+    var c = document.querySelector('div.page-content-signup');
+    if (!c) return false;
+    var el = document.createElement('div');
+    el.innerHTML = PROMO;
+    c.insertBefore(el.firstElementChild, c.firstChild);
+    return true;
+  }
+
+  function fixLegalLinks() {
+    document.querySelectorAll('a[href]').forEach(function(a) {
+      var text = (a.textContent || '').toLowerCase();
+      var href = (a.getAttribute('href') || '').toLowerCase();
+
+      if (/terms|услов|condition|terms-and-conditions/.test(text + ' ' + href)) {
+        a.setAttribute('href', TERMS_URL);
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+
+      if (/privacy|конфид|policy|privacy-policy/.test(text + ' ' + href)) {
+        a.setAttribute('href', PRIVACY_URL);
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    });
+  }
+
+  function styleBtn() {
+    document.querySelectorAll(
+      'auth-signup-affiliate button[type=submit],' +
+      'div.page-content-wrapper button[type=submit],' +
+      '.registration-form button[type=submit]'
+    ).forEach(function(btn) {
+      btn.style.setProperty('background', '#FF0180', 'important');
+      btn.style.setProperty('background-color', '#FF0180', 'important');
+      btn.style.setProperty('border-color', '#FF0180', 'important');
+      btn.style.setProperty('color', '#ffffff', 'important');
+      btn.style.setProperty('border-radius', '100px', 'important');
+    });
+  }
+
+  function stripSelectOuterBorder() {
+    document.querySelectorAll('div.page-content-wrapper app-select').forEach(function(el) {
+      el.style.setProperty('border', 'none', 'important');
+      el.style.setProperty('background', 'transparent', 'important');
+      el.style.setProperty('box-shadow', 'none', 'important');
+    });
+  }
+
+  var promoInserted = false, n = 0;
+  function runPromo() {
+    if (promoInserted) return;
+    if (injectPromo()) { promoInserted = true; return; }
+    if (++n < 40) setTimeout(runPromo, 250);
+  }
+
+  var obs = new MutationObserver(function() {
+    if (!promoInserted) runPromo();
+    fixLegalLinks();
+    styleBtn();
+    stripSelectOuterBorder();
+  });
+
+  function start() {
+    obs.observe(document.body, { childList: true, subtree: true });
+    runPromo();
+    fixLegalLinks();
+    styleBtn();
+    stripSelectOuterBorder();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start);
+  } else {
+    start();
+  }
+
+})();
+</script>

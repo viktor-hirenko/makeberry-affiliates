@@ -153,6 +153,8 @@ function closeMobileMenu() {
           size="small"
           :to="nav.ctaHref ? undefined : nav.ctaPath"
           :href="nav.ctaHref"
+          analytics-location="header"
+          :analytics-label="nav.ctaLabel"
         >
           {{ nav.ctaLabel }}
         </BaseButton>
@@ -171,6 +173,8 @@ function closeMobileMenu() {
           size="small"
           :to="nav.ctaHref ? undefined : nav.ctaPath"
           :href="nav.ctaHref"
+          analytics-location="header"
+          :analytics-label="nav.ctaLabel"
         >
           {{ nav.ctaLabel }}
         </BaseButton>

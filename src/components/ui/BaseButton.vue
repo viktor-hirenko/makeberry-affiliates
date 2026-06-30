@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import type { RouteLocationRaw } from 'vue-router'
 import { RouterLink } from 'vue-router'
+import { classifyLinkType, useAnalytics } from '@/composables/useAnalytics'
 
 export interface BaseButtonProps {
   variant?: 'primary' | 'secondary' | 'tetriary'
@@ -13,6 +14,10 @@ export interface BaseButtonProps {
   /** Override rel for the anchor. Use for affiliate/sponsored links:
    *  rel="sponsored nofollow noopener noreferrer" */
   rel?: string
+  /** Analytics: секция страницы, где находится кнопка (e.g. 'header', 'home_hero'). */
+  analyticsLocation?: string
+  /** Analytics: видимый текст кнопки. Если не передан — событие не отправляется. */
+  analyticsLabel?: string
 }
 
 const props = withDefaults(defineProps<BaseButtonProps>(), {
@@ -31,6 +36,35 @@ const props = withDefaults(defineProps<BaseButtonProps>(), {
 const isProtocolLink = computed(
   () => !!props.href && /^(mailto:|tel:)/i.test(props.href),
 )
+
+const { trackCtaClick } = useAnalytics()
+
+function resolveHref(): string | undefined {
+  if (props.href) return props.href
+  if (typeof props.to === 'string') return props.to
+  return undefined
+}
+
+function tryGetHostname(url: string): string | undefined {
+  try {
+    return new URL(url).hostname
+  } catch {
+    return undefined
+  }
+}
+
+function handleAnalyticsClick(): void {
+  if (!props.analyticsLocation) return
+  const href = resolveHref()
+  const linkType = classifyLinkType(href)
+  trackCtaClick({
+    cta_location: props.analyticsLocation,
+    cta_label: props.analyticsLabel ?? '',
+    link_url: href,
+    link_type: linkType,
+    target_domain: href?.startsWith('http') ? tryGetHostname(href) : undefined,
+  })
+}
 </script>
 
 <template>
@@ -40,6 +74,7 @@ const isProtocolLink = computed(
     :class="[`base-button--${variant}`, `base-button--${size}`]"
     :type="type"
     :disabled="disabled"
+    @click="handleAnalyticsClick"
   >
     <slot />
   </button>
@@ -50,6 +85,7 @@ const isProtocolLink = computed(
     :href="href"
     :rel="isProtocolLink ? undefined : (rel ?? 'noopener noreferrer')"
     :target="isProtocolLink ? undefined : '_blank'"
+    @click="handleAnalyticsClick"
   >
     <slot />
   </a>
@@ -58,6 +94,7 @@ const isProtocolLink = computed(
     class="base-button"
     :class="[`base-button--${variant}`, `base-button--${size}`]"
     :to="to"
+    @click="handleAnalyticsClick"
   >
     <slot />
   </RouterLink>

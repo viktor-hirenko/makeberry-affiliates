@@ -36,6 +36,8 @@ defineProps<Props>()
           :href="hero.cta.href"
           rel="sponsored nofollow noopener noreferrer"
           class="casino-hero__cta"
+          analytics-location="casino_hero"
+          :analytics-label="hero.cta.label"
         >
           {{ hero.cta.label }}
         </BaseButton>

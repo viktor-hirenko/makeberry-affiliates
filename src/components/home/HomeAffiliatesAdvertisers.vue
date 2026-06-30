@@ -38,6 +38,8 @@ const content = useHomeAffiliatesAdvertisers()
               size="large"
               :to="card.primaryCta.path"
               class="home-aff-adv__cta"
+              :analytics-location="`home_${card.id}`"
+              :analytics-label="card.primaryCta.label"
             >
               {{ card.primaryCta.label }}
             </BaseButton>
@@ -47,6 +49,8 @@ const content = useHomeAffiliatesAdvertisers()
               :to="card.secondaryCta.href ? undefined : card.secondaryCta.path"
               :href="card.secondaryCta.href"
               class="home-aff-adv__cta"
+              :analytics-location="`home_${card.id}`"
+              :analytics-label="card.secondaryCta.label"
             >
               {{ card.secondaryCta.label }}
             </BaseButton>

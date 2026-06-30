@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import { setupRoutePrefetch } from '@/composables/useRoutePrefetch'
+import { initGA } from '@/composables/useAnalytics'
 import '@/assets/styles/main.scss'
 
 /*
@@ -16,6 +17,8 @@ import '@/assets/styles/main.scss'
 if ('scrollRestoration' in history) {
   history.scrollRestoration = 'manual'
 }
+
+initGA()
 
 const app = createApp(App)
 app.use(router)

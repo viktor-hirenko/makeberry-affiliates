@@ -7,6 +7,7 @@ import type { PageHeroBlock } from '@/types/content'
  */
 interface Props {
   hero: PageHeroBlock
+  slug: 'affiliates' | 'advertisers'
 }
 
 defineProps<Props>()
@@ -44,6 +45,8 @@ defineProps<Props>()
           :to="hero.cta.href ? undefined : hero.cta.path"
           :href="hero.cta.href"
           class="audience-hero__cta"
+          :analytics-location="`audience_${slug}_hero`"
+          :analytics-label="hero.cta.label"
         >
           {{ hero.cta.label }}
         </BaseButton>

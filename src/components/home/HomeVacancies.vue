@@ -1,9 +1,21 @@
 <script setup lang="ts">
 import BaseButton from '@/components/ui/BaseButton.vue'
 import BaseIcon from '@/components/ui/BaseIcon.vue'
+import { classifyLinkType, useAnalytics } from '@/composables/useAnalytics'
 import { useHomeVacancies } from '@/composables/useContent'
 
 const content = useHomeVacancies()
+
+const { trackCtaClick } = useAnalytics()
+
+function trackVacancyLink(label: string, href: string): void {
+  trackCtaClick({
+    cta_location: 'vacancies',
+    cta_label: label,
+    link_url: href,
+    link_type: classifyLinkType(href),
+  })
+}
 </script>
 
 <template>
@@ -36,6 +48,7 @@ const content = useHomeVacancies()
               target="_blank"
               rel="noopener noreferrer"
               :aria-label="`Learn more about ${card.title}`"
+              @click="trackVacancyLink(card.title, card.learnMoreHref)"
             >
               <span>{{ card.learnMoreLabel }}</span>
               <BaseIcon name="arrow-right" :size="24" />
@@ -43,7 +56,13 @@ const content = useHomeVacancies()
           </li>
         </ul>
 
-        <BaseButton variant="secondary" :href="content.viewAll.href" class="home-vacancies__cta">
+        <BaseButton
+          variant="secondary"
+          :href="content.viewAll.href"
+          class="home-vacancies__cta"
+          analytics-location="vacancies"
+          :analytics-label="content.viewAll.label"
+        >
           {{ content.viewAll.label }}
         </BaseButton>
       </div>

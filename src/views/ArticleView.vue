@@ -9,6 +9,7 @@ import {
   useBlogMeta,
   useSharedUi,
 } from '@/composables/useContent'
+import { classifyLinkType, useAnalytics } from '@/composables/useAnalytics'
 import type { ArticleSection } from '@/types/content'
 
 const props = defineProps<{ slug: string }>()
@@ -18,6 +19,8 @@ const article = computed(() => getArticleBySlug(props.slug))
 const adjacent = computed(() => getAdjacentArticles(props.slug))
 const blogMeta = useBlogMeta()
 const ui = useSharedUi()
+
+const { trackCtaClick } = useAnalytics()
 
 if (!article.value) {
   router.replace({ name: 'not-found' })
@@ -29,6 +32,24 @@ function isImageRow(section: ArticleSection): boolean {
 
 function isTextSection(section: ArticleSection): boolean {
   return Boolean(section.title || section.bodyHtml || section.subsections?.length)
+}
+
+function handleArticleBodyClick(event: MouseEvent): void {
+  const anchor = (event.target as HTMLElement).closest('a')
+  if (!anchor) return
+  const href = anchor.getAttribute('href')
+  if (!href) return
+  try {
+    trackCtaClick({
+      cta_location: 'article_body',
+      cta_label: anchor.textContent?.trim() ?? '',
+      link_url: href,
+      link_type: classifyLinkType(href),
+      target_domain: href.startsWith('http') ? new URL(href).hostname : undefined,
+    })
+  } catch {
+    // ignore URL parse errors
+  }
 }
 </script>
 
@@ -73,7 +94,7 @@ function isTextSection(section: ArticleSection): boolean {
       </figure>
 
       <!-- BODY -->
-      <div class="article__body">
+      <div class="article__body" @click="handleArticleBodyClick">
         <div v-if="article.introHtml" class="article__intro" v-html="article.introHtml" />
 
         <hr v-if="article.sections?.length" class="article__divider" />
