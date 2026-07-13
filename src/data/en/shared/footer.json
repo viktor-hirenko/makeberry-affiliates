@@ -5,7 +5,7 @@
       "links": [
         { "label": "About Us", "path": "/#about" },
         { "label": "Direct Advertiser", "path": "/#direct-advertiser" },
-        { "label": "Map", "path": "/#map", "enabled": false },
+        { "label": "Map", "path": "/#map", "enabled": true },
         { "label": "Testimonials", "path": "/#testimonials", "enabled": false },
         { "label": "FAQ", "path": "/#faq" },
         { "label": "Contacts", "path": "/#contacts", "enabled": true }

@@ -233,7 +233,7 @@
     }
   },
   "map": {
-    "enabled": false,
+    "enabled": true,
     "title": "Our Map",
     "tabs": [
       {
@@ -1023,7 +1023,7 @@
     }
   },
   "blog": {
-    "enabled": false,
+    "enabled": true,
     "title": "Blog",
     "glow": {
       "src": "/images/decorations/glow-home-blog.webp",
