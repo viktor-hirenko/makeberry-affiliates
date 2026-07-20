@@ -25,6 +25,31 @@
         { "label": "RocketPlay Casino", "path": "/casino/rocketplay" },
         { "label": "LuckyHills Casino", "path": "/casino/luckyhills" }
       ]
+    },
+    {
+      "title": "Partners",
+      "links": [
+        { "label": "iGB", "href": "https://igbaffiliate.com/" },
+        { "label": "GPWA", "href": "https://gpwa.org" },
+        { "label": "AffPapa", "href": "https://affpapa.com" },
+        { "label": "Affminer", "href": "https://affminer.com/makeberry-affiliates/" },
+        { "label": "CoinRepublic", "href": "https://www.thecoinrepublic.com/?s=makeberry" },
+        { "label": "AskGamblers", "href": "https://askgamblers.com" },
+        { "label": "Affiverse Media", "href": "https://affiversemedia.com" },
+        {
+          "label": "Global Gaming Insider",
+          "href": "https://www.gamblinginsider.com/connections/1474/makeberry-affiliates"
+        }
+      ]
+    },
+    {
+      "title": "Awards",
+      "links": [
+        { "label": "SiGMA Europe", "href": "https://sigma.world/summits/world/awards/" },
+        { "label": "Affpapa iGaming", "href": "https://affpapa.com/igaming-awards-2026/" },
+        { "label": "Affminer Affiliate", "href": "https://affminer.com/" },
+        { "label": "AffHub CPA Voice" }
+      ]
     }
   ],
   "social": [
@@ -47,73 +72,6 @@
     },
     { "network": "telegram", "href": "https://t.me/makeberryaffiliate", "label": "Telegram" }
   ],
-  "partners": {
-    "label": "Partners",
-    "items": [
-      {
-        "id": "gpwa",
-        "name": "GPWA",
-        "src": "/images/logos/partners/gpwa.webp",
-        "alt": "GPWA",
-        "width": 120,
-        "height": 45,
-        "mobileWidth": 93,
-        "mobileHeight": 35,
-        "rounded": true,
-        "href": "https://gpwa.org"
-      },
-      {
-        "id": "affpapa",
-        "name": "AffPapa",
-        "src": "/images/logos/partners/affpapa.webp",
-        "alt": "AffPapa",
-        "width": 147,
-        "height": 45,
-        "mobileWidth": 114,
-        "mobileHeight": 35,
-        "href": "https://affpapa.com"
-      },
-      {
-        "id": "askgamblers",
-        "name": "AskGamblers",
-        "src": "/images/logos/partners/askgamblers.webp",
-        "alt": "AskGamblers",
-        "width": 138,
-        "height": 45,
-        "mobileWidth": 108,
-        "mobileHeight": 35,
-        "rounded": true,
-        "href": "https://askgamblers.com"
-      },
-      {
-        "id": "affiverse",
-        "name": "Affiverse Media",
-        "src": "/images/logos/partners/affiverse-media.webp",
-        "alt": "Affiverse Media",
-        "width": 222,
-        "height": 45,
-        "mobileWidth": 172,
-        "mobileHeight": 35,
-        "href": "https://affiversemedia.com"
-      }
-    ]
-  },
-  "awards": {
-    "label": "Awards",
-    "items": [
-      {
-        "id": "affpapa-igaming-awards",
-        "name": "AffPapa iGaming Awards",
-        "src": "/images/logos/awards/affpapa-award.webp",
-        "alt": "AffPapa iGaming Awards",
-        "width": 102,
-        "height": 64,
-        "mobileWidth": 79,
-        "mobileHeight": 50,
-        "href": "https://affpapa.com/igaming-awards-2026/"
-      }
-    ]
-  },
   "bottomLinks": [
     { "label": "Terms of Service", "path": "/terms-and-conditions" },
     { "label": "Privacy Policy", "path": "/privacy-policy" }

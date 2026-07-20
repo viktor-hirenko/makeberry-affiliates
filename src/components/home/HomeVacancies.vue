@@ -57,7 +57,7 @@ function trackVacancyLink(label: string, href: string): void {
         </ul>
 
         <BaseButton
-          variant="secondary"
+          variant="tetriary"
           :href="content.viewAll.href"
           class="home-vacancies__cta"
           analytics-location="vacancies"

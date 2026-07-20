@@ -15,6 +15,7 @@ import type {
   FooterConfig,
   HomeAboutContent,
   HomeAffiliatesAdvertisersContent,
+  HomeAwardsContent,
   HomeBenefitsContent,
   HomeBlogContent,
   HomeContactsContent,
@@ -24,6 +25,7 @@ import type {
   HomeMapContent,
   HomeMeetUsContent,
   HomePageContent,
+  HomePartnersContent,
   HomeTestimonialsContent,
   HomeVacanciesContent,
   LegalPageContent,
@@ -293,6 +295,14 @@ export function useHomeVacancies(): HomeVacanciesContent {
 
 export function useHomeBlog(): HomeBlogContent {
   return home.blog
+}
+
+export function useHomePartners(): HomePartnersContent {
+  return home.partners
+}
+
+export function useHomeAwards(): HomeAwardsContent {
+  return home.awards
 }
 
 export function useBlogMeta(): BlogContent {

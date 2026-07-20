@@ -55,11 +55,34 @@ function normalize(value: string): string {
   return value.trim().toLowerCase()
 }
 
+/**
+ * Для TG-ников `@name` и `name` считаются одним и тем же.
+ * Email (есть `@` не в начале) не трогаем.
+ */
+function tokenVariants(value: string): string[] {
+  const v = normalize(value)
+  if (!v) return []
+
+  if (v.startsWith('@')) {
+    return [v, v.slice(1)]
+  }
+
+  // Email: local@domain — оставляем как есть
+  if (v.includes('@')) {
+    return [v]
+  }
+
+  // Ник без @: принимаем и с @, и без
+  return [v, `@${v}`]
+}
+
 const allTokens = computed<Set<string>>(() => {
   const set = new Set<string>()
   for (const item of content.items) {
     for (const token of item.verifyTokens) {
-      set.add(normalize(token))
+      for (const variant of tokenVariants(token)) {
+        set.add(variant)
+      }
     }
   }
   return set
@@ -210,19 +233,22 @@ function handleInput() {
             </div>
 
             <div
-              v-if="status !== 'idle'"
               class="home-contacts__status"
               :class="{
+                'is-visible': status !== 'idle',
                 'home-contacts__status--verified': status === 'verified',
                 'home-contacts__status--error': status === 'error',
               }"
               role="status"
               aria-live="polite"
+              :aria-hidden="status === 'idle'"
             >
-              <BaseIcon :name="status === 'verified' ? 'verified' : 'alert-circle'" :size="24" />
-              <span>{{
-                status === 'verified' ? content.form.verifiedLabel : content.form.errorLabel
-              }}</span>
+              <template v-if="status !== 'idle'">
+                <BaseIcon :name="status === 'verified' ? 'verified' : 'alert-circle'" :size="24" />
+                <span>{{
+                  status === 'verified' ? content.form.verifiedLabel : content.form.errorLabel
+                }}</span>
+              </template>
             </div>
           </form>
         </div>
@@ -642,16 +668,27 @@ function handleInput() {
 }
 
 .home-contacts__status {
+  /* Слот всегда в потоке (min-height = иконка/строка), чтобы verify
+   * не менял высоту секции и не дёргал absolute-glow. */
   display: flex;
   align-items: center;
   justify-content: center;
   gap: to-rem(8);
+  min-height: to-rem(24);
   font-family: var(--font-sans);
   font-weight: 400;
   font-size: to-rem(16);
   line-height: to-rem(24);
   letter-spacing: -0.01em;
   color: var(--color-text-secondary);
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+
+  &.is-visible {
+    visibility: visible;
+    opacity: 1;
+  }
 }
 
 .home-contacts__status--verified {

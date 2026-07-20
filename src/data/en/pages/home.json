@@ -255,12 +255,6 @@
     ],
     "countries": [
       {
-        "code": "US",
-        "name": "United States",
-        "tier": 1,
-        "offers": 124
-      },
-      {
         "code": "CA",
         "name": "Canada",
         "tier": 1,
@@ -519,12 +513,6 @@
         "offers": 86
       },
       {
-        "code": "ID",
-        "name": "Indonesia",
-        "tier": 3,
-        "offers": 64
-      },
-      {
         "code": "PH",
         "name": "Philippines",
         "tier": 3,
@@ -693,63 +681,58 @@
     "title": "Meet Us",
     "items": [
       {
-        "id": "ice-barcelona-2026",
-        "name": "ICE Barcelona\n2026",
-        "logoSrc": "/images/logos/events/ice-logo.svg",
-        "logoAlt": "ICE Barcelona 2026 logo",
-        "logoWidth": 136,
-        "logoHeight": 55,
-        "bgColor": "#5d2483",
+        "id": "igb-live-london-2026",
+        "name": "iGB L!VE London 2026",
+        "logoSrc": "/images/logos/events/igblive-logo.svg",
+        "logoAlt": "iGB L!VE London 2026 logo",
+        "logoWidth": 194,
+        "logoHeight": 44,
+        "bgColor": "#202a4a",
         "tags": [
           {
-            "label": "January 19–21"
+            "label": "Jul 01–02"
           },
           {
-            "label": "Spain, Barcelona"
-          },
-          {
-            "label": "Stand B12",
-            "outlined": true
+            "label": "London, UK"
           }
-        ]
+        ],
+        "href": "https://www.igblive.com/"
       },
       {
-        "id": "sbc-summit-rio-2026",
-        "name": "SBC Summit Rio\n2026",
+        "id": "sbc-summit-lisbon-2026",
+        "name": "SBC Summit Lisbon 2026",
         "logoSrc": "/images/logos/events/sbc-logo.svg",
-        "logoAlt": "SBC Summit Rio 2026 logo",
+        "logoAlt": "SBC Summit Lisbon 2026 logo",
         "logoWidth": 132,
         "logoHeight": 55,
-        "bgColor": "#248375",
+        "bgColor": "#160572",
         "tags": [
           {
-            "label": "March 3–5"
+            "label": "Sep 29 – Oct 01"
           },
           {
-            "label": "Brazil, Rio de Janeiro"
+            "label": "Lisbon, Portugal"
           }
-        ]
+        ],
+        "href": "https://sbcevents.com/sbc-summit/"
       },
       {
-        "id": "prague-gaming-tech-summit-2026",
-        "name": "Prague Gaming & TECH Summit 2026",
-        "logoSrc": "/images/logos/events/prague-logo.svg",
-        "logoAlt": "Prague Gaming & TECH Summit 2026 logo",
-        "logoWidth": 137,
-        "logoHeight": 106,
+        "id": "sigma-world-rome-2026",
+        "name": "SiGMA World Rome 2026",
+        "logoSrc": "/images/logos/events/sigma-logo.svg",
+        "logoAlt": "SiGMA World Rome 2026 logo",
+        "logoWidth": 220,
+        "logoHeight": 44,
         "bgColor": "#3a2483",
         "tags": [
           {
-            "label": "March 24–25"
+            "label": "Nov 02–05"
           },
           {
-            "label": "Prague, Czech Republic"
-          },
-          {
-            "label": "Stand A6",
-            "outlined": true
+            "label": "Rome, Italy"
           }
-        ]
+        ],
+        "href": "https://sigma.world/summits/world/"
       }
     ]
   },
@@ -786,7 +769,7 @@
       {
         "id": "roman-yakubovskyi",
         "name": "Roman\nYakubovskyi",
-        "position": "Makeberry HUB Team Lead",
+        "position": "Team Lead Makeberry Affiliates",
         "photoSrc": "/images/contacts/roman-yakubovskyi.webp",
         "photoAlt": "Roman Yakubovskyi",
         "photoObjectPosition": "center top",
@@ -868,30 +851,9 @@
         "verifyTokens": ["@rom_makeberry", "@roman", "r.hromov@makeberry.com"]
       },
       {
-        "id": "kateryna-rybka",
-        "name": "Kateryna\nRybka",
-        "position": "Direct Adv Team Lead",
-        "photoSrc": "/images/contacts/kateryna-rybka.webp",
-        "photoAlt": "Kateryna Rybka",
-        "photoObjectPosition": "center top",
-        "socials": [
-          {
-            "type": "telegram",
-            "href": "https://t.me/Kate_Makeberry",
-            "label": "Telegram"
-          },
-          {
-            "type": "email",
-            "href": "mailto:kate.r@makeberry.com",
-            "label": "Email"
-          }
-        ],
-        "verifyTokens": ["@kate_makeberry", "kate.r@makeberry.com"]
-      },
-      {
         "id": "ganna-tian",
         "name": "Ganna\nTian",
-        "position": "PR Makeberry Affiliate Team Lead",
+        "position": "PR of Makeberry Partnerships",
         "photoSrc": "/images/contacts/anna-tian.webp",
         "photoAlt": "Ganna Tian",
         "photoObjectPosition": "center top",
@@ -929,6 +891,27 @@
           }
         ],
         "verifyTokens": ["@sasha_makeberry", "sasha.k@makeberry.com"]
+      },
+      {
+        "id": "matvii-buhrymenko",
+        "name": "Matvii\nBuhrymenko",
+        "position": "Head of Makeberry Influence",
+        "photoSrc": "/images/contacts/matvii-buhrymenko.webp",
+        "photoAlt": "Matvii Buhrymenko",
+        "photoObjectPosition": "center top",
+        "socials": [
+          {
+            "type": "telegram",
+            "href": "https://t.me/matvii_makeberry",
+            "label": "Telegram"
+          },
+          {
+            "type": "email",
+            "href": "mailto:m.buhrymenko@makeberry.com",
+            "label": "Email"
+          }
+        ],
+        "verifyTokens": ["@matvii_makeberry", "m.buhrymenko@makeberry.com"]
       }
     ],
     "form": {
@@ -985,7 +968,7 @@
     ]
   },
   "vacancies": {
-    "enabled": true,
+    "enabled": false,
     "title": "Open Vacancies",
     "target": {
       "src": "/images/decorative-icons/target.webp",
@@ -1023,7 +1006,7 @@
     }
   },
   "blog": {
-    "enabled": true,
+    "enabled": false,
     "title": "Blog",
     "glow": {
       "src": "/images/decorations/glow-home-blog.webp",
@@ -1034,5 +1017,111 @@
       "label": "View All",
       "href": "/blog"
     }
+  },
+  "partners": {
+    "enabled": true,
+    "title": "Our Partners",
+    "initialCount": 8,
+    "viewMoreLabel": "View More",
+    "viewLessLabel": "View Less",
+    "items": [
+      {
+        "id": "gpwa",
+        "name": "GPWA",
+        "src": "/images/logos/partners/gpwa.png",
+        "alt": "GPWA",
+        "href": "https://gpwa.org"
+      },
+      {
+        "id": "affpapa",
+        "name": "AffPapa",
+        "src": "/images/logos/partners/affpapa.svg",
+        "alt": "AffPapa",
+        "href": "https://affpapa.com"
+      },
+      {
+        "id": "askgamblers",
+        "name": "AskGamblers",
+        "src": "/images/logos/partners/askgamblers.png",
+        "alt": "AskGamblers",
+        "href": "https://askgamblers.com"
+      },
+      {
+        "id": "affiverse",
+        "name": "Affiverse Media",
+        "src": "/images/logos/partners/affiverse-media.svg",
+        "alt": "Affiverse Media",
+        "href": "https://affiversemedia.com"
+      },
+      {
+        "id": "global-gaming-insider",
+        "name": "Global Gaming Insider",
+        "src": "/images/logos/partners/global-gaming-insider.png",
+        "alt": "Global Gaming Insider",
+        "href": "https://www.gamblinginsider.com/connections/1474/makeberry-affiliates"
+      },
+      {
+        "id": "igb-affiliate",
+        "name": "iGB Affiliate",
+        "src": "/images/logos/partners/igb-affiliate.png",
+        "alt": "iGB Affiliate",
+        "href": "https://igbaffiliate.com/"
+      },
+      {
+        "id": "the-coin-republic",
+        "name": "The Coin Republic",
+        "src": "/images/logos/partners/the-coin-republic.svg",
+        "alt": "The Coin Republic",
+        "href": "https://www.thecoinrepublic.com/?s=makeberry"
+      },
+      {
+        "id": "affminer",
+        "name": "AffMiner",
+        "src": "/images/logos/partners/affminer.svg",
+        "alt": "AffMiner",
+        "href": "https://affminer.com/makeberry-affiliates/"
+      }
+    ]
+  },
+  "awards": {
+    "enabled": true,
+    "title": "Awards",
+    "glow": {
+      "src": "/images/decorations/glow-home-awards.webp",
+      "mobileSrc": "/images/decorations/glow-home-awards-mobile.webp",
+      "alt": ""
+    },
+    "initialCount": 8,
+    "viewMoreLabel": "View More",
+    "viewLessLabel": "View Less",
+    "items": [
+      {
+        "id": "affpapa-igaming-awards",
+        "name": "AffPapa iGaming Awards — Commission Offer of the Year",
+        "imageSrc": "/images/awards/affpapa-igaming-awards.png",
+        "imageAlt": "AffPapa iGaming Awards — Commission Offer of the Year — Makeberry"
+      },
+      {
+        "id": "affiliate-management-of-the-year",
+        "name": "Affiliate Management of the Year",
+        "imageSrc": "/images/awards/affiliate-management-of-the-year.png",
+        "imageAlt": "Affiliate Management of the Year — Makeberry",
+        "href": "https://affpapa.com/igaming-awards-2026/"
+      },
+      {
+        "id": "sigma-europe",
+        "name": "SiGMA Europe — Best Affiliate Network 2026",
+        "imageSrc": "/images/awards/sigma-europe.png",
+        "imageAlt": "SiGMA Europe — Best Affiliate Network 2026",
+        "href": "https://sigma.world/summits/world/awards/"
+      },
+      {
+        "id": "affminer-affiliate-award",
+        "name": "AffMiner Affiliate Award — Top-1 Affiliate Network 2025",
+        "imageSrc": "/images/awards/affminer-affiliate-award.png",
+        "imageAlt": "AffMiner Affiliate Award — Top-1 Affiliate Network 2025 — Makeberry",
+        "href": "https://affminer.com/"
+      }
+    ]
   }
 }

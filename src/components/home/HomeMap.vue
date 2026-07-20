@@ -50,12 +50,123 @@ const activeCountries = computed(() => {
   return content.countries.filter(country => codeSet.has(country.code))
 })
 
+/**
+ * Автопрокрутка бейджей при overflow: дублируем список для seamless loop + rAF.
+ */
+const badgesEl = ref<HTMLUListElement | null>(null)
+const hasBadgeOverflow = ref(false)
+const isMarqueePaused = ref(false)
+const prefersReducedMotion = ref(false)
+const MARQUEE_SPEED_PX_PER_SEC = 28
+
+/** `isClone` — дубликаты для loop; скрыты от AT (aria-hidden / tabindex=-1). */
+const marqueeItems = computed<{ country: HomeMapCountry; isClone: boolean }[]>(() => {
+  const base = activeCountries.value.map(country => ({ country, isClone: false }))
+  if (!hasBadgeOverflow.value) return base
+  return [...base, ...activeCountries.value.map(country => ({ country, isClone: true }))]
+})
+
+let marqueeFrame = 0
+let marqueeLastTs = 0
+/** Дробный остаток: scrollLeft принимает только целые px. */
+let marqueeCarry = 0
+let reducedMotionMql: MediaQueryList | null = null
+let touchResumeTimeout: number | undefined
+
+function onReducedMotionChange(event: MediaQueryListEvent | MediaQueryList): void {
+  prefersReducedMotion.value = event.matches
+}
+
+function checkBadgeOverflow(): void {
+  const el = badgesEl.value
+  if (!el) return
+
+  // После клонирования scrollWidth ≈ 2× контента — сравниваем половину.
+  const contentWidth = hasBadgeOverflow.value ? el.scrollWidth / 2 : el.scrollWidth
+  const next = contentWidth > el.clientWidth + 1
+
+  if (next !== hasBadgeOverflow.value) {
+    hasBadgeOverflow.value = next
+    el.scrollLeft = 0
+    marqueeCarry = 0
+    nextTick(checkBadgeOverflow)
+  }
+}
+
+/** Держит scrollLeft в первой половине ленты (до клона). */
+function normalizeMarqueeScroll(): void {
+  const el = badgesEl.value
+  if (!el || !hasBadgeOverflow.value) return
+
+  const half = el.scrollWidth / 2
+  if (half <= 0) return
+
+  while (el.scrollLeft >= half) {
+    el.scrollLeft -= half
+  }
+  while (el.scrollLeft < 0) {
+    el.scrollLeft += half
+  }
+}
+
+function stepMarquee(timestamp: number): void {
+  const el = badgesEl.value
+  if (el && hasBadgeOverflow.value && !isMarqueePaused.value && !prefersReducedMotion.value) {
+    const last = marqueeLastTs || timestamp
+    const dtSec = Math.min((timestamp - last) / 1000, 0.05)
+    marqueeCarry += MARQUEE_SPEED_PX_PER_SEC * dtSec
+    const step = Math.floor(marqueeCarry)
+    if (step > 0) {
+      el.scrollLeft += step
+      marqueeCarry -= step
+      normalizeMarqueeScroll()
+    }
+  }
+  marqueeLastTs = timestamp
+  marqueeFrame = requestAnimationFrame(stepMarquee)
+}
+
+function pauseMarquee(): void {
+  isMarqueePaused.value = true
+  marqueeLastTs = 0
+}
+
+function resumeMarquee(): void {
+  normalizeMarqueeScroll()
+  marqueeLastTs = 0
+  isMarqueePaused.value = false
+}
+
+/** Задержка после touchend, чтобы не стартовать scroll под пальцем. */
+function scheduleResumeAfterTouch(): void {
+  if (touchResumeTimeout) window.clearTimeout(touchResumeTimeout)
+  touchResumeTimeout = window.setTimeout(resumeMarquee, 800)
+}
+
+function onWindowResize(): void {
+  checkBadgeOverflow()
+}
+
 function selectTab(tabId: HomeMapTab['id']): void {
   activeTab.value = tabId
 }
 
 function setHovered(code: string | null): void {
   hoveredCode.value = code
+}
+
+/**
+ * Desktop hover по path.is-active → тот же spotlight/tooltip, что у бейджей.
+ */
+function onMapPointerOver(event: MouseEvent): void {
+  const path = (event.target as Element | null)?.closest?.('path[id].is-active')
+  const id = path?.getAttribute('id')
+  if (id) setHovered(id)
+}
+
+function onMapPointerOut(event: MouseEvent): void {
+  const path = (event.target as Element | null)?.closest?.('path[id].is-active')
+  if (path) setHovered(null)
 }
 
 /**
@@ -189,6 +300,7 @@ function applySpotlight(code: string | null): void {
 watch(activeTab, () => {
   applyHighlights()
   applySpotlight(hoveredCode.value)
+  nextTick(checkBadgeOverflow)
 })
 
 watch(hoveredCode, next => {
@@ -197,10 +309,23 @@ watch(hoveredCode, next => {
 
 onMounted(() => {
   loadMap()
+  nextTick(checkBadgeOverflow)
+
+  window.addEventListener('resize', onWindowResize)
+
+  reducedMotionMql = window.matchMedia('(prefers-reduced-motion: reduce)')
+  onReducedMotionChange(reducedMotionMql)
+  reducedMotionMql.addEventListener('change', onReducedMotionChange)
+
+  marqueeFrame = requestAnimationFrame(stepMarquee)
 })
 
 onBeforeUnmount(() => {
   applySpotlight(null)
+  window.removeEventListener('resize', onWindowResize)
+  reducedMotionMql?.removeEventListener('change', onReducedMotionChange)
+  cancelAnimationFrame(marqueeFrame)
+  if (touchResumeTimeout) window.clearTimeout(touchResumeTimeout)
 })
 </script>
 
@@ -229,6 +354,8 @@ onBeforeUnmount(() => {
         ref="mapHost"
         class="home-map__map"
         :data-state="hasMapError ? 'error' : isMapLoading ? 'loading' : 'ready'"
+        @mouseover="onMapPointerOver"
+        @mouseout="onMapPointerOut"
       >
         <div class="home-map__map-svg" v-html="mapSvg"></div>
 
@@ -259,21 +386,38 @@ onBeforeUnmount(() => {
       </p>
     </div>
 
-    <ul class="home-map__badges" :aria-label="`Countries (${activeTab})`">
-      <li v-for="country in activeCountries" :key="country.code" class="home-map__badge-item">
+    <ul
+      ref="badgesEl"
+      class="home-map__badges"
+      :class="{ 'is-marquee': hasBadgeOverflow }"
+      :aria-label="`Countries (${activeTab})`"
+      @mouseenter="pauseMarquee"
+      @mouseleave="resumeMarquee"
+      @focusin="pauseMarquee"
+      @focusout="resumeMarquee"
+      @touchstart.passive="pauseMarquee"
+      @touchend.passive="scheduleResumeAfterTouch"
+    >
+      <li
+        v-for="(entry, idx) in marqueeItems"
+        :key="`${entry.country.code}-${idx}`"
+        class="home-map__badge-item"
+        :aria-hidden="entry.isClone || undefined"
+      >
         <button
           type="button"
           class="home-map__badge"
-          :class="{ 'is-hovered': hoveredCode === country.code }"
-          :data-code="country.code"
-          :title="country.name"
-          :aria-label="country.name"
-          @mouseenter="setHovered(country.code)"
+          :class="{ 'is-hovered': hoveredCode === entry.country.code }"
+          :data-code="entry.country.code"
+          :title="entry.country.name"
+          :aria-label="entry.country.name"
+          :tabindex="entry.isClone ? -1 : undefined"
+          @mouseenter="setHovered(entry.country.code)"
           @mouseleave="setHovered(null)"
-          @focusin="setHovered(country.code)"
+          @focusin="setHovered(entry.country.code)"
           @focusout="setHovered(null)"
         >
-          {{ country.code }}
+          {{ entry.country.code }}
         </button>
       </li>
     </ul>
@@ -420,15 +564,22 @@ onBeforeUnmount(() => {
       filter var(--transition-fast);
   }
 
-  /* Активные страны (есть в JSON и подходят под текущий tab). */
+  /* Активные страны под текущий tab. */
   path[id].is-active {
     fill: var(--color-bg-brand);
+  }
+
+  @media (pointer: fine) {
+    path[id].is-active {
+      pointer-events: auto;
+      cursor: pointer;
+    }
   }
 
   /* Украина — home base: по умолчанию полупрозрачный белый; в активном табе
      fill как у остальных (path[id].is-active), плюс pink glow только для UA. */
   path[id='UA'] {
-    fill: rgba(255, 255, 255, 0.20);
+    fill: rgba(255, 255, 255, 0.2);
   }
 
   path[id='UA'].is-active {
@@ -532,6 +683,10 @@ onBeforeUnmount(() => {
 .home-map__badges {
   display: flex;
   align-items: center;
+  /* Центрируем, когда бейджи помещаются; при переполнении `safe`
+   * автоматически переключает на start, чтобы левые бейджи не
+   * уезжали за край и оставались доступны при горизонтальном скролле. */
+  justify-content: safe center;
   gap: to-rem(8);
   align-self: stretch;
   width: 100%;
@@ -543,7 +698,7 @@ onBeforeUnmount(() => {
   overflow-x: auto;
   overflow-y: hidden;
   scrollbar-width: none;
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   -webkit-overflow-scrolling: touch;
 
   &::-webkit-scrollbar {

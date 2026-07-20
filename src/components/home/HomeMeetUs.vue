@@ -62,7 +62,12 @@ const navConfig = {
           @swiper="onMeetUsSwiper"
         >
           <SwiperSlide v-for="event in content.items" :key="event.id" class="home-meet-us__slide">
-            <article class="home-meet-us__card">
+            <a
+              :href="event.href"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="home-meet-us__card"
+            >
               <div class="home-meet-us__cover" :style="{ backgroundColor: event.bgColor }">
                 <img
                   :src="event.logoSrc"
@@ -88,24 +93,30 @@ const navConfig = {
                   </li>
                 </ul>
               </div>
-            </article>
+            </a>
           </SwiperSlide>
         </Swiper>
 
-        <button
-          type="button"
-          class="home-meet-us__nav home-meet-us__nav--prev"
-          :aria-label="ui.aria.eventsPrev"
-        >
-          <BaseIcon name="chevron-left" :size="24" />
-        </button>
-        <button
-          type="button"
-          class="home-meet-us__nav home-meet-us__nav--next"
-          :aria-label="ui.aria.eventsNext"
-        >
-          <BaseIcon name="chevron-right" :size="24" />
-        </button>
+        <!--
+          Rail на всю ширину wrap (включая padding-inline под стрелки),
+          по высоте — только трек карточек (без gap + pagination).
+        -->
+        <div class="home-meet-us__nav-rail">
+          <button
+            type="button"
+            class="home-meet-us__nav home-meet-us__nav--prev"
+            :aria-label="ui.aria.eventsPrev"
+          >
+            <BaseIcon name="chevron-left" :size="24" />
+          </button>
+          <button
+            type="button"
+            class="home-meet-us__nav home-meet-us__nav--next"
+            :aria-label="ui.aria.eventsNext"
+          >
+            <BaseIcon name="chevron-right" :size="24" />
+          </button>
+        </div>
 
         <div class="home-meet-us__pagination"></div>
       </div>
@@ -156,14 +167,16 @@ const navConfig = {
   display: flex;
 }
 
-/* Ширину задаёт Swiper (1 / 2 / 3); min-height = 416 по Figma 2819:2055. */
 .home-meet-us__slide {
   height: auto;
-  min-height: to-rem(416);
   display: flex;
+
+  @include mq($from: tablet) {
+    min-height: to-rem(376);
+  }
 }
 
-/* overflow: hidden нужен, чтобы цветной фон cover'а скруглялся по карточке. */
+/* overflow: hidden — скругление цветного cover по карточке. */
 .home-meet-us__card {
   display: flex;
   flex-direction: column;
@@ -173,6 +186,13 @@ const navConfig = {
   border: 1px solid var(--color-border-subtle);
   border-radius: var(--radius-xl);
   overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+
+  &:focus-visible {
+    outline: 2px solid var(--color-focus-ring);
+    outline-offset: 2px;
+  }
 }
 
 .home-meet-us__cover {
@@ -250,10 +270,28 @@ const navConfig = {
   border-color: var(--color-border-bold);
 }
 
-/* Стрелки только ≥ laptop (под них у slider-wrap есть padding-inline);
- * на 1024–1279 их прячем — там full-bleed + dots/swipe. */
-.home-meet-us__nav {
+/*
+ * Стрелки снаружи карточек (в padding-inline wrap) и по вертикали
+ * по центру только трека: rail = height(wrap) − gap − pagination.
+ */
+.home-meet-us__nav-rail {
   display: none;
+
+  @include mq($from: laptop) {
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    bottom: calc(#{to-rem(32)} + #{to-rem(8)});
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    pointer-events: none;
+  }
+}
+
+.home-meet-us__nav {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   width: to-rem(40);
@@ -264,18 +302,10 @@ const navConfig = {
   background-color: var(--color-bg-subtle);
   color: var(--color-icon-primary);
   cursor: pointer;
+  pointer-events: auto;
   transition:
     background-color var(--transition-base),
     color var(--transition-base);
-
-  @include mq($from: laptop) {
-    display: inline-flex;
-    position: absolute;
-    /* Центрируем по cover (image-area 200h) — стрелки на уровне лого. */
-    top: calc(#{to-rem(200)} / 2);
-    transform: translateY(-50%);
-    z-index: 2;
-  }
 
   &:hover:not(.is-disabled):not(.is-locked) {
     background-color: var(--color-bg-hovered);
@@ -294,19 +324,8 @@ const navConfig = {
 
   /* watchOverflow: всё умещается → прячем стрелки */
   &.is-locked {
-    display: none;
-  }
-}
-
-.home-meet-us__nav--prev {
-  @include mq($from: laptop) {
-    left: 0;
-  }
-}
-
-.home-meet-us__nav--next {
-  @include mq($from: laptop) {
-    right: 0;
+    visibility: hidden;
+    pointer-events: none;
   }
 }
 
@@ -316,6 +335,11 @@ const navConfig = {
   justify-content: center;
   gap: to-rem(8);
   width: 100%;
+
+  &:empty,
+  &.swiper-pagination-lock {
+    display: none;
+  }
 
   :deep(.swiper-pagination-bullet) {
     width: to-rem(8);
@@ -331,5 +355,10 @@ const navConfig = {
   :deep(.swiper-pagination-bullet-active) {
     background-color: var(--color-text-primary);
   }
+}
+
+.home-meet-us__slider-wrap:has(.home-meet-us__pagination:empty),
+.home-meet-us__slider-wrap:has(.swiper-pagination-lock) {
+  gap: 0;
 }
 </style>

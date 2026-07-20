@@ -367,6 +367,13 @@ function closeMobileMenu() {
   justify-self: end;
   gap: to-rem(16);
   min-width: 0;
+
+  /* BaseButton small: transparent 1px border раздувает высоту до 42px
+   * (24 lh + 16 pad + 2 border). В хедере убираем бордер локально,
+   * чтобы CTA совпала с 40px рядом лого/nav — без правок shared-компонента. */
+  :deep(.base-button) {
+    border-width: 0;
+  }
 }
 
 .app-header--mobile .app-header__actions {

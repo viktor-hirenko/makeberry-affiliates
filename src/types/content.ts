@@ -87,7 +87,10 @@ export interface NavConfig {
 
 export interface FooterLink {
   label: string
-  path: string
+  /** Внутренний маршрут (RouterLink). */
+  path?: string
+  /** Внешняя ссылка. Без path и href — обычный текст. */
+  href?: string
   /** false — скрыть ссылку в футере. Отсутствие поля = visible. */
   enabled?: boolean
 }
@@ -105,37 +108,6 @@ export interface FooterSocial {
   enabled?: boolean
 }
 
-/** Логотип партнёра/награды.
- *  Дизайн содержит фиксированные размеры на desktop и mobile, потому что
- *  логотипы у разных партнёров с разными пропорциями. Меняем размеры
- *  на брейкпоинте через style-биндинг. */
-export interface FooterPartner {
-  id: string
-  name: string
-  src: string
-  alt: string
-  width: number
-  height: number
-  mobileWidth: number
-  mobileHeight: number
-  href?: string
-  /** опциональный radius (в Figma у нескольких партнёров есть rounded бэкграунд). */
-  rounded?: boolean
-}
-
-export interface FooterAward {
-  id: string
-  src: string
-  alt: string
-  width: number
-  height: number
-  mobileWidth: number
-  mobileHeight: number
-  /** Подпись ссылки (aria-label), если задан href */
-  name?: string
-  href?: string
-}
-
 export interface FooterBottomLink {
   label: string
   path?: string
@@ -149,8 +121,6 @@ export interface FooterConfig {
   tagline?: string
   columns: FooterColumn[]
   social: FooterSocial[]
-  partners: { label: string; items: FooterPartner[] }
-  awards: { label: string; items: FooterAward[] }
   bottomLinks: FooterBottomLink[]
   copyright: string
   /** legacy */
@@ -174,6 +144,8 @@ export interface HomePageContent {
   faq: HomeFaqContent
   vacancies: HomeVacanciesContent
   blog: HomeBlogContent
+  partners: HomePartnersContent
+  awards: HomeAwardsContent
 }
 
 export interface NotFoundPageContent {
@@ -409,6 +381,8 @@ export interface HomeMeetUsItem {
   logoHeight: number
   bgColor: string
   tags: HomeMeetUsTag[]
+  /** Внешняя ссылка на сайт конференции — карточка открывается в новой вкладке. */
+  href: string
 }
 
 export interface HomeMeetUsContent {
@@ -511,6 +485,56 @@ export interface HomeBlogContent {
   title: string
   glow: { src: string; mobileSrc: string; alt: string }
   viewAll: { label: string; href: string }
+}
+
+/**
+ * Home → Our Partners
+ * Карточки-логотипы партнёров. Desktop (≥1024px) — сетка 4-в-ряд с показом
+ * первых `initialCount` и кнопкой View More/Less; <1024px — Swiper с точками.
+ */
+export interface HomePartnerLogo {
+  id: string
+  name: string
+  src: string
+  alt: string
+  href?: string
+}
+
+export interface HomePartnersContent {
+  /** false — скрыть секцию через v-if в HomeView. Отсутствие поля = visible. */
+  enabled?: boolean
+  title: string
+  /** Сколько карточек показать в сетке до нажатия View More. */
+  initialCount: number
+  viewMoreLabel: string
+  viewLessLabel: string
+  items: HomePartnerLogo[]
+}
+
+/**
+ * Home → Awards
+ * Карточки с фото-статуэтками. Desktop (≥1024px) — grid 4-в-ряд + View More;
+ * <1024px — Swiper со slidesPerView=1 и точками (как HomePartners).
+ */
+export interface HomeAwardCard {
+  id: string
+  name: string
+  imageSrc: string
+  imageAlt: string
+  /** Ссылка на страницу награды/организатора. Отсутствует у наград без публичного URL. */
+  href?: string
+}
+
+export interface HomeAwardsContent {
+  /** false — скрыть секцию через v-if в HomeView. Отсутствие поля = visible. */
+  enabled?: boolean
+  title: string
+  glow: { src: string; mobileSrc: string; alt: string }
+  /** Сколько карточек показать в сетке до нажатия View More. */
+  initialCount: number
+  viewMoreLabel: string
+  viewLessLabel: string
+  items: HomeAwardCard[]
 }
 
 export interface VacancyCard {

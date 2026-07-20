@@ -21,6 +21,12 @@ export default defineConfig({
     },
   },
   build: {
+    /*
+     * Vite 8 default cssMinify=lightningcss drops unprefixed `backdrop-filter`
+     * when `-webkit-backdrop-filter` is also present → Chrome gets no blur in prod
+     * (Safari still works via webkit). esbuild keeps both. See lightningcss#695.
+     */
+    cssMinify: 'esbuild',
     rollupOptions: {
       output: {
         /*

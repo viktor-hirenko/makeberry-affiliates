@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import BaseIcon from '@/components/ui/BaseIcon.vue'
 import BaseLogo from '@/components/ui/BaseLogo.vue'
-import MaybeLink from '@/components/ui/MaybeLink.vue'
 import { classifyLinkType, useAnalytics } from '@/composables/useAnalytics'
 import { useFooter, useNav, useSharedUi } from '@/composables/useContent'
 
@@ -10,6 +10,15 @@ const footer = useFooter()
 const ui = useSharedUi()
 
 const { trackCtaClick } = useAnalytics()
+
+/** Explore | (Solutions + Direct Advertiser) | Partners | Awards — как в макете. */
+const STACKED_TITLES = new Set(['Solutions', 'Direct Advertiser'])
+
+const exploreColumn = computed(() => footer.columns.find((c) => c.title === 'Explore'))
+const stackedColumns = computed(() => footer.columns.filter((c) => STACKED_TITLES.has(c.title)))
+const sideColumns = computed(() =>
+  footer.columns.filter((c) => c.title !== 'Explore' && !STACKED_TITLES.has(c.title)),
+)
 
 function trackFooterLink(label: string, href: string | undefined, location: string): void {
   if (!href) return
@@ -29,12 +38,15 @@ function tryGetHostname(url: string): string | undefined {
     return undefined
   }
 }
+
+function isProtocolLink(href: string): boolean {
+  return /^(mailto:|tel:)/i.test(href)
+}
 </script>
 
 <template>
   <footer class="app-footer" role="contentinfo">
     <div class="app-footer__inner">
-      <!-- Header: logo + social vs nav columns -->
       <div class="app-footer__header">
         <div class="app-footer__brand">
           <RouterLink to="/" class="app-footer__logo" :aria-label="nav.logoAlt">
@@ -58,93 +70,99 @@ function tryGetHostname(url: string): string | undefined {
         </div>
 
         <nav class="app-footer__nav" :aria-label="ui.aria.navFooter">
-          <div v-for="column in footer.columns" :key="column.title" class="app-footer__column">
+          <div v-if="exploreColumn" class="app-footer__column">
+            <h3 class="app-footer__column-title">{{ exploreColumn.title }}</h3>
+            <ul class="app-footer__column-list">
+              <li v-for="link in exploreColumn.links" :key="link.label">
+                <RouterLink
+                  v-if="link.path"
+                  :to="link.path"
+                  class="app-footer__column-link"
+                  @click="trackFooterLink(link.label, link.path, 'footer_nav')"
+                >
+                  {{ link.label }}
+                </RouterLink>
+                <a
+                  v-else-if="link.href"
+                  :href="link.href"
+                  class="app-footer__column-link"
+                  :target="isProtocolLink(link.href) ? undefined : '_blank'"
+                  :rel="isProtocolLink(link.href) ? undefined : 'noopener noreferrer'"
+                  @click="trackFooterLink(link.label, link.href, 'footer_nav')"
+                >
+                  {{ link.label }}
+                </a>
+                <span v-else class="app-footer__column-text">{{ link.label }}</span>
+              </li>
+            </ul>
+          </div>
+
+          <div v-if="stackedColumns.length" class="app-footer__column-stack">
+            <div
+              v-for="column in stackedColumns"
+              :key="column.title"
+              class="app-footer__column"
+            >
+              <h3 class="app-footer__column-title">{{ column.title }}</h3>
+              <ul class="app-footer__column-list">
+                <li v-for="link in column.links" :key="link.label">
+                  <RouterLink
+                    v-if="link.path"
+                    :to="link.path"
+                    class="app-footer__column-link"
+                    @click="trackFooterLink(link.label, link.path, 'footer_nav')"
+                  >
+                    {{ link.label }}
+                  </RouterLink>
+                  <a
+                    v-else-if="link.href"
+                    :href="link.href"
+                    class="app-footer__column-link"
+                    :target="isProtocolLink(link.href) ? undefined : '_blank'"
+                    :rel="isProtocolLink(link.href) ? undefined : 'noopener noreferrer'"
+                    @click="trackFooterLink(link.label, link.href, 'footer_nav')"
+                  >
+                    {{ link.label }}
+                  </a>
+                  <span v-else class="app-footer__column-text">{{ link.label }}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div
+            v-for="column in sideColumns"
+            :key="column.title"
+            class="app-footer__column"
+          >
             <h3 class="app-footer__column-title">{{ column.title }}</h3>
             <ul class="app-footer__column-list">
               <li v-for="link in column.links" :key="link.label">
-                <RouterLink :to="link.path" class="app-footer__column-link">
+                <RouterLink
+                  v-if="link.path"
+                  :to="link.path"
+                  class="app-footer__column-link"
+                  @click="trackFooterLink(link.label, link.path, 'footer_nav')"
+                >
                   {{ link.label }}
                 </RouterLink>
+                <a
+                  v-else-if="link.href"
+                  :href="link.href"
+                  class="app-footer__column-link"
+                  :target="isProtocolLink(link.href) ? undefined : '_blank'"
+                  :rel="isProtocolLink(link.href) ? undefined : 'noopener noreferrer'"
+                  @click="trackFooterLink(link.label, link.href, 'footer_nav')"
+                >
+                  {{ link.label }}
+                </a>
+                <span v-else class="app-footer__column-text">{{ link.label }}</span>
               </li>
             </ul>
           </div>
         </nav>
       </div>
 
-      <div class="app-footer__lower">
-      <!-- Partners and Awards -->
-      <div class="app-footer__pa">
-        <section class="app-footer__partners" :aria-label="footer.partners.label">
-          <span class="app-footer__badge app-footer__badge--partners">
-            {{ footer.partners.label }}
-          </span>
-          <ul class="app-footer__partner-list">
-            <li
-              v-for="partner in footer.partners.items"
-              :key="partner.id"
-              class="app-footer__partner"
-            >
-              <MaybeLink
-                :href="partner.href"
-                :aria-label="partner.name"
-                class="app-footer__partner-link"
-                @click="trackFooterLink(partner.name, partner.href, 'footer_partners')"
-              >
-                <img
-                  :src="partner.src"
-                  :alt="partner.alt"
-                  :width="partner.width"
-                  :height="partner.height"
-                  class="app-footer__partner-img"
-                  :class="{ 'is-rounded': partner.rounded }"
-                  :style="{
-                    '--partner-w': partner.width + 'px',
-                    '--partner-h': partner.height + 'px',
-                    '--partner-w-mobile': partner.mobileWidth + 'px',
-                    '--partner-h-mobile': partner.mobileHeight + 'px',
-                  }"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </MaybeLink>
-            </li>
-          </ul>
-        </section>
-
-        <section class="app-footer__awards" :aria-label="footer.awards.label">
-          <span class="app-footer__badge app-footer__badge--awards">
-            {{ footer.awards.label }}
-          </span>
-          <ul class="app-footer__award-list">
-            <li v-for="award in footer.awards.items" :key="award.id" class="app-footer__award">
-              <MaybeLink
-                :href="award.href"
-                :aria-label="award.name ?? award.alt"
-                class="app-footer__award-link"
-                @click="trackFooterLink(award.name ?? award.alt, award.href, 'footer_awards')"
-              >
-                <img
-                  :src="award.src"
-                  :alt="award.alt"
-                  :width="award.width"
-                  :height="award.height"
-                  class="app-footer__award-img"
-                  :style="{
-                    '--award-w': award.width + 'px',
-                    '--award-h': award.height + 'px',
-                    '--award-w-mobile': award.mobileWidth + 'px',
-                    '--award-h-mobile': award.mobileHeight + 'px',
-                  }"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </MaybeLink>
-            </li>
-          </ul>
-        </section>
-      </div>
-
-      <!-- Bottom: legal + copyright -->
       <div class="app-footer__bottom">
         <template v-for="(link, index) in footer.bottomLinks" :key="link.label">
           <a v-if="link.href" :href="link.href" class="app-footer__bottom-link">
@@ -163,7 +181,6 @@ function tryGetHostname(url: string): string | undefined {
           {{ footer.copyright }}
         </p>
       </div>
-      </div>
     </div>
   </footer>
 </template>
@@ -171,41 +188,27 @@ function tryGetHostname(url: string): string | undefined {
 <style scoped lang="scss">
 @use '@/assets/styles/scss/mixins' as *;
 
-/* padding-inline 150 — только с laptop (1280+) через section-padding;
- * контейнер 1140px, чтобы Partners + Awards влезали в строку на 1024–1279. */
 .app-footer {
   z-index: 1;
   background-color: var(--color-bg-surface);
   overflow-x: clip;
 
   @include section-padding(
-    $desktop-inline: to-rem(150),
+    $desktop-inline: to-rem(100),
     $desktop-top: to-rem(80),
     $desktop-bottom: to-rem(40),
     $mobile-bottom: to-rem(16)
   );
 }
 
-/* Figma: mobile 60px header→lower; desktop 100px. Внутри lower: 60 / 80. */
 .app-footer__inner {
   display: flex;
   flex-direction: column;
   gap: to-rem(60);
-  @include container(to-rem(1140));
+  @include container(to-rem(1240));
 
   @include mq($from: tablet) {
     gap: to-rem(100);
-  }
-}
-
-.app-footer__lower {
-  display: flex;
-  flex-direction: column;
-  gap: to-rem(60);
-  width: 100%;
-
-  @include mq($from: tablet) {
-    gap: to-rem(80);
   }
 }
 
@@ -272,37 +275,47 @@ function tryGetHostname(url: string): string | undefined {
   }
 }
 
-/* ≥1440px: колонки фикс. 200px (4×200 + gaps + brand); ниже — auto-width. */
+/* Explore | Solutions+DA stack | Partners | Awards */
 .app-footer__nav {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: to-rem(48);
+  width: 100%;
 
   @include mq($from: compact) {
     flex-direction: row;
-    gap: to-rem(24);
+    flex-wrap: wrap;
+    gap: to-rem(32);
   }
 
-  @include mq($from: mobile) {
-    flex-direction: row;
-    gap: to-rem(24);
+  @include mq($from: tablet) {
+    flex-wrap: nowrap;
+    gap: to-rem(48);
+    width: auto;
   }
 
   @include mq($from: desktop) {
-    gap: to-rem(50);
+    gap: to-rem(64);
   }
+}
+
+.app-footer__column-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: to-rem(48);
 }
 
 .app-footer__column {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: to-rem(24);
+  gap: to-rem(16);
   width: auto;
 
   @include mq($from: desktop) {
-    width: to-rem(200);
+    width: to-rem(165);
   }
 }
 
@@ -324,16 +337,21 @@ function tryGetHostname(url: string): string | undefined {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: to-rem(12);
+  gap: to-rem(8);
+  width: 100%;
 }
 
-.app-footer__column-link {
+.app-footer__column-link,
+.app-footer__column-text {
   font-family: var(--font-sans);
   font-weight: 400;
   font-size: to-rem(16);
   line-height: to-rem(24);
   letter-spacing: -0.01em;
   color: var(--color-text-tertiary);
+}
+
+.app-footer__column-link {
   text-decoration: none;
   transition: color var(--transition-base);
 
@@ -346,158 +364,6 @@ function tryGetHostname(url: string): string | undefined {
     outline: 2px solid var(--color-focus-ring);
     outline-offset: 2px;
     border-radius: 2px;
-  }
-}
-
-.app-footer__pa {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: to-rem(48);
-
-  @include mq($from: mobile) {
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: to-rem(40);
-  }
-
-  @include mq($from: desktop) {
-    gap: to-rem(120);
-  }
-}
-
-/* ≥1024px: бейджи --partners / --awards — absolute поверх логотипов + rotate. */
-.app-footer__badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: to-rem(8) to-rem(16);
-  background-color: var(--color-bg-surface);
-  border: 2px solid var(--color-border-brand);
-  border-radius: var(--radius-pill);
-  font-family: var(--font-sans);
-  font-weight: 600;
-  font-size: to-rem(18);
-  line-height: to-rem(24);
-  letter-spacing: -0.01em;
-  color: var(--color-text-primary);
-  text-align: center;
-  white-space: nowrap;
-}
-
-.app-footer__partners {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: to-rem(20);
-}
-
-.app-footer__partner-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: to-rem(20);
-
-  @include mq($from: tablet) {
-    flex-wrap: nowrap;
-    gap: to-rem(20);
-  }
-
-  @include mq($from: desktop) {
-    gap: to-rem(32);
-  }
-}
-
-.app-footer__partner-link,
-.app-footer__award-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  transition: opacity var(--transition-base);
-
-  &:hover,
-  &:focus-visible {
-    opacity: 0.85;
-  }
-
-  &:focus-visible {
-    outline: 2px solid var(--color-focus-ring);
-    outline-offset: 4px;
-    border-radius: 4px;
-  }
-}
-
-.app-footer__partner-img {
-  display: block;
-  width: var(--partner-w-mobile);
-  height: var(--partner-h-mobile);
-  object-fit: contain;
-  object-position: left center;
-
-  @include mq($from: tablet) {
-    width: var(--partner-w);
-    height: var(--partner-h);
-  }
-
-  &.is-rounded {
-    border-radius: to-rem(10);
-    object-fit: cover;
-  }
-}
-
-.app-footer__awards {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: to-rem(20);
-}
-
-.app-footer__award-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  gap: to-rem(16);
-}
-
-.app-footer__award-img {
-  display: block;
-  width: var(--award-w-mobile);
-  height: var(--award-h-mobile);
-  object-fit: contain;
-  object-position: left bottom;
-
-  @include mq($from: tablet) {
-    width: var(--award-w);
-    height: var(--award-h);
-  }
-}
-
-@include mq($from: tablet) {
-  .app-footer__badge--partners,
-  .app-footer__badge--awards {
-    position: absolute;
-    z-index: 1;
-  }
-
-  .app-footer__badge--partners {
-    left: to-rem(-54.63);
-    top: to-rem(-40);
-    transform: rotate(-7.6deg);
-  }
-
-  .app-footer__badge--awards {
-    right: to-rem(-50.99);
-    top: to-rem(-38);
-    transform: rotate(8.82deg);
   }
 }
 
@@ -535,7 +401,6 @@ function tryGetHostname(url: string): string | undefined {
   }
 }
 
-/* <1024px: прячем последний разделитель перед copyright. */
 .app-footer__bottom-divider {
   flex: none;
   display: inline-block;

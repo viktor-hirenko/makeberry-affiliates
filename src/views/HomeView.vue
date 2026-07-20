@@ -21,12 +21,16 @@ import HomeContacts from '@/components/home/HomeContacts.vue'
 import HomeFaq from '@/components/home/HomeFaq.vue'
 import HomeVacancies from '@/components/home/HomeVacancies.vue'
 import HomeBlog from '@/components/home/HomeBlog.vue'
+import HomePartners from '@/components/home/HomePartners.vue'
+import HomeAwards from '@/components/home/HomeAwards.vue'
 import {
+  useHomeAwards,
   useHomeBlog,
   useHomeContacts,
   useHomeDirectAdvertiser,
   useHomeFaq,
   useHomeMap,
+  useHomePartners,
   useHomeTestimonials,
   useHomeVacancies,
 } from '@/composables/useContent'
@@ -40,6 +44,8 @@ const contactsContent = useHomeContacts()
 const faqContent = useHomeFaq()
 const vacanciesContent = useHomeVacancies()
 const blogContent = useHomeBlog()
+const partnersContent = useHomePartners()
+const awardsContent = useHomeAwards()
 </script>
 
 <template>
@@ -56,6 +62,8 @@ const blogContent = useHomeBlog()
     <HomeFaq v-if="faqContent.enabled !== false" />
     <HomeVacancies v-if="vacanciesContent.enabled !== false" />
     <HomeBlog v-if="blogContent.enabled !== false" />
+    <HomePartners v-if="partnersContent.enabled !== false" />
+    <HomeAwards v-if="awardsContent.enabled !== false" />
   </div>
 </template>
 

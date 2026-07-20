@@ -36,7 +36,7 @@ const previewArticles = computed(() => articles.slice(0, 3))
           </ul>
         </div>
 
-        <BaseButton variant="secondary" :to="content.viewAll.href" class="home-blog__cta">
+        <BaseButton variant="tetriary" :to="content.viewAll.href" class="home-blog__cta">
           {{ content.viewAll.label }}
         </BaseButton>
       </div>
