@@ -2,6 +2,7 @@ import rawHome from '../data/en/pages/home.json'
 import rawNotFound from '../data/en/pages/not-found.json'
 import rawBlog from '../data/en/pages/blog/index.json'
 import articleOrder from '../data/en/pages/blog/articles/order.json'
+import rawEmployees from '../data/en/shared/employees.json'
 import rawFooter from '../data/en/shared/footer.json'
 import rawNav from '../data/en/shared/nav.json'
 import rawUi from '../data/en/shared/ui.json'
@@ -12,6 +13,7 @@ import type {
   AudiencePageContent,
   BlogContent,
   CasinoPageContent,
+  EmployeesRegistry,
   FooterConfig,
   HomeAboutContent,
   HomeAffiliatesAdvertisersContent,
@@ -217,6 +219,14 @@ export function useFooter(): FooterConfig {
  */
 export function useSharedUi(): SharedUiContent {
   return rawUi as SharedUiContent
+}
+
+/**
+ * Полный реестр сотрудников для формы verify (email / Telegram).
+ * Не связан с карточками Contacts — источник: Excel → employees.json.
+ */
+export function useEmployees(): EmployeesRegistry {
+  return rawEmployees as EmployeesRegistry
 }
 
 /**

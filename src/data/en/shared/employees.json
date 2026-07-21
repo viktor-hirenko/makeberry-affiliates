@@ -1,0 +1,272 @@
+[
+  {
+    "id": "oleksandr-kulyk",
+    "firstName": "Oleksandr",
+    "lastName": "Kulyk",
+    "department": "Department",
+    "jobTitle": "Head of Partnerships Makeberry",
+    "email": "sasha.k@makeberry.com",
+    "telegram": "@sasha_makeberry"
+  },
+  {
+    "id": "ganna-tian",
+    "firstName": "Ganna",
+    "lastName": "Tian",
+    "department": "PR",
+    "jobTitle": "PR Team Lead",
+    "email": "g.tian@makeberry.com",
+    "telegram": "@aniatian"
+  },
+  {
+    "id": "maria-viktoria-filonenko",
+    "firstName": "Maria-Viktoria",
+    "lastName": "Filonenko",
+    "department": "PR",
+    "jobTitle": "PR Specialist",
+    "email": "mariaviktoria@makeberry.com",
+    "telegram": "@mariaviktoria_makeberry"
+  },
+  {
+    "id": "alina-vasilevska",
+    "firstName": "Alina",
+    "lastName": "Vasilevska",
+    "department": "Sales",
+    "jobTitle": "Sales Manager",
+    "email": "alina.v@makeberry.com",
+    "telegram": "@Alina_Makeberry"
+  },
+  {
+    "id": "irina-pristupa",
+    "firstName": "Irina",
+    "lastName": "Pristupa",
+    "department": "Sales",
+    "jobTitle": "Sales Manager",
+    "email": "iryna.p@makeberry.com",
+    "telegram": "@iryna_makeberry"
+  },
+  {
+    "id": "mykhailo-shchelkunov",
+    "firstName": "Mykhailo",
+    "lastName": "Shchelkunov",
+    "department": "Sales",
+    "jobTitle": "Sales Manager",
+    "email": "mykhailo.s@makeberry.com",
+    "telegram": "@Makeberry_Mykhailo"
+  },
+  {
+    "id": "kateryna-poshukailo",
+    "firstName": "Kateryna",
+    "lastName": "Poshukailo",
+    "department": "Resell Affiliates",
+    "jobTitle": "Affiliate Manager",
+    "email": "kate.p@makeberry.com",
+    "telegram": "@kateCPA_makeberry"
+  },
+  {
+    "id": "roman-yakubovskyi",
+    "firstName": "Roman",
+    "lastName": "Yakubovskyi",
+    "department": "Resell Affiliates",
+    "jobTitle": "Affiliate Team Lead",
+    "email": "roman.y@makeberry.com",
+    "telegram": "@roman_makeberry"
+  },
+  {
+    "id": "alona-didkivska",
+    "firstName": "Alona",
+    "lastName": "Didkivska",
+    "department": "Sales",
+    "jobTitle": "Sales Team Lead",
+    "email": "alona.d@makeberry.com",
+    "telegram": "@alona_makeberry"
+  },
+  {
+    "id": "daria-tiupa",
+    "firstName": "Daria",
+    "lastName": "Tiupa",
+    "department": "Sales",
+    "jobTitle": "Sales Manager",
+    "email": "daria.t@makeberry.com",
+    "telegram": "@daria_makeberry"
+  },
+  {
+    "id": "anna-mashchenko",
+    "firstName": "Anna",
+    "lastName": "Mashchenko",
+    "department": "PR",
+    "jobTitle": "PR Specialist",
+    "email": "anna.m@makeberry.com",
+    "telegram": "@anna_makeberry"
+  },
+  {
+    "id": "stanislav-eihi",
+    "firstName": "Stanislav",
+    "lastName": "Eihi",
+    "department": "WinSpirit&RocketPlay Affiliates",
+    "jobTitle": "Affiliate Manager",
+    "email": "stan.e@makeberry.com",
+    "telegram": "@stan_makeberry"
+  },
+  {
+    "id": "arina-kliushnikova",
+    "firstName": "Arina",
+    "lastName": "Kliushnikova",
+    "department": "WinSpirit&RocketPlay Affiliates",
+    "jobTitle": "Affiliate Manager",
+    "email": "arina.k@makeberry.com",
+    "telegram": "@Arina_Makeberry"
+  },
+  {
+    "id": "viktoriia-levko",
+    "firstName": "Viktoriia",
+    "lastName": "Levko",
+    "department": "WinSpirit&RocketPlay Affiliates",
+    "jobTitle": "Account Manager",
+    "email": "viktoriia.l@makeberry.com",
+    "telegram": "@viktoria_makeberry"
+  },
+  {
+    "id": "timur-bilous",
+    "firstName": "Timur",
+    "lastName": "Bilous",
+    "department": "Resell Affiliates",
+    "jobTitle": "Affiliate Manager",
+    "email": "timur.b@makeberry.com",
+    "telegram": "@timur_makeberry"
+  },
+  {
+    "id": "valentyn-halchuk",
+    "firstName": "Валентин",
+    "lastName": "Гальчук",
+    "department": "Bizdev",
+    "jobTitle": "Head of Business Development",
+    "email": "Valentyn.H@makeberry.com",
+    "telegram": "@valentin_makeberry"
+  },
+  {
+    "id": "yelizaveta-prytula",
+    "firstName": "Єлізавета",
+    "lastName": "Притула",
+    "department": "Bizdev",
+    "jobTitle": "Business Development Manager",
+    "email": "Yelizaveta.P@makeberry.com",
+    "telegram": "@liza_makeberry"
+  },
+  {
+    "id": "andrii-vlasenko",
+    "firstName": "Андрій",
+    "lastName": "Власенко",
+    "department": "Bizdev",
+    "jobTitle": "Business Development Manager",
+    "email": "andrii.v@makeberry.com",
+    "telegram": "@andrii_makeberry"
+  },
+  {
+    "id": "vadym-semeniuk",
+    "firstName": "Вадим",
+    "lastName": "Семенюк",
+    "department": "Bizdev",
+    "jobTitle": "Business Development Manager",
+    "email": "vadym.s@makeberry.com",
+    "telegram": "@vadym_makeberry"
+  },
+  {
+    "id": "illia-chudinovskykh",
+    "firstName": "Ілля",
+    "lastName": "Чудіновських",
+    "department": "Bizdev",
+    "jobTitle": "Business Development Manager",
+    "email": "illia.c@makeberry.com",
+    "telegram": "@illia_makeberry"
+  },
+  {
+    "id": "oleksii-shtrekker",
+    "firstName": "Олексій",
+    "lastName": "Штреккер",
+    "department": "Bizdev",
+    "jobTitle": "Business Development Manager",
+    "email": "oleksii.s@makeberry.com",
+    "telegram": "@Alexey_Makeberry"
+  },
+  {
+    "id": "orest-stets",
+    "firstName": "Орест",
+    "lastName": "Стець",
+    "department": "WinSpirit&RocketPlay Affiliates",
+    "jobTitle": "Account Manager",
+    "email": "orest.s@makeberry.com",
+    "telegram": "@Orest_Makeberry"
+  },
+  {
+    "id": "serhii-solodchuk",
+    "firstName": "Serhii",
+    "lastName": "Solodchuk",
+    "department": "Influence",
+    "jobTitle": "Affiliate Team Lead",
+    "email": "serhii.s@makeberry.com",
+    "telegram": "@serhii_makeberry"
+  },
+  {
+    "id": "pavel-slobodianiuk",
+    "firstName": "Pavel",
+    "lastName": "Slobodianiuk",
+    "department": "Influence",
+    "jobTitle": "Senior Affiliate Manager",
+    "email": "pavlo.s@makeberry.com",
+    "telegram": "@paulmakeberry"
+  },
+  {
+    "id": "sofiia-mezina",
+    "firstName": "Sofiia",
+    "lastName": "Mezina",
+    "department": "Influence",
+    "jobTitle": "Middle Affiliate Manager",
+    "email": "sofiia.m@makeberry.com",
+    "telegram": "@sofiia_makeberry"
+  },
+  {
+    "id": "petro-bak",
+    "firstName": "Петро",
+    "lastName": "Бак",
+    "department": "Influence",
+    "jobTitle": "Affiliate Manager",
+    "email": "peter.b@makeberry.com",
+    "telegram": "@Petro_Makeberry"
+  },
+  {
+    "id": "yevhenii-demchenko",
+    "firstName": "Yevhenii",
+    "lastName": "Demchenko",
+    "department": "Influence",
+    "jobTitle": "Middle Affiliate Manager",
+    "email": "yevheniy.d@makeberry.com",
+    "telegram": "@Yevhenii_Makeberry"
+  },
+  {
+    "id": "viktor-kyselov",
+    "firstName": "Viktor",
+    "lastName": "Kyselov",
+    "department": "Resell Affiliates",
+    "jobTitle": "Junior Account Manager",
+    "email": "viktor.k@makeberry.com",
+    "telegram": "@viktor_makeberry"
+  },
+  {
+    "id": "alina-polishchuk",
+    "firstName": "Alina",
+    "lastName": "Polishchuk",
+    "department": "Resell Affiliates",
+    "jobTitle": "Middle Account Manager",
+    "email": "a.polishchuk@makeberry.com",
+    "telegram": "@alin_makeberry"
+  },
+  {
+    "id": "matvii-buhrymenko",
+    "firstName": "Matvii",
+    "lastName": "Buhrymenko",
+    "department": "Influence",
+    "jobTitle": "Head of Influencer Marketing",
+    "email": "m.buhrymenko@makeberry.com",
+    "telegram": "@matvii_makeberry"
+  }
+]

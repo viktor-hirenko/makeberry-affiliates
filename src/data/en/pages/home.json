@@ -763,8 +763,7 @@
             "href": "mailto:Valentyn.H@makeberry.com",
             "label": "Email"
           }
-        ],
-        "verifyTokens": ["@valentin_makeberry", "valentyn.h@makeberry.com"]
+        ]
       },
       {
         "id": "roman-yakubovskyi",
@@ -784,8 +783,7 @@
             "href": "mailto:roman.y@makeberry.com",
             "label": "Email"
           }
-        ],
-        "verifyTokens": ["@roman_makeberry", "roman.y@makeberry.com"]
+        ]
       },
       {
         "id": "alona-didkivska",
@@ -805,8 +803,7 @@
             "href": "mailto:alona.d@makeberry.com",
             "label": "Email"
           }
-        ],
-        "verifyTokens": ["@alona_makeberry", "alona.d@makeberry.com"]
+        ]
       },
       {
         "id": "serhii-solodchuk",
@@ -826,8 +823,7 @@
             "href": "mailto:serhii.s@makeberry.com",
             "label": "Email"
           }
-        ],
-        "verifyTokens": ["@serhii_makeberry", "serhii.s@makeberry.com"]
+        ]
       },
       {
         "id": "roman-hromov",
@@ -847,8 +843,7 @@
             "href": "mailto:r.hromov@makeberry.com",
             "label": "Email"
           }
-        ],
-        "verifyTokens": ["@rom_makeberry", "@roman", "r.hromov@makeberry.com"]
+        ]
       },
       {
         "id": "ganna-tian",
@@ -868,13 +863,12 @@
             "href": "mailto:g.tian@upstars.com",
             "label": "Email"
           }
-        ],
-        "verifyTokens": ["@aniatian", "g.tian@upstars.com"]
+        ]
       },
       {
         "id": "oleksandr-kulyk",
         "name": "Oleksandr\nKulyk",
-        "position": "VP of Makeberry Affiliate & BizDev",
+        "position": "VP of Makeberry Partnerships",
         "photoSrc": "/images/contacts/oleksandr-kulyk.webp",
         "photoAlt": "Oleksandr Kulyk",
         "photoObjectPosition": "center top",
@@ -889,8 +883,7 @@
             "href": "mailto:sasha.k@makeberry.com",
             "label": "Email"
           }
-        ],
-        "verifyTokens": ["@sasha_makeberry", "sasha.k@makeberry.com"]
+        ]
       },
       {
         "id": "matvii-buhrymenko",
@@ -910,8 +903,7 @@
             "href": "mailto:m.buhrymenko@makeberry.com",
             "label": "Email"
           }
-        ],
-        "verifyTokens": ["@matvii_makeberry", "m.buhrymenko@makeberry.com"]
+        ]
       }
     ],
     "form": {

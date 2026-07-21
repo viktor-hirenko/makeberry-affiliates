@@ -406,9 +406,24 @@ export interface HomeContactItem {
   photoAlt?: string
   photoObjectPosition?: string
   socials: HomeContactSocial[]
-  /** Lowercase tokens used by the verify form. Examples: '@valentyn', 'val@makeberry.com'. */
-  verifyTokens: string[]
 }
+
+/**
+ * Реестр сотрудников для формы verify (email / Telegram).
+ * Источник: `src/data/en/shared/employees.json` (Excel HR).
+ * Не связан с карточками Contacts — там публичный поднабор.
+ */
+export interface EmployeeRecord {
+  id: string
+  firstName: string
+  lastName: string
+  department: string
+  jobTitle: string
+  email: string
+  telegram: string
+}
+
+export type EmployeesRegistry = EmployeeRecord[]
 
 export interface HomeContactsForm {
   title: string

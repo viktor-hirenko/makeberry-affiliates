@@ -68,7 +68,7 @@
       "network": "twitter",
       "href": "https://x.com/makeberry_aff",
       "label": "X (Twitter)",
-      "enabled": true
+      "enabled": false
     },
     { "network": "telegram", "href": "https://t.me/makeberryaffiliate", "label": "Telegram" }
   ],

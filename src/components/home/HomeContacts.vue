@@ -10,9 +10,11 @@ import 'swiper/css/pagination'
 import BaseIcon from '@/components/ui/BaseIcon.vue'
 import { BREAKPOINT_TABLET_PX } from '@/constants/breakpoints'
 import { SWIPER_SPACE_COMFORT_PX, swiperTwoColumnBreakpoints } from '@/constants/swiper'
-import { useHomeContacts, useSharedUi } from '@/composables/useContent'
+import { useEmployees, useHomeContacts, useSharedUi } from '@/composables/useContent'
+import { buildEmployeeVerifyTokens, normalize } from '@/utils/employeeVerify'
 
 const content = useHomeContacts()
+const employees = useEmployees()
 const ui = useSharedUi()
 
 /**
@@ -44,49 +46,14 @@ const navConfig = {
 
 /* ------------------------------------------------------------------
  * Verify form state machine: idle | verified | error
- * Сравниваем нормализованный ввод с verifyTokens каждого контакта.
+ * Токены — из employees.json (Excel), не из карточек слайдера.
  * ------------------------------------------------------------------ */
 type VerifyStatus = 'idle' | 'verified' | 'error'
 
 const query = ref('')
 const status = ref<VerifyStatus>('idle')
 
-function normalize(value: string): string {
-  return value.trim().toLowerCase()
-}
-
-/**
- * Для TG-ников `@name` и `name` считаются одним и тем же.
- * Email (есть `@` не в начале) не трогаем.
- */
-function tokenVariants(value: string): string[] {
-  const v = normalize(value)
-  if (!v) return []
-
-  if (v.startsWith('@')) {
-    return [v, v.slice(1)]
-  }
-
-  // Email: local@domain — оставляем как есть
-  if (v.includes('@')) {
-    return [v]
-  }
-
-  // Ник без @: принимаем и с @, и без
-  return [v, `@${v}`]
-}
-
-const allTokens = computed<Set<string>>(() => {
-  const set = new Set<string>()
-  for (const item of content.items) {
-    for (const token of item.verifyTokens) {
-      for (const variant of tokenVariants(token)) {
-        set.add(variant)
-      }
-    }
-  }
-  return set
-})
+const allTokens = computed(() => buildEmployeeVerifyTokens(employees))
 
 function handleVerify() {
   const v = normalize(query.value)
