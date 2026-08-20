@@ -3,7 +3,11 @@
   "hero": {
     "badge": "Referral Program",
     "titleHtml": "Refer a friend who’s an influencer",
-    "subtitleHtml": "Get up to $500 instantly, then 10% of everything they earn for 6 months."
+    "subtitleHtml": "Get up to $500 instantly, then 10% of everything they earn for 6 months.",
+    "cta": {
+      "label": "Contact Us",
+      "href": "mailto:m.buhrymenko@makeberry.com?subject=Influencer%20referral"
+    }
   },
   "whatYouGet": {
     "title": "The Offer",
@@ -146,6 +150,10 @@
   },
   "cta": {
     "titleHtml": "<span class=\"primary\">Know someone?</span> <span class=\"muted\">Tell us now.</span>",
+    "button": {
+      "label": "Contact Us",
+      "href": "mailto:m.buhrymenko@makeberry.com?subject=Influencer%20referral"
+    },
     "glow": {
       "src": "/images/decorations/glow-audience-affiliates-desktop.png",
       "mobileSrc": "/images/decorations/glow-audience-affiliates-mobile.png",
