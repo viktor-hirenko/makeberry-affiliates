@@ -1,13 +1,40 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { defineConfig } from 'vite'
+import { defineConfig, type Plugin } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
+/*
+ * Vite минифицирует JS и CSS, но `index.html` отдаёт как есть — комментарии из
+ * него уезжают в прод дословно и видны в view-source. Плюс `generate-spa-routes`
+ * копирует `dist/index.html` в 20 роутов, так что каждый комментарий
+ * тиражируется двадцать раз.
+ *
+ * Резать в сборке, а не удалять из исходника: пояснение к inline-фону
+ * объясняет неочевидный трюк и должно остаться там, где стоит сам трюк.
+ *
+ * `enforce: 'post'` — чтобы пройти уже после того, как Vite впишет теги
+ * бандлов. Регексп забирает и перевод строки с отбивкой перед комментарием,
+ * иначе на его месте остаётся пустая строка. Оговорка: он не различает
+ * контексты, поэтому последовательность `<!--` внутри inline-скрипта в
+ * `index.html` он тоже съест — сейчас таких нет, но при добавлении стоит
+ * помнить.
+ */
+function stripHtmlComments(): Plugin {
+  return {
+    name: 'strip-html-comments',
+    apply: 'build',
+    enforce: 'post',
+    transformIndexHtml(html) {
+      return html.replace(/\n?[ \t]*<!--[\s\S]*?-->/g, '')
+    },
+  }
+}
+
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [vue(), stripHtmlComments()],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
