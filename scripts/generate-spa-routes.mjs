@@ -7,9 +7,15 @@ const STATIC_ROUTES = [
   'affiliates',
   'advertisers',
   'blog',
+  'referral',
   'terms-and-conditions',
   'privacy-policy',
 ]
+
+/* Роуты, которых не должно быть в поиске: ссылка на них раздаётся адресно.
+ * robots.txt на домене отдаёт Cloudflare, поэтому единственная надёжная
+ * точка управления — мета-тег в самом shell'е роута. */
+const NOINDEX_ROUTES = new Set(['referral'])
 
 const CASINO_SLUGS = ['winspirit', 'rocketplay', 'luckyhills']
 
@@ -45,8 +51,13 @@ console.log(`\n📄 Генерируем SPA-shell для ${routes.length} ро�
 for (const route of routes) {
   const dir = join(DIST, route)
   mkdirSync(dir, { recursive: true })
-  writeFileSync(join(dir, 'index.html'), indexHtml)
-  console.log(`  ✓ ${route}/index.html`)
+
+  const html = NOINDEX_ROUTES.has(route)
+    ? indexHtml.replace('<head>', '<head>\n    <meta name="robots" content="noindex, nofollow" />')
+    : indexHtml
+
+  writeFileSync(join(dir, 'index.html'), html)
+  console.log(`  ✓ ${route}/index.html${NOINDEX_ROUTES.has(route) ? ' (noindex)' : ''}`)
 }
 
 console.log(`\n✓ SPA-shell готов.\n`)

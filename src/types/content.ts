@@ -699,9 +699,16 @@ export interface WhatYouGetCardListBlock {
   items: string[]
 }
 
+export interface WhatYouGetCardOrderedListBlock {
+  /** Нумерованный список (`<ol>`) — для последовательности шагов. */
+  type: 'ordered-list'
+  items: string[]
+}
+
 export type WhatYouGetCardContent =
   | WhatYouGetCardBlock
   | WhatYouGetCardListBlock
+  | WhatYouGetCardOrderedListBlock
 
 /**
  * Sticker-иллюстрация карточки (3D-ассет, выходит за правый-верхний угол).
@@ -743,18 +750,19 @@ export interface AudienceCtaBlock {
   /**
    * path  — внутренний маршрут/якорь (RouterLink :to).
    * href  — внешний URL или mailto: (anchor :href).
+   * Без `button` секция рендерится только с текстом.
    */
-  button: { label: string; path?: string; href?: string }
+  button?: { label: string; path?: string; href?: string }
   glow: { src: string; mobileSrc?: string; alt: string }
 }
 
 /**
- * Контент одной страницы-аудитории (`/affiliates` или `/advertisers`).
- * Одна и та же структура — два набора данных, один шаблон (см.
- * `AudienceView` + `audience/*` components, по аналогии с casino).
+ * Контент одной страницы-аудитории (`/affiliates`, `/advertisers`,
+ * `/referral`). Одна и та же структура — несколько наборов данных, один
+ * шаблон (см. `AudienceView` + `audience/*` components, по аналогии с casino).
  */
 export interface AudiencePageContent {
-  slug: 'affiliates' | 'advertisers'
+  slug: 'affiliates' | 'advertisers' | 'referral'
   hero: PageHeroBlock
   whatYouGet: { title: string; cards: WhatYouGetCard[] }
   cta: AudienceCtaBlock

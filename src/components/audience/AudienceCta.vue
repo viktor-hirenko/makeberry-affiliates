@@ -38,6 +38,7 @@ const ui = useSharedUi()
     <div class="audience-cta__inner">
       <p class="audience-cta__text" v-html="cta.titleHtml" />
       <BaseButton
+        v-if="cta.button"
         variant="primary"
         size="large"
         :to="cta.button.href ? undefined : cta.button.path"
@@ -79,7 +80,8 @@ const ui = useSharedUi()
   user-select: none;
 }
 
-.audience-cta--affiliates {
+.audience-cta--affiliates,
+.audience-cta--referral {
   .audience-cta__glow {
     top: unset;
     left: unset;
@@ -126,7 +128,8 @@ const ui = useSharedUi()
   @include section-stack($align: center, $gap-mobile: to-rem(40));
   @include container(var(--container-cta));
 
-  .audience-cta--affiliates & {
+  .audience-cta--affiliates &,
+  .audience-cta--referral & {
     max-width: to-rem(970);
   }
 }

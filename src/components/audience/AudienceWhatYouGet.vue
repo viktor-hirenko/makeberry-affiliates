@@ -168,6 +168,9 @@ function cardStickerStyle(card: WhatYouGetCard): Record<string, string> {
                 class="wyg-card__paragraph"
                 v-html="block.html"
               />
+              <ol v-else-if="block.type === 'ordered-list'" class="wyg-card__list wyg-card__list--ordered">
+                <li v-for="(item, ii) in block.items" :key="ii">{{ item }}</li>
+              </ol>
               <ul v-else class="wyg-card__list">
                 <li v-for="(item, ii) in block.items" :key="ii">{{ item }}</li>
               </ul>
@@ -359,6 +362,12 @@ function cardStickerStyle(card: WhatYouGetCard): Record<string, string> {
   margin: 0;
   @include font-body-s-regular;
   color: var(--color-text-secondary);
+
+  /* Контент приходит через v-html — scope-атрибут на него не попадает. */
+  :deep(strong) {
+    font-weight: 500;
+    color: var(--color-text-primary);
+  }
 }
 
 .wyg-card__list {
@@ -374,6 +383,11 @@ function cardStickerStyle(card: WhatYouGetCard): Record<string, string> {
     @include font-body-s-regular;
     color: var(--color-text-secondary);
   }
+}
+
+.wyg-card__list--ordered {
+  list-style: decimal;
+  gap: to-rem(8);
 }
 
 /* Координаты/размер из --st-* (desktop) / --st-*-m (mobile);

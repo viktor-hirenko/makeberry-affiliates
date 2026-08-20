@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import BaseButton from '@/components/ui/BaseButton.vue'
-import type { PageHeroBlock } from '@/types/content'
+import type { AudiencePageContent, PageHeroBlock } from '@/types/content'
 
 /**
- * Hero страницы-аудитории (`/affiliates`, `/advertisers`).
+ * Hero страницы-аудитории (`/affiliates`, `/advertisers`, `/referral`).
  */
 interface Props {
   hero: PageHeroBlock
-  slug: 'affiliates' | 'advertisers'
+  slug: AudiencePageContent['slug']
 }
 
 defineProps<Props>()

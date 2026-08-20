@@ -63,6 +63,16 @@ export const router = createRouter({
       props: { slug: 'advertisers' },
       meta: { title: 'For Advertisers' },
     },
+    /* Unlisted: страница реферальной программы для инфлюенсеров. Ссылку
+     * рассылают адресно, поэтому её нет ни в nav.json, ни в футере, а
+     * SPA-shell для неё генерируется с noindex (см. generate-spa-routes). */
+    {
+      path: '/referral',
+      name: 'referral',
+      component: AudienceView,
+      props: { slug: 'referral' },
+      meta: { title: 'Referral Program' },
+    },
     {
       path: '/casino/:slug',
       name: 'casino',
