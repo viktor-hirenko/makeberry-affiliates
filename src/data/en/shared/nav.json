@@ -21,7 +21,7 @@
       ]
     },
     { "label": "Map", "path": "/#map", "enabled": true },
-    { "label": "Testimonials", "path": "/#testimonials", "enabled": false },
+    { "label": "Testimonials", "path": "/#testimonials", "enabled": true },
     { "label": "FAQ", "path": "/#faq" },
     { "label": "Contacts", "path": "/#contacts", "enabled": true }
   ]

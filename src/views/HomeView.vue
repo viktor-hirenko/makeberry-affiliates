@@ -56,9 +56,9 @@ const awardsContent = useHomeAwards()
     <HomeDirectAdvertiser v-if="directAdvertiserContent.enabled !== false" />
     <HomeMap v-if="mapContent.enabled !== false" />
     <HomeBenefits />
-    <HomeTestimonials v-if="testimonialsContent.enabled !== false" />
     <HomeMeetUs />
     <HomeContacts v-if="contactsContent.enabled !== false" />
+    <HomeTestimonials v-if="testimonialsContent.enabled !== false" />
     <HomeFaq v-if="faqContent.enabled !== false" />
     <HomeVacancies v-if="vacanciesContent.enabled !== false" />
     <HomeBlog v-if="blogContent.enabled !== false" />

@@ -654,26 +654,43 @@
     ]
   },
   "testimonials": {
-    "enabled": false,
+    "enabled": true,
     "title": "Testimonials",
     "items": [
       {
-        "id": "affiverse-media",
-        "author": "Affiverse Media",
-        "text": "Working with Makeberry this 2025 has proved satisfying for Affiverse as the brand has grown immensely. The relationship with their team has been amazing. Makeberry is leaving its mark on the iGaming industry as they have shown to be more than just an agency",
-        "ctaHref": "https://affiversemedia.com"
+        "id": "cazinouriro",
+        "author": "cazinouriro.ro",
+        "text": "Makeberry ensures a smooth cooperation and always on-time feedback. We're super glad to have them on board as a partner and are looking forward to some great results.",
+        "avatarSrc": "/images/home/testimonials/cazinouriro.webp",
+        "ctaHref": "https://cazinouriro.ro/reviews/winspirit/"
       },
       {
-        "id": "igb-affiliate",
-        "author": "iGB Affiliate",
-        "text": "Working with Makeberry this 2025 has proved satisfying for Affiverse as the brand has grown immensely. The relationship with their team has been amazing. Makeberry is leaving its mark on the iGaming industry as they have shown to be more than just an agency",
-        "ctaHref": "https://igbaffiliate.com"
+        "id": "mmss",
+        "author": "mmss.ro",
+        "text": "Working with Makeberry has been a great experience from day one. The team is responsive, professional, and always focused on delivering strong results.",
+        "avatarSrc": "/images/home/testimonials/mmss.webp",
+        "ctaHref": "https://mmss.ro/reviews/winspirit/"
       },
       {
-        "id": "sbc-media",
-        "author": "SBC Media",
-        "text": "Working with Makeberry this 2025 has proved satisfying for Affiverse as the brand has grown immensely. The relationship with their team has been amazing. Makeberry is leaving its mark on the iGaming industry as they have shown to be more than just an agency",
-        "ctaHref": "https://sbcnews.co.uk"
+        "id": "onlinekaszinomagyar",
+        "author": "onlinekaszinomagyar.hu",
+        "text": "Very good experience overall. Tools are clear and efficient. Support team is quick and professional. Happy with cooperation.",
+        "avatarSrc": "/images/home/testimonials/onlinekaszinomagyar.webp",
+        "ctaHref": "https://onlinekaszinomagyar.hu"
+      },
+      {
+        "id": "legjobbmagyaronlinekaszino",
+        "author": "legjobbmagyaronlinekaszino.com",
+        "text": "Great collaboration experience. Platform is efficient and user-friendly. Support responds quickly. We are pleased with results.",
+        "avatarSrc": "/images/home/testimonials/legjobbmagyaronlinekaszino.webp",
+        "ctaHref": "https://legjobbmagyaronlinekaszino.com"
+      },
+      {
+        "id": "onlinekaszinooldalak",
+        "author": "onlinekaszinooldalak.com",
+        "text": "This cooperation has been very positive. Platform works smoothly and efficiently. Support team is always helpful. Highly recommend.",
+        "avatarSrc": "/images/home/testimonials/onlinekaszinooldalak.webp",
+        "ctaHref": "https://onlinekaszinooldalak.com"
       }
     ]
   },

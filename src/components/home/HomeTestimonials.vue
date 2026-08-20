@@ -41,21 +41,24 @@ const TESTIMONIALS_DESKTOP_SPACE_BETWEEN = '6.482%'
  *  • < 600          → 1 слайд (база `slides-per-view="1"` на компоненте).
  *  • 600 – 767      → 2 слайда, gap 16.
  *  • 768 – 1023     → 2 слайда, gap 20.
- *  • ≥ 1024         → focal-карусель: `slidesPerView: 3` + `centeredSlides` +
- *                      `centeredSlidesBounds`. Видны три слайда: small | BIG | small.
+ *  • ≥ 1024         → focal-карусель: `slidesPerView: 3` + `centeredSlides`.
+ *                      Видны три слайда: small | BIG | small.
  *                      Активный = визуально центральный, увеличен через
  *                      `transform: scale` в CSS. Все слайды одной фактической
  *                      ширины (= bbox = «small» 350/1160), это критично —
  *                      без этого Swiper рассинхронизирует `slidesGrid`
  *                      при смене активного и активный встаёт не по центру.
  *
- * Важно: `centeredSlidesBounds: true` нужен по двум причинам:
- *   1. Snap-grid не дублирует позиции → кастомная пагинация = `uniqueSnaps`
- *      (напр. 4 отзыва в макете Figma → 2 точки; фактическое N — из JSON).
- *   2. Без bounds первый/последний слайды могут стать активными, и тогда
- *      по краям видны пустые offset-зоны (та самая «дыра в начале/конце»).
- *      С bounds первый/последний прижимаются к краю swiper-контейнера и
- *      всегда находятся в позиции «small-сосед», что и нужно по дизайну.
+ * Здесь сознательно НЕТ `centeredSlidesBounds: true`. Он убирает пустые
+ * offset-зоны по краям, но ценой того, что первый и последний слайды
+ * прижаты к границам трека и никогда не становятся активными. А у
+ * неактивной карточки текст обрезан на 3 строках и скрыта CTA — то есть
+ * крайние отзывы нельзя было ни прочитать целиком, ни открыть по ссылке,
+ * и это не зависело от их количества. Доступность контента важнее пустого
+ * места на двух крайних позициях, поэтому bounds убран.
+ *
+ * Закольцевать вместо этого (`loop: true`) нельзя — см. блок про loop
+ * ниже, после `navConfig`.
  *
  * `centeredSlides: false` на mobile-BP — обязательно: Swiper не сбрасывает
  * параметры с большего BP при возврате на меньший. Без явного `false`
@@ -68,7 +71,6 @@ const swiperBreakpoints = {
     spaceBetween: SWIPER_SPACE_COMPACT_PX,
     allowTouchMove: true,
     centeredSlides: false,
-    centeredSlidesBounds: false,
   },
   [BREAKPOINT_MOBILE_PX]: {
     slidesPerView: 2,
@@ -76,7 +78,6 @@ const swiperBreakpoints = {
     spaceBetween: SWIPER_SPACE_COMFORT_PX,
     allowTouchMove: true,
     centeredSlides: false,
-    centeredSlidesBounds: false,
   },
   [BREAKPOINT_TABLET_PX]: {
     slidesPerView: 3,
@@ -89,30 +90,23 @@ const swiperBreakpoints = {
     spaceBetween: TESTIMONIALS_DESKTOP_SPACE_BETWEEN,
     allowTouchMove: true,
     centeredSlides: true,
-    centeredSlidesBounds: true,
   },
 }
 
 /**
  * Кастомный paginator (вместо Swiper Pagination module).
  *
- * Зачем не `Pagination` из коробки:
- *   • Swiper рисует bullets по `slides.length` (= число отзывов в JSON).
- *   • При `centeredSlidesBounds: true` `snapGrid` Swiper'а имеет
- *     дубли (`[0, 0, X, X]`), реальных snap-позиций — 2.
- *     Native bullets оказываются 4, а active подсвечивается по
- *     индексу slidesGrid (0 → bullet[0], 1 → bullet[2]) — два
- *     bullet'а никогда не загораются.
- *   • Любой захардкоженный CSS-хак под 4 слайда сломается, как
- *     только в `home-testimonials.json` появится 5-й testimonial.
+ * Точек ровно столько, сколько РАЗЛИЧНЫХ положений трека, а не сколько
+ * отзывов, — и это принципиально, потому что числа не совпадают:
+ *   • ≥1024 (3 слайда, centeredSlides без bounds) — каждый отзыв может
+ *     встать в центр, snap-позиций 5 при 5 отзывах;
+ *   • 600–1023 (2 слайда) — последний слайд доезжает в паре с
+ *     предыдущим, snap-позиций 4 при 5 отзывах.
+ * Native `Pagination` рисует bullets по числу слайдов и во втором случае
+ * оставил бы мёртвую точку, по которой ничего не происходит.
  *
- * Своя пагинация:
- *   • точек = количество УНИКАЛЬНЫХ snap-позиций (с tolerance 0.5px),
- *   • активная точка = текущая snap-позиция,
- *   • переход — `swiper.slideTo(slideIdx)`, где slideIdx — первый
- *     слайд из `slidesGrid`, у которого translate равен выбранному.
- *
- * Работает для любого количества testimonials и любых брейкпоинтов.
+ * Позиции сравниваем с допуском: translate — дробный (spaceBetween задан
+ * в %), точное равенство здесь не работает.
  */
 const swiperRef = shallowRef<SwiperInstance | null>(null)
 const uniqueSnaps = ref<number[]>([])
@@ -167,9 +161,10 @@ function onTestimonialsSwiper(swiper: SwiperInstance) {
   }
 }
 
+/** Точка → первый слайд, у которого положение трека совпадает с её snap. */
 function goToSnap(idx: number) {
   const sw = swiperRef.value
-  if (!sw) return
+  if (!sw || sw.destroyed) return
   const target = uniqueSnaps.value[idx]
   if (target === undefined) return
 
@@ -184,6 +179,49 @@ const navConfig = {
   disabledClass: 'is-disabled',
   lockClass: 'is-locked',
 }
+
+/*
+ * Почему здесь НЕ `loop: true`, хотя закольцованная карусель выглядела бы
+ * логичнее: в этой связке Swiper + Vue она нерабочая, проверено в браузере.
+ *
+ * Swiper реализует loop перестановкой слайдов и опознаёт их по атрибуту
+ * `data-swiper-slide-index`, который дописывает сам. Здесь слайды рендерит
+ * Vue через `v-for`, и этот атрибут не проставляется вовсе — замеры
+ * показывают его пустым у всех слайдов. Без него вся loop-бухгалтерия
+ * рассыпается: карусель инициализируется не на первом отзыве, а на
+ * третьем-пятом; на последнем слайде сосед справа всё равно не
+ * подставляется (пустая зона остаётся); переход через стык не
+ * происходит вообще — `realIndex` замирает и стрелки перестают листать.
+ * Стрелки при этом дополнительно глушит дефолтный
+ * `loopPreventsSliding: true`, потому что Swiper залипает в
+ * `animating === true` (нативный `transitionend` на `.swiper-wrapper`
+ * не приходит). Ни `loopAdditionalSlides`, ни `loopPreventsSliding: false`,
+ * ни `v-memo` на слайдах проблему не снимают — с `v-memo` карусель
+ * замирает на последнем отзыве сразу после инициализации.
+ *
+ * Поэтому доступность всех отзывов решается проще и надёжнее — снятием
+ * `centeredSlidesBounds` (см. комментарий к брейкпоинтам).
+ */
+
+/**
+ * На focal-раскладке карусель открывается со ВТОРОГО отзыва.
+ *
+ * Причина — первая позиция единственная (вместе с последней), где сбоку
+ * от центральной карточки нет соседа: `centeredSlides` без bounds честно
+ * центрирует крайний слайд, и слева остаётся пустое место. На загрузке
+ * это выглядело бы как дефект вёрстки. Со второго слайда виден полный
+ * ряд small | BIG | small, а первый отзыв доступен стрелкой и точкой.
+ *
+ * Побочно это ровно то, что было и раньше: с `centeredSlidesBounds`
+ * первый слайд не мог стать активным, поэтому секция и тогда открывалась
+ * со второго отзыва в центре — начальный вид не изменился.
+ *
+ * Считаем один раз: `initialSlide` читается только при инициализации,
+ * в брейкпоинтах его менять смысла нет. На мobile-раскладках слайд один
+ * во всю ширину, пустых зон не бывает — там начинаем с первого отзыва.
+ */
+const initialSlide =
+  typeof window !== 'undefined' && window.innerWidth >= BREAKPOINT_TABLET_PX ? 1 : 0
 </script>
 
 <template>
@@ -196,6 +234,7 @@ const navConfig = {
           class="home-testimonials__swiper"
           :modules="[Navigation, A11y]"
           breakpoints-base="window"
+          :initial-slide="initialSlide"
           :slides-per-view="1"
           :slides-per-group="1"
           :space-between="16"
@@ -241,7 +280,7 @@ const navConfig = {
                   loading="lazy"
                   decoding="async"
                 />
-                <p class="home-testimonials__author">{{ item.author }}</p>
+                <p class="home-testimonials__author" :title="item.author">{{ item.author }}</p>
                 <a
                   v-if="item.ctaHref"
                   :href="item.ctaHref"
@@ -384,6 +423,12 @@ $testimonials-active-scale-inverse: calc(1 / 1.314); // ≈ 0.761
 /* Counter-scale для содержимого активной карточки. */
 .swiper-slide-active .home-testimonials__card {
   @include mq($from: tablet) {
+    /* Высота активной карточки не должна зависеть от длины отзыва: без этого
+     * focal-паттерн виден только на текстах, добивающих до лимита 6 строк, а на
+     * коротких активная карточка совпадает по высоте с боковыми. 355px = 211px
+     * постоянной части (кавычки, паддинги, разделитель, футер) + 6 × 24px строки,
+     * т.е. ровно та высота, которую даёт `line-clamp: 6` на полном тексте. */
+    min-height: to-rem(355);
     transform: scaleX($testimonials-active-scale-inverse);
     transform-origin: center center;
     /* Расширяем CSS-ширину так, чтобы после собственного scaleX(0.761) и
@@ -469,6 +514,23 @@ $testimonials-active-scale-inverse: calc(1 / 1.314); // ≈ 0.761
   align-items: center;
   gap: to-rem(16);
   padding: to-rem(24);
+
+  /* Домены партнёров доходят до 30 символов, и на focal-раскладке имя
+   * упиралось в свой бокс: у активной карточки на него оставалось 287px из
+   * 407 (24×2 паддинги, аватар 48, CTA 40, два gap по 16), а самому длинному
+   * нужно 289 — обрезалось даже в центре, где обрезать нечего.
+   *
+   * Уменьшаем именно gap: паддинг трогать нельзя, он держит аватар на одной
+   * вертикали с кавычками сверху, а шрифт — часть типошкалы. Два gap по 12
+   * отдают имени 8px (295 против 289), и правило стоит на всём футере, а не
+   * на активной карточке: иначе бокс имени менялся бы при въезде слайда в
+   * центр и текст дёргался бы прямо во время анимации.
+   *
+   * Это запас, а не гарантия. `text-overflow: ellipsis` на `__author`
+   * остаётся: домен от ~31 символа снова не влезет и получит многоточие. */
+  @include mq($from: tablet) {
+    gap: to-rem(12);
+  }
 }
 
 .home-testimonials__avatar {
@@ -484,6 +546,14 @@ $testimonials-active-scale-inverse: calc(1 / 1.314); // ≈ 0.761
   display: block;
 }
 
+/* Одна строка с многоточием — осознанно, а не «как получилось».
+ * Домены длиннее ~30 символов гарантированно не влезут ни в один бокс, и
+ * альтернатива переносу нет: домен — цельный токен без пробелов, `overflow-wrap`
+ * рвал бы его посреди слова (`legjobbmagyaronlinekasz` / `ino.com`). В
+ * semibold-лейбле это читается хуже обрезки. Две строки, кстати, поместились бы
+ * без роста футера — его высоту держит аватар 48px = 2 × line-height 24px, —
+ * так что ограничение здесь эстетическое, а не техническое.
+ * `title` в разметке отдаёт полное значение по hover, когда обрезка случилась. */
 .home-testimonials__author {
   margin: 0;
   flex: 1 1 auto;
