@@ -6,11 +6,33 @@
  *   - send_page_view: false → ручной page_view в router.afterEach (SPA).
  *   - Нет зависимости от FullStory.
  *
- * Для включения задать VITE_GA_MEASUREMENT_ID в .env.
- * Без переменной все функции работают как no-op — ошибок нет.
+ * Прод-ID зашит дефолтом ниже. VITE_GA_MEASUREMENT_ID переопределяет его,
+ * пустое значение переменной — отключает аналитику совсем. VITE_GA_DEBUG=1
+ * включает трекинг вне прода и добавляет debug_mode для GA4 DebugView.
+ * Когда аналитика выключена, все функции работают как no-op — ошибок нет.
  */
 
-const GA_ID = import.meta.env.VITE_GA_MEASUREMENT_ID
+/*
+ * Measurement ID не секрет: он уходит в клиентский бандл и в каждый запрос к
+ * googletagmanager.com. Держать его в .env (который в .gitignore) при ручном
+ * деплое значит поставить прод-аналитику в зависимость от того, не забыл ли
+ * человек создать локальный файл — а «забыл» выглядит как молчаливое отсутствие
+ * данных в GA4. Поэтому реальный ID — дефолт в коде, а env остаётся способом
+ * переопределить его.
+ *
+ * Именно `??`, а не `||`: пустой VITE_GA_MEASUREMENT_ID= — это явный опт-аут
+ * (форк, локальный preview), и он должен пережить fallback.
+ */
+const GA_ID = (import.meta.env.VITE_GA_MEASUREMENT_ID ?? 'G-HR253V0PJX').trim()
+
+/*
+ * VITE_GA_DEBUG=1 включает аналитику вне прода и добавляет debug_mode — так
+ * события видно в GA4 DebugView. Нужен только для ручной проверки.
+ */
+const GA_DEBUG = import.meta.env.VITE_GA_DEBUG === '1'
+
+/* Локальный dev не должен засорять прод-свойство сессиями с localhost. */
+const GA_ENABLED = !!GA_ID && (import.meta.env.PROD || GA_DEBUG)
 
 declare global {
   interface Window {
@@ -26,7 +48,7 @@ let _initialized = false
  * Должна вызываться один раз в main.ts до mount.
  */
 export function initGA(): void {
-  if (_initialized || !GA_ID || typeof window === 'undefined') return
+  if (_initialized || !GA_ENABLED || typeof window === 'undefined') return
   _initialized = true
 
   window.dataLayer = window.dataLayer ?? []
@@ -40,7 +62,10 @@ export function initGA(): void {
   document.head.appendChild(script)
 
   window.gtag('js', new Date())
-  window.gtag('config', GA_ID, { send_page_view: false })
+  window.gtag('config', GA_ID, {
+    send_page_view: false,
+    ...(GA_DEBUG ? { debug_mode: true } : {}),
+  })
 }
 
 /** Классификация ссылок для параметра link_type. */
@@ -92,7 +117,7 @@ export interface CtaClickParams {
 
 export function useAnalytics() {
   function isReady(): boolean {
-    return _initialized && !!GA_ID
+    return _initialized && GA_ENABLED
   }
 
   /** Универсальная отправка GA4-события. */
