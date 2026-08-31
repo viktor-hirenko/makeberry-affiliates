@@ -6,24 +6,44 @@
  *   - send_page_view: false → ручной page_view в router.afterEach (SPA).
  *   - Нет зависимости от FullStory.
  *
- * Прод-ID зашит дефолтом ниже. VITE_GA_MEASUREMENT_ID переопределяет его,
- * пустое значение переменной — отключает аналитику совсем. VITE_GA_DEBUG=1
- * включает трекинг вне прода и добавляет debug_mode для GA4 DebugView.
+ * События уходят сразу в два GA4-ресурса (см. GA_IDS_DEFAULT ниже).
+ * VITE_GA_MEASUREMENT_ID переопределяет список целиком, пустое значение
+ * переменной — отключает аналитику совсем. VITE_GA_DEBUG=1 включает трекинг
+ * вне прода и добавляет debug_mode для GA4 DebugView.
  * Когда аналитика выключена, все функции работают как no-op — ошибок нет.
  */
 
 /*
- * Measurement ID не секрет: он уходит в клиентский бандл и в каждый запрос к
- * googletagmanager.com. Держать его в .env (который в .gitignore) при ручном
- * деплое значит поставить прод-аналитику в зависимость от того, не забыл ли
- * человек создать локальный файл — а «забыл» выглядит как молчаливое отсутствие
- * данных в GA4. Поэтому реальный ID — дефолт в коде, а env остаётся способом
- * переопределить его.
+ * Два получателя одних и тех же событий:
+ *   - G-GFQ08LC8YJ — ресурс «Makeberry Affiliates», заведён в DP-14089 вместе
+ *     со всей разметкой CTA. Команда смотрит отчёты именно в нём.
+ *   - G-HR253V0PJX — ресурс из DP-15355, доступа к нему у нас нет.
  *
- * Именно `??`, а не `||`: пустой VITE_GA_MEASUREMENT_ID= — это явный опт-аут
- * (форк, локальный preview), и он должен пережить fallback.
+ * gtag.js штатно поддерживает несколько получателей: один загрузчик, по
+ * `config` на ресурс и `send_to` со списком в каждом событии. Каждый ресурс
+ * получает свою копию события, внутри одного ресурса дублирования нет.
+ * Порядок важен только для URL загрузчика — берётся первый ID.
+ *
+ * Measurement ID не секрет: он и так уходит в бандл и в каждый запрос к
+ * googletagmanager.com. Держать его только в .env (который в .gitignore) при
+ * ручном деплое значит поставить прод-аналитику в зависимость от того, не
+ * забыл ли человек создать локальный файл, — а «забыл» выглядит как
+ * молчаливое отсутствие данных. Поэтому список зашит в код.
  */
-const GA_ID = (import.meta.env.VITE_GA_MEASUREMENT_ID ?? 'G-HR253V0PJX').trim()
+const GA_IDS_DEFAULT = ['G-GFQ08LC8YJ', 'G-HR253V0PJX']
+
+/*
+ * VITE_GA_MEASUREMENT_ID переопределяет список целиком — один ID или
+ * несколько через запятую. Это выключатель на случай, если понадобится
+ * оставить ровно один ресурс: правка одной строки в .env, без правок кода.
+ *
+ * Именно `??`, а не `||`: пустой VITE_GA_MEASUREMENT_ID= — явный опт-аут
+ * (форк, локальный preview), и он должен пережить fallback в пустой список.
+ */
+const GA_IDS = (import.meta.env.VITE_GA_MEASUREMENT_ID ?? GA_IDS_DEFAULT.join(','))
+  .split(',')
+  .map((id) => id.trim())
+  .filter(Boolean)
 
 /*
  * VITE_GA_DEBUG=1 включает аналитику вне прода и добавляет debug_mode — так
@@ -32,7 +52,7 @@ const GA_ID = (import.meta.env.VITE_GA_MEASUREMENT_ID ?? 'G-HR253V0PJX').trim()
 const GA_DEBUG = import.meta.env.VITE_GA_DEBUG === '1'
 
 /* Локальный dev не должен засорять прод-свойство сессиями с localhost. */
-const GA_ENABLED = !!GA_ID && (import.meta.env.PROD || GA_DEBUG)
+const GA_ENABLED = GA_IDS.length > 0 && (import.meta.env.PROD || GA_DEBUG)
 
 declare global {
   interface Window {
@@ -57,15 +77,19 @@ export function initGA(): void {
   }
 
   const script = document.createElement('script')
-  script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_IDS[0]}`
   script.async = true
   document.head.appendChild(script)
 
   window.gtag('js', new Date())
-  window.gtag('config', GA_ID, {
-    send_page_view: false,
-    ...(GA_DEBUG ? { debug_mode: true } : {}),
-  })
+
+  /* По одному config на ресурс — иначе второй получатель не подключится. */
+  for (const id of GA_IDS) {
+    window.gtag('config', id, {
+      send_page_view: false,
+      ...(GA_DEBUG ? { debug_mode: true } : {}),
+    })
+  }
 }
 
 /** Классификация ссылок для параметра link_type. */
@@ -123,7 +147,7 @@ export function useAnalytics() {
   /** Универсальная отправка GA4-события. */
   function trackEvent(eventName: string, params?: Record<string, unknown>): void {
     if (!isReady()) return
-    window.gtag('event', eventName, { send_to: GA_ID, ...params })
+    window.gtag('event', eventName, { send_to: GA_IDS, ...params })
   }
 
   /**
@@ -133,7 +157,7 @@ export function useAnalytics() {
   function trackPageView(path: string, title: string): void {
     if (!isReady()) return
     window.gtag('event', 'page_view', {
-      send_to: GA_ID,
+      send_to: GA_IDS,
       page_path: path,
       page_title: title,
       page_location: window.location.href,
@@ -149,7 +173,7 @@ export function useAnalytics() {
     if (!isReady()) return
 
     const enriched: Record<string, unknown> = {
-      send_to: GA_ID,
+      send_to: GA_IDS,
       transport_type: 'beacon',
       ...params,
       page_path: params.page_path ?? window.location.pathname,
