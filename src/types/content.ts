@@ -122,6 +122,8 @@ export interface FooterConfig {
   columns: FooterColumn[]
   social: FooterSocial[]
   bottomLinks: FooterBottomLink[]
+  /** Реквизиты юрлица — по строке на элемент массива. */
+  legalEntity: string[]
   copyright: string
   /** legacy */
   legal?: string

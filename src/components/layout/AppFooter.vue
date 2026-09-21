@@ -161,6 +161,10 @@ function isProtocolLink(href: string): boolean {
             </ul>
           </div>
         </nav>
+
+        <address v-if="footer.legalEntity?.length" class="app-footer__legal">
+          <p v-for="line in footer.legalEntity" :key="line">{{ line }}</p>
+        </address>
       </div>
 
       <div class="app-footer__bottom">
@@ -218,11 +222,18 @@ function isProtocolLink(href: string): boolean {
   align-items: flex-start;
   gap: to-rem(60);
 
+  /* Десктоп: brand и юрблок в левой колонке, nav — справа. */
   @include mq($from: mobile) {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: to-rem(48);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    /* auto 1fr: nav занимает обе строки, но не растягивает первую. */
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      'brand nav'
+      'legal nav';
+    align-items: start;
+    column-gap: to-rem(48);
+    row-gap: to-rem(32);
   }
 }
 
@@ -231,6 +242,10 @@ function isProtocolLink(href: string): boolean {
   flex-direction: column;
   align-items: flex-start;
   gap: to-rem(32);
+
+  @include mq($from: mobile) {
+    grid-area: brand;
+  }
 }
 
 .app-footer__logo {
@@ -275,6 +290,24 @@ function isProtocolLink(href: string): boolean {
   }
 }
 
+.app-footer__legal {
+  display: flex;
+  flex-direction: column;
+  gap: to-rem(4);
+  font-style: normal;
+
+  @include mq($from: mobile) {
+    grid-area: legal;
+    max-width: to-rem(300);
+  }
+
+  p {
+    margin: 0;
+    @include font-caption-regular;
+    color: var(--color-text-muted);
+  }
+}
+
 /* Explore | Solutions+DA stack | Partners | Awards */
 .app-footer__nav {
   display: flex;
@@ -287,6 +320,11 @@ function isProtocolLink(href: string): boolean {
     flex-direction: row;
     flex-wrap: wrap;
     gap: to-rem(32);
+  }
+
+  @include mq($from: mobile) {
+    grid-area: nav;
+    justify-self: end;
   }
 
   @include mq($from: tablet) {

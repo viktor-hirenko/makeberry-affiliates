@@ -76,5 +76,10 @@
     { "label": "Terms of Service", "path": "/terms-and-conditions" },
     { "label": "Privacy Policy", "path": "/privacy-policy" }
   ],
+  "legalEntity": [
+    "Makeberry OÜ",
+    "Company registration number: 17036216",
+    "Registered address: Harju maakond, Tallinn, Kesklinna linnaosa, Vesivärava tn 50-301, 10152, Estonia."
+  ],
   "copyright": "©2026 Makeberry. All rights reserved."
 }
