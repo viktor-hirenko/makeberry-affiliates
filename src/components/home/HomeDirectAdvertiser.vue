@@ -99,9 +99,24 @@ const navConfig = {
               :is="cardComponent(partner.href, partner.isPlaceholder)"
               v-bind="cardAttrs(partner.href, partner.isPlaceholder)"
               class="home-direct__card"
-              :class="{ 'home-direct__card--empty': partner.isPlaceholder }"
+              :class="{
+                'home-direct__card--empty': partner.isPlaceholder,
+                'home-direct__card--teaser': partner.signSrc,
+              }"
             >
-              <template v-if="partner.isPlaceholder">
+              <template v-if="partner.signSrc">
+                <span v-if="partner.badgeLabel" class="home-direct__badge">
+                  {{ partner.badgeLabel }}
+                </span>
+                <img
+                  :src="partner.signSrc"
+                  :alt="partner.signAlt ?? partner.name"
+                  class="home-direct__sign"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </template>
+              <template v-else-if="partner.isPlaceholder">
                 <div class="home-direct__placeholder">
                   <span class="home-direct__placeholder-icon" aria-hidden="true">
                     <BaseIcon name="plus" :size="24" />
@@ -287,6 +302,7 @@ const navConfig = {
 }
 
 .home-direct__card {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -343,6 +359,42 @@ const navConfig = {
   &:focus-visible {
     outline: none;
   }
+}
+
+/* Анонс бренда: карточка не кликабельна — ни курсора, ни ховер-градиента. */
+.home-direct__card--teaser {
+  cursor: default;
+
+  &:hover,
+  &:focus-visible {
+    background-image: none;
+  }
+}
+
+.home-direct__badge {
+  position: absolute;
+  top: to-rem(8);
+  right: to-rem(8);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: to-rem(8) to-rem(12);
+  background-color: var(--color-bg-brand-soft);
+  border: 1px solid var(--color-border-brand);
+  border-radius: var(--radius-pill);
+  color: var(--color-text-primary);
+  white-space: nowrap;
+
+  @include font-caption-medium;
+}
+
+/* 140×140 из макета выходит за padding карточки — так и задумано. */
+.home-direct__sign {
+  display: block;
+  width: to-rem(140);
+  height: to-rem(140);
+  flex-shrink: 0;
+  object-fit: contain;
 }
 
 .home-direct__logo-frame {

@@ -191,6 +191,13 @@
         "href": "/casino/luckyhills"
       },
       {
+        "id": "new-brand",
+        "name": "New brand",
+        "signSrc": "/images/logos/advertisers/new-brand/new-brand-sign.svg",
+        "signAlt": "Silhouette of an upcoming Makeberry brand",
+        "badgeLabel": "NEW"
+      },
+      {
         "id": "your-brand",
         "name": "Your brand could be here",
         "isPlaceholder": true,

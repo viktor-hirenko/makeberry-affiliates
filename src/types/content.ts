@@ -254,6 +254,8 @@ export interface DirectAdvertiserSection {
  * - Регулярная карточка: серый фон, на ховере проявляется розовый градиент.
  * - Карточка `isPlaceholder: true` ("Your brand could be here") — без фона,
  *   с plus-иконкой; ховер-градиента у неё нет.
+ * - Карточка с `signSrc` — анонс бренда: вместо лого силуэт 140×140 и плашка
+ *   `badgeLabel` в углу. Имя бренда раскрывать ещё нельзя, ссылки у неё нет.
  */
 export interface HomeDirectPartnerCard {
   id: string
@@ -263,6 +265,9 @@ export interface HomeDirectPartnerCard {
   href?: string
   isPlaceholder?: boolean
   placeholderLabel?: string
+  signSrc?: string
+  signAlt?: string
+  badgeLabel?: string
 }
 
 export interface HomeDirectCooperationItem {
